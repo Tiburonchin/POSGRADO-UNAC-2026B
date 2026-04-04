@@ -1,69 +1,46 @@
+/**
+ * Navigation - Complementary helper functions
+ * Main mega-menu logic is now handled by mega-menu.js
+ * This file is kept for backward compatibility and other navigation utilities
+ */
+
 (function () {
-  var menuToggle = document.getElementById('menu-toggle');
-  var primaryNav = document.getElementById('primary-nav');
-  var submenuToggles = document.querySelectorAll('.submenu-toggle');
-  var navLinks = document.querySelectorAll('#primary-nav a');
+  'use strict';
 
-  function setMenuState(isOpen) {
-    if (!primaryNav || !menuToggle) {
-      return;
-    }
-
-    primaryNav.classList.toggle('open', isOpen);
-    menuToggle.setAttribute('aria-expanded', String(isOpen));
-    document.body.style.overflow = isOpen ? 'hidden' : '';
-  }
-
-  function closeAllSubmenus(except) {
-    submenuToggles.forEach(function (toggle) {
-      var parent = toggle.closest('.has-submenu');
-      if (!parent) return;
-      if (except && parent === except) return;
-      parent.classList.remove('open');
-      toggle.setAttribute('aria-expanded', 'false');
-    });
-  }
-
-  submenuToggles.forEach(function (toggle) {
-    toggle.addEventListener('click', function () {
-      var parent = toggle.closest('.has-submenu');
-      var isOpen = parent.classList.contains('open');
-
-      closeAllSubmenus(isOpen ? null : parent);
-      parent.classList.toggle('open', !isOpen);
-      toggle.setAttribute('aria-expanded', String(!isOpen));
-    });
-  });
-
-  document.addEventListener('click', function (event) {
-    if (!event.target.closest('.has-submenu')) {
-      closeAllSubmenus();
-    }
-  });
-
+  // ESC key to close all menus
   document.addEventListener('keydown', function (event) {
     if (event.key === 'Escape') {
-      closeAllSubmenus();
-      if (primaryNav) {
-        primaryNav.classList.remove('open');
-        document.body.style.overflow = '';
-      }
-      if (menuToggle) {
-        menuToggle.setAttribute('aria-expanded', 'false');
+      // Close mobile nav if open
+      var mobileNav = document.getElementById('mobile-nav');
+      var menuToggle = document.getElementById('menu-toggle');
+      
+      if (mobileNav && !mobileNav.classList.contains('hidden')) {
+        mobileNav.classList.add('hidden');
+        if (menuToggle) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
       }
     }
   });
 
-  if (menuToggle && primaryNav) {
-    menuToggle.addEventListener('click', function () {
-      var isOpen = !primaryNav.classList.contains('open');
-      setMenuState(isOpen);
-    });
-  }
-
-  navLinks.forEach(function (link) {
-    link.addEventListener('click', function () {
-      setMenuState(false);
-    });
+  // Close mobile menu when resizing to desktop
+  var lastWidth = window.innerWidth;
+  window.addEventListener('resize', function () {
+    var currentWidth = window.innerWidth;
+    
+    if (lastWidth < 1024 && currentWidth >= 1024) {
+      var mobileNav = document.getElementById('mobile-nav');
+      var menuToggle = document.getElementById('menu-toggle');
+      
+      if (mobileNav && !mobileNav.classList.contains('hidden')) {
+        mobileNav.classList.add('hidden');
+        if (menuToggle) {
+          menuToggle.setAttribute('aria-expanded', 'false');
+        }
+      }
+    }
+    
+    lastWidth = currentWidth;
   });
+
 })();

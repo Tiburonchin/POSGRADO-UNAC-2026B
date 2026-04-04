@@ -4,8 +4,8 @@ module.exports = {
   theme: {
     extend: {
       fontFamily: {
-        sans: ['Manrope', 'Segoe UI', 'Helvetica Neue', 'sans-serif'],
-        display: ['Fraunces', 'Times New Roman', 'serif'],
+        sans: ['Source Sans 3', 'Segoe UI', 'Helvetica Neue', 'sans-serif'],
+        display: ['Merriweather', 'Georgia', 'serif'],
       },
       boxShadow: {
         soft: '0 10px 30px rgba(12, 23, 44, 0.12)',

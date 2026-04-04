@@ -82,6 +82,37 @@
   if (window.ScrollTrigger) {
     gsap.registerPlugin(window.ScrollTrigger);
 
+    var announcementBar = document.querySelector('.announcement-bar');
+    var announcementHeight = announcementBar ? announcementBar.offsetHeight : 0;
+
+    if (announcementBar && announcementHeight > 0) {
+      ScrollTrigger.create({
+        start: 0,
+        end: 'max',
+        onUpdate: function (self) {
+          var velocity = self.getVelocity();
+
+          if (velocity > 400) {
+            gsap.to(announcementBar, {
+              height: 0,
+              autoAlpha: 0,
+              duration: 0.28,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+          } else if (velocity < -260 || self.scroll() < 40) {
+            gsap.to(announcementBar, {
+              height: announcementHeight,
+              autoAlpha: 1,
+              duration: 0.32,
+              ease: 'power2.out',
+              overwrite: 'auto'
+            });
+          }
+        }
+      });
+    }
+
     revealTargets.forEach(function (target) {
       gsap.from(target, {
         y: 24,
