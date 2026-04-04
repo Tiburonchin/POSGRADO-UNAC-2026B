@@ -31,8 +31,10 @@ function renderPage(string $pageTitle, string $contentTemplate): void
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="assets/css/output.css" />
   <link rel="stylesheet" href="assets/css/mega-menu.css" />
+  <noscript><style>#page-loader { display: none !important; }</style></noscript>
 </head>
 <body>
+  <?php require __DIR__ . '/page-loader.php'; ?>
   <?php require __DIR__ . '/header.php'; ?>
 
   <main id="main-content">
@@ -47,6 +49,7 @@ function renderPage(string $pageTitle, string $contentTemplate): void
   <script src="assets/js/navigation.js"></script>
   <script src="assets/js/animations.js"></script>
   <script src="assets/js/mega-menu.js"></script>
+  <script src="assets/js/page-loader.js"></script>
 </body>
 </html>
 <?php
