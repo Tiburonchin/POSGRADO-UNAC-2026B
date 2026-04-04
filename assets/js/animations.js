@@ -140,4 +140,41 @@
       });
     });
   }
+
+  // Animación elegante para CTA principal "Informate Ya"
+  var headerCTA = document.querySelector('.header-cta:not(.header-cta-mobile)');
+  if (headerCTA) {
+    // Pulso inicial sutil para destacar
+    var ctaTimeline = gsap.timeline({ delay: 0.8 });
+    ctaTimeline
+      .to(headerCTA, {
+        scale: 1.02,
+        duration: 0.45,
+        ease: 'power2.out'
+      })
+      .to(headerCTA, {
+        scale: 1,
+        duration: 0.32,
+        ease: 'power2.out'
+      }, '-=0.08');
+
+    // Efectos interactivos de hover
+    headerCTA.addEventListener('mouseenter', function () {
+      gsap.to(headerCTA, {
+        scale: 1.04,
+        boxShadow: '0 8px 20px rgba(242, 196, 91, 0.2)',
+        duration: 0.28,
+        ease: 'power2.out'
+      });
+    });
+
+    headerCTA.addEventListener('mouseleave', function () {
+      gsap.to(headerCTA, {
+        scale: 1,
+        boxShadow: '0 4px 12px rgba(242, 196, 91, 0.16)',
+        duration: 0.32,
+        ease: 'power2.out'
+      });
+    });
+  }
 })();

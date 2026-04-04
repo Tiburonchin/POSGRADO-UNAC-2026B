@@ -125,7 +125,6 @@
                 <a href="#" class="mega-link"><strong>Documentos del SGI</strong><span>Politicas, manuales y lineamientos institucionales.</span></a>
                 <a href="#" class="mega-link"><strong>Procedimientos</strong><span>Flujos operativos normalizados para cada proceso.</span></a>
                 <a href="#" class="mega-link"><strong>Indicadores</strong><span>Metricas de desempeno y seguimiento de resultados.</span></a>
-                <a href="#" class="mega-link"><strong>Mejora Continua</strong><span>Acciones de optimizacion y fortalecimiento permanente.</span></a>
               </div>
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Control de Procesos</h4>
