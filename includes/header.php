@@ -1,6 +1,10 @@
 <header class="site-header sticky top-0 z-50" id="site-header">
   <div class="announcement-bar" id="announcement-bar">
-    <div class="site-container flex min-h-[2.1rem] items-center justify-center px-3 text-center text-xs font-semibold sm:text-sm">
+    <div class="site-container flex items-center justify-center px-3 text-center text-xs font-semibold">
+      <svg class="announcement-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+        <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9" />
+        <path d="M13.73 21a2 2 0 0 1-3.46 0" />
+      </svg>
       Inscripciones 2026 abiertas para maestrias, doctorados y especialidades.
     </div>
   </div>

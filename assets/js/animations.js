@@ -15,13 +15,6 @@
   var navItems = document.querySelectorAll('.primary-nav > ul > li');
   var cards = document.querySelectorAll('#programas article, #noticias article, #ubicacion article');
 
-  gsap.from('.site-header', {
-    y: -12,
-    opacity: 0,
-    duration: 0.45,
-    ease: 'power2.out'
-  });
-
   if (navItems.length) {
     gsap.from(navItems, {
       y: -8,
@@ -84,31 +77,38 @@
 
     var announcementBar = document.querySelector('.announcement-bar');
     var announcementHeight = announcementBar ? announcementBar.offsetHeight : 0;
+    var isAnnouncementVisible = true;
 
     if (announcementBar && announcementHeight > 0) {
+      var setAnnouncementState = function (show, immediate) {
+        if (show === isAnnouncementVisible) {
+          return;
+        }
+
+        isAnnouncementVisible = show;
+        gsap.to(announcementBar, {
+          height: show ? announcementHeight : 0,
+          autoAlpha: show ? 1 : 0,
+          duration: immediate ? 0 : 0.26,
+          ease: 'power2.out',
+          overwrite: 'auto'
+        });
+      };
+
+      setAnnouncementState(window.scrollY <= 0, true);
+
       ScrollTrigger.create({
         start: 0,
         end: 'max',
         onUpdate: function (self) {
-          var velocity = self.getVelocity();
+          setAnnouncementState(self.scroll() <= 0, false);
+        }
+      });
 
-          if (velocity > 400) {
-            gsap.to(announcementBar, {
-              height: 0,
-              autoAlpha: 0,
-              duration: 0.28,
-              ease: 'power2.out',
-              overwrite: 'auto'
-            });
-          } else if (velocity < -260 || self.scroll() < 40) {
-            gsap.to(announcementBar, {
-              height: announcementHeight,
-              autoAlpha: 1,
-              duration: 0.32,
-              ease: 'power2.out',
-              overwrite: 'auto'
-            });
-          }
+      window.addEventListener('resize', function () {
+        announcementHeight = announcementBar.offsetHeight || announcementHeight;
+        if (window.scrollY <= 0) {
+          gsap.set(announcementBar, { height: announcementHeight, autoAlpha: 1 });
         }
       });
     }
