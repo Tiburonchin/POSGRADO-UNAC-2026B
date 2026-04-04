@@ -12,7 +12,7 @@
       </a>
 
       <nav class="primary-nav hidden lg:block" id="primary-nav" aria-label="Navegacion principal">
-        <ul class="flex items-center justify-center gap-1">
+        <ul class="flex items-center justify-center gap-2">
           <li class="nav-item" data-section="escuela"><button class="mega-trigger nav-link" data-section="escuela" aria-expanded="false">La Escuela</button></li>
           <li class="nav-item" data-section="admision"><button class="mega-trigger nav-link" data-section="admision" aria-expanded="false">Admision</button></li>
           <li class="nav-item" data-section="programas"><button class="mega-trigger nav-link" data-section="programas" aria-expanded="false">Programas</button></li>

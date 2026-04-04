@@ -40,8 +40,8 @@
 
 .brand-logo {
   width: auto;
-  height: clamp(3.1rem, 5vw, 3.9rem);
-  max-width: min(420px, 28vw);
+  height: clamp(2.85rem, 4.55vw, 3.55rem);
+  max-width: min(388px, 25vw);
 }
 
 .header-main,
@@ -51,7 +51,7 @@
 .header-cta,
 .mobile-section-toggle,
 .mobile-submenu a {
-  font-family: 'Space Grotesk', 'Source Sans 3', 'Segoe UI', sans-serif;
+  font-family: 'Manrope', 'Segoe UI', sans-serif;
 }
 
 .brand-title {
@@ -64,7 +64,7 @@
   border: 1px solid #f6e6aa;
   background: transparent;
   color: #fff4c9;
-  font-size: 0.86rem;
+  font-size: 0.9rem;
 }
 
 .header-cta:hover {
@@ -88,10 +88,10 @@
   border: 0;
   background: transparent;
   color: #c8d2e4;
-  font-size: 0.95rem;
+  font-size: 1rem;
   font-weight: 600;
-  letter-spacing: 0;
-  padding: 1rem 0.82rem;
+  letter-spacing: 0.006em;
+  padding: 1rem 1.2rem;
   cursor: pointer;
   transition: color 0.24s ease;
 }
@@ -99,8 +99,8 @@
 .nav-link::after {
   content: '';
   position: absolute;
-  left: 0.85rem;
-  right: 0.85rem;
+  left: 1.2rem;
+  right: 1.2rem;
   bottom: 0.6rem;
   height: 2px;
   border-radius: 9999px;
@@ -156,9 +156,9 @@
   opacity: 0;
   pointer-events: none;
   display: grid;
-  gap: 1.8rem;
+  gap: 2.15rem;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  padding: 1.75rem 0;
+  padding: 2rem 0;
 }
 
 .mega-panel-content.is-active {
@@ -175,7 +175,7 @@
 
 .mega-column + .mega-column {
   border-left: 1px solid rgba(143, 164, 199, 0.2);
-  padding-left: 1.35rem;
+  padding-left: 1.8rem;
 }
 
 .mega-column-title {
@@ -183,8 +183,8 @@
   color: var(--header-accent);
   font-size: 0.78rem;
   font-weight: 800;
-  letter-spacing: 0.09em;
-  text-transform: uppercase;
+  letter-spacing: 0.02em;
+  text-transform: none;
 }
 
 .mega-link {
@@ -192,8 +192,8 @@
   row-gap: 0.12rem;
   text-decoration: none;
   border-radius: 0.45rem;
-  padding: 0.46rem 0.56rem;
-  margin: 0 0 0.26rem;
+  padding: 0.54rem 0.62rem;
+  margin: 0 0 0.3rem;
   transition: background-color 0.2s ease, transform 0.2s ease;
 }
 
@@ -205,14 +205,14 @@
 .mega-link strong {
   display: block;
   color: var(--header-ink);
-  font-size: 0.91rem;
+  font-size: 0.95rem;
   font-weight: 600;
 }
 
 .mega-link span {
   display: block;
   color: var(--header-ink-soft);
-  font-size: 0.78rem;
+  font-size: 0.8rem;
   line-height: 1.35;
   margin-top: 0.06rem;
 }
@@ -331,12 +331,12 @@
 
 @media (max-width: 1280px) {
   .mega-panel-content {
-    gap: 1rem;
+    gap: 1.35rem;
   }
 
   .brand-logo {
-    height: clamp(2.7rem, 4.5vw, 3.2rem);
-    max-width: min(310px, 31vw);
+    height: clamp(2.5rem, 4.05vw, 2.95rem);
+    max-width: min(280px, 28vw);
   }
 }
 
@@ -346,8 +346,8 @@
   }
 
   .brand-logo {
-    height: 2.15rem;
-    max-width: 180px;
+    height: 1.95rem;
+    max-width: 162px;
   }
 
   .brand {
