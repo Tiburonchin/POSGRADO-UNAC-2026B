@@ -1,7 +1,7 @@
 (function () {
   'use strict';
 
-  var MIN_VISIBLE_MS = 2400;
+  var MIN_VISIBLE_MS = 1400;
   var FAILSAFE_HIDE_MS = 12000;
   var INTRO_SWITCH_MS = 380;
   var SETTLE_PHASE_MS = 0.35;
@@ -144,6 +144,7 @@
     }
 
     unlockScroll();
+    window.dispatchEvent(new Event('page-loader:complete'));
   }
 
   function hideLoader() {

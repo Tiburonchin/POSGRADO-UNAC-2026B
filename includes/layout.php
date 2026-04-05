@@ -10,6 +10,9 @@ function renderPage(string $pageTitle, string $contentTemplate): void
         return;
     }
 
+  $templateName = basename($contentTemplate);
+  $isHomePage = $templateName === 'home.php';
+
     ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -29,11 +32,14 @@ function renderPage(string $pageTitle, string $contentTemplate): void
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <?php if ($isHomePage): ?>
+  <link rel="preload" as="image" href="img/epg-unac-fachada.png" />
+  <?php endif; ?>
   <link rel="stylesheet" href="assets/css/output.css" />
   <link rel="stylesheet" href="assets/css/mega-menu.css" />
   <noscript><style>#page-loader { display: none !important; }</style></noscript>
 </head>
-<body>
+<body data-page="<?= htmlspecialchars(pathinfo($templateName, PATHINFO_FILENAME), ENT_QUOTES, 'UTF-8') ?>">
   <?php require __DIR__ . '/page-loader.php'; ?>
   <?php require __DIR__ . '/header.php'; ?>
 
@@ -43,13 +49,15 @@ function renderPage(string $pageTitle, string $contentTemplate): void
 
   <?php require __DIR__ . '/footer.php'; ?>
 
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
-  <script src="assets/js/theme.js"></script>
-  <script src="assets/js/navigation.js"></script>
-  <script src="assets/js/animations.js"></script>
-  <script src="assets/js/mega-menu.js"></script>
-  <script src="assets/js/page-loader.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="assets/js/theme.js"></script>
+  <script defer src="assets/js/mega-menu.js"></script>
+  <script defer src="assets/js/animations.js"></script>
+  <?php if ($isHomePage): ?>
+  <script defer src="assets/js/modules/hero-animations.js"></script>
+  <?php endif; ?>
+  <script defer src="assets/js/page-loader.js"></script>
 </body>
 </html>
 <?php

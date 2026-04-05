@@ -1,22 +1,46 @@
-<section class="hero relative overflow-hidden py-20 lg:py-24" id="inicio">
-  <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_80%_34%,rgba(47,156,244,0.22),transparent_32%),radial-gradient(circle_at_12%_18%,rgba(15,91,211,0.18),transparent_28%)]"></div>
-  <div class="site-container relative grid items-center gap-6 lg:grid-cols-[1.05fr_0.95fr]">
-    <div class="hero-content" data-reveal>
-      <p class="mb-3 text-xs font-extrabold uppercase tracking-[0.14em] text-[color:var(--text-muted)]">Excelencia academica para el futuro</p>
-      <h1 class="mb-4 text-5xl leading-[1] md:text-6xl xl:text-7xl">Escuela de Posgrado UNAC</h1>
-      <p class="max-w-[62ch] text-base md:text-lg">
+<section class="hero hero--fullscreen relative isolate overflow-hidden" id="inicio">
+  <figure class="hero-media hero-media--bg absolute inset-0 z-0">
+    <img
+      src="img/epg-unac-fachada.png"
+      alt="Fachada de la Escuela de Posgrado UNAC"
+      class="hero-bg-image h-full w-full object-cover object-center"
+      fetchpriority="high"
+      decoding="async"
+      width="1920"
+      height="1080"
+    />
+  </figure>
+
+  <div class="hero-overlay pointer-events-none absolute inset-0 z-10"></div>
+  <div class="hero-atmosphere pointer-events-none absolute inset-0 z-[11]"></div>
+
+  <div class="site-container relative z-20 flex min-h-[inherit] items-center py-10 md:py-12 lg:py-14">
+    <div class="hero-content max-w-[920px]" id="hero-home">
+      <p class="hero-kicker mb-5 inline-flex items-center gap-2 text-[14px] font-extrabold uppercase tracking-[0.22em] text-[color:var(--accent)] sm:text-[15px]">
+        <span class="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] shadow-[0_0_18px_rgba(255,193,7,0.8)]"></span>
+        Bienvenido
+      </p>
+
+      <h1 class="hero-title mb-5 text-balance font-black uppercase leading-[0.84] tracking-[-0.07em] text-white">
+        <span class="hero-title-line block">Escuela de</span>
+        <span class="hero-title-line block">Posgrado</span>
+        <span class="hero-title-line block">UNAC</span>
+      </h1>
+
+      <p class="hero-description max-w-[62ch] text-sm font-semibold text-[rgba(238,242,255,0.9)] sm:text-base md:text-lg">
         Potenciamos lideres con vision global mediante programas de maestria,
         doctorado y especializacion orientados a la investigacion y la innovacion.
       </p>
-      <div class="mt-6 flex flex-wrap gap-3">
-        <a href="#admision" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[color:var(--accent)] to-[color:var(--accent-2)] px-6 py-3 text-sm font-bold text-slate-950 shadow-soft transition hover:-translate-y-0.5">Iniciar postulacion</a>
-        <a href="#programas" class="inline-flex items-center justify-center rounded-full border border-[color:var(--border)] bg-[color:var(--bg-elevated)] px-6 py-3 text-sm font-bold text-[color:var(--text)] transition hover:-translate-y-0.5">Explorar programas</a>
-      </div>
-    </div>
 
-    <figure class="hero-media overflow-hidden rounded-[28px] border border-[color:var(--border)] shadow-deep" data-reveal>
-      <img src="img/epg-unac-fachada.png" alt="Fachada de la Escuela de Posgrado UNAC" class="aspect-[16/11] h-full w-full object-cover" />
-    </figure>
+      <div class="hero-cta-group mt-7 flex flex-wrap gap-3">
+        <a href="#admision" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[color:var(--accent)] to-[color:var(--accent-2)] px-6 py-3 text-sm font-black uppercase tracking-[0.07em] text-slate-950 shadow-soft transition hover:-translate-y-0.5">Iniciar postulacion</a>
+        <a href="#programas" class="inline-flex items-center justify-center rounded-full border border-[rgba(255,255,255,0.3)] bg-[rgba(10,15,28,0.55)] px-6 py-3 text-sm font-black uppercase tracking-[0.07em] text-white transition hover:-translate-y-0.5">Explorar programas</a>
+      </div>
+
+      <p class="hero-slogan mt-9 max-w-full text-xs font-semibold text-[rgba(233,237,246,0.94)] sm:mt-10 sm:text-sm">
+        <span class="hero-slogan-text hero-slogan-tag">Peru es la clave, y Posgrado UNAC es la llave</span>
+      </p>
+    </div>
   </div>
 </section>
 

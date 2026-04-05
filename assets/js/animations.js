@@ -1,5 +1,28 @@
 (function () {
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var rootStyle = document.documentElement.style;
+  var headerMain = document.getElementById('header-main');
+  var announcementBar = document.getElementById('announcement-bar');
+
+  function updateHeaderMetrics() {
+    if (!headerMain) {
+      return;
+    }
+
+    var mainHeight = headerMain.offsetHeight || 0;
+    var announcementHeight = 0;
+
+    if (announcementBar) {
+      announcementHeight = announcementBar.offsetHeight || 0;
+    }
+
+    rootStyle.setProperty('--header-main-height', mainHeight + 'px');
+    rootStyle.setProperty('--announcement-height', announcementHeight + 'px');
+    rootStyle.setProperty('--header-total-height', mainHeight + announcementHeight + 'px');
+  }
+
+  updateHeaderMetrics();
+  window.addEventListener('resize', updateHeaderMetrics);
 
   if (reduceMotion) {
     return;
@@ -10,12 +33,12 @@
   }
 
   var gsap = window.gsap;
+  var isHomePage = document.body.getAttribute('data-page') === 'home';
   var revealTargets = document.querySelectorAll('[data-reveal]');
-  var heroButtons = document.querySelectorAll('.hero-content a');
   var navItems = document.querySelectorAll('.primary-nav > ul > li');
   var cards = document.querySelectorAll('#programas article, #noticias article, #ubicacion article');
 
-  if (navItems.length) {
+  if (!isHomePage && navItems.length) {
     gsap.from(navItems, {
       y: -8,
       opacity: 0,
@@ -23,34 +46,6 @@
       stagger: 0.05,
       ease: 'power2.out',
       delay: 0.12
-    });
-  }
-
-  var heroTimeline = gsap.timeline();
-
-  heroTimeline.from('.hero-content > *', {
-    y: 24,
-    opacity: 0,
-    duration: 0.66,
-    stagger: 0.08,
-    ease: 'power2.out'
-  })
-  .from('.hero-media', {
-    y: 26,
-    opacity: 0,
-    scale: 0.985,
-    duration: 0.8,
-    ease: 'power3.out'
-  }, '-=0.54');
-
-  if (heroButtons.length) {
-    gsap.from(heroButtons, {
-      y: 16,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.07,
-      ease: 'power2.out',
-      delay: 0.24
     });
   }
 
@@ -75,11 +70,8 @@
   if (window.ScrollTrigger) {
     gsap.registerPlugin(window.ScrollTrigger);
 
-    var announcementBar = document.querySelector('.announcement-bar');
-    var announcementHeight = announcementBar ? announcementBar.offsetHeight : 0;
     var isAnnouncementVisible = true;
-
-    if (announcementBar && announcementHeight > 0) {
+    if (announcementBar && announcementBar.offsetHeight > 0) {
       var setAnnouncementState = function (show, immediate) {
         if (show === isAnnouncementVisible) {
           return;
@@ -87,15 +79,17 @@
 
         isAnnouncementVisible = show;
         gsap.to(announcementBar, {
-          height: show ? announcementHeight : 0,
+          height: show ? announcementBar.scrollHeight : 0,
           autoAlpha: show ? 1 : 0,
           duration: immediate ? 0 : 0.26,
           ease: 'power2.out',
-          overwrite: 'auto'
+          overwrite: 'auto',
+          onComplete: updateHeaderMetrics
         });
       };
 
       setAnnouncementState(window.scrollY <= 0, true);
+      updateHeaderMetrics();
 
       ScrollTrigger.create({
         start: 0,
@@ -106,10 +100,10 @@
       });
 
       window.addEventListener('resize', function () {
-        announcementHeight = announcementBar.offsetHeight || announcementHeight;
         if (window.scrollY <= 0) {
-          gsap.set(announcementBar, { height: announcementHeight, autoAlpha: 1 });
+          gsap.set(announcementBar, { height: announcementBar.scrollHeight || 'auto', autoAlpha: 1 });
         }
+        updateHeaderMetrics();
       });
     }
 
@@ -127,23 +121,11 @@
       });
     });
 
-    gsap.utils.toArray('.hero-media img').forEach(function (image) {
-      gsap.to(image, {
-        yPercent: 8,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: image,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.2
-        }
-      });
-    });
   }
 
   // Animación elegante para CTA principal "Informate Ya"
   var headerCTA = document.querySelector('.header-cta:not(.header-cta-mobile)');
-  if (headerCTA) {
+  if (headerCTA && !isHomePage) {
     // Pulso inicial sutil para destacar
     var ctaTimeline = gsap.timeline({ delay: 0.8 });
     ctaTimeline
