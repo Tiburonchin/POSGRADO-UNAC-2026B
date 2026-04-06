@@ -178,20 +178,20 @@
 
   .hero--fullscreen {
     min-height: calc(100dvh - var(--header-total-height));
-    background: #03060d;
+    background: #01040a;
   }
 
   .hero-overlay {
     background:
-      linear-gradient(105deg, rgba(3, 8, 18, 0.85) 0%, rgba(4, 10, 22, 0.56) 44%, rgba(3, 9, 21, 0.78) 100%),
-      radial-gradient(circle at 72% 26%, rgba(44, 149, 243, 0.22), transparent 40%),
-      radial-gradient(circle at 12% 70%, rgba(255, 193, 7, 0.15), transparent 36%);
+      linear-gradient(108deg, rgba(2, 7, 16, 0.94) 0%, rgba(3, 8, 18, 0.74) 44%, rgba(2, 7, 16, 0.9) 100%),
+      radial-gradient(circle at 72% 24%, rgba(37, 99, 235, 0.16), transparent 42%),
+      radial-gradient(circle at 12% 70%, rgba(245, 158, 11, 0.1), transparent 36%);
   }
 
   .hero-atmosphere {
-    background: linear-gradient(180deg, rgba(3, 8, 18, 0) 42%, rgba(3, 8, 18, 0.34) 100%);
-    opacity: 0.36;
-    mix-blend-mode: screen;
+    background: linear-gradient(180deg, rgba(1, 4, 10, 0.32) 0%, rgba(1, 4, 10, 0.82) 100%);
+    opacity: 0.7;
+    mix-blend-mode: multiply;
   }
 
   .hero-bg-image {
@@ -200,14 +200,37 @@
   }
 
   .hero-title {
-    font-family: theme('fontFamily.sans');
-    font-weight: 900;
-    font-size: clamp(2.6rem, 8.2vw, 8.1rem);
-    text-shadow: 0 16px 44px rgba(2, 8, 24, 0.58);
+    font-family: theme('fontFamily.hero');
+    font-weight: 400;
+    font-size: clamp(2.75rem, 8.8vw, 8.55rem);
+    line-height: 0.8;
+    letter-spacing: -0.04em;
+    text-shadow: 0 20px 52px rgba(2, 8, 24, 0.62);
+  }
+
+  @supports ((-webkit-background-clip: text) or (background-clip: text)) {
+    .hero-title-line--image-reveal {
+      --hero-title-line-image-x: 0px;
+      --hero-title-line-image-y: 0px;
+      --hero-title-line-image-width: 100%;
+      --hero-title-line-image-height: 100%;
+      --hero-title-line-scroll-shift: 0px;
+      background-image: url('../../img/epg-unac-fachada.png');
+      background-repeat: no-repeat;
+      background-size: var(--hero-title-line-image-width) var(--hero-title-line-image-height);
+      background-position:
+        var(--hero-title-line-image-x)
+        calc(var(--hero-title-line-image-y) + var(--hero-title-line-scroll-shift));
+      -webkit-background-clip: text;
+      background-clip: text;
+      text-shadow: none;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+    }
   }
 
   .hero-title-line {
-    letter-spacing: -0.09em;
+    letter-spacing: -0.055em;
     will-change: transform, opacity;
   }
 
@@ -260,8 +283,8 @@
 
     .hero-overlay {
       background:
-        linear-gradient(180deg, rgba(2, 8, 18, 0.86) 0%, rgba(3, 9, 20, 0.68) 58%, rgba(2, 8, 18, 0.88) 100%),
-        radial-gradient(circle at 55% 18%, rgba(44, 149, 243, 0.18), transparent 46%);
+        linear-gradient(180deg, rgba(1, 6, 14, 0.94) 0%, rgba(2, 7, 16, 0.8) 58%, rgba(1, 6, 14, 0.95) 100%),
+        radial-gradient(circle at 55% 18%, rgba(37, 99, 235, 0.14), transparent 46%);
     }
   }
 
@@ -271,7 +294,15 @@
     }
 
     .hero-title {
-      font-size: clamp(2.4rem, 13vw, 4.4rem);
+      font-size: clamp(2.55rem, 13.8vw, 4.9rem);
+    }
+  }
+
+  @supports not ((-webkit-background-clip: text) or (background-clip: text)) {
+    .hero-title-line--image-reveal {
+      color: rgba(248, 250, 252, 0.98);
+      -webkit-text-fill-color: rgba(248, 250, 252, 0.98);
+      text-shadow: 0 12px 30px rgba(2, 8, 24, 0.52);
     }
   }
 
@@ -295,6 +326,14 @@
     pointer-events: auto;
     transition: opacity 0.85s ease, visibility 0.85s ease;
     overflow: hidden;
+  }
+
+  .page-loader.is-gsap-exit,
+  .page-loader.is-gsap-exit .page-loader-inner,
+  .page-loader.is-gsap-exit .page-loader-copy,
+  .page-loader.is-gsap-exit .page-loader-scan-glow,
+  .page-loader.is-gsap-exit .page-loader-scan-line {
+    transition: none !important;
   }
 
   .page-loader.is-overlay-exiting {
@@ -408,19 +447,6 @@
     letter-spacing: 0.11em;
     text-transform: uppercase;
     color: var(--text-muted);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .animate-scan,
-    .animate-cut {
-      animation: none !important;
-    }
-
-    .page-loader,
-    .page-loader-inner,
-    .page-loader-copy {
-      transition: none !important;
-    }
   }
 
   html.is-loading,

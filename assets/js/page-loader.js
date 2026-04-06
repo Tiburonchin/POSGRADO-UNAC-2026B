@@ -8,7 +8,7 @@
   var ENTRY_DURATION_MS = 0.75;
   var CONTENT_EXIT_DURATION_MS = 0.8;
   var OVERLAY_EXIT_DURATION_MS = 0.78;
-  var FINAL_HOLD_MS = 150;
+  var FINAL_HOLD_MS = 0;
   var FALLBACK_TRANSITION_MS = 40;
   var loader = document.getElementById('page-loader');
 
@@ -53,6 +53,7 @@
     loader.classList.remove('is-overlay-exiting');
     loader.classList.remove('is-hidden');
     loader.classList.remove('is-animated');
+    loader.classList.remove('is-gsap-exit');
     hidden = false;
     exiting = false;
     shownAt = Date.now();
@@ -121,6 +122,7 @@
     loader.classList.remove('is-content-exiting');
     loader.classList.remove('is-overlay-exiting');
     loader.classList.remove('is-animated');
+    loader.classList.remove('is-gsap-exit');
     hidden = true;
     exiting = false;
 
@@ -168,6 +170,7 @@
       loader.classList.add('is-settling');
 
       if (hasGSAP && loaderInner) {
+        loader.classList.add('is-gsap-exit');
         window.gsap.killTweensOf(loader);
         window.gsap.killTweensOf(loaderInner);
         var exitTimeline = window.gsap.timeline({
@@ -192,12 +195,6 @@
 
         exitTimeline.add(function () {
           loader.classList.remove('is-settling');
-          loader.classList.add('is-content-exiting');
-        }, SETTLE_PHASE_MS);
-
-        exitTimeline.add(function () {
-          loader.classList.remove('is-content-exiting');
-          loader.classList.add('is-overlay-exiting');
         });
 
         exitTimeline.to(loader, {

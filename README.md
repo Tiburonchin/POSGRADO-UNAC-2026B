@@ -44,13 +44,15 @@ new2/
 │   │   ├── output.css             # CSS compilado (generado automáticamente)
 │   │   └── mega-menu.css          # Estilos del menú desplegable
 │   │
-│   └── js/
+│   ├── js/
 │       ├── page-loader.js         # Lógica del loader global
 │       ├── animations.js          # Animaciones generales (GSAP)
 │       ├── navigation.js          # Funcionalidad del menú
 │       ├── theme.js               # Sistema de temas light/dark
 │       └── modules/
 │           └── hero-animations.js # Animaciones de héroe
+│   └── vendor/
+│       └── gsap/                  # Distribución local de GSAP y plugins
 │
 └── img/
     └── logos/                     # Assets gráficos
@@ -72,7 +74,7 @@ new2/
 | **PHP** | 8+ | Backend y renderización de servidor |
 | **Tailwind CSS** | ^3.4.17 | Framework de utilidades CSS |
 | **PostCSS** | ^8.5.8 | Procesamiento avanzado de CSS (autoprefixer) |
-| **GSAP** | (implícito) | Animaciones JavaScript de alto rendimiento |
+| **GSAP** | ^3.14.2 | Animaciones JavaScript de alto rendimiento |
 | **JavaScript Vanilla** | ES6+ | Interactividad sin dependencias |
 
 ---
@@ -103,6 +105,8 @@ cd new2
 ```bash
 npm install
 ```
+
+Nota: en la instalación se ejecuta automáticamente la sincronización de GSAP hacia `assets/vendor/gsap`.
 
 ### 3. Compilar CSS (Tailwind)
 
@@ -144,6 +148,9 @@ npm run build:css
 
 # Modo desarrollo - recompila al detectar cambios
 npm run watch:css
+
+# Sincronizar manualmente archivos locales de GSAP
+npm run sync:gsap
 
 # Tests (próximamente)
 npm run test

@@ -6,6 +6,7 @@ module.exports = {
       fontFamily: {
         sans: ['Manrope', 'Segoe UI', 'Helvetica Neue', 'sans-serif'],
         display: ['Fraunces', 'Georgia', 'serif'],
+        hero: ['Archivo Black', 'Manrope', 'Segoe UI', 'sans-serif'],
       },
       boxShadow: {
         soft: '0 10px 30px rgba(12, 23, 44, 0.12)',

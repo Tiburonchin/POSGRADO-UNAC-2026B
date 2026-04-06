@@ -31,7 +31,7 @@ function renderPage(string $pageTitle, string $contentTemplate): void
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Archivo+Black&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet" />
   <?php if ($isHomePage): ?>
   <link rel="preload" as="image" href="img/epg-unac-fachada.png" />
   <?php endif; ?>
@@ -49,8 +49,8 @@ function renderPage(string $pageTitle, string $contentTemplate): void
 
   <?php require __DIR__ . '/footer.php'; ?>
 
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
-  <script defer src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
+  <script defer src="assets/vendor/gsap/gsap.min.js"></script>
+  <script defer src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
   <script defer src="assets/js/theme.js"></script>
   <script defer src="assets/js/mega-menu.js"></script>
   <script defer src="assets/js/animations.js"></script>
