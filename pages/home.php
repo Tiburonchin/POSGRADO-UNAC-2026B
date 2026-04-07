@@ -14,7 +14,7 @@
   <div class="hero-overlay pointer-events-none absolute inset-0 z-10"></div>
   <div class="hero-atmosphere pointer-events-none absolute inset-0 z-[11]"></div>
 
-  <div class="site-container relative z-20 flex min-h-[inherit] items-center py-10 md:py-12 lg:py-14">
+  <div class="site-container relative z-20 flex min-h-[inherit] items-center pt-6 pb-10 md:pt-8 md:pb-12 lg:pt-10 lg:pb-14">
     <div class="hero-content max-w-[920px]" id="hero-home">
       <p class="hero-kicker mb-5 inline-flex items-center gap-2 text-[14px] font-extrabold uppercase tracking-[0.22em] text-[color:var(--accent)] sm:text-[15px]">
         <span class="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] shadow-[0_0_18px_rgba(255,193,7,0.8)]"></span>
@@ -33,8 +33,8 @@
       </p>
 
       <div class="hero-cta-group mt-7 flex flex-wrap gap-3">
-        <a href="#admision" class="inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[color:var(--accent)] to-[color:var(--accent-2)] px-6 py-3 text-sm font-black uppercase tracking-[0.07em] text-slate-950 shadow-soft transition hover:-translate-y-0.5">Iniciar postulacion</a>
-        <a href="#programas" class="inline-flex items-center justify-center rounded-full border border-[rgba(255,255,255,0.3)] bg-[rgba(10,15,28,0.55)] px-6 py-3 text-sm font-black uppercase tracking-[0.07em] text-white transition hover:-translate-y-0.5">Explorar programas</a>
+        <a href="#admision" class="hero-btn-primary">Iniciar postulacion</a>
+        <a href="#programas" class="hero-btn-secondary">Explorar programas</a>
       </div>
 
       <p class="hero-slogan mt-9 max-w-full text-xs font-semibold text-[rgba(233,237,246,0.94)] sm:mt-10 sm:text-sm">

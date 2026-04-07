@@ -61,6 +61,35 @@
     this.sectionsRoot.style.setProperty('--mega-height', Math.max(maxHeight, 330) + 'px');
   };
 
+  MegaMenu.prototype.getMenuOpenHeight = function () {
+    if (!this.panel) {
+      return 650;
+    }
+
+    var panelHeight = this.panel.scrollHeight || 0;
+    var visualBuffer = 10;
+    return Math.max(panelHeight + visualBuffer, 330 + visualBuffer);
+  };
+
+  MegaMenu.prototype.debounce = function (fn, wait) {
+    var timer = null;
+    return function () {
+      var args = arguments;
+      window.clearTimeout(timer);
+      timer = window.setTimeout(function () {
+        fn.apply(null, args);
+      }, wait);
+    };
+  };
+
+  MegaMenu.prototype.notifyLayoutChange = function () {
+    if (!this.header) {
+      return;
+    }
+
+    this.header.dispatchEvent(new window.CustomEvent('header:layout-change'));
+  };
+
   MegaMenu.prototype.bindDesktop = function () {
     var self = this;
 
@@ -133,7 +162,7 @@
   MegaMenu.prototype.bindGlobal = function () {
     var self = this;
 
-    window.addEventListener('resize', function () {
+    var onResize = this.debounce(function () {
       self.calculateSharedHeight();
       if (window.innerWidth >= 1024 && self.mobileNav) {
         self.toggleMobile(false);
@@ -141,7 +170,9 @@
       if (window.innerWidth < 1024) {
         self.closeMenu();
       }
-    });
+    }, 120);
+
+    window.addEventListener('resize', onResize);
 
     document.addEventListener('keydown', function (event) {
       if (event.key === 'Escape') {
@@ -166,6 +197,11 @@
     this.shell.classList.remove('hidden');
     this.shell.classList.add('is-open');
     this.shell.setAttribute('aria-hidden', 'false');
+    this.header.classList.add('menu-open');
+    this.notifyLayoutChange();
+    this.calculateSharedHeight();
+
+    var openHeight = this.getMenuOpenHeight();
 
     if (this.hasGSAP()) {
       if (this.menuTimeline) {
@@ -177,7 +213,7 @@
         .fromTo(
           this.shell,
           { maxHeight: 0, opacity: 0 },
-          { duration: this.duration, maxHeight: 650, opacity: 1, ease: 'power2.out' }
+          { duration: this.duration, maxHeight: openHeight, opacity: 1, ease: 'power2.out' }
         )
         .fromTo(
           this.panel,
@@ -188,7 +224,7 @@
 
       this.animateColumnsIn(this.getCurrentSection());
     } else {
-      this.shell.style.maxHeight = '650px';
+      this.shell.style.maxHeight = openHeight + 'px';
       this.shell.style.opacity = '1';
     }
   };
@@ -199,6 +235,8 @@
     }
     this.isOpen = false;
     this.shell.setAttribute('aria-hidden', 'true');
+    this.header.classList.remove('menu-open');
+    this.notifyLayoutChange();
     this.navItems.forEach(function (item) {
       item.removeAttribute('data-active');
     });
@@ -362,10 +400,12 @@
           submenu.classList.add('hidden');
         }
       });
+      this.notifyLayoutChange();
       return;
     }
 
     this.mobileNav.classList.remove('hidden');
+    this.notifyLayoutChange();
 
     if (this.hasGSAP()) {
       window.gsap.fromTo(

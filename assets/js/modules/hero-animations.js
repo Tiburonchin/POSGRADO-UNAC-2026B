@@ -14,6 +14,7 @@
   var hero = document.querySelector('.hero--fullscreen');
   var heroContent = document.querySelector('#hero-home');
   var heroImage = document.querySelector('.hero-bg-image');
+  var headerMain = document.getElementById('header-main');
   var heroTitleRevealLines = document.querySelectorAll('.hero-title-line[data-hero-title-line-reveal]');
   var titleLines = document.querySelectorAll('.hero-title-line');
   var infoRotatorTarget = document.querySelector('.hero-description');
@@ -24,6 +25,11 @@
   var headerDesktopCta = document.querySelector('.header-cta:not(.header-cta-mobile)');
   var mobileHeaderItems = document.querySelectorAll('.header-cta-mobile, #menu-toggle');
   var infoRotationStarted = false;
+  var infoRotationTimer = null;
+  var visibilityListenerBound = false;
+  var sloganHoverSetup = false;
+  var heroRevealSyncSetup = false;
+  var heroAnimationMedia = null;
 
   if (!hero || !heroContent) {
     return;
@@ -109,7 +115,19 @@
       ? 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789'
       : 'XO#@!%&ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
 
+    var clearRotationTimer = function () {
+      if (infoRotationTimer) {
+        window.clearTimeout(infoRotationTimer);
+        infoRotationTimer = null;
+      }
+    };
+
     var cyclePhrase = function () {
+      if (document.hidden) {
+        clearRotationTimer();
+        return;
+      }
+
       var phrase = phrases[index];
 
       runScramble(infoRotatorTarget, phrase, {
@@ -121,16 +139,35 @@
         ease: 'power2.out',
         onComplete: function () {
           index = (index + 1) % phrases.length;
-          window.setTimeout(cyclePhrase, phaseWait);
+          clearRotationTimer();
+          infoRotationTimer = window.setTimeout(cyclePhrase, phaseWait);
         }
       });
     };
+
+    if (!visibilityListenerBound) {
+      visibilityListenerBound = true;
+      document.addEventListener('visibilitychange', function () {
+        if (document.hidden) {
+          clearRotationTimer();
+          gsap.killTweensOf(infoRotatorTarget);
+          return;
+        }
+
+        if (!infoRotationStarted) {
+          return;
+        }
+
+        clearRotationTimer();
+        infoRotationTimer = window.setTimeout(cyclePhrase, 120);
+      });
+    }
 
     cyclePhrase();
   }
 
   function setupSloganHoverScramble() {
-    if (!sloganTextTarget) {
+    if (!sloganTextTarget || sloganHoverSetup) {
       return;
     }
 
@@ -163,29 +200,45 @@
 
     sloganTextTarget.addEventListener('mouseenter', playHoverScramble);
     sloganTextTarget.addEventListener('focus', playHoverScramble);
+    sloganHoverSetup = true;
   }
 
   function setupHeroTitleImageRevealSync() {
-    if (!heroTitleRevealLines.length || !heroImage) {
+    if (!heroTitleRevealLines.length || !heroImage || heroRevealSyncSetup) {
       return;
     }
 
-    var rafHandle = null;
-    var isMobile = isMobileLayout();
+    heroRevealSyncSetup = true;
 
-    var queueMetricsUpdate = function () {
+    var rafHandle = null;
+    var geometryRafHandle = null;
+    var isMobile = isMobileLayout();
+    var lastShiftValue = null;
+
+    var queueShiftUpdate = function () {
       if (rafHandle) {
         return;
       }
 
       rafHandle = window.requestAnimationFrame(function () {
         rafHandle = null;
-        updateMetrics();
+        updateScrollShift();
       });
     };
 
-    var updateMetrics = function () {
-      var heroRect = hero.getBoundingClientRect();
+    var queueGeometryUpdate = function () {
+      if (geometryRafHandle) {
+        return;
+      }
+
+      geometryRafHandle = window.requestAnimationFrame(function () {
+        geometryRafHandle = null;
+        updateImageGeometry();
+        updateScrollShift();
+      });
+    };
+
+    var updateImageGeometry = function () {
       var imageRect = heroImage.getBoundingClientRect();
 
       if (!imageRect.width || !imageRect.height) {
@@ -206,19 +259,30 @@
         lineNode.style.setProperty('--hero-title-line-image-x', imageX + 'px');
         lineNode.style.setProperty('--hero-title-line-image-y', imageY + 'px');
       });
+    };
+
+    var updateScrollShift = function () {
+      var heroRect = hero.getBoundingClientRect();
 
       if (reduceMotion) {
         heroTitleRevealLines.forEach(function (lineNode) {
           lineNode.style.setProperty('--hero-title-line-scroll-shift', '0px');
         });
+        lastShiftValue = '0px';
       } else {
         var progress = 0;
         if (heroRect.height > 0) {
           progress = (0 - heroRect.top) / heroRect.height;
         }
         progress = Math.max(0, Math.min(1, progress));
-        var maxShift = isMobile ? 20 : 34;
+        var maxShift = isMobile ? 14 : 24;
         var shiftValue = (progress * maxShift).toFixed(2) + 'px';
+
+        if (shiftValue === lastShiftValue) {
+          return;
+        }
+
+        lastShiftValue = shiftValue;
         heroTitleRevealLines.forEach(function (lineNode) {
           lineNode.style.setProperty('--hero-title-line-scroll-shift', shiftValue);
         });
@@ -227,10 +291,10 @@
 
     window.addEventListener('resize', function () {
       isMobile = isMobileLayout();
-      queueMetricsUpdate();
+      queueGeometryUpdate();
     });
 
-    queueMetricsUpdate();
+    queueGeometryUpdate();
 
     if (window.ScrollTrigger) {
       gsap.registerPlugin(window.ScrollTrigger);
@@ -239,158 +303,218 @@
         trigger: hero,
         start: 'top top',
         end: 'bottom top',
-        scrub: reduceMotion ? false : 0.9,
-        onUpdate: queueMetricsUpdate,
-        onRefresh: queueMetricsUpdate,
-        onRefreshInit: queueMetricsUpdate
+        scrub: reduceMotion ? false : 1.1,
+        onUpdate: queueShiftUpdate,
+        onRefresh: queueGeometryUpdate,
+        onRefreshInit: queueGeometryUpdate
       });
     } else {
-      window.addEventListener('scroll', queueMetricsUpdate, { passive: true });
+      window.addEventListener('scroll', queueShiftUpdate, { passive: true });
     }
   }
 
   function runHeroEntryAnimation() {
-    var isMobile = isMobileLayout();
-    var heroTitle = document.querySelector('.hero-title');
-    var headerNodes = [headerBrand].filter(Boolean);
+    function runHeroEntryVariant(isMobile) {
+      var heroTitle = document.querySelector('.hero-title');
+      var headerNodes = [headerBrand].filter(Boolean);
 
-    if (isMobile) {
-      mobileHeaderItems.forEach(function (node) {
-        headerNodes.push(node);
-      });
-    } else {
-      headerNavItems.forEach(function (node) {
-        headerNodes.push(node);
-      });
-      if (headerDesktopCta) {
-        headerNodes.push(headerDesktopCta);
-      }
-    }
-
-    if (reduceMotion) {
-      gsap.set(headerNodes, { autoAlpha: 1, y: 0 });
-      gsap.set('.hero-kicker, .hero-description, .hero-slogan', { autoAlpha: 1, y: 0 });
-      gsap.set(titleLines, { autoAlpha: 1, y: 0 });
-      gsap.set(ctaItems, { autoAlpha: 1, y: 0 });
-      setupHeroTitleImageRevealSync();
-      startInfoRotation(isMobile, true);
-      setupSloganHoverScramble();
-      return;
-    }
-
-    gsap.set(headerNodes, { autoAlpha: 0, y: -14 });
-    gsap.set('.hero-kicker', { autoAlpha: 0, y: 12 });
-    gsap.set(titleLines, { autoAlpha: 0, y: 38 });
-    gsap.set('.hero-description', { autoAlpha: 0, y: 18 });
-    gsap.set(ctaItems, { autoAlpha: 0, y: 16 });
-    gsap.set('.hero-slogan', { autoAlpha: 0, y: 16 });
-
-    var timeline = gsap.timeline({ defaults: { overwrite: 'auto' } });
-
-    timeline.to(headerBrand, {
-      autoAlpha: 1,
-      y: 0,
-      duration: isMobile ? 0.34 : 0.38,
-      ease: 'power2.out'
-    });
-
-    if (isMobile) {
-      if (mobileHeaderItems.length) {
-        timeline.to(mobileHeaderItems, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.28,
-          stagger: 0.05,
-          ease: 'power2.out'
-        }, '-=0.16');
-      }
-    } else {
-      if (headerNavItems.length) {
-        timeline.to(headerNavItems, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.34,
-          stagger: 0.045,
-          ease: 'power2.out'
-        }, '-=0.18');
-      }
-
-      if (headerDesktopCta) {
-        timeline.to(headerDesktopCta, {
-          autoAlpha: 1,
-          y: 0,
-          duration: 0.3,
-          ease: 'power2.out'
-        }, '-=0.18');
-      }
-    }
-
-    timeline
-      .to('.hero-kicker', {
-        autoAlpha: 1,
-        y: 0,
-        duration: isMobile ? 0.3 : 0.36,
-        ease: 'power2.out'
-      }, '-=0.05')
-      .to(titleLines, {
-        autoAlpha: 1,
-        y: 0,
-        duration: isMobile ? 0.46 : 0.54,
-        stagger: isMobile ? 0.05 : 0.06,
-        ease: 'power3.out'
-      }, '-=0.12');
-
-    timeline
-      .to('.hero-description', {
-        autoAlpha: 1,
-        y: 0,
-        duration: isMobile ? 0.34 : 0.46,
-        ease: 'power2.out'
-      }, '-=0.2')
-      .to(ctaItems, {
-        autoAlpha: 1,
-        y: 0,
-        duration: isMobile ? 0.3 : 0.4,
-        stagger: isMobile ? 0.06 : 0.08,
-        ease: 'power2.out'
-      }, '-=0.2')
-      .to('.hero-slogan', {
-        autoAlpha: 1,
-        y: 0,
-        duration: isMobile ? 0.32 : 0.44,
-        ease: 'power2.out'
-      }, '-=0.15')
-      .add(function () {
-        startInfoRotation(isMobile, false);
-        setupSloganHoverScramble();
-      }, '+=0.08');
-
-    if (heroTitle) {
-      gsap.fromTo(heroTitle, {
-        opacity: 0.96
-      }, {
-        opacity: 1,
-        duration: 0.5,
-        ease: 'power1.out'
-      });
-    }
-
-    if (window.ScrollTrigger && heroImage) {
-      gsap.registerPlugin(window.ScrollTrigger);
-      gsap.to(heroImage, {
-        yPercent: isMobile ? 2 : 4,
-        scale: isMobile ? 1.03 : 1.05,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: hero,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1.1
+      if (isMobile) {
+        mobileHeaderItems.forEach(function (node) {
+          headerNodes.push(node);
+        });
+      } else {
+        headerNavItems.forEach(function (node) {
+          headerNodes.push(node);
+        });
+        if (headerDesktopCta) {
+          headerNodes.push(headerDesktopCta);
         }
-      });
+      }
+
+      if (reduceMotion) {
+        if (headerMain) {
+          gsap.set(headerMain, { autoAlpha: 1, y: 0, scale: 1 });
+        }
+        gsap.set(headerNodes, { autoAlpha: 1, y: 0 });
+        gsap.set('.hero-kicker, .hero-description, .hero-slogan', { autoAlpha: 1, y: 0 });
+        gsap.set(titleLines, { autoAlpha: 1, y: 0 });
+        gsap.set(ctaItems, { autoAlpha: 1, y: 0 });
+        if (heroImage) {
+          gsap.set(heroImage, {
+            yPercent: 0,
+            scale: 1.01,
+            transformOrigin: 'center center'
+          });
+        }
+        setupHeroTitleImageRevealSync();
+        startInfoRotation(isMobile, true);
+        setupSloganHoverScramble();
+        return;
+      }
+
+      // Ensure the image-reveal mask is measured before the title enters.
+      setupHeroTitleImageRevealSync();
+
+      var timeline = gsap.timeline({ defaults: { overwrite: 'auto', ease: 'power2.out' } });
+
+      if (headerMain) {
+        timeline.fromTo(headerMain, {
+          autoAlpha: 0,
+          y: -18,
+          scale: 0.985
+        }, {
+          autoAlpha: 1,
+          y: 0,
+          scale: 1,
+          duration: isMobile ? 0.56 : 0.62,
+          ease: 'power3.out'
+        });
+      }
+
+      if (headerBrand) {
+        timeline.fromTo(headerBrand, {
+          autoAlpha: 0,
+          y: -12
+        }, {
+          autoAlpha: 1,
+          y: 0,
+          duration: isMobile ? 0.34 : 0.38
+        }, '-=0.36');
+      }
+
+      if (isMobile) {
+        if (mobileHeaderItems.length) {
+          timeline.fromTo(mobileHeaderItems, {
+            autoAlpha: 0,
+            y: -10
+          }, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.28,
+            stagger: 0.05
+          }, '-=0.24');
+        }
+      } else {
+        if (headerNavItems.length) {
+          timeline.fromTo(headerNavItems, {
+            autoAlpha: 0,
+            y: -10
+          }, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.34,
+            stagger: 0.045
+          }, '-=0.26');
+        }
+
+        if (headerDesktopCta) {
+          timeline.fromTo(headerDesktopCta, {
+            autoAlpha: 0,
+            y: -10
+          }, {
+            autoAlpha: 1,
+            y: 0,
+            duration: 0.3
+          }, '-=0.24');
+        }
+      }
+
+      timeline.fromTo('.hero-kicker', {
+        autoAlpha: 0,
+        y: 12
+      }, {
+        autoAlpha: 1,
+        y: 0,
+        duration: isMobile ? 0.34 : 0.38
+      }, '-=0.05');
+
+      timeline.fromTo(titleLines, {
+        autoAlpha: 0,
+        y: isMobile ? 30 : 34
+      }, {
+        autoAlpha: 1,
+        y: 0,
+        duration: isMobile ? 0.64 : 0.72,
+        stagger: isMobile ? 0.06 : 0.075,
+        ease: 'power3.out'
+      }, '-=0.14');
+
+      if (heroTitle) {
+        timeline.fromTo(heroTitle, {
+          autoAlpha: 0.94
+        }, {
+          autoAlpha: 1,
+          duration: 0.6,
+          ease: 'power3.out'
+        }, '<');
+      }
+
+      timeline.fromTo('.hero-description', {
+        autoAlpha: 0,
+        y: 14
+      }, {
+        autoAlpha: 1,
+        y: 0,
+        duration: isMobile ? 0.4 : 0.48
+      }, '-=0.24');
+
+      if (ctaItems.length) {
+        timeline.fromTo(ctaItems, {
+          autoAlpha: 0,
+          y: 14
+        }, {
+          autoAlpha: 1,
+          y: 0,
+          duration: isMobile ? 0.34 : 0.42,
+          stagger: isMobile ? 0.06 : 0.08
+        }, '-=0.26');
+      }
+
+      timeline
+        .fromTo('.hero-slogan', {
+          autoAlpha: 0,
+          y: 14
+        }, {
+          autoAlpha: 1,
+          y: 0,
+          duration: isMobile ? 0.36 : 0.44
+        }, '-=0.16')
+        .add(function () {
+          startInfoRotation(isMobile, false);
+          setupSloganHoverScramble();
+        }, '+=0.02');
+
+      if (window.ScrollTrigger && heroImage) {
+        gsap.registerPlugin(window.ScrollTrigger);
+
+        gsap.set(heroImage, {
+          yPercent: 0,
+          scale: 1.01,
+          transformOrigin: 'center center'
+        });
+
+        gsap.to(heroImage, {
+          yPercent: isMobile ? 1.2 : 2.2,
+          scale: isMobile ? 1.015 : 1.03,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: hero,
+            start: 'top top',
+            end: 'bottom top',
+            scrub: 1.3,
+            fastScrollEnd: true
+          }
+        });
+      }
     }
 
-    setupHeroTitleImageRevealSync();
+    heroAnimationMedia = gsap.matchMedia();
+    heroAnimationMedia.add('(max-width: 1023px)', function () {
+      runHeroEntryVariant(true);
+    });
+    heroAnimationMedia.add('(min-width: 1024px)', function () {
+      runHeroEntryVariant(false);
+    });
   }
 
   var played = false;
@@ -402,9 +526,54 @@
     runHeroEntryAnimation();
   }
 
+  function cleanupHeroRuntime() {
+    if (infoRotationTimer) {
+      window.clearTimeout(infoRotationTimer);
+      infoRotationTimer = null;
+    }
+
+    if (heroAnimationMedia) {
+      heroAnimationMedia.revert();
+      heroAnimationMedia = null;
+    }
+  }
+
+  function isLoaderSettled() {
+    var pageLoader = document.getElementById('page-loader');
+
+    if (!pageLoader) {
+      return true;
+    }
+
+    return pageLoader.classList.contains('is-hidden');
+  }
+
   window.addEventListener('page-loader:complete', playOnce, { once: true });
+  window.addEventListener('pagehide', cleanupHeroRuntime);
 
   window.addEventListener('load', function () {
-    window.setTimeout(playOnce, 80);
+    if (isLoaderSettled()) {
+      playOnce();
+      return;
+    }
+
+    var attempts = 0;
+    var maxAttempts = 30;
+
+    function waitForLoaderSettle() {
+      if (played) {
+        return;
+      }
+
+      if (isLoaderSettled() || attempts >= maxAttempts) {
+        playOnce();
+        return;
+      }
+
+      attempts += 1;
+      window.setTimeout(waitForLoaderSettle, 60);
+    }
+
+    window.setTimeout(waitForLoaderSettle, 80);
   }, { once: true });
 })();
