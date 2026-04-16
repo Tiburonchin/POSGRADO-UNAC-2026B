@@ -26,7 +26,7 @@
     <section>
       <h4 class="mb-3 text-lg">Programas y SGI</h4>
       <ul class="grid gap-2 text-sm">
-        <li><a href="#programas" class="transition hover:text-[color:var(--text)]">Programas</a></li>
+        <li><a href="#admision-proceso" class="transition hover:text-[color:var(--text)]">Admision</a></li>
         <li><a href="#" class="transition hover:text-[color:var(--text)]">Sistema de Gestion</a></li>
         <li><a href="#faq" class="transition hover:text-[color:var(--text)]">FAQ</a></li>
       </ul>

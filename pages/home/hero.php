@@ -33,8 +33,8 @@
       </p>
 
       <div class="hero-cta-group mt-7 flex flex-wrap gap-3">
-        <a href="#admision" class="hero-btn-primary">Iniciar postulacion</a>
-        <a href="#programas" class="hero-btn-secondary">Explorar programas</a>
+        <a href="#admision-proceso" class="hero-btn-primary">Iniciar postulacion</a>
+        <a href="#admision-proceso" class="hero-btn-secondary">Explorar admision</a>
       </div>
 
       <p class="hero-slogan mt-9 max-w-full text-xs font-semibold text-[rgba(233,237,246,0.94)] sm:mt-10 sm:text-sm">

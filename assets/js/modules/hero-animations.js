@@ -11,9 +11,14 @@
 
   var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   var gsap = window.gsap;
+  var ScrollTrigger = window.ScrollTrigger;
   var hero = document.querySelector('.hero--fullscreen');
   var heroContent = document.querySelector('#hero-home');
+  var heroMedia = document.querySelector('.hero-media--bg');
   var heroImage = document.querySelector('.hero-bg-image');
+  var heroOverlay = document.querySelector('.hero-overlay');
+  var heroAtmosphere = document.querySelector('.hero-atmosphere');
+  var nextSection = hero ? hero.nextElementSibling : null;
   var headerMain = document.getElementById('header-main');
   var heroTitleRevealLines = document.querySelectorAll('.hero-title-line[data-hero-title-line-reveal]');
   var titleLines = document.querySelectorAll('.hero-title-line');
@@ -31,9 +36,14 @@
   var sloganHoverSetup = false;
   var heroRevealSyncSetup = false;
   var heroAnimationMedia = null;
+  var heroParallaxMedia = null;
 
   if (!hero || !heroContent) {
     return;
+  }
+
+  if (ScrollTrigger && typeof gsap.registerPlugin === 'function') {
+    gsap.registerPlugin(ScrollTrigger);
   }
 
   function getHeaderAnimationNodes(isMobile) {
@@ -385,6 +395,127 @@
   }
 
   function runHeroEntryAnimation() {
+    function setupHeroScrollParallax() {
+      if (reduceMotion || !ScrollTrigger) {
+        return;
+      }
+
+      if (heroParallaxMedia) {
+        heroParallaxMedia.revert();
+        heroParallaxMedia = null;
+      }
+
+      heroParallaxMedia = gsap.matchMedia();
+
+      var createParallaxTimeline = function (isMobile) {
+        if (heroMedia) {
+          gsap.set(heroMedia, {
+            x: 0,
+            xPercent: 0,
+            transformOrigin: '50% 50%'
+          });
+        }
+
+        if (heroImage) {
+          gsap.set(heroImage, {
+            x: 0,
+            xPercent: 0,
+            transformOrigin: '50% 50%'
+          });
+        }
+
+        var parallaxTimeline = gsap.timeline({
+          defaults: { ease: 'none' },
+          scrollTrigger: {
+            trigger: hero,
+            start: 'top top',
+            end: isMobile ? '+=56%' : '+=82%',
+            pin: true,
+            scrub: isMobile ? 0.58 : 0.78,
+            anticipatePin: 1,
+            invalidateOnRefresh: true
+          }
+        });
+
+        if (heroMedia) {
+          parallaxTimeline.to(heroMedia, {
+            x: 0,
+            xPercent: 0,
+            scale: isMobile ? 1.14 : 1.22,
+            yPercent: 0,
+            transformOrigin: '50% 50%'
+          }, 0);
+        }
+
+        if (heroImage) {
+          parallaxTimeline.to(heroImage, {
+            x: 0,
+            xPercent: 0,
+            scale: isMobile ? 1.22 : 1.34,
+            opacity: 0,
+            transformOrigin: '50% 50%'
+          }, 0);
+        }
+
+        if (heroTitleRevealLines.length) {
+          parallaxTimeline.to(heroTitleRevealLines, {
+            '--hero-title-line-scroll-shift': '0px',
+            '--hero-title-line-image-zoom': isMobile ? 1.26 : 1.56,
+            opacity: 0,
+            ease: 'none'
+          }, 0);
+        }
+
+        if (heroOverlay) {
+          parallaxTimeline.to(heroOverlay, {
+            opacity: 0
+          }, 0);
+        }
+
+        if (heroAtmosphere) {
+          parallaxTimeline.to(heroAtmosphere, {
+            opacity: 0
+          }, 0);
+        }
+
+        parallaxTimeline.to(heroContent, {
+          y: 0,
+          autoAlpha: 0
+        }, 0);
+
+        parallaxTimeline.to(hero, {
+          autoAlpha: 0
+        }, isMobile ? 0.16 : 0.12);
+
+        if (nextSection) {
+          parallaxTimeline.fromTo(nextSection, {
+            yPercent: isMobile ? 10 : 20,
+            scale: isMobile ? 1.08 : 1.2,
+            autoAlpha: 0.08,
+            transformOrigin: '50% 50%'
+          }, {
+            yPercent: 0,
+            scale: 1,
+            autoAlpha: 1,
+            transformOrigin: '50% 50%'
+          }, 0);
+        }
+
+      };
+
+      heroParallaxMedia.add('(max-width: 1023px)', function () {
+        createParallaxTimeline(true);
+      });
+
+      heroParallaxMedia.add('(min-width: 1024px)', function () {
+        createParallaxTimeline(false);
+      });
+
+      window.requestAnimationFrame(function () {
+        ScrollTrigger.refresh();
+      });
+    }
+
     function runHeroEntryVariant(isMobile) {
       var heroTitle = document.querySelector('.hero-title');
       var headerNodes = getHeaderAnimationNodes(isMobile);
@@ -540,6 +671,7 @@
         .add(function () {
           startInfoRotation(isMobile, false);
           setupSloganHoverScramble();
+          setupHeroScrollParallax();
         }, '+=0.02');
 
       if (heroImage) {
@@ -578,6 +710,11 @@
     if (heroAnimationMedia) {
       heroAnimationMedia.revert();
       heroAnimationMedia = null;
+    }
+
+    if (heroParallaxMedia) {
+      heroParallaxMedia.revert();
+      heroParallaxMedia = null;
     }
   }
 

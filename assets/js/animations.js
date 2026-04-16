@@ -61,7 +61,8 @@
   var headerDesktopCta = document.querySelector('.header-cta:not(.header-cta-mobile)');
   var headerMobileItems = document.querySelectorAll('.header-cta-mobile, #menu-toggle');
   var navItems = document.querySelectorAll('.primary-nav > ul > li');
-  var cards = document.querySelectorAll('#programas article, #noticias article, #ubicacion article');
+  var cards = document.querySelectorAll('#noticias article, #ubicacion article');
+  var admisionScrollItems = document.querySelectorAll('#admision-proceso [data-admision-scroll-item]');
   var headerEntryPlayed = false;
 
   function isLoaderSettled() {
@@ -211,6 +212,23 @@
         }
       });
     });
+
+    if (admisionScrollItems.length) {
+      admisionScrollItems.forEach(function (item, index) {
+        gsap.from(item, {
+          x: index % 2 === 0 ? -28 : -18,
+          y: 34,
+          opacity: 0,
+          duration: 0.72,
+          ease: 'power3.out',
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 84%',
+            toggleActions: 'play none none reverse'
+          }
+        });
+      });
+    }
 
   }
 
