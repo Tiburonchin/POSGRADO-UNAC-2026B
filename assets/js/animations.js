@@ -21,7 +21,14 @@
     }
 
     var mainHeight = headerMain.offsetHeight || 0;
-    var totalHeight = header ? header.offsetHeight || mainHeight : mainHeight;
+    var totalHeight = mainHeight;
+
+    if (header) {
+      var computedHeaderStyle = window.getComputedStyle(header);
+      var paddingTop = parseFloat(computedHeaderStyle.paddingTop) || 0;
+      var paddingBottom = parseFloat(computedHeaderStyle.paddingBottom) || 0;
+      totalHeight = mainHeight + paddingTop + paddingBottom;
+    }
 
     rootStyle.setProperty('--header-main-height', mainHeight + 'px');
     rootStyle.setProperty('--header-total-height', totalHeight + 'px');

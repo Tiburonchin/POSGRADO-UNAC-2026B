@@ -2,16 +2,30 @@
 
 declare(strict_types=1);
 
-function renderPage(string $pageTitle, string $contentTemplate): void
+function renderPage(string $pageTitle, string|array $contentTemplate): void
 {
-    if (!file_exists($contentTemplate)) {
-        http_response_code(500);
-        echo 'Template not found.';
-        return;
-    }
+  $contentTemplates = is_array($contentTemplate) ? $contentTemplate : [$contentTemplate];
 
-  $templateName = basename($contentTemplate);
-  $isHomePage = $templateName === 'home.php';
+  foreach ($contentTemplates as $templatePath) {
+    if (!file_exists($templatePath)) {
+      http_response_code(500);
+      echo 'Template not found.';
+      return;
+    }
+  }
+
+  $firstTemplateName = basename($contentTemplates[0]);
+  $pageSlug = pathinfo($firstTemplateName, PATHINFO_FILENAME);
+  $isHomePage = false;
+
+  foreach ($contentTemplates as $templatePath) {
+    $normalizedTemplatePath = str_replace('\\', '/', $templatePath);
+    if (str_contains($normalizedTemplatePath, '/pages/home/') || basename($templatePath) === 'home.php') {
+      $isHomePage = true;
+      $pageSlug = 'home';
+      break;
+    }
+  }
 
     ?>
 <!DOCTYPE html>
@@ -39,12 +53,14 @@ function renderPage(string $pageTitle, string $contentTemplate): void
   <link rel="stylesheet" href="assets/css/mega-menu.css" />
   <noscript><style>#page-loader { display: none !important; }</style></noscript>
 </head>
-<body data-page="<?= htmlspecialchars(pathinfo($templateName, PATHINFO_FILENAME), ENT_QUOTES, 'UTF-8') ?>">
+<body data-page="<?= htmlspecialchars($pageSlug, ENT_QUOTES, 'UTF-8') ?>">
   <?php require __DIR__ . '/page-loader.php'; ?>
   <?php require __DIR__ . '/header.php'; ?>
 
   <main id="main-content">
-    <?php require $contentTemplate; ?>
+    <?php foreach ($contentTemplates as $templatePath): ?>
+      <?php require $templatePath; ?>
+    <?php endforeach; ?>
   </main>
 
   <?php require __DIR__ . '/footer.php'; ?>
