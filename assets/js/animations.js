@@ -62,7 +62,9 @@
   var headerMobileItems = document.querySelectorAll('.header-cta-mobile, #menu-toggle');
   var navItems = document.querySelectorAll('.primary-nav > ul > li');
   var cards = document.querySelectorAll('#noticias article, #ubicacion article');
-  var admisionScrollItems = document.querySelectorAll('#admision-proceso [data-admision-scroll-item]');
+  var admissionSection = document.querySelector('[data-admission-reveal]');
+  var admissionItems = document.querySelectorAll('[data-admission-item]');
+  var admissionTextTargets = document.querySelectorAll('[data-admission-text]');
   var headerEntryPlayed = false;
 
   function isLoaderSettled() {
@@ -213,22 +215,44 @@
       });
     });
 
-    if (admisionScrollItems.length) {
-      admisionScrollItems.forEach(function (item, index) {
-        gsap.from(item, {
-          x: index % 2 === 0 ? -28 : -18,
-          y: 34,
-          opacity: 0,
-          duration: 0.72,
-          ease: 'power3.out',
-          scrollTrigger: {
-            trigger: item,
-            start: 'top 84%',
-            toggleActions: 'play none none reverse'
-          }
-        });
+    if (admissionSection) {
+      var admissionTimeline = gsap.timeline({
+        defaults: { ease: 'power3.out' },
+        scrollTrigger: {
+          trigger: admissionSection,
+          start: 'top 82%',
+          once: true
+        }
       });
+
+      admissionTimeline.from(admissionSection, {
+        y: 64,
+        opacity: 0,
+        scale: 0.98,
+        filter: 'blur(8px)',
+        duration: 1
+      });
+
+      if (admissionItems.length) {
+        admissionTimeline.from(admissionItems, {
+          y: 38,
+          opacity: 0,
+          duration: 0.7,
+          stagger: 0.16
+        }, '-=0.58');
+      }
+
+      if (admissionTextTargets.length) {
+        admissionTimeline.from(admissionTextTargets, {
+          y: 44,
+          opacity: 0,
+          duration: 0.62,
+          stagger: 0.07
+        }, '-=0.62');
+      }
+
     }
+
 
   }
 
