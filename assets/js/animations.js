@@ -242,7 +242,65 @@
         }, '-=0.58');
       }
 
-      if (admissionTextTargets.length) {
+      if (admissionTextTargets.length && window.SplitType) {
+        var splits = [];
+        var allLines = [];
+        var internalScroller = document.querySelector('.admission-premium-info-body');
+
+        admissionTextTargets.forEach(function (target) {
+          var isStats = target.classList.contains('admission-stat-number');
+          var isTag = target.classList.contains('admission-strength-tag');
+
+          if (!isStats && !isTag) {
+            var s = new SplitType(target, { types: 'lines', lineClass: 'split-line' });
+            splits.push(s);
+            if (s.lines) {
+              for (var i = 0; i < s.lines.length; i++) {
+                allLines.push(s.lines[i]);
+              }
+            }
+          } else {
+            allLines.push(target);
+          }
+        });
+
+        // Animación vinculada al scroll interno de la clase .admission-premium-info-body
+        if (internalScroller) {
+          allLines.forEach(function (line) {
+            gsap.from(line, {
+              y: 30,
+              opacity: 0,
+              duration: 1,
+              ease: 'power2.out',
+              scrollTrigger: {
+                trigger: line,
+                scroller: internalScroller,
+                start: 'top 98%',
+                end: 'top 85%',
+                scrub: 1.2, // "poco a poco" y suave
+                once: false // Queremos que sea reversible al scrollear
+              }
+            });
+          });
+        }
+
+        // Manejo de responsividad: re-split al cambiar tamaño
+        var reSplit = debounce(function () {
+          splits.forEach(function (s) { s.revert(); });
+          splits = [];
+          admissionTextTargets.forEach(function (target) {
+            var isStats = target.classList.contains('admission-stat-number');
+            var isTag = target.classList.contains('admission-strength-tag');
+            if (!isStats && !isTag) {
+              splits.push(new SplitType(target, { types: 'lines', lineClass: 'split-line' }));
+            }
+          });
+          ScrollTrigger.refresh();
+        }, 400);
+
+        window.addEventListener('resize', reSplit);
+      } else if (admissionTextTargets.length) {
+        // Fallback
         admissionTimeline.from(admissionTextTargets, {
           y: 44,
           opacity: 0,
@@ -250,7 +308,6 @@
           stagger: 0.07
         }, '-=0.62');
       }
-
     }
 
 

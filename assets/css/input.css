@@ -588,7 +588,7 @@
 .admission-premium-info,
 .admission-premium-visual {
   border-radius: 0.7em;
-  background: color-mix(in srgb, var(--bg) 82%, transparent);
+  background: color-mix(in srgb, var(--bg) 30%, transparent);
   box-shadow:
     inset 0 0 0 1px color-mix(in srgb, var(--border) 25%, transparent),
     0 14px 34px color-mix(in srgb, var(--bg) 60%, transparent);
@@ -606,15 +606,32 @@
 .admission-premium-info-body {
   display: flex;
   flex-direction: column;
-  gap: 0.78rem;
+  gap: 1.6rem;
   flex: 1 1 auto;
   min-height: 0;
   max-height: 100%;
   overflow-y: auto;
   overscroll-behavior: contain;
   padding-right: 0.4rem;
+  padding-bottom: 8rem;
   scrollbar-width: thin;
   scrollbar-color: color-mix(in srgb, var(--accent) 70%, transparent) transparent;
+}
+
+.admission-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.admission-group-main {
+  gap: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.admission-group-tags {
+  margin-top: 1rem;
+  margin-bottom: 2rem;
 }
 
 .admission-premium-info-body::-webkit-scrollbar {
@@ -667,7 +684,7 @@
 }
 
 .admission-premium-copy {
-  margin-top: 0.9rem;
+  margin-top: 3.1rem;
   color: var(--text-muted);
   max-width: 58ch;
   line-height: 1.72;
@@ -710,7 +727,7 @@
 }
 
 .admission-premium-text-flow {
-  margin-top: 1.35rem;
+  margin-top: 4.35rem;
 }
 
 .admission-flow-title {
@@ -750,7 +767,7 @@
 }
 
 .admission-premium-stats {
-  margin-top: 1.35rem;
+  margin-top: 3.35rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.7rem;
@@ -787,7 +804,7 @@
 }
 
 .admission-premium-widgets {
-  margin-top: 1.45rem;
+  margin-top: 3.45rem;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.7rem;
@@ -949,6 +966,12 @@
     font-size: 0.94rem;
     line-height: 1.62;
   }
+}
+
+.split-line {
+  overflow: hidden;
+  padding-bottom: 0.1em;
+  margin-bottom: -0.1em;
 }
 
 

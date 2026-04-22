@@ -33,7 +33,13 @@
     return targets.length ? targets : [loaderInner].filter(Boolean);
   }
 
+  var unlockTimeout = null;
+
   function lockScroll() {
+    if (unlockTimeout) {
+      window.clearTimeout(unlockTimeout);
+      unlockTimeout = null;
+    }
     var scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
     document.documentElement.style.setProperty(SCROLLBAR_COMPENSATION_VAR, scrollbarWidth + 'px');
     document.documentElement.classList.add('is-loading');
@@ -41,6 +47,10 @@
   }
 
   function unlockScroll() {
+    if (unlockTimeout) {
+      window.clearTimeout(unlockTimeout);
+      unlockTimeout = null;
+    }
     document.documentElement.classList.remove('is-loading');
     document.body.classList.remove('is-loading');
     document.documentElement.style.removeProperty(SCROLLBAR_COMPENSATION_VAR);
@@ -157,8 +167,11 @@
       }
     }
 
-    unlockScroll();
-    window.requestAnimationFrame(dispatchLoaderComplete);
+    // Delay scroll unlock and completion dispatch by 1.5 seconds
+    unlockTimeout = window.setTimeout(function () {
+      unlockScroll();
+      window.requestAnimationFrame(dispatchLoaderComplete);
+    }, 2300);
   }
 
   function hideLoader() {

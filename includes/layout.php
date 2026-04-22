@@ -67,6 +67,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
 
   <script defer src="assets/vendor/gsap/gsap.min.js"></script>
   <script defer src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="https://unpkg.com/split-type"></script>
   <script defer src="assets/js/theme.js"></script>
   <script defer src="assets/js/mega-menu.js"></script>
   <script defer src="assets/js/animations.js"></script>
