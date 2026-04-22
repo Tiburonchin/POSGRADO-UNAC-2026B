@@ -349,19 +349,19 @@
     });
   }
 
-  // Carrusel de imágenes en la sección de admisión
+  // Carrusel de imágenes en la sección de admisión con activación por scroll
   var admissionCarousel = document.querySelector('[data-admission-carousel]');
-  if (admissionCarousel && window.gsap) {
+  if (admissionCarousel && window.gsap && window.ScrollTrigger) {
     var carouselImages = admissionCarousel.querySelectorAll('.admission-carousel-img');
     
     if (carouselImages.length > 1) {
       var currentIndex = 0;
+      var carouselTimer = null;
       
       // Establecer la primera imagen como activa
       carouselImages[0].classList.add('is-active');
       
-      // Crear el intervalo del carrusel
-      setInterval(function () {
+      var nextImage = function() {
         // Animar salida de la imagen actual
         gsap.to(carouselImages[currentIndex], {
           opacity: 0,
@@ -389,7 +389,30 @@
             ease: 'power2.inOut'
           }
         );
-      }, 3000); // Cambiar cada 3 segundos
+      };
+
+      var startCarousel = function() {
+        if (!carouselTimer) {
+          carouselTimer = setInterval(nextImage, 3500);
+        }
+      };
+
+      var stopCarousel = function() {
+        if (carouselTimer) {
+          clearInterval(carouselTimer);
+          carouselTimer = null;
+        }
+      };
+
+      // Activar carrusel solo cuando la sección es visible
+      ScrollTrigger.create({
+        trigger: admissionSection || admissionCarousel,
+        start: 'top 90%',
+        onEnter: startCarousel,
+        onEnterBack: startCarousel,
+        onLeave: stopCarousel,
+        onLeaveBack: stopCarousel
+      });
     }
   }
 })();

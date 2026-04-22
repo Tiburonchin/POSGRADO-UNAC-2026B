@@ -7,7 +7,7 @@
 
       <nav class="primary-nav hidden lg:block" id="primary-nav" aria-label="Navegacion principal">
         <ul class="flex items-center justify-center gap-2">
-          <li class="nav-item" data-section="escuela"><button class="mega-trigger nav-link" data-section="escuela" aria-expanded="false">La Escuela</button></li>
+          <li class="nav-item" data-section="escuela"><a href="LA-ESCUELA/index.php" class="mega-trigger nav-link" data-section="escuela" aria-expanded="false">La Escuela</a></li>
           <li class="nav-item" data-section="admision"><button class="mega-trigger nav-link" data-section="admision" aria-expanded="false">Admision</button></li>
           <li class="nav-item" data-section="programas"><button class="mega-trigger nav-link" data-section="programas" aria-expanded="false">Programas</button></li>
           <li class="nav-item" data-section="conocenos"><button class="mega-trigger nav-link" data-section="conocenos" aria-expanded="false">Conocenos</button></li>
@@ -49,7 +49,7 @@
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Propuesta Academica</h4>
                 <p>Conoce nuestra vision, estructura y gestion para potenciar tu carrera profesional.</p>
-                <a href="#" class="mega-cta-link">Ver La Escuela</a>
+                <a href="LA-ESCUELA/index.php" class="mega-cta-link">Ver La Escuela</a>
               </div>
             </section>
 
@@ -136,6 +136,7 @@
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">La Escuela<span>+</span></button>
           <ul class="mobile-submenu hidden">
+            <li><a href="LA-ESCUELA/index.php" class="font-bold text-[color:var(--accent)]">Ver La Escuela →</a></li>
             <li><a href="#">Mision y Vision</a></li>
             <li><a href="#">Administrativos</a></li>
             <li><a href="#">Directores</a></li>

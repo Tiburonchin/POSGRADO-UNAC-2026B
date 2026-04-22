@@ -516,31 +516,59 @@
   }
 
   .footer-grid-saas {
-    @apply grid grid-cols-2 gap-[1px] bg-[var(--footer-border)] rounded-lg p-[1px] overflow-hidden;
+    @apply grid grid-cols-2 gap-[1px] bg-footer-border rounded-lg p-[1px] overflow-hidden;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.2);
   }
 
   .footer-grid-item {
-    @apply bg-[#111] transition-colors p-4 flex items-center cursor-default;
+    @apply bg-[#0e0e0e] transition-all duration-300 p-4 flex items-center cursor-default relative overflow-hidden;
+  }
+
+  .footer-grid-item::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-br from-white/5 to-transparent opacity-0 transition-opacity duration-300;
   }
 
   .footer-grid-item:hover {
-    @apply bg-[#1a1a1a];
+    @apply bg-[#141414];
+  }
+
+  .footer-grid-item:hover::before {
+    @apply opacity-100;
   }
 
   .footer-newsletter-card {
-    @apply bg-[#111] border border-[var(--footer-border)] rounded-xl p-6 lg:p-8;
+    @apply bg-[#0e0e0e] border border-footer-border rounded-xl p-6 lg:p-8 relative overflow-hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  }
+
+  .footer-newsletter-card::after {
+    content: '';
+    @apply absolute -top-24 -right-24 w-48 h-48 rounded-full blur-[64px] pointer-events-none;
+    background-color: color-mix(in srgb, var(--accent) 5%, transparent);
   }
 
   .footer-input-group {
-    @apply flex items-center bg-[#1a1a1a] rounded border border-white/5 focus-within:border-accent transition-colors p-1 mb-4;
+    @apply flex items-center bg-[#161616] rounded border border-white/5 transition-all duration-300 p-1 mb-4;
+  }
+
+  .footer-input-group:focus-within {
+    border-color: color-mix(in srgb, var(--accent) 40%, transparent);
   }
 
   .footer-social-link {
-    @apply w-8 h-8 rounded bg-[#1a1a1a] flex items-center justify-center text-gray-400 hover:text-white hover:bg-[#222] transition-colors;
+    @apply w-8 h-8 rounded bg-[#161616] flex items-center justify-center text-gray-400 hover:text-white transition-all duration-300 border border-transparent;
+  }
+
+  .footer-social-link:hover {
+    background-color: color-mix(in srgb, var(--accent) 20%, transparent);
+    color: var(--accent);
+    border-color: color-mix(in srgb, var(--accent) 20%, transparent);
   }
 
   .footer-bottom-bar {
-    @apply bg-[#111] border border-[var(--footer-border)] rounded-lg flex flex-col md:flex-row items-center justify-between p-4 gap-4;
+    @apply bg-[#0e0e0e] border border-footer-border rounded-lg flex flex-col md:flex-row items-center justify-between p-4 gap-4;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
   }
 
 

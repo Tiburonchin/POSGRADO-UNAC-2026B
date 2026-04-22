@@ -109,7 +109,9 @@
       });
 
       trigger.addEventListener('click', function (event) {
-        event.preventDefault();
+        if (this.tagName === 'BUTTON') {
+          event.preventDefault();
+        }
       });
     });
 
