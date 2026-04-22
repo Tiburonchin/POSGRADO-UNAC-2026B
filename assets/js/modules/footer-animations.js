@@ -41,13 +41,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 // getVelocity() returns positive for scrolling down, negative for up
                 const v = self.getVelocity();
                 
-                // Only trigger if movement is significant (lower threshold for higher sensitivity)
-                if (Math.abs(v) > 15) {
-                    // Map velocity to Y position (higher multiplier for more bounce)
-                    let targetY = 100 - (v * 0.15); 
+                // Only trigger if movement is significant
+                if (Math.abs(v) > 50) {
+                    // Map velocity to Y position
+                    // Inverted intentionally for a more "viscous" feeling
+                    let targetY = 100 - (v * 0.05); 
                     
                     // Clamp to prevent the curve from breaking the layout
-                    targetY = gsap.utils.clamp(-80, 280, targetY);
+                    targetY = gsap.utils.clamp(-50, 250, targetY);
 
                     // Push the value to the quickTo pipe
                     updateCurveY(targetY);
