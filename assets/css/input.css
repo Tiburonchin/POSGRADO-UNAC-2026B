@@ -10,32 +10,7 @@
     --footer-border: rgba(255, 255, 255, 0.08);
   }
 
-  [data-theme='light'] {
-    color-scheme: light;
-    --bg: #e8edf8;
-    --bg-elevated: #f9fbff;
-    --bg-soft: #edf2fb;
-    --text: #0f172a;
-    --text-muted: rgba(15, 23, 42, 0.72);
-    --border: rgba(15, 23, 42, 0.2);
-    --header-bg: rgba(245, 248, 255, 0.82);
-    --header-bg-solid: rgba(250, 252, 255, 0.94);
-    --dropdown-bg: rgba(246, 249, 255, 0.96);
-    --dropdown-border: rgba(15, 23, 42, 0.18);
-    --theme-toggle-bg: rgba(15, 23, 42, 0.05);
-    --theme-toggle-border: rgba(15, 23, 42, 0.2);
-    --accent: #d97706;
-    --accent-2: #f59e0b;
-    --accent-info: #2563eb;
-    --shadow-soft: 0 12px 35px rgba(15, 23, 42, 0.2);
-    --shadow-deep: 0 20px 45px rgba(15, 23, 42, 0.24);
-    --font-base: 'Inter', system-ui, -apple-system, sans-serif;
-    --font-display: 'Inter', system-ui, -apple-system, sans-serif;
-    --scrollbar-thumb: rgba(15, 23, 42, 0.32);
-    --scrollbar-thumb-hover: rgba(180, 83, 9, 0.75);
-    --motion-base: 0.35s;
-    --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
-  }
+
 
   [data-theme='dark'] {
     color-scheme: dark;
@@ -49,8 +24,7 @@
     --header-bg-solid: rgba(7, 11, 20, 0.95);
     --dropdown-bg: rgba(9, 14, 26, 0.94);
     --dropdown-border: rgba(148, 163, 184, 0.26);
-    --theme-toggle-bg: rgba(255, 255, 255, 0.06);
-    --theme-toggle-border: rgba(148, 163, 184, 0.3);
+
     --accent: #ffc107;
     --accent-2: #f59e0b;
     --accent-info: #3b82f6;
@@ -144,18 +118,7 @@
     @apply hidden;
   }
 
-  /* Theme Toggle */
-  .theme-dot {
-    @apply transition-transform duration-300;
-  }
 
-  [data-theme='dark'] .theme-dot {
-    transform: translateX(12px);
-  }
-
-  [data-theme='light'] .theme-dot {
-    transform: translateX(0);
-  }
 
   .glass-pill {
     background: var(--header-bg);

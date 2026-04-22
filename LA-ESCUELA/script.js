@@ -86,15 +86,7 @@ lenis.on("scroll", ({ scroll }) => {
   const maxScroll = heroHeight - windowHeight;
   scrollProgress = Math.min((scroll / maxScroll) * CONFIG.speed, 1.1);
 
-  // Toggle scrolled state for header
-  const header = document.querySelector('.site-header');
-  if (header) {
-    if (scroll > 50) {
-      header.classList.add('is-scrolled');
-    } else {
-      header.classList.remove('is-scrolled');
-    }
-  }
+
 });
 
 window.addEventListener("resize", () => {
@@ -208,35 +200,10 @@ certWrappers.forEach((wrapper, index) => {
   });
 });
 
-const themeToggleBtn = document.getElementById('theme-toggle');
 const rootElement = document.documentElement;
+rootElement.setAttribute('data-theme', 'dark');
 
-const setTheme = (theme) => {
-  rootElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
-
-  if (typeof material !== 'undefined' && material.uniforms) {
-    const hexColor = theme === 'dark' ? '#060a12' : '#e8edf8';
-    const rgbColor = hexToRgb(hexColor);
-    material.uniforms.uColor.value.set(rgbColor.r, rgbColor.g, rgbColor.b);
-  }
-};
-
-const savedTheme = localStorage.getItem('theme');
-const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-
-if (savedTheme) {
-  setTheme(savedTheme);
-} else if (prefersDark) {
-  setTheme('dark');
-} else {
-  setTheme('light'); 
-}
-
-if (themeToggleBtn) {
-  themeToggleBtn.addEventListener('click', () => {
-    const currentTheme = rootElement.getAttribute('data-theme');
-    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-    setTheme(newTheme);
-  });
+if (typeof material !== 'undefined' && material.uniforms) {
+  const rgbColor = hexToRgb('#060a12');
+  material.uniforms.uColor.value.set(rgbColor.r, rgbColor.g, rgbColor.b);
 }

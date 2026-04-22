@@ -37,10 +37,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
   <script>
     (function () {
-      var stored = localStorage.getItem('epg-theme');
-      var systemDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
-      var theme = stored || (systemDark ? 'dark' : 'light');
-      document.documentElement.setAttribute('data-theme', theme);
+      document.documentElement.setAttribute('data-theme', 'dark');
     })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
