@@ -10,7 +10,7 @@
   --header-surface: #101b31;
   --header-elevation: 0 22px 48px rgba(2, 6, 23, 0.5);
   --header-floating-gap: 18px;
-  --header-floating-radius: 9px;
+  --header-floating-radius: 15px;
   --header-floating-max: 1440px;
   --menu-speed: 0.28s;
 }
@@ -27,7 +27,7 @@
   z-index: 70;
   width: min(100%, var(--header-floating-max));
   margin: 0 auto;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.014);
   border-radius: var(--header-floating-radius);
   /*background: linear-gradient(180deg, rgba(8, 10, 12, 0.97) 0%, rgba(8, 10, 12, 0.93) 100%);*/
   box-shadow: var(--header-elevation);

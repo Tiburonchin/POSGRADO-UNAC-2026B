@@ -220,7 +220,7 @@
         defaults: { ease: 'power3.out' },
         scrollTrigger: {
           trigger: admissionSection,
-          start: 'top 82%',
+          start: 'top 95%',
           once: true
         }
       });
@@ -275,7 +275,7 @@
               scrollTrigger: {
                 trigger: line,
                 scroller: internalScroller,
-                start: 'top 98%',
+                start: 'bottom 98%',
                 end: 'top 85%',
                 scrub: 1.2, // "poco a poco" y suave
                 once: false // Queremos que sea reversible al scrollear
