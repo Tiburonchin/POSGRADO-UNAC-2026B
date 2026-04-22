@@ -8,6 +8,16 @@ module.exports = {
         display: ['Fraunces', 'Georgia', 'serif'],
         hero: ['Archivo Black', 'Manrope', 'Segoe UI', 'sans-serif'],
       },
+      colors: {
+        bg: 'var(--bg)',
+        elevated: 'var(--bg-elevated)',
+        soft: 'var(--bg-soft)',
+        accent: 'var(--accent)',
+        muted: 'var(--text-muted)',
+        'footer-bg': 'var(--footer-bg)',
+        'footer-border': 'var(--footer-border)',
+        'footer-card': 'var(--footer-card)'
+      },
       boxShadow: {
         soft: '0 10px 30px rgba(12, 23, 44, 0.12)',
         deep: '0 20px 50px rgba(12, 23, 44, 0.24)',

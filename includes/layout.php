@@ -73,7 +73,10 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <script defer src="assets/js/animations.js"></script>
   <?php if ($isHomePage): ?>
   <script defer src="assets/js/modules/hero-animations.js"></script>
+  <script defer src="assets/js/modules/talento-animations.js"></script>
+  <script defer src="assets/js/modules/ubicacion-animations.js"></script>
   <?php endif; ?>
+  <script defer src="assets/js/modules/footer-animations.js"></script>
   <script defer src="assets/js/page-loader.js"></script>
 </body>
 </html>

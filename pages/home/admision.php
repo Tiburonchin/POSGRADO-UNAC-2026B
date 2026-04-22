@@ -115,11 +115,38 @@
         </article>
 
         <aside class="admission-premium-visual" data-admission-item>
-          <figure class="admission-premium-media">
+          <figure class="admission-premium-media" data-admission-carousel>
             <img
               src="img/unac-letras.jpeg"
               alt="Escuela de Posgrado UNAC"
-              class="admission-premium-image"
+              class="admission-premium-image admission-carousel-img"
+              loading="lazy"
+              decoding="async"
+              width="1280"
+              height="720"
+            />
+            <img
+              src="img/epg-unac-fachada.png"
+              alt="Fachada EPG UNAC"
+              class="admission-premium-image admission-carousel-img"
+              loading="lazy"
+              decoding="async"
+              width="1280"
+              height="720"
+            />
+            <img
+              src="img/epg-logo.png"
+              alt="Logo EPG"
+              class="admission-premium-image admission-carousel-img"
+              loading="lazy"
+              decoding="async"
+              width="1280"
+              height="720"
+            />
+            <img
+              src="img/logo_unac.png"
+              alt="Logo UNAC"
+              class="admission-premium-image admission-carousel-img"
               loading="lazy"
               decoding="async"
               width="1280"

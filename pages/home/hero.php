@@ -14,14 +14,14 @@
   <div class="hero-overlay pointer-events-none absolute inset-0 z-10"></div>
   <div class="hero-atmosphere pointer-events-none absolute inset-0 z-[11]"></div>
 
-  <div class="site-container relative z-20 flex min-h-[inherit] items-center pt-4 pb-8 md:pt-10 md:pb-10 lg:pt-12 lg:pb-12">
+  <div class="site-container relative z-20 flex min-h-[inherit] items-center pt-4 pb-8 md:pt-10 md:pb-10 lg:pt-4 lg:pb-12">
     <div class="hero-content max-w-[920px]" id="hero-home">
       <p class="hero-kicker mb-5 inline-flex items-center gap-2 text-[14px] font-extrabold uppercase tracking-[0.22em] text-[color:var(--accent)] sm:text-[15px]">
         <span class="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] shadow-[0_0_18px_rgba(255,193,7,0.8)]"></span>
         Bienvenido
       </p>
 
-      <h1 class="hero-title mb-5 text-balance font-black uppercase leading-[0.84] tracking-[-0.07em] text-white">
+      <h1 class="hero-title mb-1 text-balance font-black uppercase leading-[0.84] tracking-[-0.07em] text-white">
         <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>Escuela de</span>
         <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>Posgrado</span>
         <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>UNAC</span>

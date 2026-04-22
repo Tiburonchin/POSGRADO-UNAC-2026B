@@ -268,7 +268,7 @@
         if (internalScroller) {
           allLines.forEach(function (line) {
             gsap.from(line, {
-              y: 30,
+              y: 20,
               opacity: 0,
               duration: 1,
               ease: 'power2.out',
@@ -347,5 +347,49 @@
         ease: 'power2.out'
       });
     });
+  }
+
+  // Carrusel de imágenes en la sección de admisión
+  var admissionCarousel = document.querySelector('[data-admission-carousel]');
+  if (admissionCarousel && window.gsap) {
+    var carouselImages = admissionCarousel.querySelectorAll('.admission-carousel-img');
+    
+    if (carouselImages.length > 1) {
+      var currentIndex = 0;
+      
+      // Establecer la primera imagen como activa
+      carouselImages[0].classList.add('is-active');
+      
+      // Crear el intervalo del carrusel
+      setInterval(function () {
+        // Animar salida de la imagen actual
+        gsap.to(carouselImages[currentIndex], {
+          opacity: 0,
+          scale: 0.98,
+          duration: 0.8,
+          ease: 'power2.inOut'
+        });
+        
+        carouselImages[currentIndex].classList.remove('is-active');
+        
+        // Ir a la siguiente imagen
+        currentIndex = (currentIndex + 1) % carouselImages.length;
+        
+        // Animar entrada de la nueva imagen
+        carouselImages[currentIndex].classList.add('is-active');
+        gsap.fromTo(carouselImages[currentIndex],
+          {
+            opacity: 0,
+            scale: 1.02
+          },
+          {
+            opacity: 1,
+            scale: 1,
+            duration: 0.8,
+            ease: 'power2.inOut'
+          }
+        );
+      }, 3000); // Cambiar cada 3 segundos
+    }
   }
 })();
