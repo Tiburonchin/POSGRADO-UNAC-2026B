@@ -62,9 +62,10 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
 
   <?php require __DIR__ . '/footer.php'; ?>
 
-  <script defer src="assets/vendor/gsap/gsap.min.js"></script>
-  <script defer src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.3/ScrollTrigger.min.js"></script>
   <script src="https://unpkg.com/split-type"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
   <script defer src="assets/js/theme.js"></script>
   <script defer src="assets/js/mega-menu.js"></script>
   <script defer src="assets/js/animations.js"></script>

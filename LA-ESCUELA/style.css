@@ -71,6 +71,11 @@ body {
   border-bottom: none !important;
 }
 
+[data-page="la-escuela"] .site-footer-premium {
+  margin-top: 0 !important;
+}
+
+
 
 
 

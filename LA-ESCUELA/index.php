@@ -266,6 +266,8 @@
       </div>
     </section>
     </main>
+    <?php include_once '../includes/footer.php'; ?>
+
 
 
 
@@ -275,6 +277,7 @@
     <script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
     <script defer src="../assets/js/mega-menu.js"></script>
+    <script defer src="../assets/js/modules/footer-animations.js"></script>
     <script type="module" src="script.js"></script>
   </body>
 </html>

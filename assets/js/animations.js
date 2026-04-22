@@ -56,6 +56,20 @@
 
   var gsap = window.gsap;
   var isHomePage = document.body.getAttribute('data-page') === 'home';
+
+  // Unify Smooth Scroll (Lenis) globally if available
+  if (window.Lenis && window.gsap && window.ScrollTrigger) {
+    const lenis = new Lenis();
+
+    function raf(time) {
+      lenis.raf(time);
+      ScrollTrigger.update();
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    
+    window.lenis = lenis;
+  }
   var revealTargets = document.querySelectorAll('[data-reveal]');
   var headerBrand = document.querySelector('.brand');
   var headerDesktopCta = document.querySelector('.header-cta:not(.header-cta-mobile)');
