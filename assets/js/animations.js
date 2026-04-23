@@ -62,9 +62,6 @@
   var headerMobileItems = document.querySelectorAll('.header-cta-mobile, #menu-toggle');
   var navItems = document.querySelectorAll('.primary-nav > ul > li');
   var cards = document.querySelectorAll('#noticias article, #ubicacion article');
-  var admissionSection = document.querySelector('[data-admission-reveal]');
-  var admissionItems = document.querySelectorAll('[data-admission-item]');
-  var admissionTextTargets = document.querySelectorAll('[data-admission-text]');
   var headerEntryPlayed = false;
 
   function isLoaderSettled() {
@@ -215,100 +212,7 @@
       });
     });
 
-    if (admissionSection) {
-      var admissionTimeline = gsap.timeline({
-        defaults: { ease: 'power3.out' },
-        scrollTrigger: {
-          trigger: admissionSection,
-          start: 'top 95%',
-          once: true
-        }
-      });
 
-      admissionTimeline.from(admissionSection, {
-        y: 64,
-        opacity: 0,
-        scale: 0.98,
-        filter: 'blur(8px)',
-        duration: 1
-      });
-
-      if (admissionItems.length) {
-        admissionTimeline.from(admissionItems, {
-          y: 38,
-          opacity: 0,
-          duration: 0.7,
-          stagger: 0.16
-        }, '-=0.58');
-      }
-
-      if (admissionTextTargets.length && window.SplitType) {
-        var splits = [];
-        var allLines = [];
-        var internalScroller = document.querySelector('.admission-premium-info-body');
-
-        admissionTextTargets.forEach(function (target) {
-          var isStats = target.classList.contains('admission-stat-number');
-          var isTag = target.classList.contains('admission-strength-tag');
-
-          if (!isStats && !isTag) {
-            var s = new SplitType(target, { types: 'lines', lineClass: 'split-line' });
-            splits.push(s);
-            if (s.lines) {
-              for (var i = 0; i < s.lines.length; i++) {
-                allLines.push(s.lines[i]);
-              }
-            }
-          } else {
-            allLines.push(target);
-          }
-        });
-
-        // Animación vinculada al scroll interno de la clase .admission-premium-info-body
-        if (internalScroller) {
-          allLines.forEach(function (line) {
-            gsap.from(line, {
-              y: 20,
-              opacity: 0,
-              duration: 1,
-              ease: 'power2.out',
-              scrollTrigger: {
-                trigger: line,
-                scroller: internalScroller,
-                start: 'bottom 98%',
-                end: 'top 85%',
-                scrub: 1.2, // "poco a poco" y suave
-                once: false // Queremos que sea reversible al scrollear
-              }
-            });
-          });
-        }
-
-        // Manejo de responsividad: re-split al cambiar tamaño
-        var reSplit = debounce(function () {
-          splits.forEach(function (s) { s.revert(); });
-          splits = [];
-          admissionTextTargets.forEach(function (target) {
-            var isStats = target.classList.contains('admission-stat-number');
-            var isTag = target.classList.contains('admission-strength-tag');
-            if (!isStats && !isTag) {
-              splits.push(new SplitType(target, { types: 'lines', lineClass: 'split-line' }));
-            }
-          });
-          ScrollTrigger.refresh();
-        }, 400);
-
-        window.addEventListener('resize', reSplit);
-      } else if (admissionTextTargets.length) {
-        // Fallback
-        admissionTimeline.from(admissionTextTargets, {
-          y: 44,
-          opacity: 0,
-          duration: 0.62,
-          stagger: 0.07
-        }, '-=0.62');
-      }
-    }
 
 
   }
@@ -349,70 +253,5 @@
     });
   }
 
-  // Carrusel de imágenes en la sección de admisión con activación por scroll
-  var admissionCarousel = document.querySelector('[data-admission-carousel]');
-  if (admissionCarousel && window.gsap && window.ScrollTrigger) {
-    var carouselImages = admissionCarousel.querySelectorAll('.admission-carousel-img');
-    
-    if (carouselImages.length > 1) {
-      var currentIndex = 0;
-      var carouselTimer = null;
-      
-      // Establecer la primera imagen como activa
-      carouselImages[0].classList.add('is-active');
-      
-      var nextImage = function() {
-        // Animar salida de la imagen actual
-        gsap.to(carouselImages[currentIndex], {
-          opacity: 0,
-          scale: 0.98,
-          duration: 0.8,
-          ease: 'power2.inOut'
-        });
-        
-        carouselImages[currentIndex].classList.remove('is-active');
-        
-        // Ir a la siguiente imagen
-        currentIndex = (currentIndex + 1) % carouselImages.length;
-        
-        // Animar entrada de la nueva imagen
-        carouselImages[currentIndex].classList.add('is-active');
-        gsap.fromTo(carouselImages[currentIndex],
-          {
-            opacity: 0,
-            scale: 1.02
-          },
-          {
-            opacity: 1,
-            scale: 1,
-            duration: 0.8,
-            ease: 'power2.inOut'
-          }
-        );
-      };
 
-      var startCarousel = function() {
-        if (!carouselTimer) {
-          carouselTimer = setInterval(nextImage, 3500);
-        }
-      };
-
-      var stopCarousel = function() {
-        if (carouselTimer) {
-          clearInterval(carouselTimer);
-          carouselTimer = null;
-        }
-      };
-
-      // Activar carrusel solo cuando la sección es visible
-      ScrollTrigger.create({
-        trigger: admissionSection || admissionCarousel,
-        start: 'top 90%',
-        onEnter: startCarousel,
-        onEnterBack: startCarousel,
-        onLeave: stopCarousel,
-        onLeaveBack: stopCarousel
-      });
-    }
-  }
 })();

@@ -167,7 +167,7 @@
       }
     }
 
-    // Delay scroll unlock and completion dispatch by 1.5 seconds
+    // Reduced delay for scroll unlock and completion dispatch to make it feel faster
     unlockTimeout = window.setTimeout(function () {
       unlockScroll();
       window.requestAnimationFrame(dispatchLoaderComplete);

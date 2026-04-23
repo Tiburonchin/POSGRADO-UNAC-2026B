@@ -1,169 +1,152 @@
-<section class="admission-premium section py-16 md:py-20" id="admision-proceso">
-  <div class="site-container">
-    <div class="admission-premium-shell" data-admission-reveal>
-      <div class="admission-premium-grid">
-        <article class="admission-premium-info" data-admission-item>
-          <div class="admission-premium-info-body">
-            <div class="admission-group admission-group-main">
-              <p class="admission-premium-kicker" data-admission-text>Admision UNAC 2026-B</p>
-              <h2 class="admission-premium-title" data-admission-text>
-                Inscripciones hasta el
-                <span class="admission-deadline" data-admission-text>18 de Marzo</span>
-              </h2>
-            </div>
+<div class="site-wrapper">
+    <section class="content-section pt-32 pb-32 overflow-hidden" id="admision">
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
+                
+                <!-- Lado Izquierdo: Contenido Estructurado (Adaptado a la Referencia) -->
+                <div class="admision-text flex flex-col justify-center">
+                    
+                    <!-- Top Label -->
+                    <p class="text-unac-muted text-sm tracking-widest mb-4 uppercase">Admisión 2026</p>
 
-            <div class="admission-group">
-              <p class="admission-premium-subtitle" data-admission-text>
-                Doctorados • Especialidades • Maestrias
-              </p>
-            </div>
+                    <!-- Headline -->
+                    <h2 class="text-5xl md:text-6xl font-light text-unac-text leading-tight tracking-tight mb-6">
+                        Transforma tu <br class="hidden md:block">
+                        <span class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-unac-accent to-unac-accent2">futuro</span>
+                    </h2>
 
-            <div class="admission-group">
-              <p class="admission-premium-signature" data-admission-text>
-                Posgrado UNAC - Universidad Nacional del Callao
-              </p>
-            </div>
+                    <!-- Metrics as Tags (Integración elegante) -->
+                    <div class="flex flex-wrap gap-3 mb-6">
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-unac-elevated border border-unac-border text-unac-text flex items-center gap-2 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-unac-accent"></span> 10 Especialidades
+                        </span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-unac-elevated border border-unac-border text-unac-text flex items-center gap-2 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-unac-info"></span> 20 Maestrías
+                        </span>
+                        <span class="px-3 py-1.5 text-xs font-medium rounded-full bg-unac-elevated border border-unac-border text-unac-text flex items-center gap-2 shadow-sm">
+                            <span class="w-2 h-2 rounded-full bg-unac-accent2"></span> 30 Doctorados
+                        </span>
+                    </div>
 
-            <div class="admission-group admission-group-tags">
-              <div class="admission-strength-tags">
-                <span class="admission-strength-tag" data-admission-text>#ExcelenciaAcadémica</span>
-                <span class="admission-strength-tag" data-admission-text>#InvestigaciónCientífica</span>
-                <span class="admission-strength-tag" data-admission-text>#LiderazgoRegional</span>
-                <span class="admission-strength-tag" data-admission-text>#RedProfesionalUNAC</span>
-              </div>
-            </div>
-            <p class="admission-premium-copy admission-premium-copy-lead" data-admission-text>
-              La Universidad Nacional del Callao impulsa una formación de posgrado de vanguardia, centrada en la investigación aplicada, la innovación tecnológica y el liderazgo profesional con impacto global.
-            </p>
-            <p class="admission-premium-copy admission-premium-copy-body" data-admission-text>
-              Nuestra propuesta académica integra una plana docente de investigadores altamente calificados, un enfoque metodológico práctico y un acompañamiento institucional sólido para garantizar su éxito profesional.
-            </p>
+                    <!-- Descripción Intro -->
+                    <p class="text-unac-muted text-base leading-relaxed max-w-lg mb-10">
+                        Únete a la comunidad de investigadores y profesionales líderes del país. El proceso de admisión está diseñado para identificar el talento que transformará el futuro.
+                    </p>
 
-            <div class="admission-premium-stats" data-admission-item>
-              <article class="admission-stat" data-admission-hover>
-                <p class="admission-stat-number" data-admission-text>25</p>
-                <p class="admission-stat-label">Doctorados</p>
-              </article>
-              <article class="admission-stat" data-admission-hover>
-                <p class="admission-stat-number" data-admission-text>43</p>
-                <p class="admission-stat-label">Maestrías</p>
-              </article>
-              <article class="admission-stat" data-admission-hover>
-                <p class="admission-stat-number" data-admission-text>20</p>
-                <p class="admission-stat-label">Especialidades</p>
-              </article>
-            </div>
+                    <!-- Steps List (Estilo exacto de la referencia: Icono Izquierda, Texto Derecha) -->
+                    <div class="space-y-8">
+                        
+                        <!-- Step 1 -->
+                        <div class="flex gap-6 group">
+                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-accent group-hover:border-unac-accent/50 transition-colors shadow-inner">
+                                <i class="ph ph-laptop text-2xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                    <h3 class="text-xl font-medium text-unac-text">Inscripción</h3>
+                                    <!-- Tag de Fecha -->
+                                    <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-unac-accent/10 text-unac-accent border border-unac-accent/20">Hasta 15 Mayo</span>
+                                </div>
+                                <p class="text-unac-muted text-sm leading-relaxed max-w-md">
+                                    Registro online y envío de expediente documental.
+                                </p>
+                            </div>
+                        </div>
 
-            <div class="admission-premium-text-flow">
-              <h3 class="admission-flow-title" data-admission-text>Por qué elegir Posgrado UNAC</h3>
-              <p class="admission-premium-copy admission-premium-copy-body" data-admission-text>
-                Con una de las carteras de posgrado más completas del país, la UNAC responde a los nuevos desafíos de gestión, ciencia y tecnología mediante programas acreditados y competitivos.
-              </p>
-              <p class="admission-premium-copy admission-premium-copy-note" data-admission-text>
-                Nuestro ecosistema permite diseñar trayectorias de crecimiento real, conectando la investigación con oportunidades profesionales de alto valor estratégico.
-              </p>
-              <ul class="admission-flow-list">
-                <li data-admission-text><span>01</span> Programas diseñados bajo estándares internacionales de calidad.</li>
-                <li data-admission-text><span>02</span> Desarrollo de competencias para la investigación e innovación.</li>
-                <li data-admission-text><span>03</span> Red de contactos con profesionales y líderes de diversos sectores.</li>
-                <li data-admission-text><span>04</span> Acompañamiento personalizado desde la postulación hasta la graduación.</li>
-              </ul>
-            </div>
+                        <!-- Step 2 -->
+                        <div class="flex gap-6 group">
+                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-info group-hover:border-unac-info/50 transition-colors shadow-inner">
+                                <i class="ph ph-exam text-2xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                    <h3 class="text-xl font-medium text-unac-text">Evaluación</h3>
+                                    <!-- Tag de Fecha -->
+                                    <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-unac-info/10 text-unac-info border border-unac-info/20">20 - 22 Mayo</span>
+                                </div>
+                                <p class="text-unac-muted text-sm leading-relaxed max-w-md">
+                                    Examen de conocimientos y entrevista personal.
+                                </p>
+                            </div>
+                        </div>
 
-            <div class="admission-premium-widgets">
-              <div class="admission-widget" data-admission-hover>
-                <div class="admission-widget-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
-                    <line x1="16" y1="2" x2="16" y2="6"></line>
-                    <line x1="8" y1="2" x2="8" y2="6"></line>
-                    <line x1="3" y1="10" x2="21" y2="10"></line>
-                  </svg>
+                        <!-- Step 3 -->
+                        <div class="flex gap-6 group">
+                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-text group-hover:border-unac-border transition-colors shadow-inner">
+                                <i class="ph ph-graduation-cap text-2xl"></i>
+                            </div>
+                            <div>
+                                <div class="flex items-center gap-3 mb-2 flex-wrap">
+                                    <h3 class="text-xl font-medium text-unac-text">Resultados</h3>
+                                    <!-- Tag de Fecha -->
+                                    <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-unac-elevated text-unac-text border border-unac-border">25 Mayo</span>
+                                </div>
+                                <p class="text-unac-muted text-sm leading-relaxed max-w-md">
+                                    Publicación oficial de ingresantes y matrícula.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Separador sutil (Como en la imagen) -->
+                    <div class="my-10 border-t border-unac-border/40 w-full max-w-md"></div>
+
+                    <!-- Botones de Acción -->
+                    <div class="flex flex-col sm:flex-row items-center gap-6">
+                        <!-- Botón Principal (Borde Degradado) -->
+                        <button class="relative inline-flex items-center justify-center p-[1px] rounded-full overflow-hidden group shadow-soft w-full sm:w-auto">
+                            <span class="absolute inset-0 bg-gradient-to-r from-unac-info via-unac-accent2 to-unac-accent opacity-60 group-hover:opacity-100 transition-opacity duration-300"></span>
+                            <span class="relative w-full px-8 py-3 bg-unac-bg rounded-full text-unac-text text-sm font-medium flex items-center justify-center gap-2 hover:bg-unac-elevated transition-colors duration-300">
+                                Iniciar Postulación
+                            </span>
+                        </button>
+                        
+                        <!-- Botón Secundario (Estilo texto limpio) -->
+                        <button class="text-unac-muted text-sm font-medium hover:text-unac-text transition-colors duration-300 flex items-center gap-2 group w-full sm:w-auto justify-center">
+                            <i class="ph ph-download-simple text-lg group-hover:-translate-y-0.5 transition-transform"></i>
+                            Guía del Postulante
+                        </button>
+                    </div>
                 </div>
-                <div class="admission-widget-content">
-                  <p class="admission-widget-label">Inicio de convocatoria</p>
-                  <p class="admission-widget-value">12 de mayo</p>
+
+                <!-- Lado Derecho: Imagen / Interfaz -->
+                <div class="admision-image relative w-full aspect-[4/3] lg:aspect-[4/4] max-w-[600px] mx-auto lg:ml-auto">
+                    <!-- Fondo vibrante desplazado (offset bottom-left) igual que en tu imagen, PERO CON COLORES UNAC -->
+                    <div class="absolute inset-0 bg-gradient-to-br from-unac-info via-unac-info/80 to-unac-accent rounded-2xl transform -translate-x-4 translate-y-6 md:-translate-x-8 md:translate-y-8 opacity-90 shadow-deep"></div>
+                    
+                    <!-- Contenedor Principal (Reemplaza el contenido de este div con tu etiqueta <img>) -->
+                    <div class="absolute inset-0 bg-unac-elevated rounded-2xl border border-unac-border flex flex-col items-center justify-center overflow-hidden z-10">
+                        
+                        <!-- PLACEHOLDER TEMPORAL -->
+                        <i class="ph ph-image-square text-6xl text-unac-muted/30 mb-4"></i>
+                        <p class="text-unac-muted text-sm text-center px-6">
+                            Reemplaza este contenedor<br/>con tu imagen del dashboard
+                        </p>
+                        
+                        <!-- Elemento UI simulado temporalmente -->
+                        <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-unac-elevated/80 border border-unac-border/50 backdrop-blur-md">
+                            <div class="flex items-center gap-4">
+                                <div class="w-10 h-10 rounded-full bg-unac-accent/10 flex items-center justify-center">
+                                    <i class="ph ph-check-circle text-unac-accent text-xl"></i>
+                                </div>
+                                <div>
+                                    <p class="text-sm font-medium text-unac-text">Plataforma Online</p>
+                                    <p class="text-xs text-unac-muted">Listo para integrarse</p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- FIN PLACEHOLDER TEMPORAL -->
+                        
+                        <!-- Ejemplo de cómo iría tu imagen: 
+                        <img src="./tu-imagen-dashboard.png" alt="Plataforma UNAC" class="w-full h-full object-cover">
+                        -->
+                    </div>
                 </div>
-              </div>
-              <div class="admission-widget" data-admission-hover>
-                <div class="admission-widget-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                    <line x1="8" y1="21" x2="16" y2="21"></line>
-                    <line x1="12" y1="17" x2="12" y2="21"></line>
-                  </svg>
-                </div>
-                <div class="admission-widget-content">
-                  <p class="admission-widget-label">Modalidad</p>
-                  <p class="admission-widget-value">Presencial e hibrida</p>
-                </div>
-              </div>
-              <div class="admission-widget" data-admission-hover>
-                <div class="admission-widget-icon">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-                    <circle cx="12" cy="7" r="4"></circle>
-                  </svg>
-                </div>
-                <div class="admission-widget-content">
-                  <p class="admission-widget-label">Beneficio</p>
-                  <p class="admission-widget-value">Asesoría personalizada</p>
-                </div>
-              </div>
+
             </div>
-          </div>
-        </article>
+        </div>
+    </section>
+</div>
+</div>
 
-        <aside class="admission-premium-visual" data-admission-item>
-          <figure class="admission-premium-media" data-admission-carousel>
-            <img
-              src="img/unac-letras.jpeg"
-              alt="Escuela de Posgrado UNAC"
-              class="admission-premium-image admission-carousel-img"
-              loading="lazy"
-              decoding="async"
-              width="1280"
-              height="720"
-            />
-            <img
-              src="img/epg-unac-fachada.png"
-              alt="Fachada EPG UNAC"
-              class="admission-premium-image admission-carousel-img"
-              loading="lazy"
-              decoding="async"
-              width="1280"
-              height="720"
-            />
-            <img
-              src="img/epg-logo.png"
-              alt="Logo EPG"
-              class="admission-premium-image admission-carousel-img"
-              loading="lazy"
-              decoding="async"
-              width="1280"
-              height="720"
-            />
-            <img
-              src="img/logo_unac.png"
-              alt="Logo UNAC"
-              class="admission-premium-image admission-carousel-img"
-              loading="lazy"
-              decoding="async"
-              width="1280"
-              height="720"
-            />
-          </figure>
-
-          <div class="admission-premium-actions">
-            <a href="#" class="admission-btn admission-btn-primary" data-admission-hover>
-              Postular ahora
-            </a>
-            <a href="#" class="admission-btn admission-btn-secondary" data-admission-hover>
-              Descargar brochure
-            </a>
-          </div>
-        </aside>
-      </div>
-    </div>
-  </div>
-</section>

@@ -16,7 +16,15 @@ module.exports = {
         muted: 'var(--text-muted)',
         'footer-bg': 'var(--footer-bg)',
         'footer-border': 'var(--footer-border)',
-        'footer-card': 'var(--footer-card)'
+        'footer-card': 'var(--footer-card)',
+        'unac-bg': 'var(--bg)',
+        'unac-elevated': 'var(--bg-elevated)',
+        'unac-accent': 'var(--accent)',
+        'unac-accent2': 'var(--accent-2)',
+        'unac-info': 'var(--accent-info)',
+        'unac-text': 'var(--text)',
+        'unac-muted': 'var(--text-muted)',
+        'unac-border': 'var(--border)'
       },
       boxShadow: {
         soft: '0 10px 30px rgba(12, 23, 44, 0.12)',

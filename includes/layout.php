@@ -48,9 +48,21 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <?php endif; ?>
   <link rel="stylesheet" href="assets/css/output.css" />
   <link rel="stylesheet" href="assets/css/mega-menu.css" />
+  <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <noscript><style>#page-loader { display: none !important; }</style></noscript>
 </head>
 <body data-page="<?= htmlspecialchars($pageSlug, ENT_QUOTES, 'UTF-8') ?>">
+  <!-- Background Ambience System -->
+  <div class="bg-ambience">
+    <div class="bg-ambience-grid"></div>
+    <div class="bg-ambience-orb bg-ambience-orb--blue"></div>
+    <div class="bg-ambience-orb bg-ambience-orb--amber"></div>
+    <div class="bg-ambience-orb bg-ambience-orb--white"></div>
+    <!-- Geometric Floating Shapes -->
+    <div class="bg-ambience-shape" style="width: 150px; height: 150px; top: 15%; left: 10%;"></div>
+    <div class="bg-ambience-shape" style="width: 100px; height: 100px; top: 65%; right: 15%;"></div>
+    <div class="bg-ambience-shape" style="width: 200px; height: 200px; top: 40%; left: 80%;"></div>
+  </div>
   <?php require __DIR__ . '/page-loader.php'; ?>
   <?php require __DIR__ . '/header.php'; ?>
 
@@ -70,10 +82,12 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <script defer src="assets/js/animations.js"></script>
   <?php if ($isHomePage): ?>
   <script defer src="assets/js/modules/hero-animations.js"></script>
+  <script defer src="assets/js/modules/admision-animations.js"></script>
   <script defer src="assets/js/modules/talento-animations.js"></script>
   <script defer src="assets/js/modules/ubicacion-animations.js"></script>
   <?php endif; ?>
   <script defer src="assets/js/modules/footer-animations.js"></script>
+  <script defer src="assets/js/modules/background-ambience.js"></script>
   <script defer src="assets/js/page-loader.js"></script>
 </body>
 </html>
