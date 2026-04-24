@@ -48,6 +48,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <?php endif; ?>
   <link rel="stylesheet" href="assets/css/output.css" />
   <link rel="stylesheet" href="assets/css/mega-menu.css" />
+  <link rel="stylesheet" href="assets/css/noticias.css" />
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <noscript><style>#page-loader { display: none !important; }</style></noscript>
 </head>
@@ -76,6 +77,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
 
   <script defer src="assets/vendor/gsap/gsap.min.js"></script>
   <script defer src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script defer src="assets/vendor/gsap/Flip.min.js"></script>
   <script src="https://unpkg.com/split-type"></script>
   <script defer src="assets/js/theme.js"></script>
   <script defer src="assets/js/mega-menu.js"></script>
@@ -85,6 +87,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <script defer src="assets/js/modules/admision-animations.js"></script>
   <script defer src="assets/js/modules/talento-animations.js"></script>
   <script defer src="assets/js/modules/ubicacion-animations.js"></script>
+  <script defer src="assets/js/modules/noticias-animations.js"></script>
   <?php endif; ?>
   <script defer src="assets/js/modules/footer-animations.js"></script>
   <script defer src="assets/js/modules/background-ambience.js"></script>

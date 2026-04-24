@@ -1,0 +1,61 @@
+/* ==========================================================================
+   NOTICIAS SECTION STYLES
+   ========================================================================== */
+
+.hero-section {
+    height: 100vh;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+/* Specific content section shadow for overlapping effect */
+.content-section {
+    position: relative;
+    z-index: 10;
+    background-color: var(--bg);
+    box-shadow: 0 -20px 50px rgba(2, 6, 23, 0.8);
+}
+
+/* Estilos específicos para el carrusel FLIP rediseñado */
+.main-block-container {
+    /* Contenedor unificado de las tarjetas */
+    position: relative;
+    display: flex;
+    width: 100%;
+    overflow: hidden; /* Mantiene las tarjetas dentro de los bordes redondeados */
+    /* Evita colapsos de altura durante la animación absoluta */
+    min-height: 480px; 
+}
+
+.news-card {
+    width: 100%;
+    flex-shrink: 0;
+    will-change: transform, opacity;
+    transform-origin: center center;
+    /* Las tarjetas ya no tienen bordes propios, solo el borde derecho como separador */
+    border-right: 1px solid var(--border);
+    transition: background-color 0.3s ease;
+}
+
+/* Responsive widths for cards */
+@media (min-width: 768px) { 
+    .news-card { width: 50%; } 
+}
+
+@media (min-width: 1024px) { 
+    .news-card { width: 33.333333%; } 
+}
+
+/* Clase dinámica para quitar el borde a la última tarjeta visible */
+.news-card.no-border-r {
+    border-right: none !important;
+}
+
+.news-card.is-hidden {
+    display: none;
+}

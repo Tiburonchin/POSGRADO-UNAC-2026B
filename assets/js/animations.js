@@ -61,7 +61,7 @@
   var headerDesktopCta = document.querySelector('.header-cta:not(.header-cta-mobile)');
   var headerMobileItems = document.querySelectorAll('.header-cta-mobile, #menu-toggle');
   var navItems = document.querySelectorAll('.primary-nav > ul > li');
-  var cards = document.querySelectorAll('#noticias article, #ubicacion article');
+  var cards = document.querySelectorAll('#ubicacion article');
   var headerEntryPlayed = false;
 
   function isLoaderSettled() {

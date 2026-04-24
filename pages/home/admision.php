@@ -39,51 +39,60 @@
                         
                         <!-- Step 1 -->
                         <div class="flex gap-6 group">
-                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-accent group-hover:border-unac-accent/50 transition-colors shadow-inner">
+                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-accent group-hover:border-unac-accent/50 transition-all duration-300 shadow-inner">
                                 <i class="ph ph-laptop text-2xl"></i>
                             </div>
                             <div>
                                 <div class="flex items-center gap-3 mb-2 flex-wrap">
-                                    <h3 class="text-xl font-medium text-unac-text">Inscripción</h3>
-                                    <!-- Tag de Fecha -->
-                                    <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-unac-accent/10 text-unac-accent border border-unac-accent/20">Hasta 15 Mayo</span>
+                                    <h3 class="text-xl font-medium text-unac-text group-hover:text-white transition-colors">Inscripción</h3>
+                                    <!-- Tag de Fecha Rediseñado -->
+                                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-unac-accent/5 border border-unac-accent/20 backdrop-blur-sm">
+                                        <span class="w-1 h-1 rounded-full bg-unac-accent animate-pulse"></span>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.1em] text-unac-accent">Hasta 15 Mayo</span>
+                                    </div>
                                 </div>
                                 <p class="text-unac-muted text-sm leading-relaxed max-w-md">
-                                    Registro online y envío de expediente documental.
+                                    Registro online y envío de expediente documental a través de nuestra plataforma.
                                 </p>
                             </div>
                         </div>
 
                         <!-- Step 2 -->
                         <div class="flex gap-6 group">
-                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-info group-hover:border-unac-info/50 transition-colors shadow-inner">
+                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-info group-hover:border-unac-info/50 transition-all duration-300 shadow-inner">
                                 <i class="ph ph-exam text-2xl"></i>
                             </div>
                             <div>
                                 <div class="flex items-center gap-3 mb-2 flex-wrap">
-                                    <h3 class="text-xl font-medium text-unac-text">Evaluación</h3>
-                                    <!-- Tag de Fecha -->
-                                    <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-unac-info/10 text-unac-info border border-unac-info/20">20 - 22 Mayo</span>
+                                    <h3 class="text-xl font-medium text-unac-text group-hover:text-white transition-colors">Evaluación</h3>
+                                    <!-- Tag de Fecha Rediseñado -->
+                                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-unac-info/5 border border-unac-info/20 backdrop-blur-sm">
+                                        <span class="w-1 h-1 rounded-full bg-unac-info"></span>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.1em] text-unac-info">20 - 22 Mayo</span>
+                                    </div>
                                 </div>
                                 <p class="text-unac-muted text-sm leading-relaxed max-w-md">
-                                    Examen de conocimientos y entrevista personal.
+                                    Examen de conocimientos y entrevista personal con el jurado académico.
                                 </p>
                             </div>
                         </div>
 
                         <!-- Step 3 -->
                         <div class="flex gap-6 group">
-                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-text group-hover:border-unac-border transition-colors shadow-inner">
+                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-accent2 group-hover:border-unac-accent2/50 transition-all duration-300 shadow-inner">
                                 <i class="ph ph-graduation-cap text-2xl"></i>
                             </div>
                             <div>
                                 <div class="flex items-center gap-3 mb-2 flex-wrap">
-                                    <h3 class="text-xl font-medium text-unac-text">Resultados</h3>
-                                    <!-- Tag de Fecha -->
-                                    <span class="text-[10px] uppercase tracking-wider px-2 py-0.5 rounded bg-unac-elevated text-unac-text border border-unac-border">25 Mayo</span>
+                                    <h3 class="text-xl font-medium text-unac-text group-hover:text-white transition-colors">Resultados</h3>
+                                    <!-- Tag de Fecha Rediseñado -->
+                                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-unac-accent2/5 border border-unac-accent2/20 backdrop-blur-sm">
+                                        <span class="w-1 h-1 rounded-full bg-unac-accent2"></span>
+                                        <span class="text-[10px] font-bold uppercase tracking-[0.1em] text-unac-accent2">25 Mayo</span>
+                                    </div>
                                 </div>
                                 <p class="text-unac-muted text-sm leading-relaxed max-w-md">
-                                    Publicación oficial de ingresantes y matrícula.
+                                    Publicación oficial de ingresantes y proceso de matrícula extemporánea.
                                 </p>
                             </div>
                         </div>

@@ -1,179 +1,132 @@
-<section class="antialiased py-20 relative overflow-hidden" id="noticias">
-    <div class="w-full max-w-[90rem] mx-auto px-4 sm:px-6 lg:px-8">
-        
-        <!-- Cabecera estilo Tailwind UI -->
-        <div class="text-center mb-12">
-            <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-white tracking-tight mb-4">
-                Noticias y Eventos UNAC
-            </h2>
-            <p class="text-muted text-lg max-w-2xl mx-auto">
-                Mantente informado sobre los últimos logros, investigaciones y oportunidades para nuestra comunidad de posgrado.
-            </p>
-        </div>
-
-        <!-- Contenedor del Carrusel -->
-        <div class="relative w-full overflow-hidden py-4">
+<section class="content-section pt-32 pb-32 overflow-hidden" id="noticias">
             
-            <!-- mx-auto y w-max son cruciales para que el carrusel se mantenga en el centro -->
-            <div id="news-track" class="flex gap-6 w-max mx-auto items-center justify-start relative">
-                
-                <!-- Tarjeta 1 -->
-                <article class="news-card relative w-[280px] h-[400px] rounded-2xl overflow-hidden shadow-soft cursor-pointer flex-shrink-0 card-zoom-effect group border border-white/5 ring-1 ring-white/10">
-                    <div class="bg-layer absolute inset-0 bg-[url('https://images.unsplash.com/photo-1542744173-8e7e53415bb0?auto=format&fit=crop&q=80&w=600')] bg-cover bg-center transition-transform duration-700 ease-out z-0"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#060a12] via-[#060a12]/80 to-transparent z-10"></div>
-                    
-                    <div class="absolute bottom-0 left-0 w-full p-5 z-20 flex flex-col justify-end h-full">
-                        <div class="flex items-center gap-2 mb-2 text-xs text-gray-300">
-                            <time datetime="2024-03-16">Mar 16, 2024</time>
-                        </div>
-                        <h3 class="text-lg font-bold text-white leading-tight mb-4 group-hover:text-accent transition-colors duration-300">
-                            Optimización de procesos industriales con IA
-                        </h3>
-                        <div class="flex items-center gap-3 pt-3 border-t border-white/10">
-                            <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Dr. Carlos Mendoza" class="w-8 h-8 rounded-full border border-gray-600 bg-gray-800">
-                            <span class="text-sm font-medium text-gray-200">Dr. C. Mendoza</span>
-                        </div>
-                    </div>
-                </article>
+            <!-- Aura brillante de fondo -->
+            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[70%] h-[70%] bg-gradient-to-r from-unac-info/20 via-unac-accent/10 to-unac-accent2/20 blur-[140px] rounded-full pointer-events-none z-0"></div>
 
-                <!-- Tarjeta 2 -->
-                <article class="news-card relative w-[280px] h-[400px] rounded-2xl overflow-hidden shadow-soft cursor-pointer flex-shrink-0 card-zoom-effect group border border-white/5 ring-1 ring-white/10">
-                    <div class="bg-layer absolute inset-0 bg-[url('https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600')] bg-cover bg-center transition-transform duration-700 ease-out z-0"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#060a12] via-[#060a12]/80 to-transparent z-10"></div>
-                    
-                    <div class="absolute bottom-0 left-0 w-full p-5 z-20 flex flex-col justify-end h-full">
-                        <div class="flex items-center gap-2 mb-2 text-xs text-gray-300">
-                            <time datetime="2024-03-10">Mar 10, 2024</time>
-                        </div>
-                        <h3 class="text-lg font-bold text-white leading-tight mb-4 group-hover:text-accent transition-colors duration-300">
-                            Nuevas metodologías en la enseñanza virtual
-                        </h3>
-                        <div class="flex items-center gap-3 pt-3 border-t border-white/10">
-                            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Mg. Laura Silva" class="w-8 h-8 rounded-full border border-gray-600 bg-gray-800">
-                            <span class="text-sm font-medium text-gray-200">Mg. L. Silva</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Tarjeta 3 -->
-                <article class="news-card relative w-[280px] h-[400px] rounded-2xl overflow-hidden shadow-soft cursor-pointer flex-shrink-0 card-zoom-effect group border border-white/5 ring-1 ring-white/10">
-                    <div class="bg-layer absolute inset-0 bg-[url('https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&q=80&w=600')] bg-cover bg-center transition-transform duration-700 ease-out z-0"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#060a12] via-[#060a12]/80 to-transparent z-10"></div>
-                    
-                    <div class="absolute bottom-0 left-0 w-full p-5 z-20 flex flex-col justify-end h-full">
-                        <div class="flex items-center gap-2 mb-2 text-xs text-gray-300">
-                            <time datetime="2024-02-28">Feb 28, 2024</time>
-                        </div>
-                        <h3 class="text-lg font-bold text-white leading-tight mb-4 group-hover:text-accent transition-colors duration-300">
-                            Impacto del análisis de datos en gestión pública
-                        </h3>
-                        <div class="flex items-center gap-3 pt-3 border-t border-white/10">
-                            <img src="https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Ing. Roberto Gomez" class="w-8 h-8 rounded-full border border-gray-600 bg-gray-800">
-                            <span class="text-sm font-medium text-gray-200">Ing. R. Gomez</span>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Tarjeta 4 -->
-                <article class="news-card relative w-[280px] h-[400px] rounded-2xl overflow-hidden shadow-soft cursor-pointer flex-shrink-0 card-zoom-effect group border border-white/5 ring-1 ring-white/10">
-                    <div class="bg-layer absolute inset-0 bg-[url('https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&q=80&w=600')] bg-cover bg-center transition-transform duration-700 ease-out z-0"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#060a12] via-[#060a12]/80 to-transparent z-10"></div>
-                    
-                    <div class="absolute bottom-0 left-0 w-full p-5 z-20 flex flex-col justify-end h-full">
-                        <div class="flex items-center gap-2 mb-2 text-xs text-gray-300">
-                            <time datetime="2024-02-15">Feb 15, 2024</time>
-                        </div>
-                        <h3 class="text-lg font-bold text-white leading-tight mb-4 group-hover:text-accent transition-colors duration-300">
-                            Apertura de inscripciones: Maestrías 2024-I
-                        </h3>
-                        <div class="flex items-center gap-3 pt-3 border-t border-white/10">
-                            <span class="w-8 h-8 rounded-full bg-accent text-bg flex items-center justify-center font-bold text-xs">UN</span>
-                            <span class="text-sm font-medium text-gray-200">Posgrado UNAC</span>
-                        </div>
-                    </div>
-                </article>
+            <div class="max-w-[1200px] mx-auto px-6 relative z-10">
                 
-                <!-- Tarjeta 5 -->
-                <article class="news-card relative w-[280px] h-[400px] rounded-2xl overflow-hidden shadow-soft cursor-pointer flex-shrink-0 card-zoom-effect group border border-white/5 ring-1 ring-white/10">
-                    <div class="bg-layer absolute inset-0 bg-[url('https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&q=80&w=600')] bg-cover bg-center transition-transform duration-700 ease-out z-0"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#060a12] via-[#060a12]/80 to-transparent z-10"></div>
+                <!-- Header de la Sección (Texto afuera, centrado) -->
+                <div class="text-center mb-12 news-header">
+                    <h2 class="text-3xl md:text-4xl lg:text-5xl font-semibold text-unac-text">
+                        Compartimos actualizaciones en <span class="text-transparent bg-clip-text bg-gradient-to-r from-unac-info to-unac-accent">UNAC Posgrado</span>
+                    </h2>
+                </div>
+
+                <!-- CONTENEDOR PRINCIPAL DEL BLOQUE (La "caja" que agrupa todo) -->
+                <div class="bg-unac-elevated border border-unac-border rounded-3xl shadow-deep main-block-container" id="carousel-track">
                     
-                    <div class="absolute bottom-0 left-0 w-full p-5 z-20 flex flex-col justify-end h-full">
-                        <div class="flex items-center gap-2 mb-2 text-xs text-gray-300">
-                            <time datetime="2024-01-30">Ene 30, 2024</time>
+                    <!-- Tarjeta 1 -->
+                    <div class="news-card flex flex-col p-6 md:p-8 hover:bg-unac-soft/40 cursor-pointer group">
+                        <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-unac-soft">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1220]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Investigación" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
-                        <h3 class="text-lg font-bold text-white leading-tight mb-4 group-hover:text-accent transition-colors duration-300">
-                            Simposio Internacional de Sistemas Avanzados
-                        </h3>
-                        <div class="flex items-center gap-3 pt-3 border-t border-white/10">
-                            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="Dra. Ana Rojas" class="w-8 h-8 rounded-full border border-gray-600 bg-gray-800">
-                            <span class="text-sm font-medium text-gray-200">Dra. A. Rojas</span>
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-xl font-medium text-unac-text mb-3 leading-snug group-hover:text-unac-accent transition-colors">El impacto de la inteligencia artificial en la investigación</h3>
+                            <p class="text-sm text-unac-muted mb-8 flex-1 leading-relaxed">Descubre cómo nuestros investigadores están utilizando nuevos modelos algorítmicos para predecir tendencias económicas.</p>
+                            <span class="text-xs font-bold text-unac-muted uppercase tracking-wider">Tecnología</span>
                         </div>
                     </div>
-                </article>
-                
-                <!-- Tarjeta 6 -->
-                <article class="news-card relative w-[280px] h-[400px] rounded-2xl overflow-hidden shadow-soft cursor-pointer flex-shrink-0 card-zoom-effect group border border-white/5 ring-1 ring-white/10">
-                    <div class="bg-layer absolute inset-0 bg-[url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&q=80&w=600')] bg-cover bg-center transition-transform duration-700 ease-out z-0"></div>
-                    <div class="absolute inset-0 bg-gradient-to-t from-[#060a12] via-[#060a12]/80 to-transparent z-10"></div>
-                    
-                    <div class="absolute bottom-0 left-0 w-full p-5 z-20 flex flex-col justify-end h-full">
-                        <div class="flex items-center gap-2 mb-2 text-xs text-gray-300">
-                            <time datetime="2024-01-15">Ene 15, 2024</time>
+
+                    <!-- Tarjeta 2 -->
+                    <div class="news-card flex flex-col p-6 md:p-8 hover:bg-unac-soft/40 cursor-pointer group">
+                        <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-unac-soft">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1220]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Conferencia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                         </div>
-                        <h3 class="text-lg font-bold text-white leading-tight mb-4 group-hover:text-accent transition-colors duration-300">
-                            Convocatoria de Proyectos Investigación 2024
-                        </h3>
-                        <div class="flex items-center gap-3 pt-3 border-t border-white/10">
-                            <span class="w-8 h-8 rounded-full bg-accent text-bg flex items-center justify-center font-bold text-xs">UN</span>
-                            <span class="text-sm font-medium text-gray-200">Posgrado UNAC</span>
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-xl font-medium text-unac-text mb-3 leading-snug group-hover:text-unac-accent transition-colors">Seminario Internacional de Ciencias Empresariales 2026</h3>
+                            <p class="text-sm text-unac-muted mb-8 flex-1 leading-relaxed">Únete a nosotros en este ciclo de conferencias con ponentes invitados de las mejores universidades de América Latina.</p>
+                            <span class="text-xs font-bold text-unac-muted uppercase tracking-wider">Eventos</span>
                         </div>
                     </div>
-                </article>
+
+                    <!-- Tarjeta 3 -->
+                    <div class="news-card flex flex-col p-6 md:p-8 hover:bg-unac-soft/40 cursor-pointer group">
+                        <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-unac-soft">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1220]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-xl font-medium text-unac-text mb-3 leading-snug group-hover:text-unac-accent transition-colors">Inauguración de la nueva biblioteca virtual de Posgrado</h3>
+                            <p class="text-sm text-unac-muted mb-8 flex-1 leading-relaxed">Más de 50,000 papers, revistas científicas y libros especializados ahora disponibles para todos nuestros maestrantes.</p>
+                            <span class="text-xs font-bold text-unac-muted uppercase tracking-wider">Comunidad</span>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 4 (Oculta inicialmente) -->
+                    <div class="news-card flex flex-col p-6 md:p-8 hover:bg-unac-soft/40 cursor-pointer group is-hidden">
+                        <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-unac-soft">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1220]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tesis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-xl font-medium text-unac-text mb-3 leading-snug group-hover:text-unac-accent transition-colors">Nuevas líneas de investigación en Ingeniería Ambiental</h3>
+                            <p class="text-sm text-unac-muted mb-8 flex-1 leading-relaxed">Se abren nuevas oportunidades de financiamiento para proyectos enfocados en la sostenibilidad portuaria.</p>
+                            <span class="text-xs font-bold text-unac-muted uppercase tracking-wider">Convocatoria</span>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 5 (Oculta inicialmente) -->
+                    <div class="news-card flex flex-col p-6 md:p-8 hover:bg-unac-soft/40 cursor-pointer group is-hidden">
+                        <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-unac-soft">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1220]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-xl font-medium text-unac-text mb-3 leading-snug group-hover:text-unac-accent transition-colors">Foro Nacional sobre Políticas de Salud Pública</h3>
+                            <p class="text-sm text-unac-muted mb-8 flex-1 leading-relaxed">Analizamos los retos y propuestas junto a expertos del Ministerio de Salud y destacados doctores de nuestra facultad.</p>
+                            <span class="text-xs font-bold text-unac-muted uppercase tracking-wider">Eventos</span>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 6 (Oculta inicialmente) -->
+                    <div class="news-card flex flex-col p-6 md:p-8 hover:bg-unac-soft/40 cursor-pointer group is-hidden">
+                        <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-unac-soft">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1220]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Convenio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-xl font-medium text-unac-text mb-3 leading-snug group-hover:text-unac-accent transition-colors">Nuevos convenios de movilidad con universidades europeas</h3>
+                            <p class="text-sm text-unac-muted mb-8 flex-1 leading-relaxed">Ampliamos nuestras redes globales para ofrecer pasantías de investigación en instituciones de España, Francia y Alemania.</p>
+                            <span class="text-xs font-bold text-unac-muted uppercase tracking-wider">Internacional</span>
+                        </div>
+                    </div>
+
+                    <!-- Tarjeta 7 (Oculta inicialmente) -->
+                    <div class="news-card flex flex-col p-6 md:p-8 hover:bg-unac-soft/40 cursor-pointer group is-hidden">
+                        <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-unac-soft">
+                            <div class="absolute inset-0 bg-gradient-to-t from-[#0b1220]/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
+                            <img src="https://images.unsplash.com/photo-1454165833767-027ffea9e778?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Taller" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                        </div>
+                        <div class="flex-1 flex flex-col">
+                            <h3 class="text-xl font-medium text-unac-text mb-3 leading-snug group-hover:text-unac-accent transition-colors">Taller intensivo de Redacción de Artículos Científicos</h3>
+                            <p class="text-sm text-unac-muted mb-8 flex-1 leading-relaxed">Aprende las mejores técnicas para publicar en revistas indexadas de alto impacto (Scopus y Web of Science).</p>
+                            <span class="text-xs font-bold text-unac-muted uppercase tracking-wider">Capacitación</span>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Elementos fuera del contenedor (Abajo) -->
+                <div class="mt-12 flex flex-col items-center gap-8">
+                    
+                    <!-- Controles del Carrusel -->
+                    <div class="flex items-center gap-4">
+                        <button id="btn-prev" class="w-12 h-12 rounded-full border border-unac-border bg-unac-elevated text-unac-text hover:border-unac-text hover:bg-unac-soft transition-all flex items-center justify-center group shadow-soft">
+                            <i class="ph ph-caret-left text-xl group-hover:-translate-x-0.5 transition-transform"></i>
+                        </button>
+                        <button id="btn-next" class="w-12 h-12 rounded-full border border-unac-border bg-unac-elevated text-unac-text hover:border-unac-text hover:bg-unac-soft transition-all flex items-center justify-center group shadow-soft">
+                            <i class="ph ph-caret-right text-xl group-hover:translate-x-0.5 transition-transform"></i>
+                        </button>
+                    </div>
+
+                    <!-- Link Read All -->
+                    <a href="#" class="inline-block text-unac-text text-base font-medium border-b-2 border-unac-text pb-1 hover:text-unac-accent hover:border-unac-accent transition-colors">
+                        Leer todas las publicaciones
+                    </a>
+
+                </div>
 
             </div>
-        </div>
-        
-        <!-- Controles de Navegación -->
-        <div class="flex items-center justify-center gap-4 mt-8">
-            <button id="btn-prev" class="group px-6 py-2 rounded-full border border-gray-700 bg-gray-800/50 text-gray-300 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300 flex items-center gap-2">
-                <svg class="w-4 h-4 transform group-hover:-translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
-                </svg>
-                <span class="font-medium text-sm">Anterior</span>
-            </button>
-            <button id="btn-next" class="group px-6 py-2 rounded-full border border-gray-700 bg-gray-800/50 text-gray-300 hover:text-white hover:border-accent hover:bg-accent/10 transition-all duration-300 flex items-center gap-2">
-                <span class="font-medium text-sm">Siguiente</span>
-                <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
-                </svg>
-            </button>
-        </div>
-        
-    </div>
-
-    <style>
-        /* Estilos específicos para el componente de Noticias */
-        #noticias {
-            background-color: var(--bg);
-            color: var(--text);
-            font-family: var(--font-base);
-        }
-
-        .card-zoom-effect:hover .bg-layer {
-            transform: scale(1.05);
-        }
-
-        /* Soporte para animaciones FLIP */
-        .news-card {
-            will-change: transform, opacity;
-        }
-    </style>
-
-    <!-- Librerías de animación (GSAP + Flip Plugin) -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/Flip.min.js"></script>
-
-    <!-- Lógica del componente -->
-    <script src="assets/js/modules/noticias-animations.js"></script>
-</section>
+        </section>
