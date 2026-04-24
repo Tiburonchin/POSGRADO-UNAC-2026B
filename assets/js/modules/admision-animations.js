@@ -84,24 +84,6 @@
       ease: 'power2.out'
     }, '-=0.3');
 
-    // Imagen y Decoración
-    if (admisionImage) {
-      tlEntrance.from(admisionImageDecor, {
-        scale: 0.8,
-        opacity: 0,
-        duration: 1.2,
-        ease: 'expo.out'
-      }, '0.2');
-
-      tlEntrance.from(admisionImageMain, {
-        y: 60,
-        scale: 0.95,
-        opacity: 0,
-        duration: 1,
-        ease: 'power4.out'
-      }, '0.4');
-    }
-
     // --- ANIMACIÓN DE SALIDA (Fade out al hacer scroll hacia abajo) ---
     gsap.to([admisionSection.querySelector('.max-w-7xl')], {
       opacity: 0,
@@ -114,40 +96,6 @@
         end: 'bottom 0%',   // Termina justo cuando sale de la pantalla
         scrub: true
       }
-    });
-
-    // Efectos de Hover para la Imagen (Sutil Parallax)
-    admisionSection.addEventListener('mousemove', function(e) {
-      if (!admisionImage) return;
-      
-      var rect = admisionSection.getBoundingClientRect();
-      var xPos = (e.clientX - rect.left) / rect.width - 0.5;
-      var yPos = (e.clientY - rect.top) / rect.height - 0.5;
-
-      gsap.to(admisionImageMain, {
-        x: xPos * 20,
-        y: yPos * 20,
-        duration: 0.6,
-        ease: 'power2.out'
-      });
-
-      gsap.to(admisionImageDecor, {
-        x: xPos * -30,
-        y: yPos * -30,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
-    });
-
-    admisionSection.addEventListener('mouseleave', function() {
-      if (!admisionImage) return;
-      
-      gsap.to([admisionImageMain, admisionImageDecor], {
-        x: 0,
-        y: 0,
-        duration: 1,
-        ease: 'elastic.out(1, 0.3)'
-      });
     });
   }
 
