@@ -66,7 +66,7 @@ document.addEventListener("DOMContentLoaded", () => {
     /* ========================================================
        2. FOOTER CONTENT HARMONIZATION (Velocity Lag)
        ======================================================== */
-    const footerContent = document.querySelector('.site-container');
+    const footerContent = document.querySelector('#site-footer .site-container');
     if (footerContent) {
         const quickY = gsap.quickTo(footerContent, "y", { duration: 0.6, ease: "power2.out" });
         
