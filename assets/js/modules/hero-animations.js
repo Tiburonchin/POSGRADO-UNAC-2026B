@@ -74,31 +74,36 @@
       gsap.set(headerMain, {
         autoAlpha: 0,
         y: -18,
-        scale: 0.985
+        scale: 0.985,
+        filter: 'blur(12px)'
       });
     }
 
     if (headerNodes.length) {
       gsap.set(headerNodes, {
         autoAlpha: 0,
-        y: -10
+        y: -10,
+        filter: 'blur(6px)'
       });
     }
 
     gsap.set('.hero-kicker, .hero-description, .hero-slogan', {
       autoAlpha: 0,
-      y: 12
+      y: 12,
+      filter: 'blur(8px)'
     });
 
     gsap.set(titleLines, {
       autoAlpha: 0,
-      y: isMobile ? 30 : 34
+      y: isMobile ? 30 : 34,
+      filter: 'blur(14px)'
     });
 
     if (ctaItems.length) {
       gsap.set(ctaItems, {
         autoAlpha: 0,
-        y: 14
+        y: 14,
+        filter: 'blur(8px)'
       });
     }
   }
@@ -448,6 +453,16 @@
             yPercent: 0,
             transformOrigin: '50% 50%'
           }, 0);
+
+          // Subtle glitch/mirror effect just before the section is covered
+          parallaxTimeline.to(heroMedia, {
+            skewX: 1.2,
+            filter: 'brightness(1.4) contrast(1.1)',
+            duration: 0.08,
+            repeat: 1,
+            yoyo: true,
+            ease: 'power2.inOut'
+          }, isMobile ? 0.78 : 0.82);
         }
 
         if (heroImage) {
@@ -547,89 +562,104 @@
       // Ensure the image-reveal mask is measured before the title enters.
       setupHeroTitleImageRevealSync();
 
-      var timeline = gsap.timeline({ defaults: { overwrite: 'auto', ease: 'power2.out' } });
+      var timeline = gsap.timeline({
+        delay: 0.45,
+        defaults: { overwrite: 'auto', ease: 'power2.out' }
+      });
 
-      if (headerMain) {
         timeline.fromTo(headerMain, {
           autoAlpha: 0,
           y: -18,
-          scale: 0.985
+          scale: 0.985,
+          filter: 'blur(12px)'
         }, {
           autoAlpha: 1,
           y: 0,
           scale: 1,
-          duration: isMobile ? 0.56 : 0.62,
+          filter: 'blur(0px)',
+          duration: isMobile ? 0.85 : 1.1,
           ease: 'power3.out'
         });
-      }
 
       if (headerBrand) {
         timeline.fromTo(headerBrand, {
           autoAlpha: 0,
-          y: -12
+          y: -12,
+          filter: 'blur(6px)'
         }, {
           autoAlpha: 1,
           y: 0,
-          duration: isMobile ? 0.34 : 0.38
-        }, '-=0.36');
+          filter: 'blur(0px)',
+          duration: isMobile ? 0.5 : 0.65
+        }, '-=0.7');
       }
 
       if (isMobile) {
         if (mobileHeaderItems.length) {
           timeline.fromTo(mobileHeaderItems, {
             autoAlpha: 0,
-            y: -10
+            y: -10,
+            filter: 'blur(6px)'
           }, {
             autoAlpha: 1,
             y: 0,
-            duration: 0.28,
-            stagger: 0.05
-          }, '-=0.24');
+            filter: 'blur(0px)',
+            duration: 0.45,
+            stagger: 0.08
+          }, '-=0.4');
         }
       } else {
         if (headerNavItems.length) {
           timeline.fromTo(headerNavItems, {
             autoAlpha: 0,
-            y: -10
+            y: -10,
+            filter: 'blur(6px)'
           }, {
             autoAlpha: 1,
             y: 0,
-            duration: 0.34,
-            stagger: 0.045
-          }, '-=0.26');
+            filter: 'blur(0px)',
+            duration: 0.55,
+            stagger: 0.06
+          }, '-=0.5');
         }
 
         if (headerDesktopCta) {
           timeline.fromTo(headerDesktopCta, {
             autoAlpha: 0,
-            y: -10
+            y: -10,
+            filter: 'blur(6px)'
           }, {
             autoAlpha: 1,
             y: 0,
-            duration: 0.3
-          }, '-=0.24');
+            filter: 'blur(0px)',
+            duration: 0.5
+          }, '-=0.45');
         }
       }
 
       timeline.fromTo('.hero-kicker', {
         autoAlpha: 0,
-        y: 12
+        y: 12,
+        filter: 'blur(8px)'
       }, {
         autoAlpha: 1,
         y: 0,
-        duration: isMobile ? 0.34 : 0.38
-      }, '-=0.05');
+        filter: 'blur(0px)',
+        duration: isMobile ? 0.55 : 0.65
+      }, '-=0.1');
 
       timeline.fromTo(titleLines, {
         autoAlpha: 0,
-        y: isMobile ? 30 : 34
+        y: isMobile ? 30 : 34,
+        filter: 'blur(14px) drop-shadow(0px 8px 16px rgba(0,0,0,0.8)) brightness(1.2) saturate(1.2)'
       }, {
         autoAlpha: 1,
         y: 0,
-        duration: isMobile ? 0.64 : 0.72,
-        stagger: isMobile ? 0.06 : 0.075,
+        filter: 'blur(0px) drop-shadow(0px 8px 16px rgba(0,0,0,0.8)) brightness(1.2) saturate(1.2)',
+        duration: isMobile ? 0.9 : 1.2,
+        stagger: isMobile ? 0.1 : 0.14,
         ease: 'power3.out'
-      }, '-=0.14');
+      }, '-=0.35');
 
       if (heroTitle) {
         timeline.fromTo(heroTitle, {
@@ -643,34 +673,40 @@
 
       timeline.fromTo('.hero-description', {
         autoAlpha: 0,
-        y: 14
+        y: 14,
+        filter: 'blur(8px)'
       }, {
         autoAlpha: 1,
         y: 0,
-        duration: isMobile ? 0.4 : 0.48
-      }, '-=0.24');
+        filter: 'blur(0px)',
+        duration: isMobile ? 0.6 : 0.8
+      }, '-=0.4');
 
       if (ctaItems.length) {
         timeline.fromTo(ctaItems, {
           autoAlpha: 0,
-          y: 14
+          y: 14,
+          filter: 'blur(8px)'
         }, {
           autoAlpha: 1,
           y: 0,
-          duration: isMobile ? 0.34 : 0.42,
-          stagger: isMobile ? 0.06 : 0.08
-        }, '-=0.26');
+          filter: 'blur(0px)',
+          duration: isMobile ? 0.5 : 0.7,
+          stagger: isMobile ? 0.1 : 0.15
+        }, '-=0.45');
       }
 
       timeline
         .fromTo('.hero-slogan', {
           autoAlpha: 0,
-          y: 14
+          y: 14,
+          filter: 'blur(8px)'
         }, {
           autoAlpha: 1,
           y: 0,
-          duration: isMobile ? 0.36 : 0.44
-        }, '-=0.16')
+          filter: 'blur(0px)',
+          duration: isMobile ? 0.55 : 0.75
+        }, '-=0.3')
         .add(function () {
           startInfoRotation(isMobile, false);
           setupSloganHoverScramble();
