@@ -42,13 +42,9 @@
         <a href="#admision-proceso" class="hero-btn-secondary">Explorar admision</a>
       </div>
 
-      <div class="hero-slogan mt-12 max-w-full">
-        <div class="inline-flex items-center gap-3 rounded-xl border border-[color:var(--border-base)] bg-[color:var(--bg-soft)]/40 px-5 py-3 shadow-[var(--shadow-sm)] backdrop-blur-md transition-all duration-300 hover:border-[color:var(--border-bright)] hover:bg-[color:var(--bg-soft)]/70 hover:shadow-[var(--shadow-md)]">
-          <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[color:var(--bg-surface)] shadow-inner">
-            <i class="ph-fill ph-target text-[color:var(--unac-yellow)] text-sm opacity-90"></i>
-          </div>
-          <span class="hero-slogan-text text-xs font-medium tracking-wide text-[color:var(--text-muted)] sm:text-[13px]">Peru es la clave, y Posgrado UNAC es la llave</span>
-        </div>
+      <div class="hero-slogan mt-6 flex items-center gap-2 bg-transparent">
+        <i class="ph-fill ph-target text-[color:var(--unac-yellow)] text-sm opacity-90"></i>
+        <span class="hero-slogan-text text-xs font-medium tracking-wide text-gray-400 sm:text-[13px]">Peru es la clave, y Posgrado UNAC es la llave</span>
       </div>
     </div>
 

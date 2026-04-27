@@ -192,12 +192,11 @@
   }
 
   .hero-title {
-    font-family: 'Rakkas', serif;
-    font-weight: 800;
-    font-size: clamp(2rem, 9.5vw, 8.7rem);
-    line-height: 0.90;
-    letter-spacing: 0.04em;
-    text-shadow: var(--shadow-lg);
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 900;
+    font-size: clamp(2rem, 9.5vw, 8.6rem);
+    line-height: 0.87;
+    letter-spacing: -0.05em;
   }
 
   @supports ((-webkit-background-clip: text) or (background-clip: text)) {
@@ -231,8 +230,9 @@
   }
 
   .hero-title-line {
-    letter-spacing: -0.055em;
+    letter-spacing: -0.01em;
     will-change: transform, opacity;
+    filter: drop-shadow(0px 8px 16px rgba(0, 0, 0, 0.8)) brightness(1.2) saturate(1.2);
   }
 
   .hero::before {
@@ -277,12 +277,11 @@
   }
 
   .hero-btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-gradient-to-r from-[color:var(--unac-yellow)] to-[color:var(--unac-yellow-dark)] px-6 py-3 text-sm font-black uppercase tracking-[0.07em] text-slate-950 shadow-md transition hover:-translate-y-0.5;
+    @apply inline-flex items-center justify-center rounded-xl bg-gradient-to-r from-[color:var(--unac-yellow)] to-[color:var(--unac-yellow-dark)] px-6 py-3 text-sm font-black uppercase tracking-[0.07em] text-slate-950 shadow-md transition hover:-translate-y-0.5 hover:shadow-lg;
   }
 
   .hero-btn-secondary {
-    @apply inline-flex items-center justify-center rounded-full border border-white/30 px-6 py-3 text-sm font-black uppercase tracking-[0.07em] text-white transition hover:-translate-y-0.5;
-    background-color: color-mix(in srgb, var(--bg-surface) 55%, transparent);
+    @apply inline-flex items-center justify-center rounded-xl border border-transparent px-6 py-3 text-sm font-black uppercase tracking-[0.07em] text-white transition hover:-translate-y-0.5 hover:bg-white/10;
   }
 
   .hero-scroll {

@@ -42,7 +42,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo+Black&family=Keania+One&family=Manrope:wght@400;500;600;700;800&family=Fraunces:opsz,wght@9..144,600;9..144,700;9..144,900&family=Rakkas&family=Saira+Stencil+One&family=Titan+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Archivo+Black&family=Keania+One&family=Manrope:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Montserrat:wght@700;800;900&family=Rakkas&family=Saira+Stencil+One&family=Titan+One&display=swap" rel="stylesheet" />
   <?php if ($isHomePage): ?>
   <link rel="preload" as="image" href="img/epg-unac-fachada.png" />
   <?php endif; ?>
