@@ -431,9 +431,12 @@
             start: 'top top',
             end: isMobile ? '+=56%' : '+=82%',
             pin: true,
+            pinSpacing: true, // Maintain the space
+            pinType: 'fixed', // Use fixed pinning to avoid spacer width bugs
             scrub: isMobile ? 0.58 : 0.78,
             anticipatePin: 1,
-            invalidateOnRefresh: true
+            invalidateOnRefresh: true,
+            refreshPriority: 1
           }
         });
 
@@ -625,11 +628,7 @@
         y: 0,
         duration: isMobile ? 0.64 : 0.72,
         stagger: isMobile ? 0.06 : 0.075,
-        ease: 'power3.out',
-        onComplete: function() {
-            // El navegador se detendrá aquí automáticamente si tienes la consola abierta
-            debugger; 
-        }
+        ease: 'power3.out'
       }, '-=0.14');
 
       if (heroTitle) {
