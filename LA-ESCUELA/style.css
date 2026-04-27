@@ -14,15 +14,15 @@
     --dropdown-bg: rgba(9, 14, 26, 0.94);
     --dropdown-border: rgba(148, 163, 184, 0.26);
 
-    --accent: #ffc107;
-    --accent-2: #f59e0b;
+    --accent: #FBCA38;
+    --accent-2: #e1a705;
     --accent-info: #3b82f6;
     --shadow-soft: 0 12px 40px rgba(2, 6, 23, 0.36);
     --shadow-deep: 0 20px 60px rgba(2, 6, 23, 0.55);
     --motion-base: 0.35s;
     --motion-ease: ease;
     --scrollbar-thumb: rgba(51, 65, 85, 0.5);
-    --scrollbar-thumb-hover: rgba(255, 193, 7, 0.82);
+    --scrollbar-thumb-hover: rgba(251, 202, 56, 0.82);
     --loader-scrollbar-compensation: 0px;
     --header-main-height: 4.75rem;
     --header-total-height: calc(var(--header-main-height) + var(--header-floating-gap, 8px));
@@ -41,13 +41,13 @@
     --dropdown-bg: rgba(9, 14, 26, 0.94);
     --dropdown-border: rgba(148, 163, 184, 0.26);
 
-    --accent: #ffc107;
-    --accent-2: #f59e0b;
+    --accent: #FBCA38;
+    --accent-2: #e1a705;
     --accent-info: #3b82f6;
     --shadow-soft: 0 12px 40px rgba(2, 6, 23, 0.36);
     --shadow-deep: 0 20px 60px rgba(2, 6, 23, 0.55);
     --scrollbar-thumb: rgba(51, 65, 85, 0.5);
-    --scrollbar-thumb-hover: rgba(255, 193, 7, 0.82);
+    --scrollbar-thumb-hover: rgba(251, 202, 56, 0.82);
   }
 
 
@@ -55,7 +55,7 @@
 
 :root {
   --base-100: #ffffff;
-  --base-200: #fec81d;
+  --base-200: #FBCA38;
   --base-300: #0f0f0f;
 }
 
@@ -198,7 +198,7 @@ p {
 .partners-stripe {
   position: relative;
   z-index: 10;
-  background-color: #daa812 ; 
+  background-color: #FBCA38 ; 
   width: 100%;
   min-height: 100px;
   overflow: hidden;
@@ -277,7 +277,7 @@ p {
 }
 
 .epg-card-icon {
-  background-color: rgba(254, 200, 29, 0.2);
+  background-color: rgba(251, 202, 56, 0.2);
   width: 50px;
   height: 50px;
   border-radius: 8px;
@@ -604,7 +604,7 @@ p {
   left: -50%;
   width: 200%;
   height: 200%;
-  background: radial-gradient(circle, rgba(254, 200, 29, 0.05) 0%, transparent 70%);
+  background: radial-gradient(circle, rgba(251, 202, 56, 0.05) 0%, transparent 70%);
   pointer-events: none;
 }
 

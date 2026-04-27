@@ -45,7 +45,8 @@
             function getVisibleCount() {
                 if (window.innerWidth < 768) return 1;
                 if (window.innerWidth < 1024) return 2;
-                return 3;
+                if (window.innerWidth < 1280) return 3;
+                return 4;
             }
 
             function updateBorders() {
@@ -146,22 +147,7 @@
             // Initial call
             initCarousel();
 
-            // 3. IMAGE PARALLAX (Premium detail)
-            cards.forEach(card => {
-                const img = card.querySelector('img');
-                if (img) {
-                    gsap.to(img, {
-                        y: -40,
-                        ease: "none",
-                        scrollTrigger: {
-                            trigger: card,
-                            start: "top bottom",
-                            end: "bottom top",
-                            scrub: true
-                        }
-                    });
-                }
-            });
+
 
         }, section);
     }

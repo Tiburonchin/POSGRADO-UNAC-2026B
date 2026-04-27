@@ -1,6 +1,6 @@
 <div class="site-wrapper">
     <section class="content-section pt-32 pb-32 overflow-hidden" id="admision">
-        <div class="max-w-7xl mx-auto px-6 relative z-10">
+        <div class="max-w-[1440px] pl-8 mx-auto relative z-10">
             
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24 items-center">
                 
@@ -13,7 +13,7 @@
                     <!-- Headline -->
                     <h2 class="text-5xl md:text-6xl font-light text-unac-text leading-tight tracking-tight mb-6">
                         Transforma tu <br class="hidden md:block">
-                        <span class="font-semibold text-transparent bg-clip-text bg-gradient-to-r from-unac-accent to-unac-accent2">futuro</span>
+                        <span class="font-bold text-transparent bg-clip-text bg-gradient-to-r from-unac-yellow to-[#eef2ff]">futuro</span>
                     </h2>
 
                     <!-- Metrics as Tags (Integración elegante) -->
@@ -34,65 +34,43 @@
                         Únete a la comunidad de investigadores y profesionales líderes del país. El proceso de admisión está diseñado para identificar el talento que transformará el futuro.
                     </p>
 
-                    <!-- Steps List (Estilo exacto de la referencia: Icono Izquierda, Texto Derecha) -->
-                    <div class="space-y-8">
+                    <!-- Steps List (Reducido a 2 pasos para mayor armonía) -->
+                    <div class="space-y-10">
                         
-                        <!-- Step 1 -->
+                        <!-- Step 1: Inscripción -->
                         <div class="flex gap-6 group">
-                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-accent group-hover:border-unac-accent/50 transition-all duration-300 shadow-inner">
+                            <div class="mt-1 flex-shrink-0 w-14 h-14 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-accent group-hover:border-unac-accent/50 transition-all duration-300 shadow-inner">
                                 <i class="ph ph-laptop text-2xl"></i>
                             </div>
-                            <div>
-                                <div class="flex items-center gap-3 mb-2 flex-wrap">
-                                    <h3 class="text-xl font-medium text-unac-text group-hover:text-white transition-colors">Inscripción</h3>
-                                    <!-- Tag de Fecha Rediseñado -->
-                                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-unac-accent/5 border border-unac-accent/20 backdrop-blur-sm">
-                                        <span class="w-1 h-1 rounded-full bg-unac-accent animate-pulse"></span>
-                                        <span class="text-[10px] font-bold uppercase tracking-[0.1em] text-unac-accent">Hasta 15 Mayo</span>
-                                    </div>
+                            <div class="flex-grow">
+                                <div class="mb-1">
+                                    <span class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-unac-accent/90">
+                                        <span class="w-4 h-[1px] bg-unac-accent/30"></span>
+                                        Cierre: 15 Mayo
+                                    </span>
                                 </div>
+                                <h3 class="text-2xl font-bold text-unac-text group-hover:text-white transition-colors mb-2">Inscripción</h3>
                                 <p class="text-unac-muted text-sm leading-relaxed max-w-md">
-                                    Registro online y envío de expediente documental a través de nuestra plataforma.
+                                    Registro online y envío de expediente documental a través de nuestra plataforma virtual de admisión.
                                 </p>
                             </div>
                         </div>
 
-                        <!-- Step 2 -->
+                        <!-- Step 2: Evaluación y Resultados -->
                         <div class="flex gap-6 group">
-                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-info group-hover:border-unac-info/50 transition-all duration-300 shadow-inner">
-                                <i class="ph ph-exam text-2xl"></i>
+                            <div class="mt-1 flex-shrink-0 w-14 h-14 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-info group-hover:border-unac-info/50 transition-all duration-300 shadow-inner">
+                                <i class="ph ph-file-search text-2xl"></i>
                             </div>
-                            <div>
-                                <div class="flex items-center gap-3 mb-2 flex-wrap">
-                                    <h3 class="text-xl font-medium text-unac-text group-hover:text-white transition-colors">Evaluación</h3>
-                                    <!-- Tag de Fecha Rediseñado -->
-                                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-unac-info/5 border border-unac-info/20 backdrop-blur-sm">
-                                        <span class="w-1 h-1 rounded-full bg-unac-info"></span>
-                                        <span class="text-[10px] font-bold uppercase tracking-[0.1em] text-unac-info">20 - 22 Mayo</span>
-                                    </div>
+                            <div class="flex-grow">
+                                <div class="mb-1">
+                                    <span class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-unac-info/90">
+                                        <span class="w-4 h-[1px] bg-unac-info/30"></span>
+                                        Periodo: 20 - 25 Mayo
+                                    </span>
                                 </div>
+                                <h3 class="text-2xl font-bold text-unac-text group-hover:text-white transition-colors mb-2">Evaluación y Resultados</h3>
                                 <p class="text-unac-muted text-sm leading-relaxed max-w-md">
-                                    Examen de conocimientos y entrevista personal con el jurado académico.
-                                </p>
-                            </div>
-                        </div>
-
-                        <!-- Step 3 -->
-                        <div class="flex gap-6 group">
-                            <div class="mt-1 flex-shrink-0 w-12 h-12 rounded-full bg-[#0a0f18] border border-unac-border flex items-center justify-center text-unac-muted group-hover:text-unac-accent2 group-hover:border-unac-accent2/50 transition-all duration-300 shadow-inner">
-                                <i class="ph ph-graduation-cap text-2xl"></i>
-                            </div>
-                            <div>
-                                <div class="flex items-center gap-3 mb-2 flex-wrap">
-                                    <h3 class="text-xl font-medium text-unac-text group-hover:text-white transition-colors">Resultados</h3>
-                                    <!-- Tag de Fecha Rediseñado -->
-                                    <div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-unac-accent2/5 border border-unac-accent2/20 backdrop-blur-sm">
-                                        <span class="w-1 h-1 rounded-full bg-unac-accent2"></span>
-                                        <span class="text-[10px] font-bold uppercase tracking-[0.1em] text-unac-accent2">25 Mayo</span>
-                                    </div>
-                                </div>
-                                <p class="text-unac-muted text-sm leading-relaxed max-w-md">
-                                    Publicación oficial de ingresantes y proceso de matrícula extemporánea.
+                                    Examen de conocimientos, entrevista personal y publicación oficial de la relación de ingresantes.
                                 </p>
                             </div>
                         </div>
