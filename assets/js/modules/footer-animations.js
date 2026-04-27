@@ -25,8 +25,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
         // quickTo is the most performant way to update values continuously in GSAP
         const updateCurveY = gsap.quickTo(curve, "y", {
-            duration: 0.8,
-            ease: "elastic.out(1, 0.3)", // Jelly-like bounce back
+            duration: 0.9,
+            ease: "elastic.out(1.1, 0.4)", // More amplitude, slightly more 'loose' bounce
             onUpdate: () => {
                 // Update the SVG path string in real-time
                 pathElement.setAttribute("d", `M 0 100 Q 500 ${curve.y} 1000 100 L 1000 100 L 0 100 Z`);
@@ -42,13 +42,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 const v = self.getVelocity();
                 
                 // Only trigger if movement is significant
-                if (Math.abs(v) > 50) {
+                if (Math.abs(v) > 30) { // Lowered threshold for more sensitivity
                     // Map velocity to Y position
-                    // Inverted intentionally for a more "viscous" feeling
-                    let targetY = 100 - (v * 0.05); 
+                    // Increased sensitivity from 0.05 to 0.08
+                    let targetY = 100 - (v * 0.08); 
                     
-                    // Clamp to prevent the curve from breaking the layout
-                    targetY = gsap.utils.clamp(-50, 250, targetY);
+                    // Clamp to prevent the curve from breaking the layout (expanded range)
+                    targetY = gsap.utils.clamp(-80, 280, targetY);
 
                     // Push the value to the quickTo pipe
                     updateCurveY(targetY);
@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(() => {
                         updateCurveY(100);
-                    }, 100);
+                    }, 120); // Slightly longer wait for smoother return
                 }
             }
         });

@@ -24,7 +24,7 @@
       <h1 class="hero-title mb-[7.25rem] text-balance font-black uppercase leading-[0.84] tracking-[-0.07em] text-white">
         <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>Escuela de</span>
         <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>Posgrado</span>
-        <span class="hero-title-line hero-title-line--image-reveal block" data-shero-title-line-reveal>UNAC</span>
+        <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>UNAC</span>
       </h1>
 
       <p class="hero-description max-w-[62ch] text-sm font-semibold text-[rgba(238,242,255,0.9)] sm:text-base md:text-lg">

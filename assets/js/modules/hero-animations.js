@@ -625,7 +625,11 @@
         y: 0,
         duration: isMobile ? 0.64 : 0.72,
         stagger: isMobile ? 0.06 : 0.075,
-        ease: 'power3.out'
+        ease: 'power3.out',
+        onComplete: function() {
+            // El navegador se detendrá aquí automáticamente si tienes la consola abierta
+            debugger; 
+        }
       }, '-=0.14');
 
       if (heroTitle) {

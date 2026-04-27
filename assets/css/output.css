@@ -2616,8 +2616,8 @@ body.is-loading {
   padding-left: 0px;
 }
 
-.pl-6 {
-  padding-left: 1.5rem;
+.pl-8 {
+  padding-left: 2rem;
 }
 
 .pr-4 {
@@ -2634,10 +2634,6 @@ body.is-loading {
 
 .pt-6 {
   padding-top: 1.5rem;
-}
-
-.pl-8 {
-  padding-left: 2rem;
 }
 
 .text-center {
