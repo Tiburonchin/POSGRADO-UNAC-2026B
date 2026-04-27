@@ -1,7 +1,7 @@
 /**
  * Footer Animations Module
  * Handles the fluid SVG curve based on scroll velocity and entry animations.
- * Adapted from the working reference demo for optimal physics and performance.
+ * Harmonized with GSAP best practices for a premium, liquid-like feel.
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -14,57 +14,74 @@ document.addEventListener("DOMContentLoaded", () => {
     gsap.registerPlugin(ScrollTrigger);
 
     /* ========================================================
-       1. DYNAMIC BÉZIER CURVE (Velocity-based Elastic String)
+       1. LIQUID BÉZIER CURVE (Velocity-based Elastic String)
        ======================================================== */
     const pathElement = document.getElementById("fluid-path");
     
     if (pathElement) {
-        // Reactive object for the control point Y position
-        // 100 is the flat state in our viewBox "M 0 100 Q 500 [Y] 1000 100..."
+        // Initial state: M 0 100 C 200 100 800 100 1000 100 L 1000 100 L 0 100 Z
+        // We animate the Y of the control points (currently at 100)
         const curve = { y: 100 }; 
 
-        // quickTo is the most performant way to update values continuously in GSAP
+        // quickTo for high-performance real-time updates
         const updateCurveY = gsap.quickTo(curve, "y", {
-            duration: 0.9,
-            ease: "elastic.out(1.1, 0.4)", // More amplitude, slightly more 'loose' bounce
+            duration: 0.8,
+            ease: "elastic.out(1.2, 0.45)", // Refined elastic for more 'liquid' tension
             onUpdate: () => {
-                // Update the SVG path string in real-time
-                pathElement.setAttribute("d", `M 0 100 Q 500 ${curve.y} 1000 100 L 1000 100 L 0 100 Z`);
+                const y = curve.y;
+                // Cubic Bézier (C) gives a much more organic "wave" than Quadratic (Q)
+                // The points at 250 and 750 create a smoother center bulge
+                pathElement.setAttribute("d", `M 0 100 C 250 ${y} 750 ${y} 1000 100 L 1000 100 L 0 100 Z`);
             }
         });
 
         let scrollTimeout;
 
-        // Global ScrollTrigger to monitor velocity
+        // Global ScrollTrigger for velocity monitoring
         ScrollTrigger.create({
             onUpdate: (self) => {
-                // getVelocity() returns positive for scrolling down, negative for up
                 const v = self.getVelocity();
                 
-                // Only trigger if movement is significant
-                if (Math.abs(v) > 30) { // Lowered threshold for more sensitivity
-                    // Map velocity to Y position
-                    // Increased sensitivity from 0.05 to 0.08
-                    let targetY = 100 - (v * 0.08); 
+                if (Math.abs(v) > 20) {
+                    // Map velocity to Y with a subtle logarithmic-like feel
+                    // Scroll down (positive v) pulls the curve down (higher Y)
+                    // Scroll up (negative v) pushes the curve up (lower Y)
+                    let targetY = 100 + (v * 0.045); 
                     
-                    // Clamp to prevent the curve from breaking the layout (expanded range)
-                    targetY = gsap.utils.clamp(-80, 280, targetY);
+                    // Clamp to prevent visual breaking
+                    targetY = gsap.utils.clamp(-60, 260, targetY);
 
-                    // Push the value to the quickTo pipe
                     updateCurveY(targetY);
 
-                    // Reset logic: Detect when scroll stops
+                    // Auto-reset when scroll stops
                     clearTimeout(scrollTimeout);
                     scrollTimeout = setTimeout(() => {
                         updateCurveY(100);
-                    }, 120); // Slightly longer wait for smoother return
+                    }, 100);
                 }
             }
         });
     }
 
     /* ========================================================
-       2. FOOTER CONTENT ENTRY (Stagger)
+       2. FOOTER CONTENT HARMONIZATION (Velocity Lag)
+       ======================================================== */
+    const footerContent = document.querySelector('.site-container');
+    if (footerContent) {
+        const quickY = gsap.quickTo(footerContent, "y", { duration: 0.6, ease: "power2.out" });
+        
+        ScrollTrigger.create({
+            onUpdate: (self) => {
+                const v = self.getVelocity();
+                // Subtle content reaction to scroll velocity (harmonization)
+                const yOffset = gsap.utils.clamp(-15, 15, v * 0.005);
+                quickY(yOffset);
+            }
+        });
+    }
+
+    /* ========================================================
+       3. PREMIUM ENTRY & INTERACTIVE ELEMENTS
        ======================================================== */
     const animElements = gsap.utils.toArray('.footer-anim');
 
@@ -72,14 +89,73 @@ document.addEventListener("DOMContentLoaded", () => {
         gsap.from(animElements, {
             scrollTrigger: {
                 trigger: "#site-footer",
-                start: "top 88%", // Trigger slightly before it fully enters
+                start: "top 92%",
             },
-            y: 40,
-            opacity: 0,
-            duration: 1.1,
-            stagger: 0.15,
-            ease: "power3.out",
+            y: 30,
+            autoAlpha: 0,
+            duration: 1.2,
+            stagger: 0.1,
+            ease: "expo.out",
             clearProps: "all"
         });
     }
+
+    // Magnetic effect for social links (The "Fun Stuff" part)
+    const socialLinks = document.querySelectorAll('.footer-social-link');
+    socialLinks.forEach(link => {
+        link.addEventListener('mousemove', (e) => {
+            const rect = link.getBoundingClientRect();
+            const x = e.clientX - rect.left - rect.width / 2;
+            const y = e.clientY - rect.top - rect.height / 2;
+            
+            gsap.to(link, {
+                x: x * 0.4,
+                y: y * 0.4,
+                duration: 0.3,
+                ease: "power2.out"
+            });
+            
+            const icon = link.querySelector('svg');
+            if (icon) {
+                gsap.to(icon, {
+                    x: x * 0.2,
+                    y: y * 0.2,
+                    duration: 0.3,
+                    ease: "power2.out"
+                });
+            }
+        });
+        
+        link.addEventListener('mouseleave', () => {
+            gsap.to(link, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" });
+            const icon = link.querySelector('svg');
+            if (icon) {
+                gsap.to(icon, { x: 0, y: 0, duration: 0.5, ease: "elastic.out(1, 0.3)" });
+            }
+        });
+    });
+
+    // Premium hover effects for Grid Items (The "UI / Fun Stuff" part)
+    const gridItems = document.querySelectorAll('.footer-grid-item');
+    gridItems.forEach(item => {
+        item.addEventListener('mouseenter', () => {
+            gsap.to(item, {
+                y: -4,
+                backgroundColor: "var(--bg-soft)",
+                borderColor: "rgba(251, 202, 56, 0.3)",
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            gsap.to(item, {
+                y: 0,
+                backgroundColor: "var(--bg-surface)",
+                borderColor: "transparent",
+                duration: 0.4,
+                ease: "power2.out"
+            });
+        });
+    });
 });

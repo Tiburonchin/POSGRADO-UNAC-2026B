@@ -3,7 +3,7 @@
     <!-- FLUID SVG WAVE LINE -->
     <div class="footer-fluid-container">
         <svg id="fluid-svg" class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 1000 100" style="display: block;">
-            <path id="fluid-path" fill="var(--footer-bg)" d="M 0 100 Q 500 100 1000 100 L 1000 100 L 0 100 Z"></path>
+            <path id="fluid-path" fill="var(--footer-bg)" d="M 0 100 C 250 100 750 100 1000 100 L 1000 100 L 0 100 Z"></path>
         </svg>
     </div>
 
