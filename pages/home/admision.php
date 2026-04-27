@@ -43,13 +43,13 @@
                                 <i class="ph ph-laptop text-2xl"></i>
                             </div>
                             <div class="flex-grow">
-                                <div class="mb-1">
-                                    <span class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-unac-accent/90">
+                                <div class="flex items-center justify-between gap-4 mb-2">
+                                    <h3 class="text-2xl font-bold text-unac-text group-hover:text-white transition-colors">Inscripción</h3>
+                                    <span class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-unac-accent/90 whitespace-nowrap">
                                         <span class="w-4 h-[1px] bg-unac-accent/30"></span>
                                         Cierre: 15 Mayo
                                     </span>
                                 </div>
-                                <h3 class="text-2xl font-bold text-unac-text group-hover:text-white transition-colors mb-2">Inscripción</h3>
                                 <p class="text-unac-muted text-sm leading-relaxed max-w-md">
                                     Registro online y envío de expediente documental a través de nuestra plataforma virtual de admisión.
                                 </p>
@@ -62,13 +62,13 @@
                                 <i class="ph ph-file-search text-2xl"></i>
                             </div>
                             <div class="flex-grow">
-                                <div class="mb-1">
-                                    <span class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-unac-info/90">
+                                <div class="flex items-center justify-between gap-4 mb-2">
+                                    <h3 class="text-2xl font-bold text-unac-text group-hover:text-white transition-colors">Evaluación y Resultados</h3>
+                                    <span class="inline-flex items-center gap-2 text-[10px] font-black uppercase tracking-[0.2em] text-unac-info/90 whitespace-nowrap">
                                         <span class="w-4 h-[1px] bg-unac-info/30"></span>
                                         Periodo: 20 - 25 Mayo
                                     </span>
                                 </div>
-                                <h3 class="text-2xl font-bold text-unac-text group-hover:text-white transition-colors mb-2">Evaluación y Resultados</h3>
                                 <p class="text-unac-muted text-sm leading-relaxed max-w-md">
                                     Examen de conocimientos, entrevista personal y publicación oficial de la relación de ingresantes.
                                 </p>

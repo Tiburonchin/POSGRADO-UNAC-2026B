@@ -135,6 +135,8 @@
     @apply hidden;
   }
 
+
+
   .glass-pill {
     background: var(--bg-surface);
     border: 1px solid var(--border-base);
@@ -151,10 +153,14 @@
     z-index: 12;
   }
 
-  /* Unified Hero Shells */
-  .hero-media-shell {
-    @apply overflow-hidden;
-    background: var(--bg-base);
+  .hero-media--bg,
+  .hero-overlay,
+  .hero-atmosphere {
+    transform-origin: center center;
+  }
+
+  .hero-content-shell {
+    min-height: calc(100dvh - (var(--header-h) + var(--header-gap)));
   }
 
   .hero-overlay {
@@ -168,6 +174,7 @@
     background: linear-gradient(180deg, rgba(1, 4, 10, 0.2) 0%, var(--bg-base) 100%);
     opacity: 0.85;
     mix-blend-mode: multiply;
+    will-change: opacity;
   }
 
   .hero-bg-image {

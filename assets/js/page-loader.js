@@ -167,11 +167,15 @@
       }
     }
 
-    // Reduced delay for scroll unlock and completion dispatch to make it feel faster
+    // Unlock scroll and refresh GSAP as soon as the loader is visually gone
     unlockTimeout = window.setTimeout(function () {
       unlockScroll();
+      // Force a refresh of all scroll triggers now that the scrollbar is back
+      if (window.ScrollTrigger) {
+        window.ScrollTrigger.refresh();
+      }
       window.requestAnimationFrame(dispatchLoaderComplete);
-    }, 2300);
+    }, 100); // Minimal delay to ensure visual transition is finished
   }
 
   function hideLoader() {
