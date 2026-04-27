@@ -16,30 +16,48 @@
 
   <div class="site-container relative z-20 flex min-h-[inherit] items-center pt-4 pb-8 md:pt-10 md:pb-10 lg:pt-4 lg:pb-12">
     <div class="hero-content max-w-[920px]" id="hero-home">
-      <p class="hero-kicker mb-5 inline-flex items-center gap-2 text-[14px] font-extrabold uppercase tracking-[0.22em] text-[color:var(--accent)] sm:text-[15px]">
-        <span class="h-1.5 w-1.5 rounded-full bg-[color:var(--accent)] shadow-[0_0_18px_rgba(255,193,7,0.8)]"></span>
-        Bienvenido
-      </p>
+      <div class="hero-kicker-wrapper mb-8">
+        <p class="hero-kicker inline-flex items-center gap-3 rounded-full border border-[color:var(--border-base)] bg-[color:var(--bg-soft)]/50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.3em] text-[color:var(--unac-yellow)] backdrop-blur-md transition-colors hover:border-[color:var(--border-bright)] hover:bg-[color:var(--bg-soft)] sm:text-[12px]">
+          <span class="relative flex h-2 w-2">
+            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--unac-yellow)] opacity-75"></span>
+            <span class="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--unac-yellow)] shadow-[0_0_8px_var(--unac-yellow)]"></span>
+          </span>
+          <span>Bienvenido</span>
+        </p>
+      </div>
 
-      <h1 class="hero-title mb-[7.25rem] text-balance font-black uppercase leading-[0.84] tracking-[-0.07em] text-white">
-        <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>Escuela de</span>
-        <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>Posgrado</span>
+      <h1 class="hero-title mb-8 text-balance text-white">
+        <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>ESCUELA DE</span>
+        <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>POSGRADO</span>
         <span class="hero-title-line hero-title-line--image-reveal block" data-hero-title-line-reveal>UNAC</span>
       </h1>
 
-      <p class="hero-description max-w-[62ch] text-sm font-semibold text-[rgba(238,242,255,0.9)] sm:text-base md:text-lg">
+      <p class="hero-description max-w-[58ch] text-sm font-semibold text-[rgba(238,242,255,0.9)] sm:text-base md:text-lg">
         Potenciamos lideres con vision global mediante programas de maestria,
         doctorado y especializacion orientados a la investigacion y la innovacion.
       </p>
 
-      <div class="hero-cta-group mt-[0.25rem] flex flex-wrap gap-3">
+      <div class="hero-cta-group mt-8 flex flex-wrap gap-3">
         <a href="#admision-proceso" class="hero-btn-primary">Iniciar postulacion</a>
         <a href="#admision-proceso" class="hero-btn-secondary">Explorar admision</a>
       </div>
 
-      <p class="hero-slogan mt-9 max-w-full text-xs font-semibold text-[rgba(233,237,246,0.94)] sm:mt-10 sm:text-sm">
-        <span class="hero-slogan-text hero-slogan-tag">Peru es la clave, y Posgrado UNAC es la llave</span>
-      </p>
+      <div class="hero-slogan mt-12 max-w-full">
+        <div class="inline-flex items-center gap-3 rounded-xl border border-[color:var(--border-base)] bg-[color:var(--bg-soft)]/40 px-5 py-3 shadow-[var(--shadow-sm)] backdrop-blur-md transition-all duration-300 hover:border-[color:var(--border-bright)] hover:bg-[color:var(--bg-soft)]/70 hover:shadow-[var(--shadow-md)]">
+          <div class="flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-[color:var(--bg-surface)] shadow-inner">
+            <i class="ph-fill ph-target text-[color:var(--unac-yellow)] text-sm opacity-90"></i>
+          </div>
+          <span class="hero-slogan-text text-xs font-medium tracking-wide text-[color:var(--text-muted)] sm:text-[13px]">Peru es la clave, y Posgrado UNAC es la llave</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Indicador de Scroll -->
+    <div class="hero-scroll absolute bottom-8 left-1/2 hidden -translate-x-1/2 flex-col items-center gap-2 md:flex">
+      <span class="text-[9px] font-black uppercase tracking-[0.4em] text-[color:var(--text-muted)] transition-colors duration-300 hover:text-[color:var(--unac-yellow)]">Scroll</span>
+      <div class="relative h-14 w-[2px] overflow-hidden rounded-full bg-[color:var(--border-base)]">
+        <div class="hero-scroll-line absolute left-0 top-0 h-1/2 w-full bg-gradient-to-b from-[color:var(--unac-yellow)] to-[color:var(--unac-yellow-dark)]"></div>
+      </div>
     </div>
   </div>
 </section>
