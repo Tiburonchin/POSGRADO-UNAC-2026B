@@ -39,6 +39,32 @@
                 });
             }
 
+            // 1b. HEADER ENTRANCE ANIMATION
+            gsap.from(".news-header > *", {
+                scrollTrigger: {
+                    trigger: "#noticias",
+                    start: "top 75%",
+                },
+                y: 30,
+                opacity: 0,
+                duration: 0.8,
+                stagger: 0.12,
+                ease: "power3.out"
+            });
+
+            // 1c. CAROUSEL ENTRANCE ANIMATION
+            gsap.from("#carousel-track", {
+                scrollTrigger: {
+                    trigger: "#noticias",
+                    start: "top 65%",
+                },
+                y: 40,
+                opacity: 0,
+                duration: 0.9,
+                ease: "power3.out"
+            });
+
+
             // 2. CAROUSEL CORE LOGIC
             // --------------------------------------------------
             

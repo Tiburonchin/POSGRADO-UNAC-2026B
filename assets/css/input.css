@@ -4,23 +4,54 @@
 
 @layer base {
   :root {
-    /* --- BRAND COLORS (Primary: Blue / Accent: Yellow) --- */
-    --unac-blue-light: #60a5fa;
-    --unac-blue: #3b82f6;
-    --unac-blue-dark: #1d4ed8;
-
-    --unac-yellow-light: #fde49b;
-    --unac-yellow: rgba(251, 202, 56, 1);
-    --unac-yellow-dark: #e1a705;
-
-    /* --- UI SURFACES (Single Unified Theme) --- */
-    --bg-base: #060a12;
-    --bg-surface: #0b1220;
-    --bg-soft: #121b2d;
+    /* --- DESIGN TOKENS: SEMANTIC COLORS --- */
+    --brand-primary: #3b82f6;
+    --brand-primary-light: #60a5fa;
+    --brand-primary-dark: #1d4ed8;
     
-    /* --- TEXT --- */
-    --text-base: #eef2ff;
-    --text-muted: rgba(238, 242, 255, 0.65);
+    --brand-accent: rgba(251, 202, 56, 1);
+    --brand-accent-light: #fde49b;
+    --brand-accent-dark: #e1a705;
+
+    /* --- DESIGN TOKENS: SURFACES --- */
+    --surface-base: #060a12;
+    --surface-elevated: #0b1220;
+    --surface-soft: #121b2d;
+    --surface-glass: rgba(11, 18, 32, 0.6);
+    
+    /* --- DESIGN TOKENS: TEXT --- */
+    --text-primary: #eef2ff;
+    --text-secondary: rgba(238, 242, 255, 0.65);
+    --text-inverse: #060a12;
+
+    /* --- ADVANCED TOKENS: GRADIENTS --- */
+    --grad-primary: linear-gradient(135deg, var(--brand-primary), var(--brand-primary-dark));
+    --grad-accent: linear-gradient(135deg, var(--brand-accent), var(--brand-accent-dark));
+    --grad-mixed: linear-gradient(135deg, var(--brand-accent), var(--brand-primary));
+    --grad-surface: linear-gradient(180deg, var(--surface-soft), var(--surface-base));
+
+    /* --- ADVANCED TOKENS: GLASSMORPHISM & OPACITY --- */
+    --glass-blur: 12px;
+    --glass-border: rgba(255, 255, 255, 0.1);
+    --op-5: 0.05;
+    --op-10: 0.1;
+    --op-20: 0.2;
+    --op-40: 0.4;
+    --op-60: 0.6;
+    --op-80: 0.8;
+
+    /* --- ADVANCED TOKENS: GLOWS & RADIANCE --- */
+    --glow-primary: 0 0 20px color-mix(in srgb, var(--brand-primary) 30%, transparent);
+    --glow-accent: 0 0 20px color-mix(in srgb, var(--brand-accent) 30%, transparent);
+    --glow-soft: 0 10px 40px rgba(2, 6, 23, 0.3);
+    
+    /* --- FLUID TYPOGRAPHY (Modern Scale) --- */
+    --fs-h1: clamp(2.5rem, 8vw, 6rem);
+    --fs-h2: clamp(2rem, 6vw, 4.5rem);
+    --fs-h3: clamp(1.5rem, 4vw, 3rem);
+    --fs-h4: clamp(1.25rem, 3vw, 2rem);
+    --fs-body: clamp(1rem, 1.1vw, 1.125rem);
+    --fs-small: 0.875rem;
     
     /* --- BORDERS & SHADOWS --- */
     --border-base: rgba(148, 163, 184, 0.15);
@@ -44,6 +75,19 @@
     --header-gap: 18px;
     --font-base: 'Manrope', system-ui, sans-serif;
     --font-display: 'Manrope', system-ui, sans-serif;
+
+    /* --- LEGACY ALIASES (Maintain compatibility) --- */
+    --unac-blue: var(--brand-primary);
+    --unac-blue-light: var(--brand-primary-light);
+    --unac-blue-dark: var(--brand-primary-dark);
+    --unac-yellow: var(--brand-accent);
+    --unac-yellow-light: var(--brand-accent-light);
+    --unac-yellow-dark: var(--brand-accent-dark);
+    --bg-base: var(--surface-base);
+    --bg-surface: var(--surface-elevated);
+    --bg-soft: var(--surface-soft);
+    --text-base: var(--text-primary);
+    --text-muted: var(--text-secondary);
   }
 
   html,
@@ -94,6 +138,11 @@
     overflow-x: clip;
   }
 
+  h1 { font-size: var(--fs-h1); }
+  h2 { font-size: var(--fs-h2); }
+  h3 { font-size: var(--fs-h3); }
+  h4 { font-size: var(--fs-h4); }
+
   h1,
   h2,
   h3,
@@ -101,16 +150,13 @@
     margin: 0;
     line-height: 1.08;
     letter-spacing: -0.03em;
-  }
-
-  h1,
-  h2 {
     font-family: var(--font-display);
     font-weight: 700;
   }
 
   p {
     margin: 0;
+    font-size: var(--fs-body);
     color: var(--text-muted);
   }
 }
@@ -138,11 +184,11 @@
 
 
   .glass-pill {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-base);
+    background: var(--surface-glass);
+    border: 1px solid var(--glass-border);
     box-shadow: var(--shadow-md);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
   }
 
   .hero--fullscreen {
@@ -594,12 +640,12 @@
 
 .marquee-container::before {
   left: 0;
-  background: linear-gradient(to right, var(--bg) 0%, transparent 100%);
+  background: linear-gradient(to right, var(--bg-base) 0%, transparent 100%);
 }
 
 .marquee-container::after {
   right: 0;
-  background: linear-gradient(to left, var(--bg) 0%, transparent 100%);
+  background: linear-gradient(to left, var(--bg-base) 0%, transparent 100%);
 }
 
 .marquee-track {
@@ -620,7 +666,7 @@
   align-items: center;
   justify-content: center;
   padding: 2.5rem;
-  box-shadow: var(--shadow-soft);
+  box-shadow: var(--shadow-sm);
   flex-shrink: 0;
   transform-origin: center center;
   will-change: transform;
@@ -629,7 +675,7 @@
 }
 
 .logo-card:hover {
-  box-shadow: var(--shadow-deep);
+  box-shadow: var(--shadow-lg);
 }
 
 .logo-card svg, .logo-card img {
@@ -645,7 +691,7 @@
 
 /* --- Ubicacion y Testimonios --- */
 .cinematic-glow {
-  background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--accent) 5%, transparent) 0%, transparent 60%);
+  background: radial-gradient(circle at 50% 50%, color-mix(in srgb, var(--brand-accent) calc(var(--op-10) * 100%), transparent) 0%, transparent 60%);
 }
 
 .dark-map iframe {
@@ -669,21 +715,21 @@
   transition: transform 0.4s var(--motion-ease), border-color 0.4s var(--motion-ease);
 }
 .review-card:hover {
-  border-color: color-mix(in srgb, var(--accent) 30%, transparent);
+  border-color: color-mix(in srgb, var(--unac-yellow) 30%, transparent);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  background: linear-gradient(135deg, var(--unac-yellow) 0%, var(--unac-yellow-dark) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .glass-card {
-  background: rgba(11, 18, 32, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid var(--border);
+  background: var(--surface-glass);
+  backdrop-filter: blur(var(--glass-blur));
+  -webkit-backdrop-filter: blur(var(--glass-blur));
+  border: 1px solid var(--glass-border);
 }
 
 .glow-orb {
@@ -779,7 +825,7 @@
 .content-section {
   position: relative;
   z-index: 10;
-  background-color: var(--bg);
+  background-color: var(--bg-base);
   /* Subtle inner glow to match the global background depth */
   /*background-image: radial-gradient(circle at 50% 0%, rgba(18, 27, 45, 0.5) 0%, transparent 80%);*/
   /* Sombra superior para separar del hero */
@@ -1121,4 +1167,98 @@
 }
 
 @layer utilities {
+  .line-clamp-3 {
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;  
+    overflow: hidden;
+  }
+
+  .card-border-overlay {
+    position: absolute;
+    inset: -1px;
+    border-radius: inherit;
+    padding: 2px;
+    background: linear-gradient(
+      var(--border-angle, 135deg), 
+      var(--brand-primary), 
+      var(--brand-accent), 
+      transparent 80%
+    );
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    opacity: 0;
+    pointer-events: none;
+    z-index: 100;
+    transform: translateZ(45px);
+  }
+
+  .glare-effect {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+      circle at var(--glare-x, 50%) var(--glare-y, 50%), 
+      rgba(255, 255, 255, 0.15) 0%, 
+      transparent 65%
+    );
+    pointer-events: none;
+    z-index: 110;
+    opacity: 0;
+    mix-blend-mode: overlay;
+    transform: translateZ(50px);
+  }
+  
+  /* Advanced Glow Utilities */
+  .glow-primary { box-shadow: var(--glow-primary); }
+  .glow-accent { box-shadow: var(--glow-accent); }
+  .glow-text-primary { text-shadow: 0 0 10px color-mix(in srgb, var(--brand-primary) 50%, transparent); }
+  .glow-text-accent { text-shadow: 0 0 10px color-mix(in srgb, var(--brand-accent) 50%, transparent); }
+
+  /* Gradient Utilities */
+  .bg-grad-primary { background: var(--grad-primary); }
+  .bg-grad-accent { background: var(--grad-accent); }
+  .bg-grad-mixed { background: var(--grad-mixed); }
+  .text-grad-mixed {
+    background: var(--grad-mixed);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
+  /* Opacity Helpers */
+  .op-5 { opacity: var(--op-5); }
+  .op-10 { opacity: var(--op-10); }
+  .op-20 { opacity: var(--op-20); }
+  .op-40 { opacity: var(--op-40); }
+
+  .card-3d-wrapper {
+    perspective: 1000px;
+    transform-style: preserve-3d;
+  }
+
+  .shimmer-block {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .shimmer-block::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.04) 40%,
+      rgba(255, 255, 255, 0.08) 50%,
+      rgba(255, 255, 255, 0.04) 60%,
+      transparent 100%
+    );
+    animation: shimmer 1.8s ease-in-out infinite;
+  }
+
+  @keyframes shimmer {
+    0%   { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
 }

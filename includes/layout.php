@@ -44,7 +44,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Semi+Condensed:wght@700;800;900&family=Keania+One&family=Azeret+Mono:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Rakkas&family=Saira+Stencil+One&family=Titan+One&display=swap" rel="stylesheet" />
   <?php if ($isHomePage): ?>
-  <link rel="preload" as="image" href="img/epg-unac-fachada.png" />
+  <link rel="preload" as="image" href="img/hero/fachada.webp" imagesrcset="img/hero/fachada.webp" type="image/webp" />
   <?php endif; ?>
   <link rel="stylesheet" href="assets/css/output.css" />
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
@@ -84,6 +84,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <script defer src="assets/js/modules/hero-animations.js"></script>
   <script defer src="assets/js/modules/admision-animations.js"></script>
   <script defer src="assets/js/modules/talento-animations.js"></script>
+  <script defer src="assets/js/modules/programas-animations.js"></script>
   <script defer src="assets/js/modules/ubicacion-animations.js"></script>
   <script defer src="assets/js/modules/noticias-animations.js"></script>
   <?php endif; ?>

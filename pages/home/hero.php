@@ -1,14 +1,17 @@
 <section class="hero hero--fullscreen relative isolate overflow-hidden" id="inicio">
   <figure class="hero-media hero-media--bg absolute inset-0 z-0">
-    <img
-      src="img/epg-unac-fachada.png"
-      alt="Fachada de la Escuela de Posgrado UNAC"
-      class="hero-bg-image h-full w-full object-cover object-center"
-      fetchpriority="high"
-      decoding="async"
-      width="1920"
-      height="1080"
-    />
+    <picture>
+      <source srcset="img/hero/fachada.webp" type="image/webp" />
+      <img
+        src="img/epg-unac-fachada.png"
+        alt="Fachada de la Escuela de Posgrado UNAC"
+        class="hero-bg-image h-full w-full object-cover object-center"
+        fetchpriority="high"
+        decoding="async"
+        width="1920"
+        height="1080"
+      />
+    </picture>
   </figure>
 
   <div class="hero-overlay pointer-events-none absolute inset-0 z-10"></div>
