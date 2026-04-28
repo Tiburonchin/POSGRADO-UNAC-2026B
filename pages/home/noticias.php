@@ -30,7 +30,7 @@
             </div>
 
             <!-- CONTENEDOR PRINCIPAL DEL BLOQUE (CARRUSEL) -->
-            <div class="bg-bg-surface border border-border-base rounded-3xl shadow-unac-lg main-block-container" id="carousel-track">
+            <div class="bg-surface-elevated/30 backdrop-blur-xl border border-border-base/50 rounded-3xl shadow-unac-lg main-block-container" id="carousel-track">
             
             <!-- Tarjeta 1 -->
             <div class="news-card flex flex-col p-6 md:p-8 hover:bg-bg-soft/40 cursor-pointer group border-r border-border-base">

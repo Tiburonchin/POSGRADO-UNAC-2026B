@@ -1,9 +1,9 @@
 (function () {
   'use strict';
 
-  var MIN_VISIBLE_MS = 2800; 
-  var FAILSAFE_HIDE_MS = 12000;
-  var OVERLAY_EXIT_DURATION_MS = 0.8;
+  var MIN_VISIBLE_MS = 2200; 
+  var FAILSAFE_HIDE_MS = 10000;
+  var OVERLAY_EXIT_DURATION_MS = 0.6;
   var SCROLLBAR_COMPENSATION_VAR = '--loader-scrollbar-compensation';
   
   var loader = document.getElementById('page-loader');
@@ -117,27 +117,27 @@
 
         if (phrase) {
           exitTimeline.to(phrase, {
-            duration: 0.6,
+            duration: 0.45,
             autoAlpha: 0,
-            y: 20,
+            y: 15,
             ease: 'power2.in'
           });
         }
-
+    
         exitTimeline.to(letters, {
-          duration: 0.5,
+          duration: 0.4,
           autoAlpha: 0,
-          y: -25,
-          scale: 1.1,
-          stagger: 0.08,
+          y: -20,
+          scale: 1.05,
+          stagger: 0.06,
           ease: 'power4.in'
-        }, "-=0.2");
-
+        }, "-=0.25");
+    
         exitTimeline.to(loader, {
           duration: OVERLAY_EXIT_DURATION_MS,
           autoAlpha: 0,
-          ease: 'power3.inOut'
-        }, "-=0.3");
+          ease: 'power2.inOut'
+        }, "-=0.25");
 
       } else {
         completeHide();

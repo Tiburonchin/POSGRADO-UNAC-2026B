@@ -8,7 +8,16 @@
                 <div class="admision-text flex flex-col justify-center">
                     
                     <!-- Top Label -->
-                    <p class="text-unac-muted text-sm tracking-widest mb-4 uppercase">Admisión 2026</p>
+                    <!-- Top Label (Hero Style) -->
+                    <div class="hero-kicker-wrapper mb-8">
+                        <p class="hero-kicker inline-flex items-center gap-3 rounded-full border border-[color:var(--border-base)] bg-[color:var(--bg-soft)]/50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.3em] text-[color:var(--unac-yellow)] backdrop-blur-md transition-colors hover:border-[color:var(--border-bright)] hover:bg-[color:var(--bg-soft)] sm:text-[12px]">
+                            <span class="relative flex h-2 w-2">
+                                <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-[color:var(--unac-yellow)] opacity-75"></span>
+                                <span class="relative inline-flex h-2 w-2 rounded-full bg-[color:var(--unac-yellow)] shadow-[0_0_8px_var(--unac-yellow)]"></span>
+                            </span>
+                            <span>Admisión 2026</span>
+                        </p>
+                    </div>
 
                     <!-- Headline -->
                     <h2 class="text-5xl md:text-6xl font-light text-unac-text leading-tight tracking-tight mb-6">
@@ -103,13 +112,13 @@
                     <div class="absolute inset-0 bg-gradient-to-br from-unac-info via-unac-info/80 to-unac-accent rounded-2xl transform -translate-x-4 translate-y-6 md:-translate-x-8 md:translate-y-8 opacity-90 shadow-deep"></div>
                     
                     <!-- Contenedor Principal (Reemplaza el contenido de este div con tu etiqueta <img>) -->
-                    <div class="absolute inset-0 bg-unac-elevated rounded-2xl border border-unac-border flex flex-col items-center justify-center overflow-hidden z-10">
+                    <div class="absolute inset-0 bg-surface-elevated/30 backdrop-blur-xl rounded-2xl flex flex-col items-center justify-center overflow-hidden z-10">
                         
                         <!-- PLACEHOLDER TEMPORAL -->
-                        <i class="ph ph-image-square text-6xl text-unac-muted/30 mb-4"></i>
-                        <p class="text-unac-muted text-sm text-center px-6">
-                            Reemplaza este contenedor<br/>con tu imagen del dashboard
-                        </p>
+                        <img src="img/SIS-LOGIN-V4.png" 
+                             alt="Plataforma de Admisión UNAC" 
+                             class="w-full h-full object-cover shadow-2xl"
+                             style="image-rendering: -webkit-optimize-contrast; image-rendering: crisp-edges;">
                         
                         <!-- Elemento UI simulado temporalmente -->
                         <div class="absolute bottom-6 left-6 right-6 p-4 rounded-xl bg-unac-elevated/80 border border-unac-border/50 backdrop-blur-md">

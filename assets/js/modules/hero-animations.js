@@ -563,150 +563,150 @@
       setupHeroTitleImageRevealSync();
 
       var timeline = gsap.timeline({
-        delay: 0.45,
+        delay: 0.2,
         defaults: { overwrite: 'auto', ease: 'power2.out' }
       });
 
         timeline.fromTo(headerMain, {
           autoAlpha: 0,
-          y: -18,
-          scale: 0.985,
-          filter: 'blur(12px)'
+          y: -15,
+          scale: 0.99,
+          filter: 'blur(10px)'
         }, {
           autoAlpha: 1,
           y: 0,
           scale: 1,
           filter: 'blur(0px)',
-          duration: isMobile ? 0.85 : 1.1,
+          duration: isMobile ? 0.7 : 0.85,
           ease: 'power3.out'
         });
 
       if (headerBrand) {
         timeline.fromTo(headerBrand, {
           autoAlpha: 0,
-          y: -12,
-          filter: 'blur(6px)'
+          y: -10,
+          filter: 'blur(5px)'
         }, {
           autoAlpha: 1,
           y: 0,
           filter: 'blur(0px)',
-          duration: isMobile ? 0.5 : 0.65
-        }, '-=0.7');
+          duration: isMobile ? 0.4 : 0.55
+        }, '-=0.6');
       }
 
       if (isMobile) {
         if (mobileHeaderItems.length) {
           timeline.fromTo(mobileHeaderItems, {
             autoAlpha: 0,
-            y: -10,
-            filter: 'blur(6px)'
+            y: -8,
+            filter: 'blur(4px)'
           }, {
             autoAlpha: 1,
             y: 0,
             filter: 'blur(0px)',
-            duration: 0.45,
-            stagger: 0.08
-          }, '-=0.4');
+            duration: 0.35,
+            stagger: 0.06
+          }, '-=0.35');
         }
       } else {
         if (headerNavItems.length) {
           timeline.fromTo(headerNavItems, {
             autoAlpha: 0,
-            y: -10,
-            filter: 'blur(6px)'
+            y: -8,
+            filter: 'blur(4px)'
           }, {
             autoAlpha: 1,
             y: 0,
             filter: 'blur(0px)',
-            duration: 0.55,
-            stagger: 0.06
-          }, '-=0.5');
+            duration: 0.45,
+            stagger: 0.05
+          }, '-=0.45');
         }
 
         if (headerDesktopCta) {
           timeline.fromTo(headerDesktopCta, {
             autoAlpha: 0,
-            y: -10,
-            filter: 'blur(6px)'
+            y: -8,
+            filter: 'blur(4px)'
           }, {
             autoAlpha: 1,
             y: 0,
             filter: 'blur(0px)',
-            duration: 0.5
-          }, '-=0.45');
+            duration: 0.4
+          }, '-=0.4');
         }
       }
 
       timeline.fromTo('.hero-kicker', {
         autoAlpha: 0,
-        y: 12,
-        filter: 'blur(8px)'
+        y: 10,
+        filter: 'blur(6px)'
       }, {
         autoAlpha: 1,
         y: 0,
         filter: 'blur(0px)',
-        duration: isMobile ? 0.55 : 0.65
-      }, '-=0.1');
+        duration: isMobile ? 0.45 : 0.55
+      }, '-=0.15');
 
       timeline.fromTo(titleLines, {
         autoAlpha: 0,
-        y: isMobile ? 30 : 34,
-        filter: 'blur(14px) drop-shadow(0px 8px 16px rgba(0,0,0,0.8)) brightness(1.2) saturate(1.2)'
+        y: isMobile ? 25 : 30,
+        filter: 'blur(12px) drop-shadow(0px 8px 16px rgba(0,0,0,0.8)) brightness(1.2) saturate(1.2)'
       }, {
         autoAlpha: 1,
         y: 0,
         filter: 'blur(0px) drop-shadow(0px 8px 16px rgba(0,0,0,0.8)) brightness(1.2) saturate(1.2)',
-        duration: isMobile ? 0.9 : 1.2,
-        stagger: isMobile ? 0.1 : 0.14,
+        duration: isMobile ? 0.75 : 0.95,
+        stagger: isMobile ? 0.08 : 0.12,
         ease: 'power3.out'
-      }, '-=0.35');
+      }, '-=0.3');
 
       if (heroTitle) {
         timeline.fromTo(heroTitle, {
-          autoAlpha: 0.94
+          autoAlpha: 0.96
         }, {
           autoAlpha: 1,
-          duration: 0.6,
+          duration: 0.5,
           ease: 'power3.out'
         }, '<');
       }
 
       timeline.fromTo('.hero-description', {
         autoAlpha: 0,
-        y: 14,
-        filter: 'blur(8px)'
+        y: 12,
+        filter: 'blur(6px)'
       }, {
         autoAlpha: 1,
         y: 0,
         filter: 'blur(0px)',
-        duration: isMobile ? 0.6 : 0.8
-      }, '-=0.4');
+        duration: isMobile ? 0.5 : 0.65
+      }, '-=0.35');
 
       if (ctaItems.length) {
         timeline.fromTo(ctaItems, {
           autoAlpha: 0,
-          y: 14,
-          filter: 'blur(8px)'
+          y: 12,
+          filter: 'blur(6px)'
         }, {
           autoAlpha: 1,
           y: 0,
           filter: 'blur(0px)',
-          duration: isMobile ? 0.5 : 0.7,
-          stagger: isMobile ? 0.1 : 0.15
-        }, '-=0.45');
+          duration: isMobile ? 0.4 : 0.55,
+          stagger: isMobile ? 0.08 : 0.12
+        }, '-=0.4');
       }
 
       timeline
         .fromTo('.hero-slogan', {
           autoAlpha: 0,
-          y: 14,
-          filter: 'blur(8px)'
+          y: 12,
+          filter: 'blur(6px)'
         }, {
           autoAlpha: 1,
           y: 0,
           filter: 'blur(0px)',
-          duration: isMobile ? 0.55 : 0.75
-        }, '-=0.3')
+          duration: isMobile ? 0.45 : 0.65
+        }, '-=0.25')
         .add(function () {
           startInfoRotation(isMobile, false);
           setupSloganHoverScramble();

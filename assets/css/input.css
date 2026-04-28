@@ -638,15 +638,6 @@
   pointer-events: none;
 }
 
-.marquee-container::before {
-  left: 0;
-  background: linear-gradient(to right, var(--bg-base) 0%, transparent 100%);
-}
-
-.marquee-container::after {
-  right: 0;
-  background: linear-gradient(to left, var(--bg-base) 0%, transparent 100%);
-}
 
 .marquee-track {
   display: flex;
@@ -825,7 +816,7 @@
 .content-section {
   position: relative;
   z-index: 10;
-  background-color: var(--bg-base);
+  /*background-color: var(--bg-base);*/
   /* Subtle inner glow to match the global background depth */
   /*background-image: radial-gradient(circle at 50% 0%, rgba(18, 27, 45, 0.5) 0%, transparent 80%);*/
   /* Sombra superior para separar del hero */

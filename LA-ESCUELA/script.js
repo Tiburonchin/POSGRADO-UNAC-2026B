@@ -166,7 +166,7 @@ stats.forEach(stat => {
     onEnter: () => {
       gsap.to(counter, {
         val: target,
-        duration: 2.5,
+        duration: 1.8,
         ease: "power2.out",
         onUpdate: () => {
           stat.innerText = Math.floor(counter.val);
@@ -190,7 +190,7 @@ certWrappers.forEach((wrapper, index) => {
     opacity: 1,
     rotationY: 0, 
     z: 0,
-    duration: 1.8,
+    duration: 1.2,
     ease: "power3.out",
     scrollTrigger: {
       trigger: wrapper,
