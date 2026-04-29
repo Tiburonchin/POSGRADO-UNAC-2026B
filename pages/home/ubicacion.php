@@ -4,60 +4,72 @@
  */
 ?>
 
-<section id="location-reviews-section" class="relative py-32 cinematic-glow overflow-hidden">
+<section id="location-reviews-section" class="relative py-32 overflow-hidden">
     
-    <!-- Fondo decorativo -->
-    <div class="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0zNiAzNHYtNGgtMnY0aC00djJoNHY0aDJ2LTRoNHYtMmgtNHptMC0zMFYwaC0ydjRoLTR2Mmg0djRoMnYtNGg0VjRoLTR6bS0zMCAwVjBoLTJ2NGgtNHYyaDR2NGgydi00aDRWNGgtNHpNMzYgNjR2LTRoLTJ2NGgtNHYyaDR2NGgydi00aDR2LTJoLTR6bS0zMCAwdj00aC0ydjRoLTR2Mmg0djRoMnYtNGg0di0yaC00eiIgc3Ryb2tlPSIjZmZmZmZmIiBzdHJva2Utb3BhY2l0eT0iMC4wMyIvPjwvZz48L3N2Zz4=')] opacity-50 z-0"></div>
-
     <div class="site-container relative z-10">
         
-        <!-- Cabecera de la sección -->
-        <div class="text-center max-w-3xl mx-auto mb-20">
-            <h2 class="cinematic-title text-4xl md:text-5xl lg:text-6xl font-black text-[color:var(--text)] tracking-tight mb-6">
-                El Centro de tu <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-[color:var(--accent)] to-yellow-200">Crecimiento Profesional</span>
-            </h2>
-            <p class="cinematic-text text-[color:var(--text-muted)] text-lg">
-                Descubre dónde se forjan los líderes del mañana y lo que nuestra comunidad dice sobre la experiencia de posgrado en la UNAC.
-            </p>
+        <!-- Cabecera de la sección (Layout asimétrico premium - Invertido) -->
+        <div class="flex flex-col lg:flex-row justify-between items-end gap-12 mb-24">
+            
+            <!-- Lado Izquierdo: Badge y Título -->
+            <div class="lg:w-7/12">
+                <div class="hero-kicker-wrapper mb-6 flex justify-start">
+                    <div class="hero-kicker inline-flex items-center gap-3 rounded-full border border-border-base bg-bg-soft/50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.3em] text-unac-yellow backdrop-blur-md transition-colors hover:border-border-bright hover:bg-bg-soft sm:text-[12px]">
+                        <span class="relative flex h-2 w-2">
+                            <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-unac-yellow opacity-75"></span>
+                            <span class="relative inline-flex h-2 w-2 rounded-full bg-unac-yellow shadow-[0_0_8px_rgba(251,202,56,0.8)]"></span>
+                        </span>
+                        <span>Ubicación y Comunidad</span>
+                    </div>
+                </div>
+
+                <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold text-text-base tracking-tight leading-[1.1]">
+                    El epicentro de la <br><span class="text-transparent bg-clip-text bg-gradient-to-r from-unac-yellow via-unac-yellow-dark to-unac-yellow">excelencia académica</span>
+                </h2>
+            </div>
+
+            <!-- Lado Derecho: Descripción -->
+            <div class="lg:w-5/12">
+                <p class="text-text-muted text-base md:text-lg leading-relaxed border-l-2 border-unac-yellow/30 pl-8">
+                    Visita nuestra sede principal y descubre el entorno donde se forjan los líderes del país. Conoce las experiencias reales de nuestra comunidad global.
+                </p>
+            </div>
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-start">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
             
             <!-- Columna Izquierda: MAPA -->
             <div class="lg:col-span-7 relative group map-wrapper perspective-1000">
-                <!-- Efecto de resplandor -->
-                <div class="absolute -inset-1 bg-gradient-to-r from-[color:var(--accent)]/20 to-blue-500/20 rounded-3xl blur-xl opacity-0 group-hover:opacity-100 transition duration-1000 group-hover:duration-200"></div>
+                <!-- Efecto de resplandor optimizado -->
+                <div class="absolute -inset-4 bg-gradient-to-r from-[color:var(--accent)]/10 to-blue-500/10 rounded-[2rem] blur-2xl opacity-0 group-hover:opacity-100 transition duration-700 pointer-events-none"></div>
                 
-                <div class="map-card relative bg-[color:var(--bg-elevated)] border border-white/10 rounded-3xl overflow-hidden shadow-2xl h-[500px] lg:h-[600px] transform-gpu">
-                    <!-- Etiqueta Flotante -->
-                    <div class="absolute top-6 left-6 z-20 bg-[color:var(--bg)]/80 backdrop-blur-md border border-white/10 px-4 py-3 rounded-2xl shadow-lg flex items-center gap-3">
-                        <div class="w-10 h-10 rounded-full bg-[color:var(--accent)]/20 flex items-center justify-center border border-[color:var(--accent)]/30">
-                            <svg class="w-5 h-5 text-[color:var(--accent)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <div class="map-card relative bg-[color:var(--bg-elevated)] border border-white/10 rounded-[2rem] overflow-hidden shadow-2xl h-[500px] lg:h-[600px] transform-gpu">
+                    <!-- Etiqueta Flotante Premium -->
+                    <div class="absolute bottom-8 left-8 z-20 bg-[color:var(--bg)]/40 backdrop-blur-xl border border-white/10 p-1.5 pr-6 rounded-full shadow-2xl flex items-center gap-4 group/label transition-transform hover:scale-105">
+                        <div class="w-11 h-11 rounded-full bg-[color:var(--accent)] flex items-center justify-center shadow-lg shadow-[color:var(--accent)]/20">
+                            <svg class="w-5 h-5 text-slate-900" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2.5"><path stroke-linecap="round" stroke-linejoin="round" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
                         </div>
                         <div>
-                            <p class="text-white font-bold text-sm">Sede Posgrado UNAC</p>
-                            <p class="text-[color:var(--text-muted)] text-xs">Callao, Perú</p>
+                            <p class="text-white font-bold text-sm tracking-tight">Sede Posgrado UNAC</p>
+                            <p class="text-white/60 text-[10px] uppercase tracking-widest font-medium">Callao, Perú</p>
                         </div>
                     </div>
 
-                    <!-- Iframe de Google Maps -->
+                    <!-- Iframe de Google Maps con Filtro Cinematográfico -->
                     <div class="dark-map w-full h-full">
                         <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3902.6683887019623!2d-77.11903672412856!3d-12.066343542263857!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cb79c50b73cb%3A0xc6cf604618e4bcbd!2sUniversidad%20Nacional%20del%20Callao!5e0!3m2!1ses!2spe!4v1700000000000!5m2!1ses!2spe" 
-                            class="w-full h-full border-0" 
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.743110991196!2d-77.1198236240203!3d-12.061214042172703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cb910984762b%3A0x104327c627fa29ad!2sUniversidad%20Nacional%20del%20Callao!5e0!3m2!1ses!2spe!4v1777482384661!5m2!1ses!2spe" 
+                            class="w-full h-full border-0 grayscale-[0.3] contrast-[1.1]" 
                             allowfullscreen="" 
                             loading="lazy" 
                             referrerpolicy="no-referrer-when-downgrade">
                         </iframe>
                     </div>
-
-                    <!-- Gradiente superpuesto inferior -->
-                    <div class="absolute bottom-0 left-0 w-full h-24 bg-gradient-to-t from-[color:var(--bg-elevated)] to-transparent pointer-events-none"></div>
                 </div>
             </div>
 
             <!-- Columna Derecha: TESTIMONIOS -->
-            <div class="lg:col-span-5 flex flex-col gap-6 pt-4 lg:pt-12 testimonials-wrapper">
+            <div class="lg:col-span-5 flex flex-col gap-6 testimonials-wrapper relative">
                 
                 <!-- Tarjeta de Testimonio 1 -->
                 <div class="review-card bg-[color:var(--bg-elevated)]/80 backdrop-blur-sm border border-white/5 p-6 rounded-2xl shadow-lg relative group">
@@ -122,8 +134,7 @@
                         <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                     </a>
                 </div>
-
-            </div>
-        </div>
-    </div>
+            </div> <!-- End col-right -->
+        </div> <!-- End grid -->
+    </div> <!-- End site-container -->
 </section>

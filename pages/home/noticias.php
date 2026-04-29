@@ -5,31 +5,62 @@
 
     <div class="max-w-[1400px] mx-auto px-6 relative z-10">
         
-        <!-- Header de la Sección -->
         <div class="max-w-3xl mb-16 news-header">
-            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 tracking-tight">
-                <span class="text-transparent bg-clip-text bg-gradient-to-r from-unac-yellow via-unac-yellow-dark to-unac-yellow">NOTICIAS Y EVENTOS</span>
+
+            <!-- Badge de sección (mismo estilo hero-kicker de admisión) -->
+            <div class="hero-kicker-wrapper mb-8">
+                <div class="hero-kicker inline-flex items-center gap-3 rounded-full border border-border-base bg-bg-soft/50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.3em] text-unac-yellow backdrop-blur-md transition-colors hover:border-border-bright hover:bg-bg-soft sm:text-[12px]">
+                    <span class="relative flex h-2 w-2">
+                        <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-unac-yellow opacity-75"></span>
+                        <span class="relative inline-flex h-2 w-2 rounded-full bg-unac-yellow shadow-[0_0_8px_rgba(251,202,56,0.8)]"></span>
+                    </span>
+                    <span>Noticias y eventos</span>
+                </div>
+            </div>
+
+            <h2 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-5 tracking-tight leading-none">
+                Lo que <span class="text-transparent bg-clip-text bg-gradient-to-r from-unac-yellow via-unac-yellow-dark to-unac-yellow">está pasando</span><br>
+                <span class="text-text-subtle text-3xl md:text-4xl lg:text-5xl font-semibold">en nuestra comunidad</span>
             </h2>
-            <p class="text-text-muted text-lg md:text-xl leading-relaxed">
-                Explora los hitos académicos e investigaciones que definen el futuro de nuestra Escuela de Posgrado.
+
+            <p class="text-text-muted text-base md:text-lg leading-relaxed max-w-xl">
+                Hitos académicos, investigaciones de vanguardia y eventos que definen el rumbo de nuestra 
+                <span class="text-text-base font-medium">Escuela de Posgrado</span>.
             </p>
         </div>
 
         <!-- CONTENEDOR RELATIVO PARA EL CARRUSEL Y NAVEGACIÓN -->
         <div class="relative group/carousel">
-            
-            <!-- Navegación Lateral Derecha (Floating Dock) -->
-            <div class="absolute -right-4 md:-right-8 top-1/2 -translate-y-1/2 z-30 flex flex-col gap-1 p-1.5 bg-bg-surface/80 backdrop-blur-2xl border border-border-base rounded-2xl shadow-unac-md opacity-0 group-hover/carousel:opacity-100 md:opacity-100 transition-opacity duration-300">
-                <button id="btn-prev" class="w-12 h-12 rounded-xl text-text-base hover:bg-unac-yellow/20 hover:text-unac-yellow transition-all duration-300 flex items-center justify-center group/btn">
-                    <i class="ph-bold ph-caret-left text-xl group-hover/btn:-translate-x-1 transition-transform"></i>
-                </button>
-                <div class="h-[1px] w-8 mx-auto bg-border-base"></div>
-                <button id="btn-next" class="w-12 h-12 rounded-xl text-text-base hover:bg-unac-yellow/20 hover:text-unac-yellow transition-all duration-300 flex items-center justify-center group/btn">
-                    <i class="ph-bold ph-caret-right text-xl group-hover/btn:translate-x-1 transition-transform"></i>
-                </button>
+
+            <!-- ── Barra de navegación superior: contador + flechas ── -->
+            <div class="flex items-center justify-between mb-5" id="news-nav-bar">
+                <!-- Indicador de posición -->
+                <p class="text-[11px] font-bold uppercase tracking-[0.2em] text-text-muted/60">
+                    Desliza para ver más
+                </p>
+                <!-- Botones de flecha -->
+                <div class="flex items-center gap-2">
+                    <button id="btn-prev"
+                        class="group/btn w-11 h-11 rounded-xl flex items-center justify-center
+                               border border-border-base bg-bg-surface/60 backdrop-blur-md
+                               text-text-muted hover:text-unac-yellow hover:border-unac-yellow/50
+                               hover:bg-unac-yellow/10 hover:shadow-[0_0_18px_-4px_rgba(var(--color-unac-yellow,255,200,0),0.35)]
+                               transition-all duration-300 cursor-pointer">
+                        <i class="ph-bold ph-arrow-left text-base group-hover/btn:-translate-x-0.5 transition-transform duration-200"></i>
+                    </button>
+                    <div class="w-[1px] h-5 bg-border-base/60 mx-1"></div>
+                    <button id="btn-next"
+                        class="group/btn w-11 h-11 rounded-xl flex items-center justify-center
+                               border border-border-base bg-bg-surface/60 backdrop-blur-md
+                               text-text-muted hover:text-unac-yellow hover:border-unac-yellow/50
+                               hover:bg-unac-yellow/10 hover:shadow-[0_0_18px_-4px_rgba(var(--color-unac-yellow,255,200,0),0.35)]
+                               transition-all duration-300 cursor-pointer">
+                        <i class="ph-bold ph-arrow-right text-base group-hover/btn:translate-x-0.5 transition-transform duration-200"></i>
+                    </button>
+                </div>
             </div>
 
-            <!-- CONTENEDOR PRINCIPAL DEL BLOQUE (CARRUSEL) -->
+
             <div class="bg-surface-elevated/30 backdrop-blur-xl border border-border-base/50 rounded-3xl shadow-unac-lg main-block-container" id="carousel-track">
             
             <!-- Tarjeta 1 -->
@@ -126,12 +157,16 @@
             </div><!-- /carousel-track -->
         </div><!-- /relative group/carousel -->
 
-        <!-- Link "Explorar todas las publicaciones" -->
-        <div class="mt-12 flex justify-center">
-            <a href="#" class="group relative inline-flex items-center gap-2 text-text-base/80 text-base font-semibold py-3 px-8 rounded-full border border-border-base bg-bg-surface/50 backdrop-blur-md hover:text-unac-yellow hover:border-unac-yellow/50 transition-all duration-300 shadow-unac-sm">
+        <!-- CTA: Ver todas las publicaciones -->
+        <div class="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
+            <a href="#" class="group relative inline-flex items-center gap-3 text-sm font-bold py-3.5 px-8 rounded-full overflow-hidden transition-all duration-300
+                border border-unac-yellow/40 bg-unac-yellow/5 hover:bg-unac-yellow/15 hover:border-unac-yellow/70 hover:shadow-[0_0_28px_-4px_rgba(var(--color-unac-yellow),0.4)]
+                text-text-base hover:text-unac-yellow backdrop-blur-md">
+                <i class="ph-fill ph-newspaper text-unac-yellow text-base"></i>
                 <span>Explorar todas las publicaciones</span>
-                <i class="ph-bold ph-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                <i class="ph-bold ph-arrow-right text-sm group-hover:translate-x-1.5 transition-transform duration-300"></i>
             </a>
+            <span class="text-[11px] text-text-muted/60 tracking-widest uppercase">· 30+ artículos disponibles</span>
         </div>
 
     </div>

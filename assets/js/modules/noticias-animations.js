@@ -1,6 +1,8 @@
 /**
- * NOTICIAS SECTION ANIMATIONS (V4 - Ultra Smooth Flip Carousel)
- * Circular carousel with consecutive flow and premium Flip transitions (Fade & Shrink).
+ * NOTICIAS SECTION ANIMATIONS (V6 - Admision Pattern)
+ * Entrada: gsap.timeline toggleActions play/reverse, sin scrub — igual que admision.
+ * Salida:  scrub desde bottom 40% → bottom 0%, y:-30 scale:0.98 — idéntico a admision.
+ * Carousel: Flip circular con onEnter/onLeave premium.
  */
 (function() {
     'use strict';
@@ -39,30 +41,82 @@
                 });
             }
 
-            // 1b. HEADER ENTRANCE ANIMATION
-            gsap.from(".news-header > *", {
+            // ─── GUARD: respeta prefers-reduced-motion ───────────────────
+            const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduceMotion) return;
+
+            // ─── REFS de contenido ───────────────────────────────────────────
+            const badge        = section.querySelector('.hero-kicker-wrapper');
+            const heading      = section.querySelector('.news-header h2');
+            const description  = section.querySelector('.news-header p');
+            const navBar       = section.querySelector('#news-nav-bar');
+            const ctaBlock     = section.querySelector('.mt-14');
+            const innerCont    = section.querySelector('.max-w-\\[1400px\\]'); 
+
+            // ─── ANIMACIÓN DE ENTRADA ────────────────────────────────────────
+            // Igual que admision: toggleActions play/reverse, sin scrub.
+            // Retrasado a 45% para que ocurra cuando la sección esté más centrada y sea apreciable.
+            const tlEntrance = gsap.timeline({
                 scrollTrigger: {
-                    trigger: "#noticias",
-                    start: "top 75%",
-                },
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.12,
-                ease: "power3.out"
+                    trigger: section,
+                    start: 'top 45%', 
+                    toggleActions: 'play none none reverse'
+                }
             });
 
-            // 1c. CAROUSEL ENTRANCE ANIMATION
-            gsap.from("#carousel-track", {
-                scrollTrigger: {
-                    trigger: "#noticias",
-                    start: "top 65%",
-                },
-                y: 40,
+            // Badge label
+            if (badge) {
+                tlEntrance.from(badge, {
+                    y: 20,
+                    opacity: 0,
+                    duration: 0.5, // Reducido de 0.8
+                    ease: 'power3.out'
+                });
+            }
+
+            // H2 + párrafo
+            tlEntrance.from([heading, description].filter(Boolean), {
+                y: 25,
                 opacity: 0,
-                duration: 0.9,
-                ease: "power3.out"
-            });
+                duration: 0.5,
+                stagger: 0.08, // Reducido de 0.12
+                ease: 'power3.out'
+            }, '-=0.4');
+
+            // Barra de nav
+            if (navBar) {
+                tlEntrance.from(navBar, {
+                    x: -15,
+                    opacity: 0,
+                    duration: 0.4,
+                    ease: 'power2.out'
+                }, '-=0.3');
+            }
+
+            // Carrusel + CTA
+            tlEntrance.from([track, ctaBlock].filter(Boolean), {
+                y: 15,
+                opacity: 0,
+                duration: 0.5,
+                stagger: 0.08,
+                ease: 'power2.out'
+            }, '-=0.3');
+
+            // ─── ANIMACIÓN DE SALIDA ─────────────────────────────────────────
+            if (innerCont) {
+                gsap.to(innerCont, {
+                    opacity: 0,
+                    y: -20,
+                    scale: 0.99,
+                    ease: 'none',
+                    scrollTrigger: {
+                        trigger: section,
+                        start: 'bottom 35%', // Salida más rápida
+                        end:   'bottom 5%',
+                        scrub: true
+                    }
+                });
+            }
 
 
             // 2. CAROUSEL CORE LOGIC

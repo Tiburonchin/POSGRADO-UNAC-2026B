@@ -90,6 +90,34 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <?php endif; ?>
   <script defer src="assets/js/modules/footer-animations.js"></script>
   <script defer src="assets/js/modules/background-ambience.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        gestureOrientation: 'vertical',
+        smoothWheel: true,
+        wheelMultiplier: 1,
+        smoothTouch: false,
+        touchMultiplier: 2,
+        infinite: false,
+      });
+
+      function raf(time) {
+        lenis.raf(time);
+        requestAnimationFrame(raf);
+      }
+
+      requestAnimationFrame(raf);
+
+      // Connect Lenis to ScrollTrigger
+      lenis.on('scroll', () => {
+        if (window.ScrollTrigger) window.ScrollTrigger.update();
+      });
+    });
+  </script>
   <script defer src="assets/js/page-loader.js"></script>
 </body>
 </html>

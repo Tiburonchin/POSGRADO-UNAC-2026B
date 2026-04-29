@@ -50,53 +50,80 @@
     var tlEntrance = gsap.timeline({
       scrollTrigger: {
         trigger: admisionSection,
-        start: 'top 40%', // Retrasado aún más, casi al llegar al centro/superior
+        start: 'top 60%', // Dispara un poco antes para que se sienta más reactivo
         toggleActions: 'play none none reverse'
       }
     });
 
     // Label, Headline, Metrics, Description
-    tlEntrance.from('.admision-text > p:first-child, .admision-text > h2, .admision-text > .flex-wrap, .admision-text > p.text-base', {
-      y: 40,
+    tlEntrance.from('.admision-text > div:first-child, .admision-text > h2, .admision-text > .flex-wrap, .admision-text > p.text-base', {
+      y: 30,
       opacity: 0,
-      duration: 0.8,
-      stagger: 0.12,
+      duration: 0.5, // Más rápido (era 0.8)
+      stagger: 0.08, // Stagger más corto (era 0.12)
       ease: 'power3.out'
     });
+
+    // --- ANIMACIÓN DE LA IMAGEN (Entrada) ---
+    if (admisionImage) {
+      tlEntrance.from(admisionImageDecor, {
+        x: 40,
+        y: 30,
+        opacity: 0,
+        duration: 0.8, // Era 1.2
+        ease: 'power3.out'
+      }, 0.1);
+
+      tlEntrance.from(admisionImageMain, {
+        x: 30,
+        y: -15,
+        opacity: 0,
+        scale: 0.97,
+        duration: 0.6, // Era 1
+        ease: 'power2.out'
+      }, 0.2);
+    }
 
     // Steps (Individualmente)
     if (admisionSteps.length) {
       tlEntrance.from(admisionSteps, {
-        x: -20,
+        x: -15,
         opacity: 0,
-        duration: 0.6,
-        stagger: 0.15,
+        duration: 0.4, // Era 0.6
+        stagger: 0.1,  // Era 0.15
         ease: 'power2.out'
       }, '-=0.4');
     }
 
     // Separator and Buttons
     tlEntrance.from('.admision-text > .my-10, .admision-text > .flex-row', {
-      y: 20,
+      y: 15,
       opacity: 0,
-      duration: 0.6,
-      stagger: 0.1,
+      duration: 0.5,
+      stagger: 0.08,
       ease: 'power2.out'
     }, '-=0.3');
 
     // --- ANIMACIÓN DE SALIDA (Fade out al hacer scroll hacia abajo) ---
-    gsap.to([admisionSection.querySelector('.max-w-7xl')], {
-      opacity: 0,
-      y: -30,
-      scale: 0.98,
-      ease: 'none',
-      scrollTrigger: {
-        trigger: admisionSection,
-        start: 'bottom 40%', // Comienza a desvanecerse mucho más tarde
-        end: 'bottom 0%',   // Termina justo cuando sale de la pantalla
-        scrub: true
-      }
-    });
+    var exitElements = [
+      admisionSection.querySelector('.max-w-\\[1440px\\]'),
+      admisionImage
+    ].filter(Boolean);
+
+    if (exitElements.length) {
+      gsap.to(exitElements, {
+        opacity: 0,
+        y: -30,
+        scale: 0.99,
+        ease: 'none',
+        scrollTrigger: {
+          trigger: admisionSection,
+          start: 'bottom 35%', // Rango más corto para salida rápida
+          end: 'bottom 5%',
+          scrub: true
+        }
+      });
+    }
   }
 
 })();

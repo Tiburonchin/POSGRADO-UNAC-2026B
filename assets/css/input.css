@@ -607,6 +607,20 @@
     box-shadow: var(--shadow-sm);
   }
 
+  /* --- Final CTA Section (Home/Escuela Sync) --- */
+  .final-cta {
+    @apply relative overflow-hidden;
+  }
+
+  .cta-overlay {
+    background: radial-gradient(circle at center, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+    pointer-events: none;
+  }
+
+  .final-cta h2 {
+    text-wrap: balance;
+  }
+
 
   .split-line {
     overflow: hidden;

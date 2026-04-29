@@ -4,7 +4,7 @@
  * Harmonized with GSAP best practices for a premium, liquid-like feel.
  */
 
-document.addEventListener("DOMContentLoaded", () => {
+function initFooterAnimations() {
     // Ensure GSAP and ScrollTrigger are loaded
     if (typeof gsap === 'undefined' || typeof ScrollTrigger === 'undefined') {
         console.warn("GSAP or ScrollTrigger not found. Footer animations skipped.");
@@ -158,4 +158,24 @@ document.addEventListener("DOMContentLoaded", () => {
             });
         });
     });
-});
+}
+
+// Logic to initialize based on page-loader status
+(function() {
+    const hasLoader = document.getElementById('page-loader');
+    const isLoaderHidden = hasLoader && hasLoader.classList.contains('is-hidden');
+
+    if (hasLoader && !isLoaderHidden) {
+        // Wait for loader to complete on home page
+        window.addEventListener('page-loader:complete', () => {
+            initFooterAnimations();
+        }, { once: true });
+    } else {
+        // Direct initialization for other pages (like la-escuela)
+        if (document.readyState === 'loading') {
+            document.addEventListener('DOMContentLoaded', initFooterAnimations);
+        } else {
+            initFooterAnimations();
+        }
+    }
+})();

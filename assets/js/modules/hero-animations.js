@@ -563,7 +563,7 @@
       setupHeroTitleImageRevealSync();
 
       var timeline = gsap.timeline({
-        delay: 0.2,
+        delay: 0.1, // Reducido de 0.2
         defaults: { overwrite: 'auto', ease: 'power2.out' }
       });
 
@@ -577,7 +577,7 @@
           y: 0,
           scale: 1,
           filter: 'blur(0px)',
-          duration: isMobile ? 0.7 : 0.85,
+          duration: isMobile ? 0.6 : 0.7, // Reducido de 0.85
           ease: 'power3.out'
         });
 
@@ -590,8 +590,8 @@
           autoAlpha: 1,
           y: 0,
           filter: 'blur(0px)',
-          duration: isMobile ? 0.4 : 0.55
-        }, '-=0.6');
+          duration: isMobile ? 0.35 : 0.45 // Reducido de 0.55
+        }, '-=0.5');
       }
 
       if (isMobile) {
@@ -604,9 +604,9 @@
             autoAlpha: 1,
             y: 0,
             filter: 'blur(0px)',
-            duration: 0.35,
-            stagger: 0.06
-          }, '-=0.35');
+            duration: 0.3,
+            stagger: 0.05
+          }, '-=0.3');
         }
       } else {
         if (headerNavItems.length) {
@@ -618,9 +618,9 @@
             autoAlpha: 1,
             y: 0,
             filter: 'blur(0px)',
-            duration: 0.45,
-            stagger: 0.05
-          }, '-=0.45');
+            duration: 0.35, // Reducido de 0.45
+            stagger: 0.04  // Reducido de 0.05
+          }, '-=0.35');
         }
 
         if (headerDesktopCta) {
@@ -632,8 +632,8 @@
             autoAlpha: 1,
             y: 0,
             filter: 'blur(0px)',
-            duration: 0.4
-          }, '-=0.4');
+            duration: 0.35
+          }, '-=0.35');
         }
       }
 
@@ -645,8 +645,8 @@
         autoAlpha: 1,
         y: 0,
         filter: 'blur(0px)',
-        duration: isMobile ? 0.45 : 0.55
-      }, '-=0.15');
+        duration: isMobile ? 0.4 : 0.5
+      }, '-=0.1');
 
       timeline.fromTo(titleLines, {
         autoAlpha: 0,
@@ -656,17 +656,17 @@
         autoAlpha: 1,
         y: 0,
         filter: 'blur(0px) drop-shadow(0px 8px 16px rgba(0,0,0,0.8)) brightness(1.2) saturate(1.2)',
-        duration: isMobile ? 0.75 : 0.95,
-        stagger: isMobile ? 0.08 : 0.12,
+        duration: isMobile ? 0.65 : 0.75, // Reducido de 0.95
+        stagger: isMobile ? 0.06 : 0.08, // Reducido de 0.12
         ease: 'power3.out'
-      }, '-=0.3');
+      }, '-=0.25');
 
       if (heroTitle) {
         timeline.fromTo(heroTitle, {
           autoAlpha: 0.96
         }, {
           autoAlpha: 1,
-          duration: 0.5,
+          duration: 0.4,
           ease: 'power3.out'
         }, '<');
       }
@@ -679,8 +679,8 @@
         autoAlpha: 1,
         y: 0,
         filter: 'blur(0px)',
-        duration: isMobile ? 0.5 : 0.65
-      }, '-=0.35');
+        duration: isMobile ? 0.4 : 0.5 // Reducido de 0.65
+      }, '-=0.3');
 
       if (ctaItems.length) {
         timeline.fromTo(ctaItems, {
@@ -691,9 +691,9 @@
           autoAlpha: 1,
           y: 0,
           filter: 'blur(0px)',
-          duration: isMobile ? 0.4 : 0.55,
-          stagger: isMobile ? 0.08 : 0.12
-        }, '-=0.4');
+          duration: isMobile ? 0.35 : 0.45,
+          stagger: isMobile ? 0.06 : 0.08 // Reducido de 0.12
+        }, '-=0.35');
       }
 
       timeline
@@ -705,7 +705,7 @@
           autoAlpha: 1,
           y: 0,
           filter: 'blur(0px)',
-          duration: isMobile ? 0.45 : 0.65
+          duration: isMobile ? 0.4 : 0.5 // Reducido de 0.65
         }, '-=0.25')
         .add(function () {
           startInfoRotation(isMobile, false);

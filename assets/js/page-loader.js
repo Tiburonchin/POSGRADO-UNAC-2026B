@@ -91,13 +91,12 @@
       window.gsap.set([loaderInner, letters, phrase], { clearProps: 'all' });
     }
 
-    // Slight delay before unlocking scroll to ensure the browser has finished
-    // rendering the 'hidden' state of the loader.
+    // Extend scroll lock for 1.8 seconds after loader is hidden as requested
     window.setTimeout(function () {
       unlockScroll();
       if (window.ScrollTrigger) window.ScrollTrigger.refresh();
       window.requestAnimationFrame(dispatchLoaderComplete);
-    }, 100);
+    }, 1800);
   }
 
   function hideLoader() {

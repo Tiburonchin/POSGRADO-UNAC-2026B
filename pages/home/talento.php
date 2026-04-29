@@ -1,16 +1,25 @@
 <section class="w-full py-24 relative overflow-hidden">
-    <!-- Cabecera de la sección -->
+    <!-- Cabecera de la sección (Armonía con el sistema de diseño) -->
     <div class="site-container text-center mb-16 relative z-20">
-        <h2 class="font-hero text-4xl md:text-5xl lg:text-7xl font-black text-white uppercase tracking-[-0.04em] mb-6 leading-[0.9]">
-            El talento UNAC se <span class="text-accent relative inline-block">
-                premia
-                <span class="absolute -bottom-2 left-0 w-full h-[6px] bg-accent/30 rounded-full blur-[2px]"></span>
-                <span class="absolute -bottom-1 left-0 w-full h-[3px] bg-accent rounded-full"></span>
-            </span>
+        
+        <!-- Badge (Pattern: Admisión/Noticias) -->
+        <div class="hero-kicker-wrapper mb-6 flex justify-center">
+            <div class="hero-kicker inline-flex items-center gap-3 rounded-full border border-border-base bg-bg-soft/50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.3em] text-unac-yellow backdrop-blur-md transition-colors hover:border-border-bright hover:bg-bg-soft sm:text-[12px]">
+                <span class="relative flex h-2 w-2">
+                    <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-unac-yellow opacity-75"></span>
+                    <span class="relative inline-flex h-2 w-2 rounded-full bg-unac-yellow shadow-[0_0_8px_rgba(251,202,56,0.8)]"></span>
+                </span>
+                <span>Nuestra red de Alumnados</span>
+            </div>
+        </div>
+
+        <h2 class="text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-6 leading-[1.1]">
+            El talento UNAC se <span class="text-transparent bg-clip-text bg-gradient-to-r from-unac-yellow via-unac-yellow-dark to-unac-yellow">premia</span>
         </h2>
-        <p class="font-sans text-muted text-sm md:text-base font-medium tracking-wide max-w-2xl mx-auto leading-relaxed">
-            Nuestros egresados del Posgrado UNAC destacan en las <br class="hidden md:block">
-            instituciones y empresas más importantes del país:
+        
+        <p class="text-text-muted text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+            Nuestros egresados del Posgrado UNAC destacan en las<br class="hidden md:block">
+            instituciones y empresas más importantes del país
         </p>
     </div>
 
@@ -36,14 +45,35 @@
             <div class="logo-card">
                 <img src="img/logos/Scotiabank.png" alt="Scotiabank" loading="lazy">
             </div>
-            
-            <!-- Duplicamos las tarjetas para mejorar el flujo del carrusel si hay pocas -->
+
+            <!-- Tarjeta 5: Banco Santander -->
             <div class="logo-card">
-                <img src="img/logos/mi_edu.png" alt="Ministerio de Educación" loading="lazy">
+                <img src="img/logos/SANTANDER_PV_POS_RGB.webp" alt="Banco Santander" loading="lazy">
             </div>
 
+            <!-- Tarjeta 6: RIMAC Seguros -->
             <div class="logo-card">
-                <img src="img/logos/contraloria.jpg" alt="La Contraloría General de la República" loading="lazy">
+                <img src="img/logos/RIMAC.svg" alt="RIMAC Seguros" loading="lazy">
+            </div>
+
+            <!-- Tarjeta 7: ENAPU -->
+            <div class="logo-card">
+                <img src="img/logos/logo-enapu.png" alt="Empresa Nacional de Puertos" loading="lazy">
+            </div>
+
+            <!-- Tarjeta 8: Banco de la Nación -->
+            <div class="logo-card">
+                <img src="img/logos/logobn-compartir.png" alt="Banco de la Nación" loading="lazy">
+            </div>
+
+            <!-- Tarjeta 9: EsSalud -->
+            <div class="logo-card">
+                <img src="img/logos/png-transparent-social-health-insurance-of-peru-lima-hospital-de-alta-complejidad-virgen-de-la-puerta-panamericana-norte-football-world-cup-soccer-league-2018-cancer-blue-text-log.png" alt="EsSalud - Seguro Social de Salud" loading="lazy">
+            </div>
+
+            <!-- Tarjeta 10: Salud Pública -->
+            <div class="logo-card">
+                <img src="img/logos/png-clipart-world-health-day-medicine-staff-of-hermes-health-logo-symmetry.png" alt="Instituciones de Salud Pública" loading="lazy">
             </div>
         </div>
     </div>

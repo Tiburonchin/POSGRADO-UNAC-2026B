@@ -11,21 +11,22 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-20 items-start">
             
             <!-- Columna Izquierda: Brand & Titular -->
-            <div class="lg:col-span-4 footer-anim pr-4">
-                <div class="flex items-center gap-3 mb-10">
-                    <div class="w-12 h-12 flex items-center justify-center">
-                        <img src="img/logo_unac.png" alt="Logo UNAC" class="w-full h-full object-contain filter brightness-0 invert opacity-90" />
-                    </div>
-                    <div class="flex flex-col">
-                        <span class="text-white font-bold tracking-tight text-lg leading-tight">UNAC</span>
-                        <span class="text-accent text-[10px] font-bold tracking-[0.2em] uppercase">Posgrado</span>
+            <div class="lg:col-span-4 footer-anim pr-4 flex flex-col items-start">
+                <div class="relative mb-12 group">
+                    <!-- Subtle Glow behind logo -->
+                    <div class="absolute -inset-8 bg-unac-yellow/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-unac-yellow/20 transition-all duration-700"></div>
+                    <div class="w-48 h-48 lg:w-60 lg:h-60 flex items-center justify-center relative z-10">
+                        <img src="img/epg-logo.png" alt="Logo EPG UNAC" class="w-full h-full object-contain transform-gpu transition-transform duration-500 group-hover:scale-105" />
                     </div>
                 </div>
-                <h2 class="text-3xl md:text-4xl font-semibold tracking-tight text-white leading-[1.15]">
-                    Excelencia y liderazgo.<br>
-                    Investigación de calidad<br>
-                    para el país.
-                </h2>
+                
+                <div class="border-l-2 border-unac-yellow/30 pl-8">
+                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white leading-[1.2]">
+                        Excelencia y liderazgo.<br>
+                        Investigación de calidad<br>
+                        para el país.
+                    </h2>
+                </div>
             </div>
 
             <!-- Columna Central: Grid matemático estilo SaaS -->
