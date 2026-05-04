@@ -4008,6 +4008,10 @@ body.is-loading {
   transition-timing-function: cubic-bezier(0.25,1,0.5,1);
 }
 
+.ease-in-out {
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .line-clamp-3 {
   display: -webkit-box;
   -webkit-line-clamp: 3;

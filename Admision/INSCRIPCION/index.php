@@ -7,8 +7,76 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <script src="../../assets/vendor/gsap/gsap.min.js"></script>
+    <script defer src="../../assets/js/page-loader.js"></script>
     <style>
         body { font-family: 'Outfit', sans-serif; background: radial-gradient(circle at top right, #0c1a32, #020617); color: #f8fafc; }
+        html.is-loading,
+        body.is-loading { overflow: hidden; }
+        body.is-loading { padding-right: var(--loader-scrollbar-compensation, 0px); }
+        .page-loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background:
+                radial-gradient(circle at top, rgba(15, 23, 42, 0.98) 0%, rgba(2, 6, 23, 0.98) 70%),
+                linear-gradient(180deg, rgba(6, 10, 18, 0.98), rgba(2, 6, 23, 0.98));
+            opacity: 1;
+            visibility: visible;
+            transition: opacity 0.6s ease, visibility 0.6s ease;
+            overflow: hidden;
+        }
+        .page-loader.is-hidden {
+            opacity: 0 !important;
+            visibility: hidden !important;
+            pointer-events: none !important;
+            display: none !important;
+        }
+        .page-loader-inner {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+        .loader {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.25rem;
+            margin: 0.25em 0;
+        }
+        .loader svg.inline-block {
+            width: 56px;
+            height: 56px;
+        }
+        .w-1 { width: 0.25em; }
+        .dash {
+            animation: dashArray 2s ease-in-out infinite, dashOffset 2s linear infinite;
+        }
+        @keyframes dashArray {
+            0% { stroke-dasharray: 0 1 359 0; }
+            50% { stroke-dasharray: 0 359 1 0; }
+            100% { stroke-dasharray: 359 1 0 0; }
+        }
+        @keyframes dashOffset {
+            0% { stroke-dashoffset: 365; }
+            100% { stroke-dashoffset: 5; }
+        }
+        .page-loader-phrase {
+            margin-top: 1.25rem;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.42em;
+            text-transform: uppercase;
+            color: rgba(226, 232, 240, 0.72);
+            text-align: center;
+            overflow: hidden;
+            opacity: 0;
+        }
         .glass-card { background: rgba(7, 15, 30, 0.8); backdrop-filter: blur(20px); border: 1px solid rgba(59, 130, 246, 0.1); border-radius: 40px; }
         .input-dark { background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(255, 255, 255, 0.05); color: white; transition: all 0.3s ease; }
         .input-dark:focus { border-color: #3b82f6; outline: none; }
@@ -77,6 +145,48 @@
     </style>
 </head>
 <body class="min-h-screen flex flex-col items-center py-20 px-6">
+    <div id="page-loader" class="page-loader" role="status" aria-live="polite" aria-label="Cargando contenido">
+        <div class="page-loader-inner">
+            <div class="loader">
+                <svg height="0" width="0" viewBox="0 0 64 64" class="absolute">
+                    <defs>
+                        <linearGradient gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="grad-u">
+                            <stop stop-color="#3b82f6"></stop>
+                            <stop stop-color="#1d4ed8" offset="1"></stop>
+                        </linearGradient>
+                        <linearGradient gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="grad-n">
+                            <stop stop-color="#fbca38"></stop>
+                            <stop stop-color="#e1a705" offset="1"></stop>
+                        </linearGradient>
+                        <linearGradient gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="grad-a">
+                            <stop stop-color="#eef2ff"></stop>
+                            <stop stop-color="rgba(255,255,255,0.4)" offset="1"></stop>
+                        </linearGradient>
+                        <linearGradient gradientUnits="userSpaceOnUse" y2="2" x2="0" y1="62" x1="0" id="grad-c">
+                            <stop stop-color="#60a5fa"></stop>
+                            <stop stop-color="#3b82f6" offset="1"></stop>
+                        </linearGradient>
+                    </defs>
+                </svg>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="64" width="64" class="inline-block">
+                    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#grad-u)" d="M 16,12 v 22 c 0,8.8 7.2,16 16,16 8.8,0 16,-7.2 16,-16 V 12" class="dash" pathLength="360"></path>
+                </svg>
+                <div class="w-1"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="64" width="64" class="inline-block">
+                    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#grad-n)" d="M 16,52 V 12 L 48,52 V 12" class="dash" pathLength="360"></path>
+                </svg>
+                <div class="w-1"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="64" width="64" class="inline-block">
+                    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#grad-a)" d="M 16,52 L 32,12 L 48,52 M 22,40 H 42" class="dash" pathLength="360"></path>
+                </svg>
+                <div class="w-1"></div>
+                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 64 64" height="64" width="64" class="inline-block">
+                    <path stroke-linejoin="round" stroke-linecap="round" stroke-width="8" stroke="url(#grad-c)" d="M 48,22 A 18,18 0 1 0 48,42" class="dash" pathLength="360"></path>
+                </svg>
+            </div>
+            <div class="page-loader-phrase">Escuela de Posgrado</div>
+        </div>
+    </div>
     <div class="max-w-4xl w-full">
         <!-- Encabezado idéntico -->
         <div class="text-center mb-16">
