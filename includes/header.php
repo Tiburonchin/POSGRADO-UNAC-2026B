@@ -78,18 +78,18 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <section class="mega-panel-content" data-section="admision" aria-hidden="true">
               <div class="mega-column">
                 <h4 class="mega-column-title">Ingreso</h4>
-                <a href="#" class="mega-link"><strong>Proceso de Admision</strong><span>Ruta detallada desde la postulacion hasta la matricula.</span></a>
-                <a href="#" class="mega-link"><strong>Cronograma Academico</strong><span>Calendario oficial de evaluaciones, resultados y matriculas.</span></a>
+                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-link"><strong>Proceso de Admision</strong><span>Ruta detallada desde la postulacion hasta la matricula.</span></a>
+                <a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php" class="mega-link"><strong>Cronograma Academico</strong><span>Calendario oficial de evaluaciones, resultados y matriculas.</span></a>
               </div>
               <div class="mega-column">
                 <h4 class="mega-column-title">Postulante</h4>
-                <a href="#" class="mega-link"><strong>Requisitos y Costos</strong><span>Documentos, pagos y condiciones para cada programa.</span></a>
-                <a href="#" class="mega-link"><strong>Formatos y Tutoriales</strong><span>Guias practicas para completar el proceso sin errores.</span></a>
+                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="mega-link"><strong>Requisitos y Costos</strong><span>Documentos, pagos y condiciones para cada programa.</span></a>
+                <a href="<?= $baseUrl ?>Admision/formato/formato.php" class="mega-link"><strong>Formatos y Tutoriales</strong><span>Guias practicas para completar el proceso sin errores.</span></a>
               </div>
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Atencion Prioritaria</h4>
                 <p>Inicia tu postulacion con soporte institucional y orientacion paso a paso.</p>
-                <a href="#admision-proceso" class="mega-cta-link">Ir a Admision</a>
+                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-cta-link">Ir a Admision</a>
               </div>
             </section>
 
@@ -173,11 +173,11 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">Admision<span>+</span></button>
           <ul class="mobile-submenu hidden">
-            <li><a href="#admision-proceso" class="font-bold text-unac-yellow">Ir a Admision →</a></li>
-            <li><a href="#">Proceso de Admision</a></li>
-            <li><a href="#">Cronograma Academico</a></li>
-            <li><a href="#">Requisitos y Costos</a></li>
-            <li><a href="#">Formatos y Tutoriales</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="font-bold text-unac-yellow">Ir a Admision →</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php">Proceso de Admision</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php">Cronograma Academico</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Requisitos y Costos</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/formato/formato.php">Formatos y Tutoriales</a></li>
           </ul>
         </li>
         <li>

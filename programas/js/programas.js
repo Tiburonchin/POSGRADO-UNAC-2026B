@@ -178,15 +178,35 @@ function initFilters() {
 
 function initSearch() {
     const searchInput = document.getElementById('programasSearch');
+    const searchClear = document.getElementById('programasSearchClear');
     if (!searchInput) return;
 
     let debounceTimer;
+
+    const syncSearchControls = () => {
+        if (searchClear) {
+            searchClear.hidden = !searchInput.value.trim();
+        }
+    };
+
+    syncSearchControls();
+
     searchInput.addEventListener('input', function() {
+        syncSearchControls();
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
             updateGrid();
         }, 250);
     });
+
+    if (searchClear) {
+        searchClear.addEventListener('click', () => {
+            searchInput.value = '';
+            syncSearchControls();
+            updateGrid();
+            searchInput.focus();
+        });
+    }
 }
 
 /**
@@ -197,6 +217,8 @@ function updateGrid() {
     const filterType = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
     
     const searchInput = document.getElementById('programasSearch');
+    const searchClear = document.getElementById('programasSearchClear');
+    const resultsCount = document.getElementById('programasResultsCount');
     const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
     
     const cards = document.querySelectorAll('.programa-card');
@@ -206,7 +228,7 @@ function updateGrid() {
 
     cards.forEach(card => {
         const types = card.dataset.types ? card.dataset.types.split(' ') : [];
-        const name = card.querySelector('.programa-card__name')?.textContent.toLowerCase() || '';
+        const name = card.dataset.name ? card.dataset.name.toLowerCase() : (card.querySelector('.programa-card__name')?.textContent.toLowerCase() || '');
         const faculty = card.querySelector('.programa-card__faculty')?.textContent.toLowerCase() || '';
         const desc = card.querySelector('.programa-card__desc')?.textContent.toLowerCase() || '';
 
@@ -244,6 +266,18 @@ function updateGrid() {
         }
     });
 
+    if (searchClear && searchInput) {
+        searchClear.hidden = !searchInput.value.trim();
+    }
+
+    if (resultsCount) {
+        if (visibleCards.length === cards.length && !query && filterType === 'all') {
+            resultsCount.textContent = `${visibleCards.length} programas disponibles`;
+        } else {
+            resultsCount.textContent = `Mostrando ${visibleCards.length} de ${cards.length} programas`;
+        }
+    }
+
     // Handle empty state
     if (emptyState) {
         if (visibleCards.length === 0) {
@@ -266,24 +300,39 @@ function updateGrid() {
    ============================================ */
 function initDetailView() {
     const overlay = document.getElementById('programaDetailOverlay');
-    const cards = document.querySelectorAll('.programa-card');
-    const closeBtn = document.getElementById('closeDetail');
+    const grid = document.querySelector('.programas-grid');
 
     if (!overlay) return;
 
-    cards.forEach(card => {
-        card.addEventListener('click', function() {
-            const programId = this.dataset.id;
-            openDetail(programId);
-        });
-    });
+    // Prevent wheel/touch events from propagating to the page behind the modal
+    // This helps ensure scroll stays inside the modal on desktop and mobile
+    overlay.addEventListener('wheel', function(e) {
+        // If wheel event occurred inside the modal detail, stop propagation so background doesn't scroll
+        if (e.target.closest && e.target.closest('.programa-detail')) {
+            e.stopPropagation();
+        }
+    }, { passive: false });
 
-    if (closeBtn) {
-        closeBtn.addEventListener('click', closeDetail);
+    overlay.addEventListener('touchmove', function(e) {
+        if (e.target.closest && e.target.closest('.programa-detail')) {
+            e.stopPropagation();
+        }
+    }, { passive: false });
+
+    // Delegated open: handle clicks on cards inside the grid
+    if (grid) {
+        grid.addEventListener('click', function(e) {
+            const card = e.target.closest && e.target.closest('.programa-card');
+            if (card) {
+                const programId = card.dataset.id;
+                openDetail(programId);
+            }
+        });
     }
 
+    // Delegated close: handle clicks on close button or backdrop
     overlay.addEventListener('click', function(e) {
-        if (e.target === this || e.target.classList.contains('programa-detail-overlay__backdrop')) {
+        if (e.target === this || e.target.classList.contains('programa-detail-overlay__backdrop') || e.target.closest('#closeDetail')) {
             closeDetail();
         }
     });
@@ -306,7 +355,13 @@ function openDetail(programId) {
         .then(html => {
             detail.innerHTML = html;
             overlay.classList.add('active');
-            document.body.style.overflow = 'hidden';
+            // Prevent background scroll but keep ability to scroll the modal on mobile
+            // Store scroll position and fix body to preserve background layout
+            window._progScrollY = window.scrollY || window.pageYOffset || 0;
+            document.body.style.position = 'fixed';
+            document.body.style.top = '-' + window._progScrollY + 'px';
+            document.body.style.left = '0';
+            document.body.style.right = '0';
 
             // Update URL for sharing (without reloading)
             const newUrl = new URL(window.location.href);
@@ -316,6 +371,12 @@ function openDetail(programId) {
             // Init components in the new content
             initAccordions();
             initTabs();
+
+            // Attach close button inside the loaded detail (if exists)
+            const newClose = document.getElementById('closeDetail');
+            if (newClose) {
+                newClose.addEventListener('click', closeDetail);
+            }
 
             // GSAP entrance for detail
             if (typeof gsap !== 'undefined') {
@@ -349,6 +410,7 @@ function openDetail(programId) {
 
 function closeDetail() {
     const overlay = document.getElementById('programaDetailOverlay');
+    const detail = document.getElementById('programaDetail');
 
     // Clean URL
     const newUrl = new URL(window.location.href);
@@ -364,12 +426,32 @@ function closeDetail() {
             ease: 'power2.in',
             onComplete: () => {
                 overlay.classList.remove('active');
-                document.body.style.overflow = '';
+                // Restore body scroll position
+                document.body.style.position = '';
+                document.body.style.top = '';
+                document.body.style.left = '';
+                document.body.style.right = '';
+                if (typeof window._progScrollY === 'number') {
+                    window.scrollTo(0, window._progScrollY || 0);
+                    window._progScrollY = null;
+                }
+
+                // Clear injected detail HTML to avoid lingering handlers/content
+                if (detail) detail.innerHTML = '';
             }
         });
     } else {
         overlay.classList.remove('active');
-        document.body.style.overflow = '';
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.left = '';
+        document.body.style.right = '';
+        if (typeof window._progScrollY === 'number') {
+            window.scrollTo(0, window._progScrollY || 0);
+            window._progScrollY = null;
+        }
+
+        if (detail) detail.innerHTML = '';
     }
 }
 

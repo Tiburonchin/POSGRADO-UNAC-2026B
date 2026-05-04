@@ -8,7 +8,8 @@
 
 // ───── CONFIGURACIÓN DE RUTAS ─────
 // Ajusta estas rutas según dónde coloques los archivos en tu servidor
-$cssPath = $baseUrl . 'programas/css/programas.css';
+// Nota: los estilos de `programas` se fusionaron en `assets/css/input.css`.
+$cssPath = $baseUrl . 'assets/css/input.css';
 $jsPath  = $baseUrl . 'programas/js/programas.js';
 
 // Intentar encontrar el JSON en varias ubicaciones posibles
@@ -69,10 +70,63 @@ $totalEspecialidades = count(array_filter($allProgramas, fn($p) => ($p['tipo'] ?
 
 // ───── HELPERS ─────
 function getFirstImage($prog) {
-    if (!empty($prog['imagen_1'])) return $prog['imagen_1'];
-    if (!empty($prog['imagen_2'])) return $prog['imagen_2'];
-    if (!empty($prog['imagen_3'])) return $prog['imagen_3'];
-    return '';
+    $candidates = [];
+    if (!empty($prog['imagen_1'])) $candidates[] = $prog['imagen_1'];
+    if (!empty($prog['imagen_2'])) $candidates[] = $prog['imagen_2'];
+    if (!empty($prog['imagen_3'])) $candidates[] = $prog['imagen_3'];
+
+    // Also try conventional filenames based on program id
+    if (!empty($prog['id'])) {
+        $id = $prog['id'];
+        $candidates[] = "img/programas/{$id}.jpg";
+        $candidates[] = "img/programas/{$id}.png";
+        $candidates[] = "img/programas/{$id}.webp";
+    }
+
+    // Resolve against filesystem and return the first existing relative path
+    foreach ($candidates as $cand) {
+        $clean = ltrim($cand, '/');
+        $fullPath = __DIR__ . '/../' . $clean;
+        if (file_exists($fullPath)) {
+            return $clean;
+        }
+    }
+
+    // Final fallback to a known placeholder present in the repo
+    $placeholder = 'img/epg-unac-fachada.png';
+    $placeholderFull = __DIR__ . '/../' . $placeholder;
+    if (file_exists($placeholderFull)) return $placeholder;
+
+    // As a last resort, return a remote image based on program type/name
+    return getRemoteFallbackImage($prog);
+}
+
+/**
+ * Return a remote image URL (Unsplash) based on program type and name.
+ * Example: https://source.unsplash.com/featured/?university,masters
+ */
+function getRemoteFallbackImage($prog) {
+    $tipo = $prog['tipo'] ?? '';
+    $nombre = $prog['nombre'] ?? '';
+
+    $keywords = [];
+    if ($tipo) {
+        $keywords[] = $tipo;
+    }
+    if ($nombre) {
+        // Use a few words from the program name to improve relevance
+        $parts = preg_split('/[\s,\-\/]+/', $nombre);
+        $keywords[] = implode(',', array_slice($parts, 0, 2));
+    }
+
+    // Always include general education terms
+    $keywords[] = 'university';
+    $keywords[] = 'education';
+
+    $query = urlencode(implode(',', array_filter($keywords)));
+
+    // Use Unsplash Source to provide a representative image
+    return "https://source.unsplash.com/featured/?{$query}";
 }
 
 function getBadgeClass($tipo) {
@@ -138,35 +192,53 @@ function getDuration($prog) {
                 </div>
             </div>
             
-            <div class="max-w-md mx-auto mb-6 relative">
-                <input 
-                    type="text" 
-                    id="programasSearch" 
-                    placeholder="Buscar programa..." 
-                    class="w-full px-5 py-3.5 rounded-full text-sm font-medium text-white placeholder-white/40 
-                           bg-white/5 border border-white/10 backdrop-blur-md focus:outline-none 
-                           focus:border-[#3b82f6]/50 focus:ring-1 focus:ring-[#3b82f6]/30 transition-all"
-                >
-                <svg class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/30 pointer-events-none" 
-                     viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <circle cx="11" cy="11" r="8"/>
-                    <path d="m21 21-4.3-4.3"/>
-                </svg>
-            </div>
-            
-            <div class="programas-filterbar">
-                <button class="filter-btn active" data-filter="all">
-                    Todos <span><?php echo $totalProgramas; ?></span>
-                </button>
-                <button class="filter-btn" data-filter="maestria">
-                    Maestrías <span><?php echo $totalMaestrias; ?></span>
-                </button>
-                <button class="filter-btn" data-filter="doctorado">
-                    Doctorados <span><?php echo $totalDoctorados; ?></span>
-                </button>
-                <button class="filter-btn" data-filter="especialidad">
-                    Especialidades <span><?php echo $totalEspecialidades; ?></span>
-                </button>
+            <div class="programas-search-panel">
+                <div class="programas-searchbox">
+                    <label for="programasSearch" class="programas-searchbox__label">Buscar por nombre</label>
+                    <div class="programas-searchbox__field">
+                        <svg class="programas-searchbox__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <circle cx="11" cy="11" r="8"/>
+                            <path d="m21 21-4.3-4.3"/>
+                        </svg>
+                        <input 
+                            type="text" 
+                            id="programasSearch" 
+                            placeholder="Escribe el nombre del programa" 
+                            autocomplete="off"
+                            spellcheck="false"
+                            class="programas-searchbox__input w-full px-5 py-3.5 rounded-full text-sm font-medium text-white placeholder-white/40 
+                                   bg-white/5 border border-white/10 backdrop-blur-md focus:outline-none 
+                                   focus:border-[#3b82f6]/50 focus:ring-1 focus:ring-[#3b82f6]/30 transition-all"
+                        >
+                        <button type="button" id="programasSearchClear" class="programas-searchbox__clear" aria-label="Limpiar búsqueda" hidden>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 6 6 18M6 6l12 12"/>
+                            </svg>
+                        </button>
+                    </div>
+                    <p class="programas-searchbox__hint" id="programasSearchHint">
+                        Filtra por tipo y escribe el nombre del programa para encontrarlo más rápido.
+                    </p>
+                </div>
+
+                <div class="programas-filterbar" aria-label="Filtros de programas">
+                    <button class="filter-btn active" data-filter="all">
+                        Todos <span><?php echo $totalProgramas; ?></span>
+                    </button>
+                    <button class="filter-btn" data-filter="maestria">
+                        Maestrías <span><?php echo $totalMaestrias; ?></span>
+                    </button>
+                    <button class="filter-btn" data-filter="doctorado">
+                        Doctorados <span><?php echo $totalDoctorados; ?></span>
+                    </button>
+                    <button class="filter-btn" data-filter="especialidad">
+                        Especialidades <span><?php echo $totalEspecialidades; ?></span>
+                    </button>
+                </div>
+
+                <div class="programas-results" id="programasResultsCount" aria-live="polite">
+                    <?php echo $totalProgramas; ?> programas disponibles
+                </div>
             </div>
         </div>
     </section>
@@ -190,14 +262,15 @@ function getDuration($prog) {
             ?>
                 <article class="programa-card" 
                          data-id="<?php echo $prog['id']; ?>" 
-                         data-types="<?php echo $prog['tipo'] ?? ''; ?>">
+                         data-types="<?php echo $prog['tipo'] ?? ''; ?>"
+                         data-name="<?php echo htmlspecialchars($prog['nombre'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
                     <div class="programa-card__image-wrap">
                         <?php if ($img): ?>
                             <img src="<?php echo htmlspecialchars($baseUrl . $img); ?>" 
                                  alt="<?php echo htmlspecialchars($prog['nombre'] ?? ''); ?>" 
                                  class="programa-card__image"
                                  loading="lazy"
-                                 onerror="this.style.display='none'">
+                                 onerror="this.onerror=null;this.src='<?php echo $baseUrl; ?>img/epg-unac-fachada.png'">
                         <?php else: ?>
                             <div class="w-full h-full bg-gradient-to-br from-[#3b82f6]/20 to-[#fbbf24]/20"></div>
                         <?php endif; ?>

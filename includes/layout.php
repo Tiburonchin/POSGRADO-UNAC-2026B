@@ -78,51 +78,77 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
 
   <?php $skip_footer = true; require __DIR__ . '/footer.php'; ?>
 
-  <script defer src="<?= $baseUrl ?>assets/vendor/gsap/gsap.min.js"></script>
-  <script defer src="<?= $baseUrl ?>assets/vendor/gsap/ScrollTrigger.min.js"></script>
-  <script defer src="<?= $baseUrl ?>assets/vendor/gsap/Flip.min.js"></script>
+  <!-- GSAP Core libs (no defer - must load first) -->
+  <script src="<?= $baseUrl ?>assets/vendor/gsap/gsap.min.js"></script>
+  <script src="<?= $baseUrl ?>assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="<?= $baseUrl ?>assets/vendor/gsap/Flip.min.js"></script>
+  
+  <!-- Page Loader (no defer - locks scroll immediately) -->
+  <script src="<?= $baseUrl ?>assets/js/page-loader.js"></script>
+  
+  <!-- External libs -->
   <script src="https://unpkg.com/split-type"></script>
+
+  <!-- Deferred scripts (load after page-loader) -->
   <script defer src="<?= $baseUrl ?>assets/js/theme.js"></script>
   <script defer src="<?= $baseUrl ?>assets/js/mega-menu.js"></script>
   <script defer src="<?= $baseUrl ?>assets/js/animations.js"></script>
+  
+  <!-- Hero animations (after page-loader) -->
   <?php if ($isHomePage): ?>
-  <script defer src="assets/js/modules/hero-animations.js"></script>
-  <script defer src="assets/js/modules/admision-animations.js"></script>
-  <script defer src="assets/js/modules/talento-animations.js"></script>
-  <script defer src="assets/js/modules/programas-animations.js"></script>
-  <script defer src="assets/js/modules/ubicacion-animations.js"></script>
-  <script defer src="assets/js/modules/noticias-animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/hero-animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/admision-animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/talento-animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/programas-animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/ubicacion-animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/noticias-animations.js"></script>
   <?php endif; ?>
+  
+  <!-- Footer & Ambient animations -->
   <script defer src="<?= $baseUrl ?>assets/js/modules/footer-animations.js"></script>
   <script defer src="<?= $baseUrl ?>assets/js/modules/background-ambience.js"></script>
+
+  <!-- Lenis smooth scroll (only for home page) -->
+  <?php if ($isHomePage): ?>
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
   <script>
-    window.addEventListener('DOMContentLoaded', () => {
-      window.lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        gestureOrientation: 'vertical',
-        smoothWheel: true,
-        wheelMultiplier: 1,
-        smoothTouch: false,
-        touchMultiplier: 2,
-        infinite: false,
-      });
+    (function () {
+      var isLoading = document.documentElement.classList.contains('is-loading');
+      
+      window.addEventListener('DOMContentLoaded', function () {
+        window.lenis = new Lenis({
+          duration: 1.2,
+          easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
+          orientation: 'vertical',
+          gestureOrientation: 'vertical',
+          smoothWheel: true,
+          wheelMultiplier: 1,
+          smoothTouch: false,
+          touchMultiplier: 2,
+          infinite: false
+        });
 
-      function raf(time) {
-        lenis.raf(time);
+        // If page-loader locked scroll at startup, keep Lenis locked
+        if (isLoading) {
+          window.lenis.stop();
+        }
+
+        function raf(time) {
+          window.lenis.raf(time);
+          requestAnimationFrame(raf);
+        }
+
         requestAnimationFrame(raf);
-      }
 
-      requestAnimationFrame(raf);
-
-      // Connect Lenis to ScrollTrigger
-      lenis.on('scroll', () => {
-        if (window.ScrollTrigger) window.ScrollTrigger.update();
+        if (window.ScrollTrigger) {
+          window.lenis.on('scroll', function () {
+            window.ScrollTrigger.update();
+          });
+        }
       });
-    });
+    })();
   </script>
+  <?php endif; ?>
   <script defer src="<?= $baseUrl ?>assets/js/page-loader.js"></script>
 </body>
 </html>

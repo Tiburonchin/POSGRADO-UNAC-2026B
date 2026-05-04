@@ -54,9 +54,36 @@ if (!$programa) {
 
 // Helpers
 function getFirstImage($prog) {
-    if (!empty($prog['imagen_1'])) return $prog['imagen_1'];
-    if (!empty($prog['imagen_2'])) return $prog['imagen_2'];
-    if (!empty($prog['imagen_3'])) return $prog['imagen_3'];
+    // Prefer explicit imagen_* fields from JSON, but verify file exists
+    $baseCheck = __DIR__ . '/../';
+    foreach (['imagen_1', 'imagen_2', 'imagen_3'] as $key) {
+        if (!empty($prog[$key])) {
+            $rel = ltrim($prog[$key], '/');
+            $abs = $baseCheck . $rel;
+            if (file_exists($abs)) return $rel;
+        }
+    }
+
+    // Fallback: check for local file in img/programas by id
+    $id = $prog['id'] ?? null;
+    if ($id) {
+        $possible = [
+            __DIR__ . '/../img/programas/' . $id . '.jpg',
+            __DIR__ . '/../img/programas/' . $id . '.png',
+            __DIR__ . '/../img/programas/' . $id . '.webp'
+        ];
+        foreach ($possible as $p) {
+            if (file_exists($p)) {
+                return 'img/programas/' . basename($p);
+            }
+        }
+    }
+
+    // Final fallback: use an existing project image as placeholder
+    if (file_exists(__DIR__ . '/../img/epg-unac-fachada.png')) {
+        return 'img/epg-unac-fachada.png';
+    }
+
     return '';
 }
 

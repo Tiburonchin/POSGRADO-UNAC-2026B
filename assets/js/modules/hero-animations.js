@@ -95,8 +95,8 @@
 
     gsap.set(titleLines, {
       autoAlpha: 0,
-      y: isMobile ? 30 : 34,
-      filter: 'blur(14px)'
+      y: isMobile ? 26 : 30,
+      filter: 'blur(10px)'
     });
 
     if (ctaItems.length) {
@@ -556,6 +556,8 @@
         setupHeroTitleImageRevealSync();
         startInfoRotation(isMobile, true);
         setupSloganHoverScramble();
+        // Signal page-loader: hero entry complete
+        window.dispatchEvent(new Event('hero:animation:complete'));
         return;
       }
 
@@ -563,7 +565,7 @@
       setupHeroTitleImageRevealSync();
 
       var timeline = gsap.timeline({
-        delay: 0.1, // Reducido de 0.2
+        delay: 0.1,
         defaults: { overwrite: 'auto', ease: 'power2.out' }
       });
 
@@ -650,15 +652,15 @@
 
       timeline.fromTo(titleLines, {
         autoAlpha: 0,
-        y: isMobile ? 25 : 30,
-        filter: 'blur(12px) drop-shadow(0px 8px 16px rgba(0,0,0,0.8)) brightness(1.2) saturate(1.2)'
+        y: isMobile ? 22 : 26,
+        filter: 'blur(10px) drop-shadow(0px 6px 12px rgba(0,0,0,0.75)) brightness(1.12) saturate(1.08)'
       }, {
         autoAlpha: 1,
         y: 0,
-        filter: 'blur(0px) drop-shadow(0px 8px 16px rgba(0,0,0,0.8)) brightness(1.2) saturate(1.2)',
-        duration: isMobile ? 0.65 : 0.75, // Reducido de 0.95
-        stagger: isMobile ? 0.06 : 0.08, // Reducido de 0.12
-        ease: 'power3.out'
+        filter: 'blur(0px) drop-shadow(0px 6px 12px rgba(0,0,0,0.75)) brightness(1.12) saturate(1.08)',
+        duration: isMobile ? 0.85 : 1.0,
+        stagger: isMobile ? 0.08 : 0.12,
+        ease: 'power4.out'
       }, '-=0.25');
 
       if (heroTitle) {
@@ -666,7 +668,7 @@
           autoAlpha: 0.96
         }, {
           autoAlpha: 1,
-          duration: 0.4,
+          duration: 0.6,
           ease: 'power3.out'
         }, '<');
       }
@@ -711,7 +713,11 @@
           startInfoRotation(isMobile, false);
           setupSloganHoverScramble();
           setupHeroScrollParallax();
-        }, '+=0.02');
+        }, '+=0.02')
+        .add(function () {
+          // Signal page-loader that hero animations are complete
+          window.dispatchEvent(new Event('hero:animation:complete'));
+        });
 
       if (heroImage) {
         gsap.set(heroImage, {

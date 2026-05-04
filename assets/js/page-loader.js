@@ -15,23 +15,31 @@
   var shownAt = Date.now();
   var hidden = false;
   var exiting = false;
+  var scrollLocked = false;
   
   var loaderInner = loader.querySelector('.page-loader-inner');
   var letters = loader.querySelectorAll('.loader svg.inline-block');
   var phrase = loader.querySelector('.page-loader-phrase');
   var hasGSAP = typeof window.gsap !== 'undefined';
 
+  // BLOCK SCROLL IMMEDIATELY
   function lockScroll() {
+    if (scrollLocked) return;
+    scrollLocked = true;
     var scrollbarWidth = Math.max(0, window.innerWidth - document.documentElement.clientWidth);
     document.documentElement.style.setProperty(SCROLLBAR_COMPENSATION_VAR, scrollbarWidth + 'px');
     document.documentElement.classList.add('is-loading');
     document.body.classList.add('is-loading');
+    if (window.lenis) window.lenis.stop();
   }
 
   function unlockScroll() {
+    if (!scrollLocked) return;
+    scrollLocked = false;
     document.documentElement.classList.remove('is-loading');
     document.body.classList.remove('is-loading');
     document.documentElement.style.removeProperty(SCROLLBAR_COMPENSATION_VAR);
+    if (window.lenis) window.lenis.start();
   }
 
   function dispatchLoaderComplete() {
@@ -42,11 +50,11 @@
   }
 
   function showLoader() {
+    lockScroll(); // Lock scroll FIRST
     loader.classList.remove('is-hidden');
     hidden = false;
     exiting = false;
     shownAt = Date.now();
-    lockScroll();
 
     if (hasGSAP) {
       window.gsap.killTweensOf([loader, loaderInner, letters, phrase]);
@@ -80,23 +88,44 @@
   }
 
   function completeHide() {
-    // Add class first to ensure CSS 'display: none' is applied
     loader.classList.add('is-hidden');
     hidden = true;
     exiting = false;
 
     if (hasGSAP) {
-      // Clear properties only on children, NEVER on the loader container
-      // to avoid it popping back into view for a split second.
       window.gsap.set([loaderInner, letters, phrase], { clearProps: 'all' });
     }
 
-    // Extend scroll lock for 1.8 seconds after loader is hidden as requested
-    window.setTimeout(function () {
+    // Detect if current page is homepage
+    var isHomePage = document.body.getAttribute('data-page') === 'home';
+
+    if (!isHomePage) {
+      // Not a home page: unlock scroll immediately
       unlockScroll();
       if (window.ScrollTrigger) window.ScrollTrigger.refresh();
-      window.requestAnimationFrame(dispatchLoaderComplete);
-    }, 1800);
+      dispatchLoaderComplete();
+      return;
+    }
+
+    // IS HOME PAGE: Wait for hero animations to complete
+    var fallbackTimer = window.setTimeout(function () {
+      releaseScroll();
+    }, 6000);
+
+    function releaseScroll() {
+      window.clearTimeout(fallbackTimer);
+      window.removeEventListener('hero:animation:complete', onHeroAnimationComplete);
+      unlockScroll();
+      if (window.ScrollTrigger) window.ScrollTrigger.refresh();
+      dispatchLoaderComplete();
+    }
+
+    function onHeroAnimationComplete() {
+      // Hero animations finished. Release scroll immediately.
+      releaseScroll();
+    }
+
+    window.addEventListener('hero:animation:complete', onHeroAnimationComplete, { once: true });
   }
 
   function hideLoader() {
@@ -166,17 +195,13 @@
       var trigger = event.target.closest('a[href], [data-loader-url]');
       if (!trigger) return;
       
-      // If it's a link, check if we should show the loader
       if (trigger.matches('a[href]')) {
         if (isIgnoredLink(trigger)) return;
         
         var href = trigger.getAttribute('href');
-        
-        // Prevent default to allow the "Out" animation to be seen
         event.preventDefault();
         showLoader();
         
-        // Navigate after a delay that allows the loader to fully cover the screen and play its intro
         setTimeout(function () {
           window.location.href = href;
         }, 750); 
@@ -193,7 +218,6 @@
     }, true);
 
     window.addEventListener('beforeunload', function () {
-      // Last resort to show loader if navigation was triggered by something else
       showLoader();
     });
   }
@@ -207,10 +231,12 @@
     }
   };
 
+  // Initialize: show loader and lock scroll
   showLoader();
   bindNavigationInterception();
   window.addEventListener('load', hideLoader, { once: true });
 
+  // Failsafe
   window.setTimeout(function () {
     if (!hidden) completeHide();
   }, FAILSAFE_HIDE_MS);

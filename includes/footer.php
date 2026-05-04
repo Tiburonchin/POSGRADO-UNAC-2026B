@@ -118,26 +118,9 @@
 </footer>
 
 <?php if (!isset($skip_footer)): ?>
-    <!-- Scripts -->
-    <script src="<?php echo $baseUrl; ?>assets/vendor/gsap/gsap.min.js"></script>
-    <script src="<?php echo $baseUrl; ?>assets/vendor/gsap/ScrollTrigger.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
-    <script src="<?php echo $baseUrl; ?>assets/js/mega-menu.js"></script>
-    <script src="<?php echo $baseUrl; ?>assets/js/page-loader.js"></script>
-    <script src="<?php echo $baseUrl; ?>assets/js/modules/footer-animations.js"></script>
+    <!-- All scripts loaded in layout.php - nothing needed here for homepages -->
     <?php if (isset($extraJs)) echo $extraJs; ?>
-    <script>
-        // Inicializar Lenis para scroll suave si no está ya inicializado
-        if (typeof Lenis !== 'undefined' && !window.lenis) {
-            const lenis = new Lenis();
-            function raf(time) {
-                lenis.raf(time);
-                requestAnimationFrame(raf);
-            }
-            requestAnimationFrame(raf);
-            window.lenis = lenis;
-        }
-    </script>
+
 </body>
 </html>
 <?php endif; ?>
