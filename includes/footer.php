@@ -118,6 +118,17 @@
 </footer>
 
 <?php if (!isset($skip_footer)): ?>
+    <!-- Core scripts for direct pages that do not use layout.php -->
+    <script src="<?= $baseUrl ?>assets/vendor/gsap/gsap.min.js"></script>
+    <script src="<?= $baseUrl ?>assets/vendor/gsap/ScrollTrigger.min.js"></script>
+    <script src="<?= $baseUrl ?>assets/vendor/gsap/Flip.min.js"></script>
+    <script src="<?= $baseUrl ?>assets/js/page-loader.js"></script>
+    <script defer src="<?= $baseUrl ?>assets/js/theme.js"></script>
+    <script defer src="<?= $baseUrl ?>assets/js/mega-menu.js"></script>
+    <script defer src="<?= $baseUrl ?>assets/js/animations.js"></script>
+    <script defer src="<?= $baseUrl ?>assets/js/modules/footer-animations.js"></script>
+    <script defer src="<?= $baseUrl ?>assets/js/modules/background-ambience.js"></script>
+
     <!-- All scripts loaded in layout.php - nothing needed here for homepages -->
     <?php if (isset($extraJs)) echo $extraJs; ?>
 

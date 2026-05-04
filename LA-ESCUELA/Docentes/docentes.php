@@ -2,8 +2,8 @@
 $baseUrl = '../../'; 
 $pageTitle = 'Docentes | La Escuela';
 $bodyType = 'docentes';
-$extraCss = '<link rel="stylesheet" href="' . $baseUrl . 'Trabajadores/trabajadores.css">';
-$extraJs = '<script src="' . $baseUrl . 'Trabajadores/trabajadores.js"></script>';
+$extraCss = '<link rel="stylesheet" href="' . $baseUrl . 'LA-ESCUELA/trabajadores.css">';
+$extraJs = '<script src="' . $baseUrl . 'LA-ESCUELA/trabajadores.js"></script>';
 
 include_once '../../includes/header.php'; 
 ?>

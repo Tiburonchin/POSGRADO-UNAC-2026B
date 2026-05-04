@@ -27,6 +27,7 @@ const renderer = new THREE.WebGLRenderer({
   alpha: true,
   antialias: false,
 });
+let material;
 
 function hexToRgb(hex) {
   const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -40,18 +41,21 @@ function hexToRgb(hex) {
 }
 
 function resize() {
-  const width = hero.offsetWidth;
-  const height = hero.offsetHeight;
-  renderer.setSize(width, height);
+  const heroRect = hero.getBoundingClientRect();
+  const width = Math.max(1, Math.ceil(heroRect.width));
+  const height = Math.max(1, Math.ceil(heroRect.height));
+  renderer.setSize(width, height, false);
+  canvas.style.width = "100%";
+  canvas.style.height = "100%";
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  if (material) {
+    material.uniforms.uResolution.value.set(width, height);
+  }
 }
-
-resize();
-window.addEventListener("resize", resize);
 
 const rgb = hexToRgb(CONFIG.color);
 const geometry = new THREE.PlaneGeometry(2, 2);
-const material = new THREE.ShaderMaterial({
+material = new THREE.ShaderMaterial({
   vertexShader,
   fragmentShader,
   uniforms: {
@@ -67,6 +71,7 @@ const material = new THREE.ShaderMaterial({
 
 const mesh = new THREE.Mesh(geometry, material);
 scene.add(mesh);
+resize();
 
 let scrollProgress = 0;
 
@@ -89,9 +94,7 @@ lenis.on("scroll", ({ scroll }) => {
 
 });
 
-window.addEventListener("resize", () => {
-  material.uniforms.uResolution.value.set(hero.offsetWidth, hero.offsetHeight);
-});
+window.addEventListener("resize", resize);
 
 const heroH2 = document.querySelector(".hero-content h2");
 // Función para dividir el texto manualmente (Reemplaza a SplitText)
@@ -225,4 +228,4 @@ if (typeof material !== 'undefined' && material.uniforms) {
   const rgbColor = hexToRgb('#060a12');
   material.uniforms.uColor.value.set(rgbColor.r, rgbColor.g, rgbColor.b);
 }
-
+

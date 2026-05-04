@@ -64,9 +64,9 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
               </div>
               <div class="mega-column">
                 <h4 class="mega-column-title">Nuestro Equipo</h4>
-                <a href="<?= $baseUrl ?>Trabajadores/Administradores/administrativos.php" class="mega-link"><strong>Administrativos</strong><span>Equipo técnico al servicio de la formación académica.</span></a>
-                <a href="<?= $baseUrl ?>Trabajadores/Directores/directores.php" class="mega-link"><strong>Directores</strong><span>Autoridades que lideran nuestros programas y gestión.</span></a>
-                <a href="<?= $baseUrl ?>Trabajadores/Docentes/docentes.php" class="mega-link"><strong>Docentes</strong><span>Cuerpo académico altamente calificado y con experiencia.</span></a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/Administradores/administrativos.php" class="mega-link"><strong>Administrativos</strong><span>Equipo técnico al servicio de la formación académica.</span></a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/Directores/directores.php" class="mega-link"><strong>Directores</strong><span>Autoridades que lideran nuestros programas y gestión.</span></a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/Docentes/docentes.php" class="mega-link"><strong>Docentes</strong><span>Cuerpo académico altamente calificado y con experiencia.</span></a>
               </div>
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Propuesta Academica</h4>
@@ -165,9 +165,9 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#mision-vision" class="js-identidad-link">Misión y Visión</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#ventajas" class="js-identidad-link">Ventajas</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones" class="js-identidad-link">Certificaciones</a></li>
-            <li><a href="<?= $baseUrl ?>Trabajadores/Administradores/administrativos.php">Administrativos</a></li>
-            <li><a href="<?= $baseUrl ?>Trabajadores/Directores/directores.php">Directores</a></li>
-            <li><a href="<?= $baseUrl ?>Trabajadores/Docentes/docentes.php">Docentes</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/Administradores/administrativos.php">Administrativos</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/Directores/directores.php">Directores</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/Docentes/docentes.php">Docentes</a></li>
           </ul>
         </li>
         <li>

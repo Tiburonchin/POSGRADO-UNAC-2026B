@@ -1,6 +1,9 @@
 <?php 
 $baseUrl = '../../';
 $pageTitle = 'Formatos y Tutoriales | Admisión Posgrado';
+$bodyType = 'admision';
+$extraCss = '<link rel="stylesheet" href="' . $baseUrl . 'Admision/admision.css">';
+$extraJs = '<script src="' . $baseUrl . 'Admision/admision.js"></script>';
 require_once __DIR__ . '/../../includes/header.php';
 ?>
 
@@ -141,8 +144,5 @@ require_once __DIR__ . '/../../includes/header.php';
             </div>
         </div>
     </section>
-
-    <link rel="stylesheet" href="<?= $baseUrl ?>Admision/admision.css">
-    <script src="<?= $baseUrl ?>Admision/admision.js"></script>
 
 <?php require_once __DIR__ . '/../../includes/footer.php'; ?>

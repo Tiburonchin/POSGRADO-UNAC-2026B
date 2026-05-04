@@ -3,7 +3,18 @@ $baseUrl = '../';
 $pageTitle = 'La Escuela | Escuela de Posgrado UNAC';
 $bodyType = 'la-escuela';
 $extraCss = '<link rel="stylesheet" href="style.css">';
-$extraJs = '<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script><script type="module" src="script.js"></script>';
+$extraJs = '
+<script src="../assets/vendor/gsap/gsap.min.js"></script>
+<script src="../assets/vendor/gsap/ScrollTrigger.min.js"></script>
+<script src="../assets/js/page-loader.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/three@0.152.2/build/three.min.js"></script>
+<script type="module" src="script.js"></script>
+<script defer src="../assets/js/theme.js?v=20260504"></script>
+<script defer src="../assets/js/mega-menu.js?v=20260504"></script>
+<script defer src="../assets/js/animations.js?v=20260504"></script>
+<script defer src="../assets/js/modules/footer-animations.js?v=20260504"></script>
+<script defer src="../assets/js/modules/background-ambience.js?v=20260504"></script>';
 
 include_once '../includes/header.php'; 
 ?>

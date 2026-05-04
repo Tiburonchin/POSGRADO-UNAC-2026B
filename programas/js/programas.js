@@ -304,21 +304,6 @@ function initDetailView() {
 
     if (!overlay) return;
 
-    // Prevent wheel/touch events from propagating to the page behind the modal
-    // This helps ensure scroll stays inside the modal on desktop and mobile
-    overlay.addEventListener('wheel', function(e) {
-        // If wheel event occurred inside the modal detail, stop propagation so background doesn't scroll
-        if (e.target.closest && e.target.closest('.programa-detail')) {
-            e.stopPropagation();
-        }
-    }, { passive: false });
-
-    overlay.addEventListener('touchmove', function(e) {
-        if (e.target.closest && e.target.closest('.programa-detail')) {
-            e.stopPropagation();
-        }
-    }, { passive: false });
-
     // Delegated open: handle clicks on cards inside the grid
     if (grid) {
         grid.addEventListener('click', function(e) {
@@ -332,7 +317,7 @@ function initDetailView() {
 
     // Delegated close: handle clicks on close button or backdrop
     overlay.addEventListener('click', function(e) {
-        if (e.target === this || e.target.classList.contains('programa-detail-overlay__backdrop') || e.target.closest('#closeDetail')) {
+        if (e.target === this || e.target.classList.contains('programa-detail-overlay__backdrop') || e.target.closest('#closeDetail') || e.target.closest('.programa-detail__close')) {
             closeDetail();
         }
     });
@@ -355,13 +340,14 @@ function openDetail(programId) {
         .then(html => {
             detail.innerHTML = html;
             overlay.classList.add('active');
-            // Prevent background scroll but keep ability to scroll the modal on mobile
-            // Store scroll position and fix body to preserve background layout
-            window._progScrollY = window.scrollY || window.pageYOffset || 0;
-            document.body.style.position = 'fixed';
-            document.body.style.top = '-' + window._progScrollY + 'px';
-            document.body.style.left = '0';
-            document.body.style.right = '0';
+            
+            // Prevent background scroll
+            document.body.style.overflow = 'hidden';
+
+            // Reset any GSAP inline styles from previous close animation
+            if (typeof gsap !== 'undefined') {
+                gsap.set('.programa-detail', { clearProps: "all" });
+            }
 
             // Update URL for sharing (without reloading)
             const newUrl = new URL(window.location.href);
@@ -373,10 +359,8 @@ function openDetail(programId) {
             initTabs();
 
             // Attach close button inside the loaded detail (if exists)
-            const newClose = document.getElementById('closeDetail');
-            if (newClose) {
-                newClose.addEventListener('click', closeDetail);
-            }
+            // Event is already delegated to the overlay, but we can keep direct binding just in case 
+            // (but it's better not to double bind, so we rely on delegation)
 
             // GSAP entrance for detail
             if (typeof gsap !== 'undefined') {
@@ -413,9 +397,11 @@ function closeDetail() {
     const detail = document.getElementById('programaDetail');
 
     // Clean URL
-    const newUrl = new URL(window.location.href);
-    newUrl.searchParams.delete('id');
-    window.history.pushState({}, '', newUrl.toString());
+    try {
+        const newUrl = new URL(window.location.href);
+        newUrl.searchParams.delete('id');
+        window.history.pushState({}, '', newUrl.toString());
+    } catch(e) { console.warn("Could not push state", e); }
 
     if (typeof gsap !== 'undefined') {
         gsap.to('.programa-detail', {
@@ -427,30 +413,15 @@ function closeDetail() {
             onComplete: () => {
                 overlay.classList.remove('active');
                 // Restore body scroll position
-                document.body.style.position = '';
-                document.body.style.top = '';
-                document.body.style.left = '';
-                document.body.style.right = '';
-                if (typeof window._progScrollY === 'number') {
-                    window.scrollTo(0, window._progScrollY || 0);
-                    window._progScrollY = null;
-                }
-
+                document.body.style.overflow = '';
+                
                 // Clear injected detail HTML to avoid lingering handlers/content
                 if (detail) detail.innerHTML = '';
             }
         });
     } else {
         overlay.classList.remove('active');
-        document.body.style.position = '';
-        document.body.style.top = '';
-        document.body.style.left = '';
-        document.body.style.right = '';
-        if (typeof window._progScrollY === 'number') {
-            window.scrollTo(0, window._progScrollY || 0);
-            window._progScrollY = null;
-        }
-
+        document.body.style.overflow = '';
         if (detail) detail.innerHTML = '';
     }
 }

@@ -159,6 +159,15 @@
       trigger.addEventListener('click', function (event) {
         if (this.tagName === 'BUTTON') {
           event.preventDefault();
+          if (window.innerWidth >= 1024) {
+            self.clearCloseTimer();
+            if (self.isOpen && self.activeSection === section) {
+              self.closeMenu();
+            } else {
+              self.openMenu();
+              self.switchSection(section);
+            }
+          }
         }
       });
     });
