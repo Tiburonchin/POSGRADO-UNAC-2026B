@@ -20,12 +20,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     const DEFAULT_FALLBACK = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80';
 
     // --- Skeleton Loading State ---
-    const SKELETON_COUNT = 6;
+    const SKELETON_COUNT = 8;
     let skeletonHTML = '';
     for (let i = 0; i < SKELETON_COUNT; i++) {
         const offsetClass = i % 2 !== 0 ? 'sm:mt-16' : '';
+        const visibilityClass = i >= 3 ? 'hidden sm:block' : '';
         skeletonHTML += `
-            <div class="card-3d-wrapper ${offsetClass}">
+            <div class="card-3d-wrapper ${offsetClass} ${visibilityClass}">
                 <div class="animate-pulse bg-surface-elevated border border-border-base rounded-[var(--radius-lg)] overflow-hidden flex flex-col h-full min-h-[520px]">
                     <div class="h-48 bg-surface-soft shimmer-block rounded-t-[var(--radius-lg)]"></div>
                     <div class="p-6 flex flex-col flex-1 gap-3">
@@ -83,13 +84,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Render Cards
         container.innerHTML = selected.map((prog, index) => {
             const offsetClass = index % 2 !== 0 ? 'sm:mt-16' : '';
+            const visibilityClass = index >= 3 ? 'hidden sm:block' : '';
             const descripcion = prog.presentacion || prog.descripcion || '';
             const { src: imagenUrl, fallback: fallbackUrl } = resolveImage(prog);
             const colorBadge = getColorBadge(prog.tipo);
             const slug = prog.nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
             return `
-                <div class="card-3d-wrapper right-card-anim ${offsetClass}" data-href="programas/${slug}" role="link" tabindex="0" aria-label="Ver programa: ${prog.nombre}">
+                <div class="card-3d-wrapper right-card-anim ${offsetClass} ${visibilityClass}" data-href="programas/${slug}" role="link" tabindex="0" aria-label="Ver programa: ${prog.nombre}">
                     <div class="programa-card group bg-surface-elevated border border-border-base rounded-[var(--radius-lg)] overflow-hidden flex flex-col h-full min-h-[520px] relative cursor-pointer" style="transform-style: preserve-3d;">
                         
                         <div class="card-border-overlay"></div>

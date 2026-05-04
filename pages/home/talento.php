@@ -1,9 +1,9 @@
 <section class="w-full py-24 relative overflow-hidden">
     <!-- Cabecera de la sección (Armonía con el sistema de diseño) -->
-    <div class="site-container text-center mb-16 relative z-20">
+    <div class="site-container text-left mb-16 relative z-20">
         
         <!-- Badge (Pattern: Admisión/Noticias) -->
-        <div class="hero-kicker-wrapper mb-6 flex justify-center">
+        <div class="hero-kicker-wrapper mb-6 flex justify-start">
             <div class="hero-kicker inline-flex items-center gap-3 rounded-full border border-border-base bg-bg-soft/50 px-4 py-2 text-[11px] font-black uppercase tracking-[0.3em] text-unac-yellow backdrop-blur-md transition-colors hover:border-border-bright hover:bg-bg-soft sm:text-[12px]">
                 <span class="relative flex h-2 w-2">
                     <span class="absolute inline-flex h-full w-full animate-ping rounded-full bg-unac-yellow opacity-75"></span>
@@ -17,7 +17,7 @@
             El talento UNAC se <span class="text-transparent bg-clip-text bg-gradient-to-r from-unac-yellow via-unac-yellow-dark to-unac-yellow">premia</span>
         </h2>
         
-        <p class="text-text-muted text-base md:text-lg max-w-2xl mx-auto leading-relaxed">
+        <p class="text-text-muted text-base md:text-lg max-w-2xl leading-relaxed">
             Nuestros egresados del Posgrado UNAC destacan en las<br class="hidden md:block">
             instituciones y empresas más importantes del país
         </p>

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 function renderPage(string $pageTitle, string|array $contentTemplate): void
 {
+  global $extraCss, $extraJs;
   $contentTemplates = is_array($contentTemplate) ? $contentTemplate : [$contentTemplate];
 
   foreach ($contentTemplates as $templatePath) {
@@ -27,6 +28,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
     }
   }
 
+  $baseUrl = './';
     ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -46,7 +48,9 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <?php if ($isHomePage): ?>
   <link rel="preload" as="image" href="img/hero/fachada.webp" imagesrcset="img/hero/fachada.webp" type="image/webp" />
   <?php endif; ?>
-  <link rel="stylesheet" href="assets/css/output.css" />
+  <link rel="stylesheet" href="<?= $baseUrl ?>assets/css/output.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <?php if (isset($extraCss)) echo $extraCss; ?>
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
   <noscript><style>#page-loader { display: none !important; }</style></noscript>
 </head>
@@ -63,7 +67,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
     <div class="bg-ambience-shape" style="width: 200px; height: 200px; top: 40%; left: 80%;"></div>
   </div>
   <?php require __DIR__ . '/page-loader.php'; ?>
-  <?php require __DIR__ . '/header.php'; ?>
+  <?php $skip_head = true; $baseUrl = './'; require __DIR__ . '/header.php'; ?>
 
   <main id="main-content">
     <?php foreach ($contentTemplates as $templatePath): ?>
@@ -71,15 +75,15 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
     <?php endforeach; ?>
   </main>
 
-  <?php require __DIR__ . '/footer.php'; ?>
+  <?php $skip_footer = true; require __DIR__ . '/footer.php'; ?>
 
-  <script defer src="assets/vendor/gsap/gsap.min.js"></script>
-  <script defer src="assets/vendor/gsap/ScrollTrigger.min.js"></script>
-  <script defer src="assets/vendor/gsap/Flip.min.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/vendor/gsap/gsap.min.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/vendor/gsap/Flip.min.js"></script>
   <script src="https://unpkg.com/split-type"></script>
-  <script defer src="assets/js/theme.js"></script>
-  <script defer src="assets/js/mega-menu.js"></script>
-  <script defer src="assets/js/animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/theme.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/mega-menu.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/animations.js"></script>
   <?php if ($isHomePage): ?>
   <script defer src="assets/js/modules/hero-animations.js"></script>
   <script defer src="assets/js/modules/admision-animations.js"></script>
@@ -88,12 +92,12 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <script defer src="assets/js/modules/ubicacion-animations.js"></script>
   <script defer src="assets/js/modules/noticias-animations.js"></script>
   <?php endif; ?>
-  <script defer src="assets/js/modules/footer-animations.js"></script>
-  <script defer src="assets/js/modules/background-ambience.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/footer-animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/background-ambience.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
   <script>
     window.addEventListener('DOMContentLoaded', () => {
-      const lenis = new Lenis({
+      window.lenis = new Lenis({
         duration: 1.2,
         easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
         orientation: 'vertical',
@@ -118,7 +122,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
       });
     });
   </script>
-  <script defer src="assets/js/page-loader.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/page-loader.js"></script>
 </body>
 </html>
 <?php

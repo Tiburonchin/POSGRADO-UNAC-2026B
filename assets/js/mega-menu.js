@@ -37,7 +37,55 @@
     this.bindDesktop();
     this.bindMobile();
     this.bindGlobal();
+    this.bindIdentidadLinks();
     this.updateActiveStates(this.activeSection);
+  };
+
+  MegaMenu.prototype.bindIdentidadLinks = function () {
+    var self = this;
+    var links = document.querySelectorAll('.js-identidad-link');
+    
+    links.forEach(function (link) {
+      link.addEventListener('click', function (e) {
+        var href = link.getAttribute('href');
+        if (!href || !href.includes('#')) return;
+        
+        var hash = href.substring(href.indexOf('#'));
+        var targetElement = document.querySelector(hash);
+        
+        // Only intercept if we are on the target page
+        var isTargetPage = document.body.getAttribute('data-page') === 'la-escuela' || 
+                           window.location.pathname.includes('LA-ESCUELA/index.php');
+
+        if (isTargetPage && targetElement && window.lenis) {
+          e.preventDefault();
+          
+          // Close menu
+          self.closeMenu();
+          self.toggleMobile(false);
+          
+          // Harmonious smooth movement from current position
+          window.lenis.scrollTo(targetElement, {
+            duration: 2.2, // Movement is slow and premium
+            easing: function(t) {
+              // Custom smooth easing: slow-in, slow-out (easeInOutCubic)
+              return t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 3) / 2;
+            },
+            offset: -80, // Offset for sticky header
+            onComplete: function() {
+              // Subtle pulse/breath effect on arrival using GSAP
+              if (window.gsap) {
+                var sectionTitle = targetElement.querySelector('h2') || targetElement;
+                window.gsap.fromTo(sectionTitle, 
+                  { opacity: 0.7, filter: 'blur(2px)', y: 10 }, 
+                  { opacity: 1, filter: 'blur(0px)', y: 0, duration: 1.8, ease: 'power3.out' }
+                );
+              }
+            }
+          });
+        }
+      });
+    });
   };
 
   MegaMenu.prototype.calculateSharedHeight = function () {
@@ -139,23 +187,51 @@
         var submenu = toggle.nextElementSibling;
         var isOpen = toggle.getAttribute('data-open') === 'true';
 
+        // Cerrar otros submenús abiertos
         self.mobileSectionToggles.forEach(function (otherToggle) {
-          if (otherToggle === toggle) {
-            return;
-          }
+          if (otherToggle === toggle) return;
           var otherSubmenu = otherToggle.nextElementSibling;
-          otherToggle.setAttribute('data-open', 'false');
-          otherToggle.setAttribute('aria-expanded', 'false');
-          if (otherSubmenu) {
-            otherSubmenu.classList.add('hidden');
+          if (otherToggle.getAttribute('data-open') === 'true') {
+            otherToggle.setAttribute('data-open', 'false');
+            otherToggle.setAttribute('aria-expanded', 'false');
+            if (otherSubmenu && self.hasGSAP()) {
+              window.gsap.to(otherSubmenu, { 
+                height: 0, 
+                opacity: 0, 
+                duration: 0.3, 
+                ease: 'power2.inOut',
+                onComplete: function() { otherSubmenu.classList.add('hidden'); }
+              });
+            } else if (otherSubmenu) {
+              otherSubmenu.classList.add('hidden');
+            }
           }
         });
 
+        // Alternar el submenú actual
         toggle.setAttribute('data-open', isOpen ? 'false' : 'true');
         toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
 
         if (submenu) {
-          submenu.classList.toggle('hidden', isOpen);
+          if (self.hasGSAP()) {
+            if (!isOpen) {
+              submenu.classList.remove('hidden');
+              window.gsap.fromTo(submenu, 
+                { height: 0, opacity: 0 },
+                { height: 'auto', opacity: 1, duration: 0.4, ease: 'power2.out' }
+              );
+            } else {
+              window.gsap.to(submenu, { 
+                height: 0, 
+                opacity: 0, 
+                duration: 0.3, 
+                ease: 'power2.inOut',
+                onComplete: function() { submenu.classList.add('hidden'); }
+              });
+            }
+          } else {
+            submenu.classList.toggle('hidden', isOpen);
+          }
         }
       });
     });
@@ -188,6 +264,11 @@
         self.closeMenu();
         self.toggleMobile(false);
       }
+    });
+
+    document.addEventListener('mega-menu:close', function () {
+      self.closeMenu();
+      self.toggleMobile(false);
     });
   };
 

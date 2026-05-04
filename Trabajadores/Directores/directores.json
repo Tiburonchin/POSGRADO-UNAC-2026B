@@ -1,0 +1,93 @@
+[
+  {
+    "nombre": "Dr. Juan Valdivia Zuta",
+    "facultad": "FCA",
+    "cargo": "Director",
+    "foto": "../img/directores/juan_valdivia.png",
+    "descripcion": "Director de la Unidad de Posgrado."
+  },
+  {
+    "nombre": "Dr. Juan Benjamin Puican Castro",
+    "facultad": "FCA",
+    "cargo": "Director",
+    "foto": "../img/directores/FCA.png",
+    "descripcion": "Directora de la Facultad de Ciencias Administrativas."
+  },
+  {
+    "nombre": "Dr. Fredy Vicente Salazar Sandoval",
+    "facultad": "FCC",
+    "cargo": "Director",
+    "foto": "../img/directores/FCC.png",
+    "descripcion": "Director de la Facultad de Ciencias Contables."
+  },
+  {
+    "nombre": " Dr. Grimaldo Perez Baca Anchay",
+    "facultad": "FCE",
+    "cargo": "Director",
+    "foto": "../img/directores/FCE.png",
+    "descripcion": "Director de la Facultad de Ciencias Económicas."
+  },
+  {
+    "nombre": "Dra. Laura Margarita Zela Pacheco",
+    "facultad": "FCED",
+    "cargo": "Director",
+    "foto": "../img/directores/FCED.png",
+    "descripcion": "Director de la Facultad de Ciencias de la Educación."
+  },
+  {
+    "nombre": "Dr. Jorge Abel Espichan Carrillo",
+    "facultad": "FCNM",
+    "cargo": "Director",
+    "foto": "../img/directores/FCNM.png",
+    "descripcion": "Director de la Facultad de Ciencias Naturales y Matemática."
+  },
+  {
+    "nombre": "Dra. Mercedes Lulilea Ferrer Mejía",
+    "facultad": "FCS",
+    "cargo": "Directora",
+    "foto": "../img/directores/FCS-1.png",
+    "descripcion": "Directora de la Facultad de Ciencias de la Salud."
+  },
+  {
+    "nombre": "Dr. Miguel Angel de la Cruz Cruz",
+    "facultad": "FIARN",
+    "cargo": "Director",
+    "foto": "../img/directores/FIARN.png",
+    "descripcion": "Director de la Facultad de Ingeniería Ambiental y Recursos Naturales."
+  },
+  {
+    "nombre": "Dr. Jacob Astocondor Villar",
+    "facultad": "FIEE",
+    "cargo": "Director",
+    "foto": "../img/directores/FIEE.png",
+    "descripcion": "Director de la Facultad de Ingeniería Electrónica y Eléctrica."
+  },
+  {
+    "nombre": "Dr. Luis Alberto Sakibaru Mauricio",
+    "facultad": "FIIS",
+    "cargo": "Director",
+    "foto": "../img/directores/Sakibaru 1.png",
+    "descripcion": "Director de la Facultad de Ingeniería Industrial y de Sistemas."
+  },
+  {
+    "nombre": "Mg. Jorge Luis Ilquimiche Melly",
+    "facultad": "FIME",
+    "cargo": "Director",
+    "foto": "../img/directores/FIME.png",
+    "descripcion": "Director de la Facultad de Ingeniería Mecánica y Energía."
+  },
+  {
+    "nombre": "Dr. Wilmer Huamaní Palomino",
+    "facultad": "FIPA",
+    "cargo": "Director",
+    "foto": "../img/directores/FIPA.jpeg",
+    "descripcion": "Director de la Facultad de Ingeniería Pesquera y de Alimentos."
+  },
+  {
+    "nombre": "Mg. Wimper Daniel Montero Arteaga",
+    "facultad": "FIQ",
+    "cargo": "Director",
+    "foto": "../img/directores/FIQ.png",
+    "descripcion": "Director de la Facultad de Ingeniería Química."
+  }
+]

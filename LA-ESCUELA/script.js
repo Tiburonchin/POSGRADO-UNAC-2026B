@@ -1,8 +1,8 @@
 import { vertexShader, fragmentShader } from "./shaders.js";
 
-gsap.registerPlugin(ScrollTrigger, SplitText);
+gsap.registerPlugin(ScrollTrigger);
 
-const lenis = new Lenis();
+window.lenis = new Lenis();
 function raf(time) {
   lenis.raf(time);
   ScrollTrigger.update();
@@ -94,8 +94,26 @@ window.addEventListener("resize", () => {
 });
 
 const heroH2 = document.querySelector(".hero-content h2");
-const split = new SplitText(heroH2, { type: "words"});
-const words = split.words;
+// Función para dividir el texto manualmente (Reemplaza a SplitText)
+function manualSplitText(element) {
+  const text = element.innerText;
+  element.innerHTML = "";
+  const wordsArray = text.split(/\s+/).filter(word => word.length > 0);
+  
+  return wordsArray.map((word, index) => {
+    const span = document.createElement("span");
+    span.textContent = word;
+    span.style.display = "inline-block";
+    if (index < wordsArray.length - 1) {
+      span.style.marginRight = "0.3em"; // Espacio entre palabras
+    }
+    element.appendChild(span);
+    return span;
+  });
+}
+
+// Ahora usamos la función así:
+const words = manualSplitText(heroH2);
 
 gsap.set(words, { opacity: 0 });
 
@@ -207,3 +225,4 @@ if (typeof material !== 'undefined' && material.uniforms) {
   const rgbColor = hexToRgb('#060a12');
   material.uniforms.uColor.value.set(rgbColor.r, rgbColor.g, rgbColor.b);
 }
+

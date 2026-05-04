@@ -1,13 +1,36 @@
+<?php 
+$baseUrl = $baseUrl ?? './'; 
+$pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
+?>
+<?php if (!isset($skip_head)): ?>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $pageTitle; ?></title>
+    <!-- Assets principales -->
+    <link rel="stylesheet" href="<?php echo $baseUrl; ?>assets/css/output.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <?php if (isset($extraCss)) echo $extraCss; ?>
+</head>
+<body data-type="<?php echo $bodyType ?? ''; ?>">
+<?php require_once __DIR__ . '/page-loader.php'; ?>
+<?php endif; ?>
+
 <header class="site-header sticky top-0 z-50" id="site-header">
   <div class="header-main" id="header-main">
-    <div class="site-container grid min-h-[4.75rem] grid-cols-[auto_1fr_auto] items-center gap-3 lg:grid-cols-[minmax(230px,380px)_1fr_minmax(230px,380px)_0px]">
-      <a href="index.php" class="brand flex items-center" aria-label="Escuela de Posgrado UNAC">
-        <img src="img/epg-logo.png" alt="EPG UNAC" class="brand-logo object-contain" />
+    <div class="site-container header-inner min-h-[4.75rem] items-center gap-3">
+      <a href="<?php echo $baseUrl; ?>index.php" class="brand flex items-center shrink-0" aria-label="Escuela de Posgrado UNAC">
+        <img src="<?php echo $baseUrl; ?>img/epg-logo.png" alt="EPG UNAC" class="brand-logo object-contain" />
       </a>
 
-      <nav class="primary-nav hidden lg:block" id="primary-nav" aria-label="Navegacion principal">
-        <ul class="flex items-center justify-center gap-2">
-          <li class="nav-item" data-section="escuela"><a href="LA-ESCUELA/index.php" class="mega-trigger nav-link" data-section="escuela" aria-expanded="false">La Escuela</a></li>
+      <nav class="primary-nav hidden flex-1 justify-center lg:block" id="primary-nav" aria-label="Navegacion principal">
+        <ul class="flex items-center justify-center gap-1 xl:gap-2">
+          <li class="nav-item" data-section="escuela"><button class="mega-trigger nav-link" data-section="escuela" aria-expanded="false">La Escuela</button></li>
           <li class="nav-item" data-section="admision"><button class="mega-trigger nav-link" data-section="admision" aria-expanded="false">Admision</button></li>
           <li class="nav-item" data-section="programas"><button class="mega-trigger nav-link" data-section="programas" aria-expanded="false">Programas</button></li>
           <li class="nav-item" data-section="conocenos"><button class="mega-trigger nav-link" data-section="conocenos" aria-expanded="false">Conocenos</button></li>
@@ -15,20 +38,17 @@
         </ul>
       </nav>
 
-      <a href="#admision-proceso" class="header-cta hidden items-center justify-center rounded-full px-5 py-2 text-xs font-bold uppercase tracking-[0.08em] transition lg:inline-flex lg:justify-self-end">
-        Informate Ya
+      <a href="<?= $baseUrl ?>Admision/INSCRIPCION/index.php" class="header-cta hidden shrink-0 items-center justify-center rounded-full px-5 py-2 text-xs font-bold uppercase tracking-[0.08em] transition lg:inline-flex lg:justify-self-end">
+        Inscribirse ahora
       </a>
 
-      <div class="flex items-center gap-2 lg:hidden">
-        <a href="#admision-proceso" class="header-cta header-cta-mobile inline-flex items-center justify-center rounded-full px-3 py-2 text-xs font-bold">Informate</a>
-        <button class="menu-toggle grid h-10 w-10 place-items-center rounded-lg transition" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menu">
-          <span class="flex flex-col gap-1.5">
-            <span class="block h-0.5 w-4 rounded-full bg-current"></span>
-            <span class="block h-0.5 w-4 rounded-full bg-current"></span>
-            <span class="block h-0.5 w-4 rounded-full bg-current"></span>
-          </span>
-        </button>
-      </div>
+      <button class="menu-toggle ml-auto grid h-11 w-11 shrink-0 place-items-center transition lg:hidden" id="menu-toggle" aria-expanded="false" aria-controls="mobile-nav" aria-label="Abrir menu">
+        <span class="menu-toggle-icon" aria-hidden="true">
+          <span class="menu-toggle-line"></span>
+          <span class="menu-toggle-line"></span>
+          <span class="menu-toggle-line"></span>
+        </span>
+      </button>
     </div>
 
     <div class="mega-nav-shell hidden lg:block" id="mega-nav-shell" aria-hidden="true">
@@ -37,19 +57,21 @@
           <div class="mega-sections" id="mega-sections">
             <section class="mega-panel-content is-active" data-section="escuela" aria-hidden="false">
               <div class="mega-column">
-                <h4 class="mega-column-title">La Escuela</h4>
-                <a href="#" class="mega-link"><strong>Mision y Vision</strong><span>Principios academicos y objetivos institucionales de largo alcance.</span></a>
-                <a href="#" class="mega-link"><strong>Administrativos</strong><span>Equipo tecnico y administrativo al servicio de la formacion.</span></a>
+                <h4 class="mega-column-title">Identidad</h4>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/index.php#mision-vision" class="mega-link js-identidad-link"><strong>Misión y Visión</strong><span>Principios académicos y objetivos institucionales.</span></a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/index.php#ventajas" class="mega-link js-identidad-link"><strong>Ventajas</strong><span>Lo que nos hace referentes en formación de posgrado.</span></a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones" class="mega-link js-identidad-link"><strong>Certificaciones</strong><span>Calidad internacional avalada por estándares globales.</span></a>
               </div>
               <div class="mega-column">
-                <h4 class="mega-column-title">Gestion</h4>
-                <a href="#" class="mega-link"><strong>Directores</strong><span>Autoridades que lideran programas y lineas de desarrollo.</span></a>
-                <a href="#" class="mega-link"><strong>Politica de Calidad</strong><span>Compromisos de mejora continua para asegurar excelencia.</span></a>
+                <h4 class="mega-column-title">Nuestro Equipo</h4>
+                <a href="<?= $baseUrl ?>Trabajadores/Administradores/administrativos.php" class="mega-link"><strong>Administrativos</strong><span>Equipo técnico al servicio de la formación académica.</span></a>
+                <a href="<?= $baseUrl ?>Trabajadores/Directores/directores.php" class="mega-link"><strong>Directores</strong><span>Autoridades que lideran nuestros programas y gestión.</span></a>
+                <a href="<?= $baseUrl ?>Trabajadores/Docentes/docentes.php" class="mega-link"><strong>Docentes</strong><span>Cuerpo académico altamente calificado y con experiencia.</span></a>
               </div>
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Propuesta Academica</h4>
                 <p>Conoce nuestra vision, estructura y gestion para potenciar tu carrera profesional.</p>
-                <a href="LA-ESCUELA/index.php" class="mega-cta-link">Ver La Escuela</a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="mega-cta-link">Ver La Escuela</a>
               </div>
             </section>
 
@@ -133,19 +155,25 @@
 
     <nav class="mobile-nav hidden lg:hidden" id="mobile-nav" aria-label="Navegacion movil">
       <ul class="mobile-nav-list">
+        <li class="mobile-nav-cta-item">
+          <a href="<?= $baseUrl ?>Admision/INSCRIPCION/index.php" class="mobile-nav-cta header-cta-mobile">Inscribirse ahora</a>
+        </li>
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">La Escuela<span>+</span></button>
           <ul class="mobile-submenu hidden">
-            <li><a href="LA-ESCUELA/index.php" class="font-bold text-[color:var(--accent)]">Ver La Escuela →</a></li>
-            <li><a href="#">Mision y Vision</a></li>
-            <li><a href="#">Administrativos</a></li>
-            <li><a href="#">Directores</a></li>
-            <li><a href="#">Politica de Calidad</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Ver La Escuela →</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#mision-vision" class="js-identidad-link">Misión y Visión</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#ventajas" class="js-identidad-link">Ventajas</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones" class="js-identidad-link">Certificaciones</a></li>
+            <li><a href="<?= $baseUrl ?>Trabajadores/Administradores/administrativos.php">Administrativos</a></li>
+            <li><a href="<?= $baseUrl ?>Trabajadores/Directores/directores.php">Directores</a></li>
+            <li><a href="<?= $baseUrl ?>Trabajadores/Docentes/docentes.php">Docentes</a></li>
           </ul>
         </li>
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">Admision<span>+</span></button>
           <ul class="mobile-submenu hidden">
+            <li><a href="#admision-proceso" class="font-bold text-unac-yellow">Ir a Admision →</a></li>
             <li><a href="#">Proceso de Admision</a></li>
             <li><a href="#">Cronograma Academico</a></li>
             <li><a href="#">Requisitos y Costos</a></li>
@@ -155,6 +183,7 @@
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">Programas<span>+</span></button>
           <ul class="mobile-submenu hidden">
+            <li><a href="#" class="font-bold text-unac-yellow">Explorar Programas →</a></li>
             <li><a href="#">Doctorados</a></li>
             <li><a href="#">Maestrias</a></li>
             <li><a href="#">Especialidades</a></li>
@@ -165,6 +194,7 @@
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">Conocenos<span>+</span></button>
           <ul class="mobile-submenu hidden">
+            <li><a href="#" class="font-bold text-unac-yellow">Conocer EPG →</a></li>
             <li><a href="#">Transparencia</a></li>
             <li><a href="#">Unidad de Investigacion</a></li>
             <li><a href="#">Revista Cientifica</a></li>
@@ -174,12 +204,12 @@
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">SGI<span>+</span></button>
           <ul class="mobile-submenu hidden">
+            <li><a href="#" class="font-bold text-unac-yellow">Ir a SGI →</a></li>
             <li><a href="#">Inicio</a></li>
             <li><a href="#">Sistema</a></li>
             <li><a href="#">Documentos del SGI</a></li>
             <li><a href="#">Procedimientos</a></li>
             <li><a href="#">Indicadores</a></li>
-            <li><a href="#">Mejora Continua</a></li>
           </ul>
         </li>
       </ul>

@@ -162,21 +162,38 @@
     document.addEventListener('click', function (event) {
       if (event.defaultPrevented || event.button !== 0) return;
       if (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+      
       var trigger = event.target.closest('a[href], [data-loader-url]');
       if (!trigger) return;
+      
+      // If it's a link, check if we should show the loader
       if (trigger.matches('a[href]')) {
         if (isIgnoredLink(trigger)) return;
+        
+        var href = trigger.getAttribute('href');
+        
+        // Prevent default to allow the "Out" animation to be seen
+        event.preventDefault();
         showLoader();
+        
+        // Navigate after a delay that allows the loader to fully cover the screen and play its intro
+        setTimeout(function () {
+          window.location.href = href;
+        }, 750); 
         return;
       }
+
       var customUrl = trigger.getAttribute('data-loader-url');
       if (customUrl) {
         showLoader();
-        window.location.href = customUrl;
+        setTimeout(function () {
+          window.location.href = customUrl;
+        }, 750);
       }
     }, true);
 
     window.addEventListener('beforeunload', function () {
+      // Last resort to show loader if navigation was triggered by something else
       showLoader();
     });
   }

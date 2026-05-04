@@ -949,3 +949,8 @@ p {
     font-size: 0.65rem;
   }
 }
+
+/* Fix hamburger position to the right */
+.menu-toggle {
+  margin-left: auto !important;
+}

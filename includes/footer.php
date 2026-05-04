@@ -11,20 +11,24 @@
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 mb-20 items-start">
             
             <!-- Columna Izquierda: Brand & Titular -->
-            <div class="lg:col-span-4 footer-anim pr-4 flex flex-col items-start">
-                <div class="relative mb-12 group">
+            <div class="lg:col-span-4 footer-anim pr-4 flex flex-col items-start justify-start h-full">
+                <!-- Logo Container -->
+                <div class="relative mb-8 group">
                     <!-- Subtle Glow behind logo -->
                     <div class="absolute -inset-8 bg-unac-yellow/10 blur-[60px] rounded-full pointer-events-none group-hover:bg-unac-yellow/20 transition-all duration-700"></div>
-                    <div class="w-48 h-48 lg:w-60 lg:h-60 flex items-center justify-center relative z-10">
-                        <img src="img/epg-logo.png" alt="Logo EPG UNAC" class="w-full h-full object-contain transform-gpu transition-transform duration-500 group-hover:scale-105" />
+<?php $baseUrl = $baseUrl ?? ''; ?>
+                    <div class="w-40 h-40 lg:w-48 lg:h-48 flex items-center justify-center relative z-10">
+                        <img src="<?= $baseUrl ?>img/epg-logo.png" alt="Logo EPG UNAC" class="w-full h-full object-contain transform-gpu transition-transform duration-500 group-hover:scale-110" />
                     </div>
                 </div>
                 
-                <div class="border-l-2 border-unac-yellow/30 pl-8">
-                    <h2 class="text-2xl md:text-3xl font-bold tracking-tight text-white leading-[1.2]">
-                        Excelencia y liderazgo.<br>
-                        Investigación de calidad<br>
-                        para el país.
+                <!-- Text Container -->
+                <div class="border-l-2 border-unac-yellow/40 pl-6 py-2">
+                    <h2 class="text-xl lg:text-2xl font-bold tracking-tight text-white leading-snug space-y-1">
+                        <span class="block">Excelencia y</span>
+                        <span class="block">liderazgo.</span>
+                        <span class="block mt-3 text-unac-yellow/90 font-semibold">Investigación de calidad</span>
+                        <span class="block">para el país.</span>
                     </h2>
                 </div>
             </div>
@@ -104,7 +108,7 @@
             </div>
 
             <div class="flex flex-col md:flex-row items-center gap-2 md:gap-6 text-[13px] text-gray-500 font-mono">
-                <span>© <?= date('Y') ?> UNAC Posgrado.</span>
+                <span>© <?php echo date('Y'); ?> UNAC Posgrado.</span>
                 <span class="hidden md:inline text-white/10">|</span>
                 <span>Desarrollado por <span class="text-accent/80">EPG-UNAC</span></span>
             </div>
@@ -112,3 +116,28 @@
         </div>
     </div>
 </footer>
+
+<?php if (!isset($skip_footer)): ?>
+    <!-- Scripts -->
+    <script src="<?php echo $baseUrl; ?>assets/vendor/gsap/gsap.min.js"></script>
+    <script src="<?php echo $baseUrl; ?>assets/vendor/gsap/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
+    <script src="<?php echo $baseUrl; ?>assets/js/mega-menu.js"></script>
+    <script src="<?php echo $baseUrl; ?>assets/js/page-loader.js"></script>
+    <script src="<?php echo $baseUrl; ?>assets/js/modules/footer-animations.js"></script>
+    <?php if (isset($extraJs)) echo $extraJs; ?>
+    <script>
+        // Inicializar Lenis para scroll suave si no está ya inicializado
+        if (typeof Lenis !== 'undefined' && !window.lenis) {
+            const lenis = new Lenis();
+            function raf(time) {
+                lenis.raf(time);
+                requestAnimationFrame(raf);
+            }
+            requestAnimationFrame(raf);
+            window.lenis = lenis;
+        }
+    </script>
+</body>
+</html>
+<?php endif; ?>

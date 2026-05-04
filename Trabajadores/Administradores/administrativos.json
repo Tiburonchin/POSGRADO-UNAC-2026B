@@ -1,0 +1,224 @@
+{
+  "facultades": [
+    {
+      "id": "fca",
+      "nombre": "Facultad de Ciencias Administrativas",
+      "administrativos": [
+        {
+          "id": 1,
+          "nombre": "Ana Paula Flores",
+          "cargo": "Secretaria de la Unidad de Posgrado - FCA",
+          "telefono": "+51922733332",
+          "whatsapp": "51922733332",
+          "email": "fca.posgrado@unac.pe"
+        }
+      ]
+    },
+    {
+      "id": "fcc",
+      "nombre": "Facultad de Ciencias Contables",
+      "administrativos": [
+        {
+          "id": 2,
+          "nombre": "Melissa Zelaya Guerra",
+          "cargo": "Secretaria de la Unidad de Posgrado - FCC",
+          "telefono": "+51906522735",
+          "whatsapp": "51906522735",
+          "email": "fcc.posgrado@unac.pe",
+          "avatar": "admin11.jpg"
+        },
+        {
+          "id": 3,
+          "nombre": "Nathaly De Jesus Paucar Zavaleta",
+          "cargo": "Secretaria de la Unidad de Posgrado - FCC",
+          "telefono": "+51940209038",
+          "whatsapp": "51940209038",
+          "email": "fcc.posgrado@unac.pe",
+          "avatar": "admin11.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fce",
+      "nombre": "Facultad de Ciencias Económicas",
+      "administrativos": [
+        {
+          "id": 4,
+          "nombre": "Tania Molina Huamán",
+          "cargo": "Secretaria de la Unidad de Posgrado - FCE",
+          "telefono": "+51904502934",
+          "whatsapp": "51904502934",
+          "email": "fce.posgrado@unac.pe"
+        },
+        {
+          "id": 44,
+          "nombre": "Lizberlis Palomino",
+          "cargo": "Secretaria de la Unidad de Posgrado - FCE",
+          "telefono": "+51924096724",
+          "whatsapp": "51924096724",
+          "email": "fce.posgrado@unac.pe"
+        }
+      ]
+    },
+    {
+      "id": "fcs",
+      "nombre": "Facultad de Ciencias de la Salud",
+      "administrativos": [
+        {
+          "id": 5,
+          "nombre": "Karina Jennny Vergaray Retuerto",
+          "cargo": "Secretaria de la Unidad de Posgrado - FCS (Segunda Especialidad)",
+          "telefono": "+51989979942",
+          "whatsapp": "51989979942",
+          "email": "kjvergaray@unac.pe"
+        },
+        {
+          "id": 6,
+          "nombre": "Blanca Flores",
+          "cargo": "Secretaria de la Unidad de Posgrado - FCS (Maestría)",
+          "telefono": "+51957288844",
+          "whatsapp": "51957288844",
+          "email": "fcs.posgrado@unac.edu.pe"
+        }
+      ]
+    },
+    {
+      "id": "fcnm",
+      "nombre": "Facultad de Ciencias Naturales y Matemática",
+      "administrativos": [
+        {
+          "id": 8,
+          "nombre": "Zoila Pebes Paucar",
+          "cargo": "Secretaria de la Unidad de Posgrado - FCNM",
+          "telefono": "+51999623711",
+          "whatsapp": "51999623711",
+          "email": "fcnm.posgrado@unac.pe",
+          "avatar": "admin9.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fiarn",
+      "nombre": "Facultad de Ingeniería Ambiental y de Recursos Naturales",
+      "administrativos": [
+        {
+          "id": 9,
+          "nombre": "Graciela Salgado Alegre",
+          "cargo": "Secretaria de la Unidad de Posgrado - FIARN",
+          "telefono": "+51933105966",
+          "whatsapp": "51933105966",
+          "email": "ﬁarn.posgrado@unac.pe",
+          "avatar": "admin12.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fiee",
+      "nombre": "Facultad de Ingeniería Eléctrica y Electrónica",
+      "administrativos": [
+        {
+          "id": 10,
+          "nombre": "Carla Tinoco Nores",
+          "cargo": "Secretaria de la Unidad de Posgrado - FIEE",
+          "telefono": "+51921109538",
+          "whatsapp": "51921109538",
+          "email": "fiee.posgrado@unac.pe",
+          "avatar": "admin2.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fiis",
+      "nombre": "Facultad de Ingeniería Industrial y de Sistemas",
+      "administrativos": [
+        {
+          "id": 11,
+          "nombre": "Melissa Jara",
+          "cargo": "Secretaria de la Unidad de Posgrado - FIIS",
+          "telefono": "+51961208612",
+          "whatsapp": "51961208612",
+          "email": "fiis.posgrado.admision@unac.pe",
+          "avatar": "admin1.jpg"
+        },
+        {
+          "id": 12,
+          "nombre": "Janeth Ruth Siapo Hidalgo",
+          "cargo": "Secretaria de la Unidad de Posgrado - FIIS",
+          "telefono": "+51997279705",
+          "whatsapp": "51997279705",
+          "email": "fiis.posgrado.admision@unac.pe",
+          "avatar": "admin1.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fime",
+      "nombre": "Facultad de Ingeniería Mecánica y de Energía",
+      "administrativos": [
+        {
+          "id": 13,
+          "nombre": "Josei Edward Bodero Magallanes",
+          "cargo": "Secretario de la Unidad de Posgrado - FIME",
+          "telefono": "+51910156471",
+          "whatsapp": "51910156471",
+          "email": "fime.posgrado@unac.pe",
+          "avatar": "admin7.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fipa",
+      "nombre": "Facultad de Ingeniería Pesquera y de Alimentos",
+      "administrativos": [
+        {
+          "id": 14,
+          "nombre": "Unidad de Posgrado (FIPA)",
+          "cargo": "Teléfono de la Unidad de Posgrado - FIPA",
+          "telefono": "01) 429 - 9749 Anexo 2185",
+          "whatsapp": "51956314453",
+          "email": "fipa.posgrado@unac.edu.pe",
+          "avatar": "admin10.jpg"
+        },
+        {
+          "id": 15,
+          "nombre": "Sofia Paredes Carhuachin",
+          "cargo": "Administrativa de la Unidad de Posgrado - FIPA",
+          "telefono": "+51956314453",
+          "whatsapp": "51956314453",
+          "email": "fipa.posgrado@unac.edu.pe",
+          "avatar": "admin10.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fiq",
+      "nombre": "Facultad de Ingeniería Química",
+      "administrativos": [
+        {
+          "id": 16,
+          "nombre": "Vanessa Maria Cuya Huaringa",
+          "cargo": "Secretaria de la Unidad de Posgrado - FIQ",
+          "telefono": "+51997478302",
+          "whatsapp": "51997478302",
+          "email": "fiq.posgrado@unac.pe",
+          "avatar": "admin9.jpg"
+        }
+      ]
+    },
+    {
+      "id": "fced",
+      "nombre": "Facultad de Ciencias de la Educación",
+      "administrativos": [
+        {
+          "id": 17,
+          "nombre": "Maria Luisa",
+          "cargo": "Secretaria de la Unidad de Posgrado - FCED",
+          "telefono": "+51941997477",
+          "whatsapp": "51941997477",
+          "email": "fced.posgrado@unac.edu.pe",
+          "avatar": "admin9.jpg"
+        }
+      ]
+    }
+  ]
+}
