@@ -96,9 +96,9 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <section class="mega-panel-content" data-section="programas" aria-hidden="true">
               <div class="mega-column">
                 <h4 class="mega-column-title">Formacion</h4>
-                <a href="#" class="mega-link"><strong>Doctorados</strong><span>Investigacion avanzada para liderazgo academico y cientifico.</span></a>
-                <a href="#" class="mega-link"><strong>Maestrias</strong><span>Especializacion profesional con enfoque aplicado y estrategico.</span></a>
-                <a href="#" class="mega-link"><strong>Especialidades</strong><span>Trayectorias de actualizacion para sectores especificos.</span></a>
+                <a href="<?= $baseUrl ?>programas/programas.php?type=doctorado" class="mega-link"><strong>Doctorados</strong><span>Investigacion avanzada para liderazgo academico y cientifico.</span></a>
+                <a href="<?= $baseUrl ?>programas/programas.php?type=maestria" class="mega-link"><strong>Maestrias</strong><span>Especializacion profesional con enfoque aplicado y estrategico.</span></a>
+                <a href="<?= $baseUrl ?>programas/programas.php?type=especialidad" class="mega-link"><strong>Especialidades</strong><span>Trayectorias de actualizacion para sectores especificos.</span></a>
               </div>
               <div class="mega-column">
                 <h4 class="mega-column-title">Soporte</h4>
@@ -108,7 +108,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Catalogo 2026</h4>
                 <p>Explora programas por modalidad, area y perfil profesional.</p>
-                <a href="#" class="mega-cta-link">Explorar Programas</a>
+                <a href="<?= $baseUrl ?>programas/programas.php" class="mega-cta-link">Explorar Programas</a>
               </div>
             </section>
 
@@ -183,10 +183,10 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">Programas<span>+</span></button>
           <ul class="mobile-submenu hidden">
-            <li><a href="#" class="font-bold text-unac-yellow">Explorar Programas →</a></li>
-            <li><a href="#">Doctorados</a></li>
-            <li><a href="#">Maestrias</a></li>
-            <li><a href="#">Especialidades</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php" class="font-bold text-unac-yellow">Explorar Programas →</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php?type=doctorado">Doctorados</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php?type=maestria">Maestrias</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php?type=especialidad">Especialidades</a></li>
             <li><a href="#">Malla Curricular</a></li>
             <li><a href="#">Becas</a></li>
           </ul>

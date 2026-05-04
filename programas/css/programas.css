@@ -189,6 +189,23 @@
     position: relative;
     overflow: hidden;
     white-space: nowrap;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.filter-btn span {
+    font-size: 0.7rem;
+    padding: 0.15rem 0.5rem;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    color: var(--text-muted);
+    transition: all var(--motion-base) var(--motion-ease);
+}
+
+.filter-btn.active span {
+    background: rgba(255, 255, 255, 0.2);
+    color: var(--text-inverse);
 }
 
 .filter-btn::before {

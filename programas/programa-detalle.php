@@ -13,11 +13,15 @@ if (!$programaId) {
     exit;
 }
 
+// Configurar base URL (como estamos en /programas/, la raíz es ../)
+$baseUrl = '../';
+
 // Cargar JSON
 $jsonPaths = [
+    __DIR__ . '/../data/programas.json',
+    __DIR__ . '/../data/programas_detalle.json',
     __DIR__ . '/../upload/programas.json',
     __DIR__ . '/programas.json',
-    __DIR__ . '/data/programas.json',
 ];
 
 $programa = null;
@@ -115,7 +119,7 @@ for ($i = 1; $i <= 3; $i++) {
 <!-- Header Image -->
 <div class="programa-detail__header">
     <?php if ($img): ?>
-        <img src="<?php echo htmlspecialchars($img); ?>" alt="" class="programa-detail__header-img">
+        <img src="<?php echo htmlspecialchars($baseUrl . $img); ?>" alt="" class="programa-detail__header-img">
     <?php else: ?>
         <div class="w-full h-full bg-gradient-to-br from-[#3b82f6]/30 to-[#fbbf24]/30"></div>
     <?php endif; ?>
@@ -306,8 +310,13 @@ for ($i = 1; $i <= 3; $i++) {
     
     <!-- Actions -->
     <div class="detail-actions">
+        <a href="<?php echo $baseUrl; ?>pages/admision/index.php" class="btn-primary">
+            <svg viewBox="0 0 24 24"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="8.5" cy="7" r="4"/><line x1="20" y1="8" x2="20" y2="14"/><line x1="23" y1="11" x2="17" y2="11"/></svg>
+            Inscríbete Ahora
+        </a>
+
         <?php if (!empty($programa['brochure'])): ?>
-            <a href="<?php echo htmlspecialchars($programa['brochure']); ?>" target="_blank" rel="noopener" class="btn-primary">
+            <a href="<?php echo htmlspecialchars($programa['brochure']); ?>" target="_blank" rel="noopener" class="btn-secondary">
                 <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
                 Descargar Brochure
             </a>
@@ -316,7 +325,7 @@ for ($i = 1; $i <= 3; $i++) {
         <?php if (!empty($facultad['correo'])): ?>
             <a href="mailto:<?php echo htmlspecialchars($facultad['correo']); ?>?subject=Consulta%20sobre%20<?php echo urlencode($programa['nombre'] ?? ''); ?>" class="btn-secondary">
                 <svg viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
-                Contactar Facultad
+                Consultar
             </a>
         <?php endif; ?>
     </div>

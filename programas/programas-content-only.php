@@ -8,16 +8,23 @@
 
 // ───── CONFIGURACIÓN DE RUTAS ─────
 // Ajusta estas rutas según dónde coloques los archivos en tu servidor
-$cssPath = './css/programas.css';   // Ruta al CSS
-$jsPath  = './js/programas.js';    // Ruta al JS
-$jsonPath = __DIR__ . '/../upload/programas.json'; // Ruta al JSON
+$cssPath = $baseUrl . 'programas/css/programas.css';
+$jsPath  = $baseUrl . 'programas/js/programas.js';
 
-// Fallbacks para encontrar el JSON
-if (!file_exists($jsonPath)) {
-    $jsonPath = __DIR__ . '/programas.json';
-}
-if (!file_exists($jsonPath)) {
-    $jsonPath = __DIR__ . '/data/programas.json';
+// Intentar encontrar el JSON en varias ubicaciones posibles
+$possiblePaths = [
+    __DIR__ . '/../data/programas.json',
+    __DIR__ . '/../data/programas_detalle.json', // Añadido como fallback
+    __DIR__ . '/programas.json',
+    __DIR__ . '/../upload/programas.json'
+];
+
+$jsonPath = '';
+foreach ($possiblePaths as $path) {
+    if (file_exists($path)) {
+        $jsonPath = $path;
+        break;
+    }
 }
 
 // ───── CARGAR DATOS ─────
@@ -26,6 +33,19 @@ $allProgramas = [];
 
 if (file_exists($jsonPath)) {
     $programasData = json_decode(file_get_contents($jsonPath), true);
+}
+
+// Normalizar estructura si viene de programas_detalle.json (que no tiene la clave 'facultades')
+if ($programasData && !isset($programasData['facultades'])) {
+    $tempData = ['facultades' => []];
+    foreach ($programasData as $facName => $content) {
+        $key = strtolower(str_replace(' ', '_', $facName));
+        $tempData['facultades'][$key] = [
+            'nombre' => $facName,
+            'programas' => $content
+        ];
+    }
+    $programasData = $tempData;
 }
 
 if (isset($programasData['facultades'])) {
@@ -135,10 +155,18 @@ function getDuration($prog) {
             </div>
             
             <div class="programas-filterbar">
-                <button class="filter-btn active" data-filter="all">Todos</button>
-                <button class="filter-btn" data-filter="maestria">Maestrías</button>
-                <button class="filter-btn" data-filter="doctorado">Doctorados</button>
-                <button class="filter-btn" data-filter="especialidad">Especialidades</button>
+                <button class="filter-btn active" data-filter="all">
+                    Todos <span><?php echo $totalProgramas; ?></span>
+                </button>
+                <button class="filter-btn" data-filter="maestria">
+                    Maestrías <span><?php echo $totalMaestrias; ?></span>
+                </button>
+                <button class="filter-btn" data-filter="doctorado">
+                    Doctorados <span><?php echo $totalDoctorados; ?></span>
+                </button>
+                <button class="filter-btn" data-filter="especialidad">
+                    Especialidades <span><?php echo $totalEspecialidades; ?></span>
+                </button>
             </div>
         </div>
     </section>
@@ -165,7 +193,7 @@ function getDuration($prog) {
                          data-types="<?php echo $prog['tipo'] ?? ''; ?>">
                     <div class="programa-card__image-wrap">
                         <?php if ($img): ?>
-                            <img src="<?php echo htmlspecialchars($img); ?>" 
+                            <img src="<?php echo htmlspecialchars($baseUrl . $img); ?>" 
                                  alt="<?php echo htmlspecialchars($prog['nombre'] ?? ''); ?>" 
                                  class="programa-card__image"
                                  loading="lazy"
@@ -223,4 +251,8 @@ function getDuration($prog) {
 </div>
 
 <!-- JS del módulo (incluir antes del cierre de </body> de tu layout) -->
-<script src="<?php echo htmlspecialchars($jsPath); ?>"></script>
+<script>
+    // Pasar configuración al JS para que sepa dónde está el endpoint AJAX
+    window.PROGRAMAS_AJAX_URL = '<?php echo $baseUrl; ?>programas/programa-detalle.php';
+</script>
+<script src="<?php echo htmlspecialchars($jsPath); ?>" defer></script>

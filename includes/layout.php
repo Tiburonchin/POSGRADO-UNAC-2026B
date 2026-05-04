@@ -28,7 +28,8 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
     }
   }
 
-  $baseUrl = './';
+  global $baseUrl;
+  $baseUrl = $baseUrl ?? './';
     ?>
 <!DOCTYPE html>
 <html lang="es">
@@ -67,7 +68,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
     <div class="bg-ambience-shape" style="width: 200px; height: 200px; top: 40%; left: 80%;"></div>
   </div>
   <?php require __DIR__ . '/page-loader.php'; ?>
-  <?php $skip_head = true; $baseUrl = './'; require __DIR__ . '/header.php'; ?>
+  <?php $skip_head = true; require __DIR__ . '/header.php'; ?>
 
   <main id="main-content">
     <?php foreach ($contentTemplates as $templatePath): ?>

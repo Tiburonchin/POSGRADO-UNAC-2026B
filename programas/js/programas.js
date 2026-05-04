@@ -17,6 +17,19 @@ document.addEventListener('DOMContentLoaded', function() {
     initDetailView();
     initAccordions();
     initParticles();
+    handleURLFilters();
+    
+    // Initial load: handle filtering and deep linking
+    setTimeout(() => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const id = urlParams.get('id');
+        
+        if (id) {
+            openDetail(id);
+        } else if (!urlParams.get('type')) {
+            updateGrid();
+        }
+    }, 150);
 });
 
 /* ============================================
@@ -149,112 +162,104 @@ function initFallbackAnimations() {
    ============================================ */
 function initFilters() {
     const filterBtns = document.querySelectorAll('.filter-btn');
-    const cards = document.querySelectorAll('.programa-card');
-    const emptyState = document.querySelector('.programas-empty');
+    if (!filterBtns.length) return;
 
     filterBtns.forEach(btn => {
         btn.addEventListener('click', function() {
-            const filter = this.dataset.filter;
-
             // Update active state
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
-            // Filter cards with animation
-            let visibleCount = 0;
-
-            cards.forEach(card => {
-                const types = card.dataset.types ? card.dataset.types.split(' ') : [];
-                const shouldShow = filter === 'all' || types.includes(filter);
-
-                if (shouldShow) {
-                    visibleCount++;
-                    gsap.to(card, {
-                        scale: 1,
-                        opacity: 1,
-                        duration: 0.4,
-                        ease: 'power2.out',
-                        display: 'flex'
-                    });
-                    card.style.position = 'relative';
-                    card.style.pointerEvents = 'auto';
-                } else {
-                    gsap.to(card, {
-                        scale: 0.9,
-                        opacity: 0,
-                        duration: 0.3,
-                        ease: 'power2.in',
-                        onComplete: () => {
-                            card.style.position = 'absolute';
-                            card.style.pointerEvents = 'none';
-                        }
-                    });
-                }
-            });
-
-            // Toggle empty state
-            if (emptyState) {
-                if (visibleCount === 0) {
-                    emptyState.style.display = 'block';
-                    gsap.fromTo(emptyState, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
-                } else {
-                    emptyState.style.display = 'none';
-                }
-            }
-
-            // Stagger visible cards
-            if (typeof gsap !== 'undefined') {
-                const visibleCards = Array.from(cards).filter(c => {
-                    const types = c.dataset.types ? c.dataset.types.split(' ') : [];
-                    return filter === 'all' || types.includes(filter);
-                });
-
-                gsap.fromTo(visibleCards,
-                    { y: 20, opacity: 0 },
-                    { y: 0, opacity: 1, duration: 0.5, stagger: 0.06, ease: 'power3.out', delay: 0.1 }
-                );
-            }
+            // Apply unified filtering
+            updateGrid();
         });
     });
 }
 
-/* ============================================
-   SEARCH
-   ============================================ */
 function initSearch() {
     const searchInput = document.getElementById('programasSearch');
     if (!searchInput) return;
 
-    const cards = document.querySelectorAll('.programa-card');
     let debounceTimer;
-
     searchInput.addEventListener('input', function() {
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
-            const query = this.value.toLowerCase().trim();
-
-            cards.forEach(card => {
-                const name = card.querySelector('.programa-card__name').textContent.toLowerCase();
-                const faculty = card.querySelector('.programa-card__faculty').textContent.toLowerCase();
-                const desc = card.querySelector('.programa-card__desc').textContent.toLowerCase();
-
-                const matches = name.includes(query) || faculty.includes(query) || desc.includes(query);
-
-                if (matches || query === '') {
-                    card.style.display = 'flex';
-                    gsap.to(card, { opacity: 1, scale: 1, duration: 0.3 });
-                } else {
-                    gsap.to(card, {
-                        opacity: 0,
-                        scale: 0.95,
-                        duration: 0.2,
-                        onComplete: () => { card.style.display = 'none'; }
-                    });
-                }
-            });
-        }, 200);
+            updateGrid();
+        }, 250);
     });
 }
+
+/**
+ * Unified grid update function: Handles category filters and text search
+ */
+function updateGrid() {
+    const activeFilterBtn = document.querySelector('.filter-btn.active');
+    const filterType = activeFilterBtn ? activeFilterBtn.dataset.filter : 'all';
+    
+    const searchInput = document.getElementById('programasSearch');
+    const query = searchInput ? searchInput.value.toLowerCase().trim() : '';
+    
+    const cards = document.querySelectorAll('.programa-card');
+    const emptyState = document.querySelector('.programas-empty');
+    
+    let visibleCards = [];
+
+    cards.forEach(card => {
+        const types = card.dataset.types ? card.dataset.types.split(' ') : [];
+        const name = card.querySelector('.programa-card__name')?.textContent.toLowerCase() || '';
+        const faculty = card.querySelector('.programa-card__faculty')?.textContent.toLowerCase() || '';
+        const desc = card.querySelector('.programa-card__desc')?.textContent.toLowerCase() || '';
+
+        const matchesType = filterType === 'all' || types.includes(filterType);
+        const matchesSearch = query === '' || 
+                            name.includes(query) || 
+                            faculty.includes(query) || 
+                            desc.includes(query);
+
+        if (matchesType && matchesSearch) {
+            visibleCards.push(card);
+            // Ensure display is flex BEFORE animating opacity
+            card.style.display = 'flex';
+            card.style.position = 'relative';
+            card.style.pointerEvents = 'auto';
+            
+            gsap.to(card, {
+                scale: 1,
+                opacity: 1,
+                duration: 0.4,
+                ease: 'power2.out',
+                overwrite: true
+            });
+        } else {
+            gsap.to(card, {
+                scale: 0.9,
+                opacity: 0,
+                duration: 0.3,
+                ease: 'power2.in',
+                overwrite: true,
+                onComplete: () => {
+                    card.style.display = 'none';
+                }
+            });
+        }
+    });
+
+    // Handle empty state
+    if (emptyState) {
+        if (visibleCards.length === 0) {
+            emptyState.style.display = 'block';
+            gsap.fromTo(emptyState, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.4 });
+        } else {
+            emptyState.style.display = 'none';
+        }
+    }
+
+    // Refresh ScrollTrigger to account for layout changes
+    if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+    }
+}
+
 
 /* ============================================
    DETAIL VIEW (MODAL)
@@ -292,18 +297,24 @@ function openDetail(programId) {
     const overlay = document.getElementById('programaDetailOverlay');
     const detail = document.getElementById('programaDetail');
 
+    const ajaxUrl = window.PROGRAMAS_AJAX_URL || 'programa-detalle.php';
+    const finalUrl = `${ajaxUrl}${ajaxUrl.includes('?') ? '&' : '?'}id=${programId}`;
+    
     // Load content via AJAX
-    fetch(`programa-detalle.php?id=${programId}`)
+    fetch(finalUrl)
         .then(r => r.text())
         .then(html => {
             detail.innerHTML = html;
             overlay.classList.add('active');
             document.body.style.overflow = 'hidden';
 
-            // Init accordions in the new content
-            initAccordions();
+            // Update URL for sharing (without reloading)
+            const newUrl = new URL(window.location.href);
+            newUrl.searchParams.set('id', programId);
+            window.history.pushState({ id: programId }, '', newUrl.toString());
 
-            // Init tabs in the new content
+            // Init components in the new content
+            initAccordions();
             initTabs();
 
             // GSAP entrance for detail
@@ -338,6 +349,11 @@ function openDetail(programId) {
 
 function closeDetail() {
     const overlay = document.getElementById('programaDetailOverlay');
+
+    // Clean URL
+    const newUrl = new URL(window.location.href);
+    newUrl.searchParams.delete('id');
+    window.history.pushState({}, '', newUrl.toString());
 
     if (typeof gsap !== 'undefined') {
         gsap.to('.programa-detail', {
@@ -451,3 +467,31 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         }
     });
 });
+
+/* ============================================
+   URL FILTERING SUPPORT
+   ============================================ */
+function handleURLFilters() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const type = urlParams.get('type');
+    
+    if (type) {
+        const filterBtn = document.querySelector(`.filter-btn[data-filter="${type}"]`);
+        if (filterBtn) {
+            // Wait a bit for animations to be ready
+            setTimeout(() => {
+                filterBtn.click();
+                
+                // Scroll to grid if on mobile or if type is specified
+                const grid = document.querySelector('.programas-grid');
+                if (grid) {
+                    gsap.to(window, { 
+                        duration: 1, 
+                        scrollTo: { y: grid, offsetY: 120 }, 
+                        ease: 'power3.inOut' 
+                    });
+                }
+            }, 500);
+        }
+    }
+}
