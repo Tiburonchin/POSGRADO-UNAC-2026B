@@ -102,8 +102,8 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
               </div>
               <div class="mega-column">
                 <h4 class="mega-column-title">Soporte</h4>
-                <a href="#" class="mega-link"><strong>Malla Curricular</strong><span>Estructura de cursos, creditos y resultados de aprendizaje.</span></a>
-                <a href="#" class="mega-link"><strong>Becas</strong><span>Opciones de apoyo economico y beneficios institucionales.</span></a>
+                <a href="<?= $baseUrl ?>programas/programas.php" class="mega-link"><strong>Malla Curricular</strong><span>Estructura de cursos, creditos y resultados de aprendizaje.</span></a>
+                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="mega-link"><strong>Becas</strong><span>Opciones de apoyo economico y beneficios institucionales.</span></a>
               </div>
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Catalogo 2026</h4>
@@ -115,37 +115,38 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <section class="mega-panel-content" data-section="conocenos" aria-hidden="true">
               <div class="mega-column">
                 <h4 class="mega-column-title">Transparencia</h4>
-                <a href="#" class="mega-link"><strong>Transparencia</strong><span>Informacion institucional de gestion y cumplimiento normativo.</span></a>
-                <a href="#" class="mega-link"><strong>Preguntas Frecuentes</strong><span>Respuestas claras sobre tramites, procesos y servicios.</span></a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones" class="mega-link"><strong>Transparencia</strong><span>Informacion institucional de gestion y cumplimiento normativo.</span></a>
+                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="mega-link"><strong>Preguntas Frecuentes</strong><span>Respuestas claras sobre tramites, procesos y servicios.</span></a>
               </div>
               <div class="mega-column">
                 <h4 class="mega-column-title">Investigacion</h4>
-                <a href="#" class="mega-link"><strong>Unidad de Investigacion</strong><span>Lineas, proyectos y produccion de conocimiento aplicado.</span></a>
-                <a href="#" class="mega-link"><strong>Revista Cientifica</strong><span>Difusion de articulos y resultados de investigacion.</span></a>
+                <a href="<?= $baseUrl ?>programas/programas.php?type=doctorado" class="mega-link"><strong>Unidad de Investigacion</strong><span>Lineas, proyectos y produccion de conocimiento aplicado.</span></a>
+                <a href="<?= $baseUrl ?>noticias.php" class="mega-link"><strong>Revista Cientifica</strong><span>Difusion de articulos y resultados de investigacion.</span></a>
+                <a href="<?= $baseUrl ?>index.php#talento-unac" class="mega-link"><strong>Talento EPG</strong><span>Red de egresados y su impacto en instituciones lideres.</span></a>
               </div>
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Comunidad EPG</h4>
                 <p>Conecta con nuestra cultura de investigacion, apertura y calidad academica.</p>
-                <a href="#" class="mega-cta-link">Conocer EPG</a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="mega-cta-link">Conocer EPG</a>
               </div>
             </section>
 
             <section class="mega-panel-content" data-section="sgi" aria-hidden="true">
               <div class="mega-column">
                 <h4 class="mega-column-title">Sistema</h4>
-                <a href="#" class="mega-link"><strong>Inicio</strong><span>Acceso central a tramites y seguimiento academico.</span></a>
-                <a href="#" class="mega-link"><strong>Sistema</strong><span>Plataforma digital para estudiantes y administrativos.</span></a>
+                <a href="<?= $baseUrl ?>index.php#inicio" class="mega-link"><strong>Inicio</strong><span>Acceso central a tramites y seguimiento academico.</span></a>
+                <a href="<?= $baseUrl ?>auth/login.php" class="mega-link"><strong>Sistema</strong><span>Plataforma digital para estudiantes y administrativos.</span></a>
               </div>
               <div class="mega-column">
                 <h4 class="mega-column-title">Gestion de Calidad</h4>
-                <a href="#" class="mega-link"><strong>Documentos del SGI</strong><span>Politicas, manuales y lineamientos institucionales.</span></a>
-                <a href="#" class="mega-link"><strong>Procedimientos</strong><span>Flujos operativos normalizados para cada proceso.</span></a>
-                <a href="#" class="mega-link"><strong>Indicadores</strong><span>Metricas de desempeno y seguimiento de resultados.</span></a>
+                <a href="<?= $baseUrl ?>Admision/formato/formato.php" class="mega-link"><strong>Documentos del SGI</strong><span>Politicas, manuales y lineamientos institucionales.</span></a>
+                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-link"><strong>Procedimientos</strong><span>Flujos operativos normalizados para cada proceso.</span></a>
+                <a href="<?= $baseUrl ?>index.php#noticias" class="mega-link"><strong>Indicadores</strong><span>Metricas de desempeno y seguimiento de resultados.</span></a>
               </div>
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Control de Procesos</h4>
                 <p>Fortalece la calidad institucional con gestion integrada y trazable.</p>
-                <a href="#" class="mega-cta-link">Ir a SGI</a>
+                <a href="<?= $baseUrl ?>auth/login.php" class="mega-cta-link">Ir a SGI</a>
               </div>
             </section>
           </div>
@@ -153,13 +154,19 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
       </div>
     </div>
 
-    <nav class="mobile-nav hidden lg:hidden" id="mobile-nav" aria-label="Navegacion movil">
+    <nav class="mobile-nav hidden lg:hidden" id="mobile-nav" aria-label="Navegacion movil" aria-hidden="true">
       <ul class="mobile-nav-list">
+        <li class="mobile-nav-caption" aria-hidden="true">
+          Navegacion principal
+        </li>
         <li class="mobile-nav-cta-item">
           <a href="<?= $baseUrl ?>Admision/INSCRIPCION/index.php" class="mobile-nav-cta header-cta-mobile">Inscribirse ahora</a>
         </li>
         <li>
-          <button class="mobile-section-toggle" aria-expanded="false">La Escuela<span>+</span></button>
+          <button class="mobile-section-toggle" aria-expanded="false">
+            <span class="mobile-toggle-main"><i class="fa-solid fa-school mobile-toggle-icon" aria-hidden="true"></i><span>La Escuela</span></span>
+            <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
+          </button>
           <ul class="mobile-submenu hidden">
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Ver La Escuela →</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#mision-vision" class="js-identidad-link">Misión y Visión</a></li>
@@ -171,7 +178,10 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
           </ul>
         </li>
         <li>
-          <button class="mobile-section-toggle" aria-expanded="false">Admision<span>+</span></button>
+          <button class="mobile-section-toggle" aria-expanded="false">
+            <span class="mobile-toggle-main"><i class="fa-solid fa-user-graduate mobile-toggle-icon" aria-hidden="true"></i><span>Admision</span></span>
+            <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
+          </button>
           <ul class="mobile-submenu hidden">
             <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="font-bold text-unac-yellow">Ir a Admision →</a></li>
             <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php">Proceso de Admision</a></li>
@@ -181,35 +191,45 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
           </ul>
         </li>
         <li>
-          <button class="mobile-section-toggle" aria-expanded="false">Programas<span>+</span></button>
+          <button class="mobile-section-toggle" aria-expanded="false">
+            <span class="mobile-toggle-main"><i class="fa-solid fa-layer-group mobile-toggle-icon" aria-hidden="true"></i><span>Programas</span></span>
+            <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
+          </button>
           <ul class="mobile-submenu hidden">
             <li><a href="<?= $baseUrl ?>programas/programas.php" class="font-bold text-unac-yellow">Explorar Programas →</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=doctorado">Doctorados</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=maestria">Maestrias</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=especialidad">Especialidades</a></li>
-            <li><a href="#">Malla Curricular</a></li>
-            <li><a href="#">Becas</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php">Malla Curricular</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Becas</a></li>
           </ul>
         </li>
         <li>
-          <button class="mobile-section-toggle" aria-expanded="false">Conocenos<span>+</span></button>
+          <button class="mobile-section-toggle" aria-expanded="false">
+            <span class="mobile-toggle-main"><i class="fa-solid fa-compass mobile-toggle-icon" aria-hidden="true"></i><span>Conocenos</span></span>
+            <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
+          </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="#" class="font-bold text-unac-yellow">Conocer EPG →</a></li>
-            <li><a href="#">Transparencia</a></li>
-            <li><a href="#">Unidad de Investigacion</a></li>
-            <li><a href="#">Revista Cientifica</a></li>
-            <li><a href="#">Preguntas Frecuentes</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Conocer EPG →</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones">Transparencia</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php?type=doctorado">Unidad de Investigacion</a></li>
+            <li><a href="<?= $baseUrl ?>noticias.php">Revista Cientifica</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Preguntas Frecuentes</a></li>
+            <li><a href="<?= $baseUrl ?>index.php#talento-unac">Talento EPG</a></li>
           </ul>
         </li>
         <li>
-          <button class="mobile-section-toggle" aria-expanded="false">SGI<span>+</span></button>
+          <button class="mobile-section-toggle" aria-expanded="false">
+            <span class="mobile-toggle-main"><i class="fa-solid fa-shield-halved mobile-toggle-icon" aria-hidden="true"></i><span>SGI</span></span>
+            <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
+          </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="#" class="font-bold text-unac-yellow">Ir a SGI →</a></li>
-            <li><a href="#">Inicio</a></li>
-            <li><a href="#">Sistema</a></li>
-            <li><a href="#">Documentos del SGI</a></li>
-            <li><a href="#">Procedimientos</a></li>
-            <li><a href="#">Indicadores</a></li>
+            <li><a href="<?= $baseUrl ?>auth/login.php" class="font-bold text-unac-yellow">Ir a SGI →</a></li>
+            <li><a href="<?= $baseUrl ?>index.php#inicio">Inicio</a></li>
+            <li><a href="<?= $baseUrl ?>auth/login.php">Sistema</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/formato/formato.php">Documentos del SGI</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php">Procedimientos</a></li>
+            <li><a href="<?= $baseUrl ?>index.php#noticias">Indicadores</a></li>
           </ul>
         </li>
       </ul>

@@ -20,6 +20,7 @@
     this.duration = 0.28;
     this.sectionTimeline = null;
     this.menuTimeline = null;
+    this.mobileTimeline = null;
 
     this.init();
   }
@@ -38,7 +39,106 @@
     this.bindMobile();
     this.bindGlobal();
     this.bindIdentidadLinks();
+    this.bindMobileHeaderState();
     this.updateActiveStates(this.activeSection);
+  };
+
+  MegaMenu.prototype.closeAllMobileSubmenus = function () {
+    var self = this;
+    this.mobileSectionToggles.forEach(function (toggle) {
+      var submenu = toggle.nextElementSibling;
+      var item = toggle.closest('li');
+      toggle.setAttribute('data-open', 'false');
+      toggle.setAttribute('aria-expanded', 'false');
+      if (item) {
+        item.classList.remove('is-expanded');
+      }
+      self.setSubmenuClosed(submenu, true);
+    });
+  };
+
+  MegaMenu.prototype.setSubmenuOpen = function (submenu) {
+    if (!submenu) {
+      return;
+    }
+
+    submenu.classList.remove('hidden');
+    submenu.style.display = 'block';
+
+    if (this.hasGSAP()) {
+      window.gsap.killTweensOf(submenu);
+      window.gsap.fromTo(
+        submenu,
+        { height: 0, opacity: 0, marginTop: 0, paddingTop: 0, paddingBottom: 0, marginBottom: 0 },
+        {
+          height: submenu.scrollHeight,
+          opacity: 1,
+          marginTop: '',
+          paddingTop: '',
+          paddingBottom: '',
+          marginBottom: '',
+          duration: 0.34,
+          ease: 'power2.out',
+          onComplete: function () {
+            window.gsap.set(submenu, { clearProps: 'height,opacity,marginTop,paddingTop,paddingBottom,marginBottom' });
+          }
+        }
+      );
+    }
+  };
+
+  MegaMenu.prototype.setSubmenuClosed = function (submenu, immediate) {
+    if (!submenu) {
+      return;
+    }
+
+    if (!this.hasGSAP() || immediate) {
+      if (this.hasGSAP()) {
+        window.gsap.killTweensOf(submenu);
+        window.gsap.set(submenu, { clearProps: 'all' });
+      }
+      submenu.classList.add('hidden');
+      submenu.style.display = '';
+      return;
+    }
+
+    window.gsap.killTweensOf(submenu);
+    window.gsap.to(submenu, {
+      height: 0,
+      opacity: 0,
+      marginTop: 0,
+      paddingTop: 0,
+      paddingBottom: 0,
+      marginBottom: 0,
+      duration: 0.24,
+      ease: 'power2.inOut',
+      onComplete: function () {
+        submenu.classList.add('hidden');
+        submenu.style.display = '';
+        window.gsap.set(submenu, { clearProps: 'all' });
+      }
+    });
+  };
+
+  MegaMenu.prototype.updateMobileHeaderState = function () {
+    if (!this.header || window.innerWidth >= 1024) {
+      if (this.header) {
+        this.header.classList.remove('is-condensed');
+      }
+      return;
+    }
+
+    var shouldCondense = window.scrollY > 20;
+    this.header.classList.toggle('is-condensed', shouldCondense);
+  };
+
+  MegaMenu.prototype.bindMobileHeaderState = function () {
+    var self = this;
+    this.updateMobileHeaderState();
+
+    window.addEventListener('scroll', function () {
+      self.updateMobileHeaderState();
+    }, { passive: true });
   };
 
   MegaMenu.prototype.bindIdentidadLinks = function () {
@@ -200,50 +300,43 @@
         self.mobileSectionToggles.forEach(function (otherToggle) {
           if (otherToggle === toggle) return;
           var otherSubmenu = otherToggle.nextElementSibling;
+          var otherItem = otherToggle.closest('li');
           if (otherToggle.getAttribute('data-open') === 'true') {
             otherToggle.setAttribute('data-open', 'false');
             otherToggle.setAttribute('aria-expanded', 'false');
-            if (otherSubmenu && self.hasGSAP()) {
-              window.gsap.to(otherSubmenu, { 
-                height: 0, 
-                opacity: 0, 
-                duration: 0.3, 
-                ease: 'power2.inOut',
-                onComplete: function() { otherSubmenu.classList.add('hidden'); }
-              });
-            } else if (otherSubmenu) {
-              otherSubmenu.classList.add('hidden');
+            if (otherItem) {
+              otherItem.classList.remove('is-expanded');
             }
+            self.setSubmenuClosed(otherSubmenu, false);
           }
         });
 
         // Alternar el submenú actual
         toggle.setAttribute('data-open', isOpen ? 'false' : 'true');
         toggle.setAttribute('aria-expanded', isOpen ? 'false' : 'true');
+        var currentItem = toggle.closest('li');
+        if (currentItem) {
+          currentItem.classList.toggle('is-expanded', !isOpen);
+        }
 
         if (submenu) {
-          if (self.hasGSAP()) {
-            if (!isOpen) {
-              submenu.classList.remove('hidden');
-              window.gsap.fromTo(submenu, 
-                { height: 0, opacity: 0 },
-                { height: 'auto', opacity: 1, duration: 0.4, ease: 'power2.out' }
-              );
-            } else {
-              window.gsap.to(submenu, { 
-                height: 0, 
-                opacity: 0, 
-                duration: 0.3, 
-                ease: 'power2.inOut',
-                onComplete: function() { submenu.classList.add('hidden'); }
-              });
-            }
+          if (isOpen) {
+            self.setSubmenuClosed(submenu, false);
           } else {
-            submenu.classList.toggle('hidden', isOpen);
+            self.setSubmenuOpen(submenu);
           }
         }
       });
     });
+
+    if (this.mobileNav) {
+      this.mobileNav.addEventListener('click', function (event) {
+        var target = event.target;
+        if (target && target.tagName === 'A') {
+          self.toggleMobile(false);
+        }
+      });
+    }
   };
 
   MegaMenu.prototype.bindGlobal = function () {
@@ -251,6 +344,7 @@
 
     var onResize = this.debounce(function () {
       self.calculateSharedHeight();
+      self.updateMobileHeaderState();
       if (window.innerWidth >= 1024 && self.mobileNav) {
         self.toggleMobile(false);
       }
@@ -481,17 +575,37 @@
     }
 
     this.mobileToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    this.mobileToggle.setAttribute('aria-label', open ? 'Cerrar menu' : 'Abrir menu');
+    this.mobileNav.setAttribute('aria-hidden', open ? 'false' : 'true');
+    this.header.classList.toggle('mobile-open', open);
+    document.body.classList.toggle('mobile-menu-open', open);
+
+    if (this.mobileTimeline) {
+      this.mobileTimeline.kill();
+    }
 
     if (!open) {
-      this.mobileNav.classList.add('hidden');
-      this.mobileSectionToggles.forEach(function (toggle) {
-        var submenu = toggle.nextElementSibling;
-        toggle.setAttribute('data-open', 'false');
-        toggle.setAttribute('aria-expanded', 'false');
-        if (submenu) {
-          submenu.classList.add('hidden');
-        }
-      });
+      this.closeAllMobileSubmenus();
+
+      if (this.hasGSAP()) {
+        var self = this;
+        this.mobileTimeline = window.gsap.timeline({
+          onComplete: function () {
+            self.mobileNav.classList.add('hidden');
+            window.gsap.set(self.mobileNav, { clearProps: 'all' });
+          }
+        });
+
+        this.mobileTimeline.to(this.mobileNav, {
+          duration: 0.18,
+          opacity: 0,
+          y: -8,
+          ease: 'power2.in'
+        });
+      } else {
+        this.mobileNav.classList.add('hidden');
+      }
+
       this.notifyLayoutChange();
       return;
     }
@@ -500,11 +614,21 @@
     this.notifyLayoutChange();
 
     if (this.hasGSAP()) {
-      window.gsap.fromTo(
-        this.mobileNav,
-        { opacity: 0, y: -10 },
-        { duration: 0.24, opacity: 1, y: 0, ease: 'power2.out' }
-      );
+      var items = Array.prototype.slice.call(this.mobileNav.querySelectorAll('.mobile-nav-list > li'));
+
+      this.mobileTimeline = window.gsap.timeline();
+      this.mobileTimeline
+        .fromTo(
+          this.mobileNav,
+          { opacity: 0, y: -10 },
+          { duration: 0.24, opacity: 1, y: 0, ease: 'power2.out' }
+        )
+        .fromTo(
+          items,
+          { opacity: 0, y: -8 },
+          { duration: 0.2, opacity: 1, y: 0, stagger: 0.028, ease: 'power2.out' },
+          0.06
+        );
     }
   };
 

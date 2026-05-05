@@ -1,4 +1,4 @@
-<section class="w-full py-24 relative overflow-hidden">
+<section class="w-full py-24 relative overflow-hidden" id="talento-unac">
     <!-- Cabecera de la sección (Armonía con el sistema de diseño) -->
     <div class="site-container text-left mb-16 relative z-20">
         

@@ -30,7 +30,14 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
 
   global $baseUrl;
   $baseUrl = $baseUrl ?? './';
-    ?>
+      $enableSmoothScroll = $isHomePage;
+  foreach ($contentTemplates as $templatePath) {
+    if (str_contains($templatePath, 'noticia')) {
+      $enableSmoothScroll = true;
+      break;
+    }
+  }
+?>
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -108,8 +115,8 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <script defer src="<?= $baseUrl ?>assets/js/modules/footer-animations.js"></script>
   <script defer src="<?= $baseUrl ?>assets/js/modules/background-ambience.js"></script>
 
-  <!-- Lenis smooth scroll (only for home page) -->
-  <?php if ($isHomePage): ?>
+  <!-- Lenis smooth scroll -->
+  <?php if ($enableSmoothScroll): ?>
   <script src="https://cdn.jsdelivr.net/gh/studio-freight/lenis@latest/bundled/lenis.js"></script>
   <script>
     (function () {
