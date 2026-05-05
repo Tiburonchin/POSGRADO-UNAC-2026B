@@ -1,0 +1,118 @@
+[
+    {
+        "id": "1",
+        "titulo": "Impacto de la Inteligencia Artificial en la Investigaci\u00f3n Acad\u00e9mica",
+        "imagen_ruta": "https:\/\/images.unsplash.com\/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "texto_referencial": "Nuevos modelos algor\u00edtmicos aplicados a la predicci\u00f3n de tendencias econ\u00f3micas globales impulsan la investigaci\u00f3n en la universidad.",
+        "tipo_noticia": "Tecnolog\u00eda",
+        "fecha_creacion": "2026-05-01",
+        "contenido_detallado": {
+            "cuerpo": "<h2>Un nuevo horizonte de descubrimientos<\/h2><p>La <strong>Inteligencia Artificial<\/strong> est\u00e1 revolucionando la forma en que abordamos la investigaci\u00f3n acad\u00e9mica, ofreciendo nuevas herramientas para el an\u00e1lisis de grandes vol\u00famenes de datos. Este a\u00f1o, la Escuela de Posgrado ha integrado cl\u00fasteres de c\u00f3mputo de \u00faltima generaci\u00f3n para apoyar tesis de maestr\u00eda y doctorado.<\/p><blockquote>\"La IA no reemplaza al investigador, lo potencia exponencialmente. Nos permite encontrar correlaciones que el ojo humano tardar\u00eda d\u00e9cadas en visualizar.\" - Dr. Juan Ram\u00edrez, Director de Investigaci\u00f3n.<\/blockquote><p>El uso de redes neuronales y aprendizaje profundo ha permitido a nuestros laboratorios reducir los tiempos de procesamiento en un 400%, acelerando descubrimientos cr\u00edticos.<\/p><h3>Principales \u00e1reas de aplicaci\u00f3n<\/h3><ul><li>An\u00e1lisis predictivo de mercados internacionales y finanzas corporativas.<\/li><li>Optimizaci\u00f3n de cadenas de suministro portuarias usando machine learning.<\/li><li>Modelado de impacto ambiental y cambio clim\u00e1tico en la regi\u00f3n costa.<\/li><\/ul><p>Este avance consolida a nuestra casa de estudios como l\u00edder regional en innovaci\u00f3n tecnol\u00f3gica, invitando a futuros doctorandos a sumarse a estas l\u00edneas de investigaci\u00f3n disruptivas.<\/p>",
+            "links": [
+                {
+                    "label": "Ver art\u00edculo publicado en Scopus",
+                    "url": "https:\/\/www.scopus.com\/"
+                },
+                {
+                    "label": "Laboratorio de IA y Datos",
+                    "url": "#"
+                }
+            ],
+            "recursos": [
+                {
+                    "nombre": "Reporte Anual de Investigaci\u00f3n 2025.pdf",
+                    "url": "public\/uploads\/docs\/reporte2025.pdf"
+                }
+            ],
+            "sugerencias": []
+        }
+    },
+    {
+        "id": "2",
+        "titulo": "Seminario Internacional de Ciencias Empresariales 2026",
+        "imagen_ruta": "https:\/\/images.unsplash.com\/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "texto_referencial": "Ciclo de conferencias magistrales con ponentes invitados de las mejores universidades del mundo para discutir el futuro del management.",
+        "tipo_noticia": "Eventos",
+        "fecha_creacion": "2026-04-28",
+        "contenido_detallado": {
+            "cuerpo": "<h2>Liderazgo en Tiempos de Incertidumbre<\/h2><p>El pr\u00f3ximo mes de Junio llevaremos a cabo el <strong>Seminario Internacional de Ciencias Empresariales<\/strong>, el evento m\u00e1s importante del a\u00f1o para nuestra comunidad de administradores, contadores y economistas.<\/p><p>El seminario abordar\u00e1 temas de innovaci\u00f3n, transformaci\u00f3n digital y emprendimiento, con la participaci\u00f3n de destacados expertos internacionales provenientes de Espa\u00f1a, M\u00e9xico y Estados Unidos.<\/p><h3>Cronograma del Evento<\/h3><ol><li><strong>D\u00eda 1:<\/strong> Transformaci\u00f3n Digital en PyMEs.<\/li><li><strong>D\u00eda 2:<\/strong> Finanzas Verdes y Sostenibilidad Corporativa.<\/li><li><strong>D\u00eda 3:<\/strong> Rueda de Negocios y Networking para Egresados.<\/li><\/ol><p>La asistencia es obligatoria para los alumnos de la Maestr\u00eda en Administraci\u00f3n y est\u00e1 abierta al p\u00fablico general previa inscripci\u00f3n.<\/p>",
+            "links": [
+                {
+                    "label": "Formulario de Inscripci\u00f3n Oficial",
+                    "url": "https:\/\/forms.gle\/ejemplo"
+                },
+                {
+                    "label": "Ver perfil de Ponentes Internacionales",
+                    "url": "#"
+                }
+            ],
+            "recursos": [
+                {
+                    "nombre": "Cronograma Completo del Seminario.pdf",
+                    "url": "public\/uploads\/docs\/cronograma.pdf"
+                },
+                {
+                    "nombre": "Bases para presentaci\u00f3n de Posters.pdf",
+                    "url": "public\/uploads\/docs\/bases_posters.pdf"
+                }
+            ],
+            "sugerencias": []
+        }
+    },
+    {
+        "id": "3",
+        "titulo": "Inauguraci\u00f3n de la Nueva Biblioteca Virtual Especializada",
+        "imagen_ruta": "https:\/\/images.unsplash.com\/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "texto_referencial": "M\u00e1s de 50,000 papers, libros y revistas especializadas est\u00e1n ahora disponibles 24\/7 para toda nuestra comunidad acad\u00e9mica.",
+        "tipo_noticia": "Comunidad",
+        "fecha_creacion": "2026-04-25",
+        "contenido_detallado": {
+            "cuerpo": "<h2>Acceso ilimitado al conocimiento<\/h2><p>Nos complace anunciar la apertura oficial de nuestra nueva <strong>Biblioteca Virtual de Posgrado<\/strong>. Tras intensas gestiones, hemos logrado suscribir convenios con las bases de datos m\u00e1s prestigiosas a nivel mundial, incluyendo <em>EBSCO, IEEE Xplore, ProQuest y ScienceDirect<\/em>.<\/p><p><img src=\"https:\/\/images.unsplash.com\/photo-1507842217343-583bb7270b66?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80\" alt=\"Estudiantes usando la biblioteca\"><\/p><blockquote>\"La democratizaci\u00f3n del acceso a la literatura cient\u00edfica es el primer paso para garantizar tesis de est\u00e1ndar mundial.\"<\/blockquote><h3>\u00bfC\u00f3mo acceder?<\/h3><p>El acceso es completamente gratuito para todos los estudiantes matriculados y docentes activos. Solo necesitan ingresar con su correo institucional y su contrase\u00f1a del SGA. Recomendamos revisar el manual de uso adjunto para aprovechar al m\u00e1ximo las herramientas de b\u00fasqueda avanzada y gesti\u00f3n de referencias bibliogr\u00e1ficas.<\/p>",
+            "links": [
+                {
+                    "label": "Acceder a la Biblioteca Virtual",
+                    "url": "#"
+                }
+            ],
+            "recursos": [
+                {
+                    "nombre": "Manual de Acceso Remoto.pdf",
+                    "url": "#"
+                },
+                {
+                    "nombre": "Gu\u00eda de B\u00fasqueda Avanzada en Scopus.pdf",
+                    "url": "#"
+                }
+            ],
+            "sugerencias": []
+        }
+    },
+    {
+        "id": "4",
+        "titulo": "Apertura de Convocatoria para Fondos Semilla de Investigaci\u00f3n",
+        "imagen_ruta": "https:\/\/images.unsplash.com\/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+        "texto_referencial": "Financiamiento de hasta S\/ 25,000 para proyectos de investigaci\u00f3n aplicados a la problem\u00e1tica regional del Callao.",
+        "tipo_noticia": "Convocatoria",
+        "fecha_creacion": "2026-04-20",
+        "contenido_detallado": {
+            "cuerpo": "<h2>Impulsando el desarrollo regional<\/h2><p>El Vicerrectorado de Investigaci\u00f3n, en conjunto con la Escuela de Posgrado, anuncia el lanzamiento del programa <strong>\"Fondos Semilla UNAC 2026\"<\/strong>. Este programa busca financiar proyectos de investigaci\u00f3n aplicada que resuelvan problemas tangibles de la Provincia Constitucional del Callao.<\/p><h3>L\u00edneas Prioritarias de Financiamiento<\/h3><ul><li>Sostenibilidad portuaria y log\u00edstica verde.<\/li><li>Salud p\u00fablica y epidemiolog\u00eda en zonas vulnerables.<\/li><li>Gesti\u00f3n ambiental y tratamiento de aguas.<\/li><li>Innovaci\u00f3n en gesti\u00f3n p\u00fablica municipal.<\/li><\/ul><p>Los equipos postulantes deben estar conformados por al menos un docente investigador y dos estudiantes de posgrado. La presentaci\u00f3n de propuestas estar\u00e1 abierta hasta el <strong>30 de Mayo de 2026<\/strong>.<\/p>",
+            "links": [
+                {
+                    "label": "Sistema de Postulaci\u00f3n VRI",
+                    "url": "#"
+                }
+            ],
+            "recursos": [
+                {
+                    "nombre": "Bases de la Convocatoria Fondos Semilla 2026.pdf",
+                    "url": "#"
+                },
+                {
+                    "nombre": "Anexos y Formatos de Postulaci\u00f3n.docx",
+                    "url": "#"
+                }
+            ],
+            "sugerencias": []
+        }
+    }
+]

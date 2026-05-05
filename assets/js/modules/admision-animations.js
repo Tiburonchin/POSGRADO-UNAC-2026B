@@ -124,6 +124,65 @@
         }
       });
     }
+
+    // --- LÓGICA DE ROTACIÓN DE SLIDES (NUEVO) ---
+    var slides = document.querySelectorAll('.admision-slide');
+    var currentSlideIndex = 0;
+    var slideInterval = 4000; // Reducido a 4 segundos para mayor dinamismo
+
+    if (slides.length > 1) {
+      function nextSlide() {
+        var prevSlide = slides[currentSlideIndex];
+        currentSlideIndex = (currentSlideIndex + 1) % slides.length;
+        var nextSlide = slides[currentSlideIndex];
+
+        var tlSlide = gsap.timeline();
+
+        // 1. Salida del slide anterior (Más rápida)
+        tlSlide.to(prevSlide, {
+          opacity: 0,
+          duration: 0.6,
+          ease: 'power2.inOut',
+          onComplete: function() {
+            prevSlide.classList.add('invisible');
+            prevSlide.setAttribute('data-active', 'false');
+          }
+        });
+
+        // 2. Entrada del nuevo slide (Más rápida y directa)
+        nextSlide.classList.remove('invisible');
+        nextSlide.setAttribute('data-active', 'true');
+        
+        tlSlide.fromTo(nextSlide, {
+          opacity: 0,
+          scale: 1.03 // Escala inicial menos exagerada
+        }, {
+          opacity: 1,
+          scale: 1,
+          duration: 0.8,
+          ease: 'power2.out'
+        }, '-=0.3');
+
+        // 3. Animación coordinada para el elemento UI flotante
+        var floatingUI = nextSlide.querySelector('.admision-floating-ui');
+        if (floatingUI) {
+          tlSlide.fromTo(floatingUI, {
+            y: 20,
+            opacity: 0,
+            filter: 'blur(4px)'
+          }, {
+            y: 0,
+            opacity: 1,
+            filter: 'blur(0px)',
+            duration: 0.5,
+            ease: 'back.out(1.5)'
+          }, '-=0.5');
+        }
+      }
+
+      // Iniciar el ciclo de rotación
+      setInterval(nextSlide, slideInterval);
+    }
   }
 
 })();

@@ -55,7 +55,7 @@
                                     <h3 class="text-xl md:text-2xl font-bold text-unac-text group-hover:text-white transition-colors">Inscripción</h3>
                                     <span class="inline-flex items-center gap-2 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-unac-accent/90">
                                         <span class="hidden sm:block w-4 h-[1px] bg-unac-accent/30"></span>
-                                        Cierre: 15 Mayo
+                                        Cierre: 10 de Agosto
                                     </span>
                                 </div>
                                 <p class="text-unac-muted text-xs md:text-sm leading-relaxed max-w-md">
@@ -74,7 +74,7 @@
                                     <h3 class="text-xl md:text-2xl font-bold text-unac-text group-hover:text-white transition-colors">Evaluación</h3>
                                     <span class="inline-flex items-center gap-2 text-[9px] md:text-[10px] font-black uppercase tracking-[0.2em] text-unac-info/90">
                                         <span class="hidden sm:block w-4 h-[1px] bg-unac-info/30"></span>
-                                        Periodo: 20 - 25 Mayo
+                                        Fecha: 19 y 20 de Agosto
                                     </span>
                                 </div>
                                 <p class="text-unac-muted text-xs md:text-sm leading-relaxed max-w-md">
@@ -89,7 +89,7 @@
 
                     <!-- Botones de Acción -->
                     <div class="flex flex-col sm:flex-row items-center gap-4 md:gap-6">
-                        <a href="#admision-proceso" class="relative inline-flex items-center justify-center p-[1px] rounded-full overflow-hidden group shadow-soft w-full sm:w-auto">
+                        <a href="admision/proceso.php" class="relative inline-flex items-center justify-center p-[1px] rounded-full overflow-hidden group shadow-soft w-full sm:w-auto">
                             <span class="absolute inset-0 bg-gradient-to-r from-unac-info via-unac-accent2 to-unac-accent opacity-60 group-hover:opacity-100 transition-opacity duration-300"></span>
                             <span class="relative w-full px-8 py-3 bg-unac-bg rounded-full text-unac-text text-sm font-medium flex items-center justify-center gap-2 hover:bg-unac-elevated transition-colors duration-300">
                                 Iniciar Postulación
@@ -109,25 +109,51 @@
                     <!-- Fondo vibrante -->
                     <div class="absolute inset-0 bg-gradient-to-br from-unac-info via-unac-info/80 to-unac-accent rounded-2xl transform -translate-x-2 translate-y-3 md:-translate-x-6 md:translate-y-6 opacity-90 shadow-deep"></div>
                     
-                    <!-- Contenedor Principal -->
-                    <div class="absolute inset-0 bg-surface-elevated/30 backdrop-blur-xl rounded-2xl flex flex-col items-center justify-center overflow-hidden z-10 border border-white/10">
-                        <img src="img/SIS-LOGIN-V4.png" 
-                             alt="Plataforma de Admisión UNAC" 
-                             class="w-full h-full object-cover shadow-2xl transition-transform duration-700 hover:scale-105"
-                             style="image-rendering: -webkit-optimize-contrast;">
+                    <!-- Contenedor Principal con Slideshow -->
+                    <div class="absolute inset-0 bg-surface-elevated/30 backdrop-blur-xl rounded-2xl overflow-hidden z-10 border border-white/10" id="admision-slides-viewport">
                         
-                        <!-- Elemento UI flotante -->
-                        <div class="absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 p-3 md:p-4 rounded-xl bg-unac-elevated/80 border border-unac-border/50 backdrop-blur-md shadow-lg transform transition-transform hover:-translate-y-1">
-                            <div class="flex items-center gap-3 md:gap-4">
-                                <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-unac-accent/20 flex items-center justify-center">
-                                    <i class="ph ph-check-circle text-unac-accent text-lg md:text-xl"></i>
-                                </div>
-                                <div>
-                                    <p class="text-xs md:text-sm font-bold text-unac-text">Plataforma Virtual</p>
-                                    <p class="text-[10px] md:text-xs text-unac-muted">Acceso 24/7 para postulantes</p>
+                        <!-- Slide 1: Plataforma -->
+                        <div class="admision-slide absolute inset-0 flex flex-col items-center justify-center" data-active="true">
+                            <img src="img/SIS-LOGIN-V4.png" 
+                                 alt="Plataforma de Admisión UNAC" 
+                                 class="w-full h-full object-cover shadow-2xl transition-transform duration-700 hover:scale-105"
+                                 style="image-rendering: -webkit-optimize-contrast;">
+                            
+                            <!-- Elemento UI flotante -->
+                            <div class="admision-floating-ui absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 p-3 md:p-4 rounded-xl bg-unac-elevated/80 border border-unac-border/50 backdrop-blur-md shadow-lg transform transition-transform hover:-translate-y-1">
+                                <div class="flex items-center gap-3 md:gap-4">
+                                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-unac-accent/20 flex items-center justify-center">
+                                        <i class="ph ph-check-circle text-unac-accent text-lg md:text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs md:text-sm font-bold text-unac-text">Plataforma Virtual</p>
+                                        <p class="text-[10px] md:text-xs text-unac-muted">Acceso 24/7 para postulantes</p>
+                                    </div>
                                 </div>
                             </div>
                         </div>
+
+                        <!-- Slide 2: Récord Histórico -->
+                        <div class="admision-slide absolute inset-0 flex flex-col items-center justify-center opacity-0 invisible" data-active="false">
+                            <img src="img/newrecord2.png" 
+                                 alt="Nuevo Récord Ingresantes UNAC" 
+                                 class="w-full h-full object-cover shadow-2xl transition-transform duration-700 hover:scale-105"
+                                 style="image-rendering: -webkit-optimize-contrast;">
+                            
+                            <!-- Elemento UI flotante -->
+                            <div class="admision-floating-ui absolute bottom-4 left-4 right-4 md:bottom-6 md:left-6 md:right-6 p-3 md:p-4 rounded-xl bg-unac-elevated/80 border border-unac-border/50 backdrop-blur-md shadow-lg transform transition-transform hover:-translate-y-1">
+                                <div class="flex items-center gap-3 md:gap-4">
+                                    <div class="w-8 h-8 md:w-10 md:h-10 rounded-full bg-unac-info/20 flex items-center justify-center">
+                                        <i class="ph ph-trend-up text-unac-info text-lg md:text-xl"></i>
+                                    </div>
+                                    <div>
+                                        <p class="text-xs md:text-sm font-bold text-unac-text">Récord de Ingresantes</p>
+                                        <p class="text-[10px] md:text-xs text-unac-muted">Calidad garantizada en Posgrado UNAC</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
 

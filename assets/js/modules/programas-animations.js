@@ -47,7 +47,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     container.innerHTML = skeletonHTML;
 
     try {
-        const response = await fetch('data/programas.json');
+        const response = await fetch('programas/api_programas.php');
         if (!response.ok) throw new Error('Failed to load programs');
         
         const data = await response.json();

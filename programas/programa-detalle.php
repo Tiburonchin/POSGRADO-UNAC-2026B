@@ -215,6 +215,7 @@ for ($i = 1; $i <= 3; $i++) {
         <button class="detail-tab active" data-tab="presentacion">Presentación</button>
         <button class="detail-tab" data-tab="perfiles">Perfiles</button>
         <button class="detail-tab" data-tab="plan">Plan de Estudios</button>
+        <button class="detail-tab" data-tab="noticias">Noticias</button>
         <button class="detail-tab" data-tab="contacto">Contacto</button>
     </div>
     
@@ -294,6 +295,40 @@ for ($i = 1; $i <= 3; $i++) {
             </div>
         <?php else: ?>
             <p class="text-white/60">Información del plan de estudios no disponible.</p>
+        <?php endif; ?>
+    </div>
+    
+    <div class="detail-panel" data-panel="noticias">
+        <?php 
+        $newsFile = __DIR__ . '/../data/news.json';
+        $newsList = [];
+        if (file_exists($newsFile)) {
+            $newsList = json_decode(file_get_contents($newsFile), true) ?? [];
+        }
+        $newsList = array_slice(array_reverse($newsList), 0, 3); // Get 3 most recent
+        ?>
+        
+        <?php if (!empty($newsList)): ?>
+            <div class="space-y-4">
+                <?php foreach ($newsList as $rec): 
+                    $recImg = strpos($rec['imagen_ruta'], 'http') === 0 ? $rec['imagen_ruta'] : $baseUrl . $rec['imagen_ruta'];
+                ?>
+                <a href="<?php echo $baseUrl; ?>noticia.php?id=<?= urlencode($rec['id']) ?>" class="group flex gap-4 items-center p-3 rounded-xl bg-white/[0.03] border border-white/10 hover:bg-white/[0.08] transition-colors">
+                    <div class="w-16 h-16 rounded-lg overflow-hidden shrink-0 bg-[#0f172a]">
+                        <img src="<?= htmlspecialchars($recImg) ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" alt="">
+                    </div>
+                    <div class="flex-1">
+                        <h4 class="text-sm font-bold text-white mb-1 leading-tight group-hover:text-unac-yellow transition-colors line-clamp-2"><?= htmlspecialchars($rec['titulo']) ?></h4>
+                        <p class="text-[10px] text-white/50 uppercase tracking-wider font-bold"><?= htmlspecialchars($rec['fecha_creacion']) ?> &middot; <?= htmlspecialchars($rec['tipo_noticia']) ?></p>
+                    </div>
+                </a>
+                <?php endforeach; ?>
+            </div>
+            <div class="mt-4 text-center">
+                <a href="<?php echo $baseUrl; ?>#noticias" class="text-unac-yellow text-sm font-bold hover:underline">Ver todas las noticias &rarr;</a>
+            </div>
+        <?php else: ?>
+            <p class="text-white/60">No hay noticias recientes.</p>
         <?php endif; ?>
     </div>
     

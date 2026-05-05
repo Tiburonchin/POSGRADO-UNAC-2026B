@@ -63,110 +63,45 @@
 
             <div class="bg-surface-elevated/30 backdrop-blur-xl border border-border-base/50 rounded-3xl shadow-unac-lg main-block-container" id="carousel-track">
             
-            <!-- Tarjeta 1 -->
-            <div class="news-card flex flex-col p-6 md:p-8 hover:bg-bg-soft/40 cursor-pointer group border-r border-border-base">
+            <?php
+            $newsFile = __DIR__ . '/../../data/news.json';
+            $newsData = [];
+            if (file_exists($newsFile)) {
+                $newsData = json_decode(file_get_contents($newsFile), true) ?? [];
+            }
+            $newsData = array_reverse($newsData); // Show newest first
+            
+            foreach ($newsData as $index => $item):
+                $isHidden = $index >= 3;
+                // Determine image path (absolute or relative depending on if it's external)
+                $imgSrc = strpos($item['imagen_ruta'], 'http') === 0 ? $item['imagen_ruta'] : $baseUrl . $item['imagen_ruta'];
+            ?>
+            <div class="news-card flex flex-col p-6 md:p-8 hover:bg-bg-soft/40 cursor-pointer group border-r border-border-base <?= $isHidden ? 'is-hidden' : '' ?>" onclick="window.location.href='<?= $baseUrl ?>noticia.php?id=<?= urlencode($item['id']) ?>'">
                 <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-bg-soft">
                     <div class="absolute inset-0 bg-gradient-to-t from-bg-surface/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1434030216411-0b793f4b4173?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Investigación" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
+                    <img src="<?= htmlspecialchars($imgSrc) ?>" alt="<?= htmlspecialchars($item['titulo']) ?>" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
                 </div>
                 <div class="flex-1 flex flex-col">
-                    <h3 class="text-lg font-medium text-text-base mb-2 leading-tight group-hover:text-unac-yellow transition-colors duration-300">Impacto de la Inteligencia Artificial en la Investigación</h3>
-                    <p class="text-[13px] text-text-muted mb-6 flex-1 leading-relaxed">Nuevos modelos algorítmicos aplicados a la predicción de tendencias económicas globales.</p>
-                    <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Tecnología</span>
+                    <h3 class="text-lg font-medium text-text-base mb-2 leading-tight group-hover:text-unac-yellow transition-colors duration-300"><?= htmlspecialchars($item['titulo']) ?></h3>
+                    <p class="text-[13px] text-text-muted mb-6 flex-1 leading-relaxed"><?= htmlspecialchars($item['texto_referencial']) ?></p>
+                    <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest"><?= htmlspecialchars($item['tipo_noticia'] ?? 'N/A') ?></span>
                 </div>
             </div>
-
-            <!-- Tarjeta 2 -->
-            <div class="news-card flex flex-col p-6 md:p-8 hover:bg-bg-soft/40 cursor-pointer group border-r border-border-base">
-                <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-bg-soft">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-surface/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1524178232363-1fb2b075b655?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Conferencia" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <div class="flex-1 flex flex-col">
-                    <h3 class="text-lg font-medium text-text-base mb-2 leading-tight group-hover:text-unac-yellow transition-colors duration-300">Seminario Internacional de Ciencias Empresariales 2026</h3>
-                    <p class="text-[13px] text-text-muted mb-6 flex-1 leading-relaxed">Ciclo de conferencias magistrales con ponentes invitados de las mejores universidades del mundo.</p>
-                    <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Eventos</span>
-                </div>
-            </div>
-
-            <!-- Tarjeta 3 -->
-            <div class="news-card flex flex-col p-6 md:p-8 hover:bg-bg-soft/40 cursor-pointer group border-r border-border-base">
-                <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-bg-soft">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-surface/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Campus" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <div class="flex-1 flex flex-col">
-                    <h3 class="text-lg font-medium text-text-base mb-2 leading-tight group-hover:text-unac-yellow transition-colors duration-300">Inauguración de la Nueva Biblioteca Virtual de Posgrado</h3>
-                    <p class="text-[13px] text-text-muted mb-6 flex-1 leading-relaxed">Más de 50,000 papers y libros especializados disponibles para toda nuestra comunidad académica.</p>
-                    <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Comunidad</span>
-                </div>
-            </div>
-
-            <!-- Tarjeta 4 (Oculta inicialmente) -->
-            <div class="news-card flex flex-col p-6 md:p-8 hover:bg-bg-soft/40 cursor-pointer group border-r border-border-base is-hidden">
-                <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-bg-soft">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-surface/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Tesis" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <div class="flex-1 flex flex-col">
-                    <h3 class="text-lg font-medium text-text-base mb-2 leading-tight group-hover:text-unac-yellow transition-colors duration-300">Líneas de Investigación en Ingeniería Ambiental</h3>
-                    <p class="text-[13px] text-text-muted mb-6 flex-1 leading-relaxed">Nuevas oportunidades de financiamiento para proyectos enfocados en la sostenibilidad portuaria.</p>
-                    <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Convocatoria</span>
-                </div>
-            </div>
-
-            <!-- Tarjeta 5 (Oculta inicialmente) -->
-            <div class="news-card flex flex-col p-6 md:p-8 hover:bg-bg-soft/40 cursor-pointer group border-r border-border-base is-hidden">
-                <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-bg-soft">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-surface/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1542626991-cbc4e32524cc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Foro" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <div class="flex-1 flex flex-col">
-                    <h3 class="text-lg font-medium text-text-base mb-2 leading-tight group-hover:text-unac-yellow transition-colors duration-300">Foro Nacional sobre Políticas de Salud Pública</h3>
-                    <p class="text-[13px] text-text-muted mb-6 flex-1 leading-relaxed">Análisis de retos y propuestas junto a expertos del Ministerio de Salud y nuestra facultad.</p>
-                    <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Eventos</span>
-                </div>
-            </div>
-
-            <!-- Tarjeta 6 (Oculta inicialmente) -->
-            <div class="news-card flex flex-col p-6 md:p-8 hover:bg-bg-soft/40 cursor-pointer group border-r border-border-base is-hidden">
-                <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-bg-soft">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-surface/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Convenio" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <div class="flex-1 flex flex-col">
-                    <h3 class="text-lg font-medium text-text-base mb-2 leading-tight group-hover:text-unac-yellow transition-colors duration-300">Convenios de Movilidad con Universidades Europeas</h3>
-                    <p class="text-[13px] text-text-muted mb-6 flex-1 leading-relaxed">Ampliamos redes globales para ofrecer pasantías en España, Francia y Alemania.</p>
-                    <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Internacional</span>
-                </div>
-            </div>
-
-            <!-- Tarjeta 7 (Oculta inicialmente) -->
-            <div class="news-card flex flex-col p-6 md:p-8 hover:bg-bg-soft/40 cursor-pointer group is-hidden">
-                <div class="w-full aspect-[16/10] rounded-xl overflow-hidden mb-6 relative bg-bg-soft">
-                    <div class="absolute inset-0 bg-gradient-to-t from-bg-surface/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity z-10"></div>
-                    <img src="https://images.unsplash.com/photo-1454165833767-027ffea9e778?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Taller" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700">
-                </div>
-                <div class="flex-1 flex flex-col">
-                    <h3 class="text-lg font-medium text-text-base mb-2 leading-tight group-hover:text-unac-yellow transition-colors duration-300">Taller de Redacción de Artículos Científicos</h3>
-                    <p class="text-[13px] text-text-muted mb-6 flex-1 leading-relaxed">Técnicas avanzadas para publicar en revistas indexadas de alto impacto (Scopus y WoS).</p>
-                    <span class="text-[10px] font-bold text-text-muted uppercase tracking-widest">Capacitación</span>
-                </div>
-            </div>
+            <?php endforeach; ?>
 
             </div><!-- /carousel-track -->
         </div><!-- /relative group/carousel -->
 
         <!-- CTA: Ver todas las publicaciones -->
         <div class="mt-14 flex flex-col sm:flex-row items-center justify-center gap-4">
-            <a href="#" class="group relative inline-flex items-center gap-3 text-sm font-bold py-3.5 px-8 rounded-full overflow-hidden transition-all duration-300
+            <a href="<?= $baseUrl ?>noticias.php" class="group relative inline-flex items-center gap-3 text-sm font-bold py-3.5 px-8 rounded-full overflow-hidden transition-all duration-300
                 border border-unac-yellow/40 bg-unac-yellow/5 hover:bg-unac-yellow/15 hover:border-unac-yellow/70 hover:shadow-[0_0_28px_-4px_rgba(var(--color-unac-yellow),0.4)]
                 text-text-base hover:text-unac-yellow backdrop-blur-md">
                 <i class="ph-fill ph-newspaper text-unac-yellow text-base"></i>
                 <span>Explorar todas las publicaciones</span>
                 <i class="ph-bold ph-arrow-right text-sm group-hover:translate-x-1.5 transition-transform duration-300"></i>
             </a>
-            <span class="text-[11px] text-text-muted/60 tracking-widest uppercase">· 30+ artículos disponibles</span>
+            <span class="text-[11px] text-text-muted/60 tracking-widest uppercase">· <?= count($newsData) ?>+ artículos disponibles</span>
         </div>
 
     </div>
