@@ -52,7 +52,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Semi+Condensed:wght@700;800;900&family=Keania+One&family=Azeret+Mono:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Rakkas&family=Saira+Stencil+One&family=Titan+One&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Semi+Condensed:wght@700;800;900&family=Keania+One&family=Azeret+Mono:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Rakkas&family=Saira+Stencil+One&family=Titan+One&display=swap" rel="stylesheet" />
   <?php if ($isHomePage): ?>
   <link rel="preload" as="image" href="img/hero/fachada.webp" imagesrcset="img/hero/fachada.webp" type="image/webp" />
   <?php endif; ?>
@@ -60,6 +60,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <?php if (isset($extraCss)) echo $extraCss; ?>
   <script src="https://unpkg.com/@phosphor-icons/web@2.1.1"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
   <noscript><style>#page-loader { display: none !important; }</style></noscript>
 </head>
 <body data-page="<?= htmlspecialchars($pageSlug, ENT_QUOTES, 'UTF-8') ?>">
@@ -103,7 +104,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   
   <!-- Hero animations (after page-loader) -->
   <?php if ($isHomePage): ?>
-  <script defer src="<?= $baseUrl ?>assets/js/modules/hero-animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/hero-animations.js?v=<?= time() ?>"></script>
   <script defer src="<?= $baseUrl ?>assets/js/modules/admision-animations.js"></script>
   <script defer src="<?= $baseUrl ?>assets/js/modules/talento-animations.js"></script>
   <script defer src="<?= $baseUrl ?>assets/js/modules/programas-animations.js"></script>
