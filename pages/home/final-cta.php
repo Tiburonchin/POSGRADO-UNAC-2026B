@@ -8,7 +8,13 @@
     <!-- Difuminado Superior para transición suave -->
     <div class="absolute top-0 left-0 w-full h-24 bg-gradient-to-b from-[color:var(--bg-base)] to-transparent z-10 pointer-events-none opacity-50"></div>
     
-    <div class="cta-overlay absolute inset-0 bg-radial-at-center from-[color:var(--unac-blue)]/5 via-transparent to-transparent pointer-events-none"></div>
+    <!-- Enhanced Background Illumination (Brighter & Clearer) -->
+    <div class="cta-overlay absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08)_0%,_rgba(59,130,246,0.15)_35%,_transparent_70%)] pointer-events-none"></div>
+    
+    <!-- Atmospheric Ambient Glows (Increased Clarity) -->
+    <div class="absolute left-1/3 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[700px] bg-brand-primary/20 blur-[180px] rounded-full pointer-events-none z-0"></div>
+    <div class="absolute right-1/4 top-1/4 translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-unac-yellow/15 blur-[150px] rounded-full pointer-events-none z-0"></div>
+    <div class="absolute left-1/2 bottom-0 -translate-x-1/2 w-[900px] h-[400px] bg-brand-primary/10 blur-[140px] rounded-full pointer-events-none z-0"></div>
     
     <div class="site-container relative z-10 text-center">
         <div class="max-w-3xl mx-auto">

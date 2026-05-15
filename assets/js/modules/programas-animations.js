@@ -19,7 +19,34 @@ document.addEventListener('DOMContentLoaded', async () => {
     };
     const DEFAULT_FALLBACK = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80';
 
-    // --- Skeleton Loading State ---
+    // --- Configuration: Shared Shadow State ---
+    const NEUTRAL_SHADOW = '0 30px 60px rgba(2, 6, 23, 0.45), 0 15px 25px rgba(2, 6, 23, 0.15)';
+
+    // --- GSAP Plugin Registration ---
+    const hasGSAP = typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined';
+    if (hasGSAP) {
+        gsap.registerPlugin(ScrollTrigger);
+    }
+
+    // --- 1. Static Content Entrance (Left Column) ---
+    // Initialize immediately so it doesn't wait for the API fetch
+    if (hasGSAP) {
+        gsap.from(".left-content-anim > *", {
+            scrollTrigger: {
+                trigger: "#programas-destacados",
+                start: "top 75%",
+                once: true
+            },
+            y: 30,
+            opacity: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            ease: "power3.out",
+            clearProps: "all"
+        });
+    }
+
+    // --- 2. Skeleton Loading State ---
     const SKELETON_COUNT = 8;
     let skeletonHTML = '';
     for (let i = 0; i < SKELETON_COUNT; i++) {
@@ -78,9 +105,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             return { src: prog.imagen_1 || fallback, fallback };
         };
 
-        // --- Configuration: Shared Shadow State ---
-        const NEUTRAL_SHADOW = '0 30px 60px rgba(2, 6, 23, 0.45), 0 15px 25px rgba(2, 6, 23, 0.15)';
-
         // Render Cards
         container.innerHTML = selected.map((prog, index) => {
             const offsetClass = index % 2 !== 0 ? 'sm:mt-16' : '';
@@ -88,7 +112,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             const descripcion = prog.presentacion || prog.descripcion || '';
             const { src: imagenUrl, fallback: fallbackUrl } = resolveImage(prog);
             const colorBadge = getColorBadge(prog.tipo);
-            const slug = prog.nombre.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)/g, '');
 
             return `
                 <div class="card-3d-wrapper right-card-anim ${offsetClass} ${visibilityClass}" data-href="programas/programas.php?id=${prog.id}" role="link" tabindex="0" aria-label="Ver programa: ${prog.nombre}">
@@ -143,44 +166,29 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (img.complete && img.naturalWidth === 0) img.src = img.dataset.fallback;
         });
 
-        // Initialize GSAP Animations
-        if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
+        // Initialize GSAP Animations for Dynamic Cards
+        if (hasGSAP) {
             
+            // Refresh ScrollTrigger to account for new page height
+            ScrollTrigger.refresh();
+
             // Initial Shadow State via GSAP
             gsap.set(".programa-card", { boxShadow: NEUTRAL_SHADOW });
 
-            // Text Entrance
-            const leftContentAnim = document.querySelector('.left-content-anim');
-            if (leftContentAnim) {
-                gsap.from(".left-content-anim > *", {
-                    scrollTrigger: {
-                        trigger: "#programas-destacados",
-                        start: "top 70%",
-                    },
-                    y: 30,
-                    opacity: 0,
-                    duration: 0.8,
-                    stagger: 0.1,
-                    ease: "power3.out",
-                    onStart: () => leftContentAnim.classList.remove('opacity-0')
-                });
-            }
-
             // Cards Entrance
-            if (document.querySelectorAll(".right-card-anim").length > 0) {
-                gsap.from(".right-card-anim", {
-                    scrollTrigger: {
-                        trigger: "#dynamic-cards-container",
-                        start: "top 75%",
-                    },
-                    y: 80,
-                    opacity: 0,
-                    duration: 1,
-                    stagger: 0.1,
-                    ease: "power4.out",
-                    clearProps: "scale"
-                });
-            }
+            gsap.from(".right-card-anim", {
+                scrollTrigger: {
+                    trigger: "#dynamic-cards-container",
+                    start: "top 80%",
+                },
+                y: 60,
+                opacity: 0,
+                scale: 0.98,
+                duration: 1,
+                stagger: 0.12,
+                ease: "power4.out",
+                clearProps: "scale"
+            });
 
             // Interaction: 3D Tilt
             const wrappers = document.querySelectorAll('.card-3d-wrapper');
