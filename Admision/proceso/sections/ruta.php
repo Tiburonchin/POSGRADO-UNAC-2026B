@@ -100,7 +100,7 @@
                             </div>
 
                             <footer class="pt-8 border-t border-white/5">
-                                <a href="https://posgrado.unac.edu.pe/inscripcion/" target="_blank" class="inline-flex items-center gap-4 bg-white text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-wider hover:bg-unac-yellow transition-all shadow-2xl shadow-white/5">
+                                <a href="<?= $baseUrl ?>INSCRIPCION/" class="inline-flex items-center gap-4 bg-white text-black px-10 py-5 rounded-2xl font-bold text-sm uppercase tracking-wider hover:bg-unac-yellow transition-all shadow-2xl shadow-white/5">
                                     Iniciar Inscripción Digital <i class="fas fa-chevron-right text-[10px]"></i>
                                 </a>
                             </footer>

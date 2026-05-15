@@ -169,9 +169,32 @@
             <div class="lg:col-span-7 relative group order-2 lg:order-1">
                 <div class="absolute -inset-4 bg-gradient-to-br from-unac-yellow/20 via-unac-blue/5 to-unac-yellow/10 rounded-[3rem] blur-3xl opacity-30 group-hover:opacity-60 transition duration-700 pointer-events-none"></div>
                 
-                <div class="relative bg-bg-elevated border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl h-[450px] md:h-[550px] lg:h-[700px] transform-gpu transition-all duration-700 hover:border-white/20">
-                    <!-- Etiqueta Flotante Original -->
-                    <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8 z-20 bg-slate-900/60 backdrop-blur-xl border border-white/10 p-2 pr-6 rounded-full shadow-2xl flex items-center gap-4 group/label transition-all hover:pr-8 hover:bg-slate-900/80">
+                <div id="map-interactive-container" class="relative bg-bg-elevated border border-white/10 rounded-[2.5rem] overflow-hidden shadow-2xl h-[450px] md:h-[550px] lg:h-[700px] transform-gpu transition-all duration-700 hover:border-white/20 cursor-pointer group/map">
+                    
+                    <!-- Placeholder del Mapa (Carga Instantánea) -->
+                    <div id="map-placeholder" class="absolute inset-0 z-10 transition-all duration-1000 group-hover/map:scale-105">
+                        <img src="img/map-placeholder.png" alt="Mapa UNAC" class="w-full h-full object-cover grayscale-[0.5] contrast-[1.1] brightness-[0.6]">
+                        
+                        <!-- Overlay de Interacción -->
+                        <div class="absolute inset-0 bg-slate-900/40 backdrop-blur-[2px] flex flex-col items-center justify-center transition-all duration-500 group-hover/map:backdrop-blur-0 group-hover/map:bg-slate-900/20">
+                            <div class="w-20 h-20 rounded-full bg-unac-yellow/90 flex items-center justify-center shadow-[0_0_30px_rgba(251,202,56,0.4)] mb-6 transform transition-all duration-500 group-hover/map:scale-110 group-hover/map:bg-unac-yellow">
+                                <i class="ph ph-hand-pointing text-slate-900 text-3xl animate-bounce"></i>
+                            </div>
+                            <h4 class="text-white font-bold text-xl md:text-2xl tracking-tight mb-2">Explorar el Campus</h4>
+                            <p class="text-white/70 text-sm font-medium">Click para activar mapa interactivo</p>
+                        </div>
+                    </div>
+
+                    <!-- Loader (Oculto inicialmente) -->
+                    <div id="map-loader" class="absolute inset-0 z-20 bg-slate-900 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300">
+                        <div class="flex flex-col items-center">
+                            <div class="w-12 h-12 border-4 border-unac-yellow/20 border-t-unac-yellow rounded-full animate-spin mb-4"></div>
+                            <p class="text-unac-yellow text-xs font-bold uppercase tracking-widest">Cargando Experiencia...</p>
+                        </div>
+                    </div>
+
+                    <!-- Etiqueta Flotante Original (Z-index superior) -->
+                    <div class="absolute bottom-6 left-6 md:bottom-8 md:left-8 z-30 bg-slate-900/60 backdrop-blur-xl border border-white/10 p-2 pr-6 rounded-full shadow-2xl flex items-center gap-4 group/label transition-all hover:pr-8 hover:bg-slate-900/80">
                         <div class="w-10 h-10 md:w-11 md:h-11 rounded-full bg-unac-yellow flex items-center justify-center shadow-lg shadow-unac-yellow/20">
                             <i class="ph ph-map-pin text-slate-900 text-xl font-bold"></i>
                         </div>
@@ -181,15 +204,9 @@
                         </div>
                     </div>
  
-                    <!-- Iframe con Filtro Cinematográfico -->
-                    <div class="w-full h-full grayscale-[0.3] contrast-[1.2] brightness-[0.8] map-dark-filter">
-                        <iframe 
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3901.743110991196!2d-77.1198236240203!3d-12.061214042172703!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105cb910984762b%3A0x104327c627fa29ad!2sUniversidad%20Nacional%20del%20Callao!5e0!3m2!1ses!2spe!4v1777482384661!5m2!1ses!2spe" 
-                            class="w-full h-full border-0" 
-                            allowfullscreen="" 
-                            loading="lazy" 
-                            referrerpolicy="no-referrer-when-downgrade">
-                        </iframe>
+                    <!-- Contenedor del Iframe (Carga bajo demanda) -->
+                    <div id="map-iframe-wrapper" class="w-full h-full grayscale-[0.3] contrast-[1.2] brightness-[0.8] map-dark-filter opacity-0 transition-opacity duration-1000">
+                        <!-- El iframe se inyectará vía JS -->
                     </div>
                 </div>
             </div>

@@ -1,0 +1,19 @@
+# .env file for GED backend
+# Supabase configuration
+SUPABASE_URL=https://jjilbotjqnbochykopid.supabase.co
+SUPABASE_KEY=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImpqaWxib3RqcW5ib2NoeWtvcGlkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQ5NzY3MDMsImV4cCI6MjA5MDU1MjcwM30.33zTgtaSFofOK8SBXWebZqC6DqMip1TXLpfu3v9XuJo
+SUPABASE_DB=postgres
+SUPABASE_SCHEMA=public
+
+# Gemini API (if needed later)
+GEMINI_API_KEY=your-gemini-api-key
+
+# Other configuration
+APP_ENV=development
+APP_DEBUG=true
+
+# SMTP Configuration (Gmail)
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=rogianlopez@gmail.com
+SMTP_PASS=rnlptsxhulesfpcn

@@ -38,7 +38,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
         </ul>
       </nav>
 
-      <a href="<?= $baseUrl ?>Admision/INSCRIPCION/index.php" class="cta header-cta hidden lg:inline-flex lg:justify-self-end">
+      <a href="<?= $baseUrl ?>INSCRIPCION/" class="cta header-cta hidden lg:inline-flex lg:justify-self-end">
         <span class="span">Inscribirse ahora</span>
         <span class="second">
           <svg width="50px" height="20px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
@@ -240,7 +240,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
         </li>
 
         <li class="mobile-nav-cta-item flex justify-center py-2">
-          <a href="<?= $baseUrl ?>Admision/INSCRIPCION/index.php" class="cta mobile-nav-cta header-cta-mobile">
+          <a href="<?= $baseUrl ?>INSCRIPCION/" class="cta mobile-nav-cta header-cta-mobile">
             <span class="span">Inscribirse ahora</span>
             <span class="second">
               <svg width="50px" height="20px" viewBox="0 0 66 43" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
