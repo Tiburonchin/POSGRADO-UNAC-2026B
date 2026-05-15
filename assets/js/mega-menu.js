@@ -39,7 +39,6 @@
     this.bindMobile();
     this.bindGlobal();
     this.bindIdentidadLinks();
-    this.bindMobileHeaderState();
     this.updateActiveStates(this.activeSection);
   };
 
@@ -120,26 +119,7 @@
     });
   };
 
-  MegaMenu.prototype.updateMobileHeaderState = function () {
-    if (!this.header || window.innerWidth >= 1024) {
-      if (this.header) {
-        this.header.classList.remove('is-condensed');
-      }
-      return;
-    }
-
-    var shouldCondense = window.scrollY > 20;
-    this.header.classList.toggle('is-condensed', shouldCondense);
-  };
-
-  MegaMenu.prototype.bindMobileHeaderState = function () {
-    var self = this;
-    this.updateMobileHeaderState();
-
-    window.addEventListener('scroll', function () {
-      self.updateMobileHeaderState();
-    }, { passive: true });
-  };
+  // Mobile header state logic removed to prevent scroll jank and clean up code
 
   MegaMenu.prototype.bindIdentidadLinks = function () {
     var self = this;
@@ -344,7 +324,6 @@
 
     var onResize = this.debounce(function () {
       self.calculateSharedHeight();
-      self.updateMobileHeaderState();
       if (window.innerWidth >= 1024 && self.mobileNav) {
         self.toggleMobile(false);
       }

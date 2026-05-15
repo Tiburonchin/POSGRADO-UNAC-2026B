@@ -54,13 +54,23 @@ if (!$programa) {
 
 // Helpers
 function getFirstImage($prog) {
-    // Prefer explicit imagen_* fields from JSON, but verify file exists
-    $baseCheck = __DIR__ . '/../';
+    // Prefer explicit imagen_* fields from JSON
+    $candidates = [];
     foreach (['imagen_1', 'imagen_2', 'imagen_3'] as $key) {
         if (!empty($prog[$key])) {
-            $rel = ltrim($prog[$key], '/');
-            $abs = $baseCheck . $rel;
-            if (file_exists($abs)) return $rel;
+            $candidates[] = $prog[$key];
+        }
+    }
+
+    // Resolve against filesystem and return the first existing relative path or URL
+    foreach ($candidates as $cand) {
+        if (strpos($cand, 'http') === 0) {
+            return $cand;
+        }
+        $clean = ltrim($cand, '/');
+        $fullPath = __DIR__ . '/../' . $clean;
+        if (file_exists($fullPath)) {
+            return $clean;
         }
     }
 
@@ -145,8 +155,10 @@ for ($i = 1; $i <= 3; $i++) {
 
 <!-- Header Image -->
 <div class="programa-detail__header">
-    <?php if ($img): ?>
-        <img src="<?php echo htmlspecialchars($baseUrl . $img); ?>" alt="" class="programa-detail__header-img">
+    <?php if ($img): 
+        $finalImg = (strpos($img, 'http') === 0) ? $img : $baseUrl . $img;
+    ?>
+        <img src="<?php echo htmlspecialchars($finalImg); ?>" alt="" class="programa-detail__header-img">
     <?php else: ?>
         <div class="w-full h-full bg-gradient-to-br from-[#3b82f6]/30 to-[#fbbf24]/30"></div>
     <?php endif; ?>

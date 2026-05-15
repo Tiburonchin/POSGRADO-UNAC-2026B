@@ -62,7 +62,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const phrases = [
         "Formación avanzada con excelencia científica e innovación técnica desde el Callao para el mundo.",
         "Nuevo récord de 2079 ingresantes este 2026-A.",
-        "Contamos con 36 Maestrías, 12 Doctorados y 17 Especialidades."
+        "Contamos con 36 Maestrías, 12 Doctorados y 17 Especialidades.",
+        "Lidera el cambio con investigación de alto nivel. Proceso de admisión 2026-B abierto para profesionales comprometidos con el desarrollo tecnológico nacional."
     ];
     let phraseCounter = 0;
 
@@ -75,84 +76,141 @@ document.addEventListener('DOMContentLoaded', () => {
 
     tagline.innerHTML = ""; // clear initial text
 
-    // 1. Animación de Entrada
-    const introTl = gsap.timeline({
-        onComplete: () => {
-            if (document.body.getAttribute('data-page') === 'home') {
-                window.dispatchEvent(new Event('hero:animation:complete'));
-                // Failsafe unlock en caso de que el listener de page-loader llegue tarde
-                document.documentElement.classList.remove('is-loading');
-                document.body.classList.remove('is-loading');
-                if (window.lenis) window.lenis.start();
+    // Use gsap.matchMedia for responsive behavior across breakpoints
+    const mm = gsap.matchMedia();
+    
+    mm.add("(min-width: 1024px)", () => {
+        // Desktop: Full-size animations
+        const introTl = gsap.timeline({
+            onComplete: () => {
+                if (document.body.getAttribute('data-page') === 'home') {
+                    window.dispatchEvent(new Event('hero:animation:complete'));
+                    document.documentElement.classList.remove('is-loading');
+                    document.body.classList.remove('is-loading');
+                    if (window.lenis) window.lenis.start();
+                }
             }
-        }
-    });
+        });
 
-    introTl.from("#hero-content h1 span", {
-        y: 100,
-        opacity: 0,
-        rotateX: -20,
-        duration: 1.5,
-        stagger: 0.15,
-        ease: "power4.out"
-    })
-    .add(() => {
-        nextPhrase();
-    }, "-=0.8")
-    .from("#hero-action", {
-        scale: 0.9,
-        opacity: 0,
-        y: 20,
-        duration: 1,
-        ease: "expo.out"
-    }, "-=0.2")
-    .from("#scroll-indicator", {
-        opacity: 0,
-        y: -20,
-        duration: 1
-    }, "-=0.5")
-    .from("#hero-bg-img", {
-        scale: 1.15,
-        duration: 4,
-        ease: "power2.out"
-    }, 0);
+        introTl.from("#hero-content h1 span", {
+            y: 100,
+            opacity: 0,
+            rotateX: -20,
+            duration: 1.8,
+            stagger: 0.15,
+            ease: "power4.out"
+        })
+        .add(() => {
+            nextPhrase();
+        }, "-=0.8")
+        .from("#hero-action", {
+            scale: 0.9,
+            opacity: 0,
+            y: 20,
+            duration: 1.2,
+            ease: "expo.out"
+        }, "-=0.4")
+        .from("#scroll-indicator", {
+            opacity: 0,
+            y: -20,
+            duration: 1.2
+        }, "-=0.7")
+        .from("#hero-bg-img", {
+            scale: 1.15,
+            duration: 4,
+            ease: "power2.out"
+        }, 0);
 
-    // 2. Lógica de Pinned Panel (El Hero se queda fijo mientras el panel inferior sube)
-    gsap.to("#hero-content", {
-        scrollTrigger: {
+        // Pinned panel logic for desktop
+        gsap.to("#hero-content", {
+            scrollTrigger: {
+                trigger: "#hero-section",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+            },
+            opacity: 0,
+            scale: 0.9,
+            y: -50,
+            filter: "blur(15px)",
+            ease: "none"
+        });
+
+        ScrollTrigger.create({
             trigger: "#hero-section",
             start: "top top",
-            end: "bottom top",
-            scrub: true,
-        },
-        opacity: 0,
-        scale: 0.9,
-        y: -50,
-        filter: "blur(15px)",
-        ease: "none"
+            end: () => "+=" + window.innerHeight,
+            pin: true,
+            pinSpacing: false
+        });
+
+    });
+    
+    mm.add("(max-width: 1023px)", () => {
+        // Mobile/Tablet: Adjusted animations
+        const introTl = gsap.timeline({
+            onComplete: () => {
+                if (document.body.getAttribute('data-page') === 'home') {
+                    window.dispatchEvent(new Event('hero:animation:complete'));
+                    document.documentElement.classList.remove('is-loading');
+                    document.body.classList.remove('is-loading');
+                    if (window.lenis) window.lenis.start();
+                }
+            }
+        });
+
+        introTl.from("#hero-content h1 span", {
+            y: 60,
+            opacity: 0,
+            rotateX: -10,
+            duration: 1.3,
+            stagger: 0.1,
+            ease: "power4.out"
+        })
+        .add(() => {
+            nextPhrase();
+        }, "-=0.6")
+        .from("#hero-action", {
+            scale: 0.95,
+            opacity: 0,
+            y: 15,
+            duration: 0.8,
+            ease: "expo.out"
+        }, "-=0.2")
+        .from("#scroll-indicator", {
+            opacity: 0,
+            y: -15,
+            duration: 0.8
+        }, "-=0.3")
+        .from("#hero-bg-img", {
+            scale: 1.1,
+            duration: 3,
+            ease: "power2.out"
+        }, 0);
+
+        // Lighter pinned effect for mobile
+        gsap.to("#hero-content", {
+            scrollTrigger: {
+                trigger: "#hero-section",
+                start: "top top",
+                end: "bottom top",
+                scrub: true,
+            },
+            opacity: 0,
+            scale: 0.95,
+            y: -30,
+            filter: "blur(10px)",
+            ease: "none"
+        });
+
+        ScrollTrigger.create({
+            trigger: "#hero-section",
+            start: "top top",
+            end: () => "+=" + window.innerHeight,
+            pin: true,
+            pinSpacing: false
+        });
+
     });
 
-    // Fijamos la sección Hero para que la de abajo suba por encima (Cinta)
-    // Se soltará exactamente cuando la cinta termine de cubrir la parte inferior, para irse con ella.
-    const revealSection = document.getElementById('reveal-section');
-    ScrollTrigger.create({
-        trigger: "#hero-section",
-        start: "top top",
-        end: () => "+=" + (revealSection ? revealSection.offsetHeight : 0),
-        pin: true,
-        pinSpacing: false
-    });
-
-    // 3. Slider Infinito de Logos
-    const logoSlider = document.getElementById('logo-slider');
-    const sliderTween = gsap.to(logoSlider, {
-        xPercent: -50,
-        duration: 35,
-        ease: "none",
-        repeat: -1
-    });
-
-    // Ralentización suave al interactuar
-    logoSlider.addEventListener('mouseenter', () => gsap.to(sliderTween, { timeScale: 0.15, duration: 1.2, ease: "power2.out" }));
-    logoSlider.addEventListener('mouseleave', () => gsap.to(sliderTween, { timeScale: 1, duration: 1.2, ease: "power2.inOut" }));
 });

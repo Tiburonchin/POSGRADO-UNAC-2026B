@@ -44,7 +44,10 @@
 
   function dispatchLoaderComplete() {
     if (window.ScrollTrigger && typeof window.ScrollTrigger.refresh === 'function') {
-      window.ScrollTrigger.refresh();
+      // Add small delay to ensure DOM is fully settled
+      window.setTimeout(function() {
+        window.ScrollTrigger.refresh();
+      }, 50);
     }
     window.dispatchEvent(new Event('page-loader:complete'));
   }

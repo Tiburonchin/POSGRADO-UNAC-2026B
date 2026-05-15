@@ -36,15 +36,53 @@
 
   var debouncedHeaderMetrics = debounce(updateHeaderMetrics, 80);
 
+  // Debounced ScrollTrigger refresh for responsive adjustments
+  function refreshScrollTrigger() {
+    if (window.ScrollTrigger && typeof window.ScrollTrigger.refresh === 'function') {
+      window.ScrollTrigger.refresh();
+    }
+  }
+  
+  var debouncedScrollTriggerRefresh = debounce(refreshScrollTrigger, 150);
+
+  if (window.ScrollTrigger) {
+    window.ScrollTrigger.config({ ignoreMobileResize: true });
+  }
+
   updateHeaderMetrics();
-  window.addEventListener('resize', debouncedHeaderMetrics);
+  
+  var lastWindowWidth = window.innerWidth;
+  window.addEventListener('resize', function() {
+    debouncedHeaderMetrics();
+    if (window.innerWidth !== lastWindowWidth) {
+      lastWindowWidth = window.innerWidth;
+      debouncedScrollTriggerRefresh();
+    }
+  });
 
   if (header) {
     header.addEventListener('header:layout-change', debouncedHeaderMetrics);
   }
 
-  window.addEventListener('load', updateHeaderMetrics, { once: true });
-  window.addEventListener('pageshow', debouncedHeaderMetrics);
+  window.addEventListener('load', function() {
+    updateHeaderMetrics();
+    refreshScrollTrigger();
+  }, { once: true });
+  
+  window.addEventListener('pageshow', function() {
+    debouncedHeaderMetrics();
+    debouncedScrollTriggerRefresh();
+  });
+
+  // Refresh ScrollTrigger when page-loader completes
+  window.addEventListener('page-loader:complete', function() {
+    window.setTimeout(refreshScrollTrigger, 100);
+  });
+
+  // Refresh ScrollTrigger when Lenis is ready (after smooth scroll init)
+  window.addEventListener('lenis:ready', function() {
+    window.setTimeout(refreshScrollTrigger, 150);
+  });
 
   if (reduceMotion) {
     return;

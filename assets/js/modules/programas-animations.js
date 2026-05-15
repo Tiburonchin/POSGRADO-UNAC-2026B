@@ -4,18 +4,18 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     // --- Configuration: Fallback Images by Area ---
     const FALLBACK_BY_AREA = {
-        'Ciencias Administrativas':                'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=600&q=80',
-        'Ciencias Contables':                      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=600&q=80',
-        'Ciencias de la Educación':                'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80',
-        'Ciencias de la Salud':                    'https://images.unsplash.com/photo-1579684385127-1ef15d508118?auto=format&fit=crop&w=600&q=80',
-        'Ciencias Económicas':                     'https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=600&q=80',
-        'Ciencias Naturales y Matemáticas':        'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=600&q=80',
-        'Ingeniería Ambiental y Recursos Naturales':'https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?auto=format&fit=crop&w=600&q=80',
-        'Ingeniería Eléctrica y Electrónica':      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=600&q=80',
-        'Ingeniería Industrial y de Sistemas':     'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?auto=format&fit=crop&w=600&q=80',
-        'Ingeniería Mecánica y Energía':           'https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=600&q=80',
-        'Ingeniería Pesquera y Alimentos':         'https://images.unsplash.com/photo-1574071318508-1cdbab80d002?auto=format&fit=crop&w=600&q=80',
-        'Ingeniería Química':                      'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=600&q=80',
+        'Ciencias Administrativas':                'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+        'Ciencias Contables':                      'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
+        'Ciencias de la Educación':                'https://images.unsplash.com/photo-1524178232363-1fb28075b655?auto=format&fit=crop&w=800&q=80',
+        'Ciencias de la Salud':                    'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
+        'Ciencias Económicas':                     'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+        'Ciencias Naturales y Matemáticas':        'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Ambiental y Recursos Naturales':'https://images.unsplash.com/photo-1542601906990-b4d3fb7780b9?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Eléctrica y Electrónica':      'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Industrial y de Sistemas':     'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Mecánica y Energía':           'https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Pesquera y Alimentos':         'https://images.unsplash.com/photo-1498654200943-1088dd4438ae?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Química':                      'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
     };
     const DEFAULT_FALLBACK = 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80';
 
@@ -150,33 +150,37 @@ document.addEventListener('DOMContentLoaded', async () => {
             gsap.set(".programa-card", { boxShadow: NEUTRAL_SHADOW });
 
             // Text Entrance
-            gsap.from(".left-content-anim > *", {
-                scrollTrigger: {
-                    trigger: "#programas-destacados",
-                    start: "top 70%",
-                },
-                y: 30,
-                opacity: 0,
-                duration: 0.8,
-                stagger: 0.1,
-                ease: "power3.out",
-                onStart: () => document.querySelector('.left-content-anim').classList.remove('opacity-0')
-            });
+            const leftContentAnim = document.querySelector('.left-content-anim');
+            if (leftContentAnim) {
+                gsap.from(".left-content-anim > *", {
+                    scrollTrigger: {
+                        trigger: "#programas-destacados",
+                        start: "top 70%",
+                    },
+                    y: 30,
+                    opacity: 0,
+                    duration: 0.8,
+                    stagger: 0.1,
+                    ease: "power3.out",
+                    onStart: () => leftContentAnim.classList.remove('opacity-0')
+                });
+            }
 
             // Cards Entrance
-            gsap.from(".right-card-anim", {
-                scrollTrigger: {
-                    trigger: "#dynamic-cards-container",
-                    start: "top 75%",
-                },
-                y: 80,
-                opacity: 0,
-                scale: 0.95,
-                duration: 1,
-                stagger: 0.1,
-                ease: "power4.out",
-                clearProps: "scale"
-            });
+            if (document.querySelectorAll(".right-card-anim").length > 0) {
+                gsap.from(".right-card-anim", {
+                    scrollTrigger: {
+                        trigger: "#dynamic-cards-container",
+                        start: "top 75%",
+                    },
+                    y: 80,
+                    opacity: 0,
+                    duration: 1,
+                    stagger: 0.1,
+                    ease: "power4.out",
+                    clearProps: "scale"
+                });
+            }
 
             // Interaction: 3D Tilt
             const wrappers = document.querySelectorAll('.card-3d-wrapper');

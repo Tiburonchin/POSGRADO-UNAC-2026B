@@ -85,6 +85,9 @@ function getFirstImage($prog) {
 
     // Resolve against filesystem and return the first existing relative path
     foreach ($candidates as $cand) {
+        if (strpos($cand, 'http') === 0) {
+            return $cand;
+        }
         $clean = ltrim($cand, '/');
         $fullPath = __DIR__ . '/../' . $clean;
         if (file_exists($fullPath)) {
@@ -265,8 +268,10 @@ function getDuration($prog) {
                          data-types="<?php echo $prog['tipo'] ?? ''; ?>"
                          data-name="<?php echo htmlspecialchars($prog['nombre'] ?? '', ENT_QUOTES, 'UTF-8'); ?>">
                     <div class="programa-card__image-wrap">
-                        <?php if ($img): ?>
-                            <img src="<?php echo htmlspecialchars($baseUrl . $img); ?>" 
+                        <?php if ($img): 
+                            $finalImg = (strpos($img, 'http') === 0) ? $img : $baseUrl . $img;
+                        ?>
+                            <img src="<?php echo htmlspecialchars($finalImg); ?>" 
                                  alt="<?php echo htmlspecialchars($prog['nombre'] ?? ''); ?>" 
                                  class="programa-card__image"
                                  loading="lazy"

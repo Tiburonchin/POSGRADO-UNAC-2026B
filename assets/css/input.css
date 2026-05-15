@@ -97,23 +97,42 @@
   }
 
   html {
-    scrollbar-gutter: stable;
+    overflow-x: hidden;
+    width: 100%;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
   body {
     font-family: var(--font-base);
     color: var(--text-base);
     background-color: var(--bg-base);
-    /* Ultra-saturated primary colors and pronounced lighting */
-    background-image: 
-      radial-gradient(circle at 50% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 65%),
-      radial-gradient(circle at 50% -10%, var(--bg-soft) 0%, var(--bg-base) 100%),
-      radial-gradient(circle at 80% 30%, color-mix(in srgb, var(--unac-blue) 20%, transparent) 0%, transparent 60%),
-      radial-gradient(circle at 20% 70%, color-mix(in srgb, var(--unac-yellow) 15%, transparent) 0%, transparent 60%);
-    background-attachment: fixed;
     line-height: 1.5;
     transition: background-color var(--motion-base) var(--motion-ease), color var(--motion-base) var(--motion-ease);
-    overflow-x: hidden;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Lenis Support Classes */
+  html.lenis, html.lenis body {
+    height: auto;
+  }
+
+  .lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+  }
+
+  .lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+  }
+
+  .lenis.lenis-stopped {
+    overflow: hidden;
+  }
+
+  .lenis.lenis-scrolling iframe {
+    pointer-events: none;
   }
 
   ::-webkit-scrollbar {
@@ -135,7 +154,8 @@
   }
 
   main {
-    /* overflow-x: clip removed */
+    overflow-x: clip;
+    width: 100%;
   }
 
   h1 { font-size: var(--fs-h1); }
@@ -547,79 +567,9 @@
   border: 1px solid var(--glass-border);
 }
 
-.glow-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(80px);
-  opacity: 0.15;
-  pointer-events: none;
-  z-index: 0;
-}
 
-/* Background Ambience System */
-.bg-ambience {
-  position: fixed;
-  inset: 0;
-  z-index: -1;
-  pointer-events: none;
-  overflow: hidden;
-  opacity: 0.6;
-}
 
-.bg-ambience-orb {
-  position: absolute;
-  border-radius: 50%;
-  filter: blur(120px);
-  will-change: transform;
-}
 
-.bg-ambience-orb--blue {
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, rgba(37, 99, 235, 0.45) 0%, transparent 70%);
-  top: -10%;
-  right: -10%;
-}
-
-.bg-ambience-orb--amber {
-  width: 45vw;
-  height: 45vw;
-  background: radial-gradient(circle, rgba(245, 158, 11, 0.38) 0%, transparent 70%);
-  bottom: -5%;
-  left: -5%;
-}
-
-.bg-ambience-orb--white {
-  width: 50vw;
-  height: 50vw;
-  background: radial-gradient(circle, rgba(255, 255, 255, 0.18) 0%, transparent 70%);
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  filter: blur(120px);
-}
-
-.bg-ambience-shape {
-  position: absolute;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.05), transparent);
-  backdrop-filter: blur(6px);
-  border-radius: 16px;
-  will-change: transform, opacity;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.02);
-}
-
-.bg-ambience-grid {
-  position: absolute;
-  inset: 0;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
-  -webkit-mask-image: radial-gradient(circle at 50% 50%, black 30%, transparent 80%);
-  opacity: 0.3;
-}
 
 .site-wrapper {
   position: relative;
@@ -636,42 +586,6 @@
   /* Sombra superior para separar del hero */
   /*box-shadow: 0 -15px 72px rgba(1, 5, 20, 0.8);*/
 }
-
-  /* --- HERO & REVEAL SECTION --- */
-  .hero-video-container {
-    position: absolute;
-    inset: 0;
-    z-index: 0;
-  }
-
-  .hero-video-container video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.55;
-  }
-
-  .hero-overlay {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at center, transparent 0%, var(--surface-base) 100%),
-                linear-gradient(to bottom, transparent 65%, var(--surface-base) 100%);
-    z-index: 1;
-  }
-
-  .reveal-panel {
-    position: relative;
-    z-index: 20;
-    background-color: var(--surface-base);
-    border-top: 1px solid var(--border-base);
-    box-shadow: 0 -40px 100px -20px rgba(0,0,0,0.9);
-  }
-
-  .logo-track {
-    display: flex;
-    width: max-content;
-    gap: 6rem;
-  }
 
   .text-glow {
     text-shadow: 0 10px 40px rgba(59, 130, 246, 0.15);
@@ -735,10 +649,6 @@
     flex-wrap: nowrap;
   }
 
-  .header-cta-mobile {
-    width: 100%;
-  }
-
   .mobile-nav-cta.header-cta-mobile {
     max-width: none;
   }
@@ -783,6 +693,16 @@
     background: color-mix(in srgb, var(--unac-yellow) 20%, transparent);
     border-color: var(--unac-yellow-light);
     box-shadow: 0 8px 20px color-mix(in srgb, var(--unac-yellow) 20%, transparent);
+  }
+
+  .header-main > .site-container > a.header-cta.hidden {
+    display: none;
+  }
+
+  @media (min-width: 1024px) {
+    .header-main > .site-container > a.header-cta.hidden {
+      display: inline-flex;
+    }
   }
 
   .nav-link {
@@ -1227,23 +1147,7 @@
     transform: translateY(-4px) rotate(-45deg);
   }
 
-  @media (max-width: 1023px) {
-    .site-header.is-condensed {
-      padding-top: clamp(8px, 2.2vw, 12px);
-    }
 
-    .site-header.is-condensed .header-main {
-      box-shadow: var(--shadow-md);
-    }
-
-    .site-header.is-condensed .header-main > .site-container {
-      min-height: clamp(3.85rem, 10vw, 4.3rem) !important;
-    }
-
-    .site-header.is-condensed .brand-logo {
-      height: clamp(2.45rem, 7.5vw, 3.2rem);
-    }
-  }
 
   /* ==========================================================================
      NOTICIAS SECTION COMPONENT

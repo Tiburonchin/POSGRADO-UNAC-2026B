@@ -56,13 +56,16 @@
     });
 
     // Label, Headline, Metrics, Description
-    tlEntrance.from('.admision-text > div:first-child, .admision-text > h2, .admision-text > .flex-wrap, .admision-text > p.text-base', {
-      y: 30,
-      opacity: 0,
-      duration: 0.5, // Más rápido (era 0.8)
-      stagger: 0.08, // Stagger más corto (era 0.12)
-      ease: 'power3.out'
-    });
+    var mainTextTargets = '.admision-text > div:first-child, .admision-text > h2, .admision-text > .flex-wrap, .admision-text > p.text-base';
+    if (document.querySelectorAll(mainTextTargets).length > 0) {
+      tlEntrance.from(mainTextTargets, {
+        y: 30,
+        opacity: 0,
+        duration: 0.5, // Más rápido (era 0.8)
+        stagger: 0.08, // Stagger más corto (era 0.12)
+        ease: 'power3.out'
+      });
+    }
 
     // --- ANIMACIÓN DE LA IMAGEN (Entrada) ---
     if (admisionImage) {
@@ -96,13 +99,16 @@
     }
 
     // Separator and Buttons
-    tlEntrance.from('.admision-text > .my-10, .admision-text > .flex-row', {
-      y: 15,
-      opacity: 0,
-      duration: 0.5,
-      stagger: 0.08,
-      ease: 'power2.out'
-    }, '-=0.3');
+    var buttonTargets = '.admision-text > .my-10, .admision-text > .flex-row';
+    if (document.querySelectorAll(buttonTargets).length > 0) {
+      tlEntrance.from(buttonTargets, {
+        y: 15,
+        opacity: 0,
+        duration: 0.5,
+        stagger: 0.08,
+        ease: 'power2.out'
+      }, '-=0.3');
+    }
 
     // --- ANIMACIÓN DE SALIDA (Fade out al hacer scroll hacia abajo) ---
     var exitElements = [

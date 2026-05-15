@@ -52,9 +52,10 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="icon" type="image/png" href="<?= $baseUrl ?>img/epg-logo.png" />
   <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Barlow+Semi+Condensed:wght@700;800;900&family=Keania+One&family=Azeret+Mono:wght@700;800;900&family=Manrope:wght@400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Rakkas&family=Saira+Stencil+One&family=Titan+One&display=swap" rel="stylesheet" />
   <?php if ($isHomePage): ?>
-  <link rel="preload" as="image" href="img/hero/fachada.webp" imagesrcset="img/hero/fachada.webp" type="image/webp" />
+  <link rel="preload" as="image" href="<?= $baseUrl ?>img/hero/fachada.webp" type="image/webp" />
   <?php endif; ?>
   <link rel="stylesheet" href="<?= $baseUrl ?>assets/css/output.css" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -65,16 +66,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
 </head>
 <body data-page="<?= htmlspecialchars($pageSlug, ENT_QUOTES, 'UTF-8') ?>">
   <!-- Background Ambience System -->
-  <div class="bg-ambience">
-    <div class="bg-ambience-grid"></div>
-    <div class="bg-ambience-orb bg-ambience-orb--blue"></div>
-    <div class="bg-ambience-orb bg-ambience-orb--amber"></div>
-    <div class="bg-ambience-orb bg-ambience-orb--white"></div>
-    <!-- Geometric Floating Shapes -->
-    <div class="bg-ambience-shape" style="width: 150px; height: 150px; top: 15%; left: 10%;"></div>
-    <div class="bg-ambience-shape" style="width: 100px; height: 100px; top: 65%; right: 15%;"></div>
-    <div class="bg-ambience-shape" style="width: 200px; height: 200px; top: 40%; left: 80%;"></div>
-  </div>
+
   <?php require __DIR__ . '/page-loader.php'; ?>
   <?php $skip_head = true; require __DIR__ . '/header.php'; ?>
 
@@ -114,7 +106,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   
   <!-- Footer & Ambient animations -->
   <script defer src="<?= $baseUrl ?>assets/js/modules/footer-animations.js"></script>
-  <script defer src="<?= $baseUrl ?>assets/js/modules/background-ambience.js"></script>
+
 
   <!-- Lenis smooth scroll -->
   <?php if ($enableSmoothScroll): ?>
@@ -124,6 +116,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
       var isLoading = document.documentElement.classList.contains('is-loading');
       
       window.addEventListener('DOMContentLoaded', function () {
+        document.documentElement.classList.add('lenis');
         window.lenis = new Lenis({
           duration: 1.2,
           easing: function (t) { return Math.min(1, 1.001 - Math.pow(2, -10 * t)); },
@@ -136,23 +129,25 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
           infinite: false
         });
 
-        // If page-loader locked scroll at startup, keep Lenis locked
         if (isLoading) {
           window.lenis.stop();
         }
 
-        function raf(time) {
-          window.lenis.raf(time);
+        if (window.ScrollTrigger && window.gsap) {
+          window.lenis.on('scroll', window.ScrollTrigger.update);
+          window.gsap.ticker.add(function (time) {
+            window.lenis.raf(time * 1000);
+          });
+          window.gsap.ticker.lagSmoothing(0);
+        } else {
+          function raf(time) {
+            window.lenis.raf(time);
+            requestAnimationFrame(raf);
+          }
           requestAnimationFrame(raf);
         }
-
-        requestAnimationFrame(raf);
-
-        if (window.ScrollTrigger) {
-          window.lenis.on('scroll', function () {
-            window.ScrollTrigger.update();
-          });
-        }
+        
+        window.dispatchEvent(new Event('lenis:ready'));
       });
     })();
   </script>

@@ -1,9 +1,9 @@
-<section class="content-section pt-32 pb-32 overflow-hidden relative" id="noticias">
+<section class="content-section pt-32 pb-32 overflow-hidden relative bg-bg-base z-20" id="noticias">
 
     <!-- Aura brillante de fondo -->
     <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[90%] md:w-[70%] xl:w-[80%] h-[70%] bg-gradient-to-r from-unac-blue/10 via-unac-yellow/5 to-unac-blue-dark/10 blur-[140px] rounded-full pointer-events-none z-0"></div>
 
-    <div class="max-w-[1400px] mx-auto px-6 relative z-10">
+    <div class="site-container relative z-10">
         
         <div class="max-w-3xl mb-16 news-header">
 
