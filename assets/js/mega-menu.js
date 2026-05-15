@@ -594,20 +594,40 @@
 
     if (this.hasGSAP()) {
       var items = Array.prototype.slice.call(this.mobileNav.querySelectorAll('.mobile-nav-list > li'));
+      var caption = this.mobileNav.querySelector('.mobile-nav-caption');
 
       this.mobileTimeline = window.gsap.timeline();
-      this.mobileTimeline
-        .fromTo(
-          this.mobileNav,
-          { opacity: 0, y: -10 },
-          { duration: 0.24, opacity: 1, y: 0, ease: 'power2.out' }
-        )
-        .fromTo(
-          items,
-          { opacity: 0, y: -8 },
-          { duration: 0.2, opacity: 1, y: 0, stagger: 0.028, ease: 'power2.out' },
-          0.06
+      
+      // Panel entry: faster and more direct
+      this.mobileTimeline.fromTo(
+        this.mobileNav,
+        { opacity: 0, y: -8 },
+        { duration: 0.35, opacity: 1, y: 0, ease: 'power2.out' }
+      );
+
+      // Content appearance: starts almost immediately and overlaps with the panel
+      if (caption) {
+        this.mobileTimeline.fromTo(
+          caption,
+          { opacity: 0, x: -8 },
+          { duration: 0.3, opacity: 0.6, x: 0, ease: 'power2.out' },
+          0.05
         );
+      }
+
+      this.mobileTimeline.fromTo(
+        items,
+        { opacity: 0, y: -8 },
+        { 
+          duration: 0.4, 
+          opacity: 1, 
+          y: 0, 
+          stagger: 0.03, 
+          ease: 'power1.out',
+          clearProps: 'all' 
+        },
+        0.08
+      );
     }
   };
 

@@ -1,30 +1,39 @@
 document.addEventListener('DOMContentLoaded', () => {
-    // Parallax hero effect
+    // Initialize Lenis Smooth Scroll
+    const lenis = new Lenis({
+        duration: 1.2,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        orientation: 'vertical',
+        smoothWheel: true
+    });
+
+    // Sync Lenis with GSAP ScrollTrigger
+    lenis.on('scroll', ScrollTrigger.update);
+
+    gsap.ticker.add((time) => {
+        lenis.raf(time * 1000);
+    });
+
+    gsap.ticker.lagSmoothing(0);
+
+    // Parallax hero effect using Lenis
     const hero = document.querySelector('.hero');
-    let ticking = false;
+    
+    lenis.on('scroll', ({ scroll }) => {
+        if (!hero) return;
+        const heroHeight = hero.offsetHeight;
+        
+        if (scroll <= heroHeight) {
+            const progress = scroll / heroHeight;
+            const scale = 1 - (progress * 0.2);
+            const blur = progress * 10;
+            const bgOpacity = 1 - (progress * 0.5);
+            const textOpacity = 1 - (progress * 0.9);
 
-    window.addEventListener('scroll', () => {
-        if (!ticking) {
-            window.requestAnimationFrame(() => {
-                const scroll = window.pageYOffset;
-                if (!hero) return;
-                const heroHeight = hero.offsetHeight;
-                
-                if (scroll <= heroHeight) {
-                    const progress = scroll / heroHeight;
-                    const scale = 1 - (progress * 0.3);
-                    const blur = progress * 12;
-                    const bgOpacity = 1 - (progress * 0.5);
-                    const textOpacity = 1 - (progress * 0.8);
-
-                    hero.style.setProperty('--hero-scale', scale);
-                    hero.style.setProperty('--hero-blur', `${blur}px`);
-                    hero.style.setProperty('--bg-opacity', bgOpacity);
-                    hero.style.setProperty('--hero-opacity', textOpacity);
-                }
-                ticking = false;
-            });
-            ticking = true;
+            hero.style.setProperty('--hero-scale', scale);
+            hero.style.setProperty('--hero-blur', `${blur}px`);
+            hero.style.setProperty('--bg-opacity', bgOpacity);
+            hero.style.setProperty('--hero-opacity', textOpacity);
         }
     });
 
@@ -40,27 +49,132 @@ document.addEventListener('DOMContentLoaded', () => {
 
     revealElements.forEach(el => revealObserver.observe(el));
 
-    // Process Tabs Interaction
-    const steps = document.querySelectorAll('.process-step');
-    const contents = document.querySelectorAll('.process-content');
+    // GSAP Admission Route Animation
+    const initAdmissionRoute = () => {
+        const routeContainer = document.getElementById('admission-route');
+        if (!routeContainer) return;
 
-    steps.forEach(step => {
-        step.addEventListener('click', () => {
-            // Remove active class from all steps and contents
-            steps.forEach(s => s.classList.remove('active'));
-            contents.forEach(c => c.classList.remove('active'));
+        // Register plugin
+        if (window.gsap && window.ScrollTrigger) {
+            gsap.registerPlugin(ScrollTrigger);
+        } else {
+            return;
+        }
 
-            // Add active class to clicked step
-            step.classList.add('active');
+        const cards = gsap.utils.toArray('.step-card-v2');
+        const navLinks = gsap.utils.toArray('.step-nav-link');
+        const progressBar = document.getElementById('scroll-progress-line');
 
-            // Show corresponding content
-            const targetId = 'content-step-' + step.getAttribute('data-step');
-            const targetContent = document.getElementById(targetId);
-            if (targetContent) {
-                targetContent.classList.add('active');
-            }
-        });
-    });
+        if (!cards.length || !navLinks.length || !progressBar) return;
+
+        // Initial State
+        gsap.set(cards, { opacity: 0, y: 100, filter: 'blur(10px)' });
+
+        // Desktop Specific Animations
+        if (window.innerWidth > 1024) {
+            // Sidebar Pinning
+            ScrollTrigger.create({
+                trigger: ".process-main-grid",
+                start: "top 120px",
+                end: "bottom 80%",
+                pin: ".sidebar-sticky-wrapper",
+                pinSpacing: false,
+                id: "route-pin",
+                invalidateOnRefresh: true
+            });
+
+            // Cards and Navigation Synchronization
+            cards.forEach((card, index) => {
+                // Reveal Card
+                gsap.to(card, {
+                    opacity: 1,
+                    y: 0,
+                    filter: 'blur(0px)',
+                    duration: 1.5,
+                    ease: "power3.out",
+                    scrollTrigger: {
+                        trigger: card,
+                        start: "top 85%",
+                        toggleActions: "play none none reverse"
+                    }
+                });
+
+                // Update Progress and Nav Active State
+                ScrollTrigger.create({
+                    trigger: card,
+                    start: "top 50%",
+                    end: "bottom 50%",
+                    onToggle: self => {
+                        if (self.isActive) {
+                            navLinks.forEach((link, i) => {
+                                const active = (i === index);
+                                link.classList.toggle('active', active);
+                                
+                                if (active) {
+                                    // Natural progress line update
+                                    const progress = ((index + 1) / cards.length) * 100;
+                                    gsap.to(progressBar, {
+                                        height: `${progress}%`,
+                                        duration: 1,
+                                        ease: "expo.out"
+                                    });
+                                }
+                            });
+                        }
+                    }
+                });
+
+                // Click to Scroll functionality
+                if (navLinks[index]) {
+                    navLinks[index].addEventListener('click', (e) => {
+                        e.preventDefault();
+                        lenis.scrollTo(card, {
+                            offset: -120,
+                            duration: 1.5,
+                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                        });
+                    });
+                }
+
+                // Spotlight Hover Effect
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                });
+            });
+        } else {
+            // Mobile: Simple reveal without pinning
+            gsap.set(cards, { opacity: 1, y: 0, filter: 'none' });
+        }
+
+        ScrollTrigger.refresh();
+    };
+
+    // Robust Initialization
+    const handleInit = () => {
+        const loader = document.getElementById('page-loader');
+        const runInit = () => {
+            setTimeout(() => {
+                initAdmissionRoute();
+                ScrollTrigger.refresh();
+            }, 400);
+        };
+
+        if (loader && !loader.classList.contains('is-hidden')) {
+            window.addEventListener('page-loader:complete', runInit, { once: true });
+        } else {
+            runInit();
+        }
+    };
+
+    if (document.readyState === 'complete') {
+        handleInit();
+    } else {
+        window.addEventListener('load', handleInit);
+    }
 
     // Specific Requirements Tabs - Scoped to each container
     const containers = document.querySelectorAll('.requirements-container');

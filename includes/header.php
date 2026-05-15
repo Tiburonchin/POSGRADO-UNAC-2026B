@@ -163,18 +163,18 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
       </div>
     </div>
 
-    <nav class="mobile-nav hidden lg:hidden" id="mobile-nav" aria-label="Navegacion movil" aria-hidden="true">
+    <nav class="mobile-nav hidden lg:hidden" id="mobile-nav" aria-label="Navegación móvil" aria-hidden="true">
       <ul class="mobile-nav-list">
         <li class="mobile-nav-caption" aria-hidden="true">
-          Navegacion principal
+          Menú Principal
         </li>
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">
-            <span class="mobile-toggle-main"><i class="fa-solid fa-school mobile-toggle-icon" aria-hidden="true"></i><span>La Escuela</span></span>
+            <span class="mobile-toggle-main"><span>La Escuela</span></span>
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Ver La Escuela →</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Ver La Escuela</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#mision-vision" class="js-identidad-link">Misión y Visión</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#ventajas" class="js-identidad-link">Ventajas</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones" class="js-identidad-link">Certificaciones</a></li>
@@ -185,26 +185,26 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
         </li>
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">
-            <span class="mobile-toggle-main"><i class="fa-solid fa-user-graduate mobile-toggle-icon" aria-hidden="true"></i><span>Admision</span></span>
+            <span class="mobile-toggle-main"><span>Admisión</span></span>
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="font-bold text-unac-yellow">Ir a Admision →</a></li>
-            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php">Proceso de Admision</a></li>
-            <li><a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php">Cronograma Academico</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="font-bold text-unac-yellow">Ir a Admisión</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php">Proceso de Admisión</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php">Cronograma Académico</a></li>
             <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Requisitos y Costos</a></li>
             <li><a href="<?= $baseUrl ?>Admision/formato/formato.php">Formatos y Tutoriales</a></li>
           </ul>
         </li>
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">
-            <span class="mobile-toggle-main"><i class="fa-solid fa-layer-group mobile-toggle-icon" aria-hidden="true"></i><span>Programas</span></span>
+            <span class="mobile-toggle-main"><span>Programas</span></span>
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>programas/programas.php" class="font-bold text-unac-yellow">Explorar Programas →</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php" class="font-bold text-unac-yellow">Explorar Programas</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=doctorado">Doctorados</a></li>
-            <li><a href="<?= $baseUrl ?>programas/programas.php?type=maestria">Maestrias</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php?type=maestria">Maestrías</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=especialidad">Especialidades</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php">Malla Curricular</a></li>
             <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Becas</a></li>
@@ -212,25 +212,25 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
         </li>
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">
-            <span class="mobile-toggle-main"><i class="fa-solid fa-compass mobile-toggle-icon" aria-hidden="true"></i><span>Conocenos</span></span>
+            <span class="mobile-toggle-main"><span>Conócenos</span></span>
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Conocer EPG →</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Conocer EPG</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones">Transparencia</a></li>
-            <li><a href="<?= $baseUrl ?>programas/programas.php?type=doctorado">Unidad de Investigacion</a></li>
-            <li><a href="<?= $baseUrl ?>noticias.php">Revista Cientifica</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php?type=doctorado">Unidad de Investigación</a></li>
+            <li><a href="<?= $baseUrl ?>noticias.php">Revista Científica</a></li>
             <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Preguntas Frecuentes</a></li>
             <li><a href="<?= $baseUrl ?>index.php#talento-unac">Talento EPG</a></li>
           </ul>
         </li>
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">
-            <span class="mobile-toggle-main"><i class="fa-solid fa-shield-halved mobile-toggle-icon" aria-hidden="true"></i><span>SGI</span></span>
+            <span class="mobile-toggle-main"><span>SGI</span></span>
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>auth/login.php" class="font-bold text-unac-yellow">Ir a SGI →</a></li>
+            <li><a href="<?= $baseUrl ?>auth/login.php" class="font-bold text-unac-yellow">Ir a SGI</a></li>
             <li><a href="<?= $baseUrl ?>index.php#inicio">Inicio</a></li>
             <li><a href="<?= $baseUrl ?>auth/login.php">Sistema</a></li>
             <li><a href="<?= $baseUrl ?>Admision/formato/formato.php">Documentos del SGI</a></li>
@@ -238,6 +238,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <li><a href="<?= $baseUrl ?>index.php#noticias">Indicadores</a></li>
           </ul>
         </li>
+
         <li class="mobile-nav-cta-item flex justify-center py-2">
           <a href="<?= $baseUrl ?>Admision/INSCRIPCION/index.php" class="cta mobile-nav-cta header-cta-mobile">
             <span class="span">Inscribirse ahora</span>

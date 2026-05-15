@@ -28,12 +28,38 @@
     box-sizing: border-box;
 }
 
+html {
+    overflow-x: hidden;
+    width: 100%;
+    scroll-behavior: auto !important;
+}
+
 body {
     font-family: var(--font-base);
     background-color: var(--bg-base);
     color: var(--text-base);
     line-height: 1.6;
     overflow-x: hidden;
+    min-height: 100vh;
+}
+
+/* Lenis Support - Prevent Double Scroll */
+html.lenis, html.lenis body {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+/* Hide Scrollbar for Clean UI */
+::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
 }
 
 body[data-type="admision"] .site-header {
@@ -141,8 +167,8 @@ body[data-type="admision"] .hero::before {
 
 /* Animations */
 .reveal {
-    opacity: 0;
-    transform: translateY(40px);
+    opacity: 1; /* Forzado para depuración */
+    transform: translateY(0);
     transition: all 0.8s var(--motion-ease);
 }
 
@@ -277,226 +303,104 @@ body[data-type="admision"] .hero::before {
     display: block;
 }
 
-/* Process Section */
-.process-section {
-    padding: 100px 20px;
-    background-color: var(--bg-surface);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    border-top: 1px solid var(--border-base);
+/* Admission Route Section - High Fidelity */
+.admission-route-container {
+    background-image: 
+        radial-gradient(circle at 0% 0%, rgba(59, 130, 246, 0.05) 0%, transparent 50%),
+        radial-gradient(circle at 100% 100%, rgba(251, 202, 56, 0.05) 0%, transparent 50%);
 }
 
-.process-container {
-    max-width: 1200px;
-    width: 100%;
+.step-marker {
+    box-shadow: 0 0 0 0 rgba(251, 202, 56, 0);
+    transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+    transform: translateX(-50%);
+    transform-origin: center;
 }
 
-.section-header {
-    text-align: center;
-    margin-bottom: 60px;
+.step-nav-link.active .step-marker {
+    box-shadow: 0 0 25px rgba(251, 202, 56, 0.5);
+    transform: translateX(-50%) scale(1.3);
+    border-color: var(--unac-yellow);
+    background-color: var(--unac-yellow);
 }
 
-.section-header h2 {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-    font-weight: 800;
-    color: var(--text-base);
-    margin-bottom: 10px;
+.step-card-v2 {
+    will-change: transform, opacity, filter;
 }
 
-.section-header .divider {
-    width: 80px;
-    height: 4px;
-    background: var(--unac-yellow);
-    margin: 0 auto 20px;
-    border-radius: var(--radius-full);
-}
-
-.section-header p {
-    color: var(--text-muted);
-    font-size: 1.15rem;
-}
-
-.process-layout {
-    display: grid;
-    grid-template-columns: 350px 1fr;
-    gap: 30px;
-}
-
-@media (max-width: 900px) {
-    .process-layout {
-        grid-template-columns: 1fr;
-    }
-
-    .process-sidebar {
-        flex-direction: row;
-        overflow-x: auto;
-        padding: 15px;
-        /* Scrollbar customization for horizontal scroll */
-        scrollbar-width: thin;
-        scrollbar-color: var(--border-bright) transparent;
-    }
-
-    .process-sidebar::-webkit-scrollbar {
-        height: 6px;
-    }
-
-    .process-sidebar::-webkit-scrollbar-track {
-        background: transparent;
-    }
-
-    .process-sidebar::-webkit-scrollbar-thumb {
-        background-color: var(--border-bright);
-        border-radius: var(--radius-full);
-    }
-
-    .process-step {
-        flex: 0 0 auto;
-        width: 200px;
-        flex-direction: column;
-        text-align: center;
-        border-left: none;
-        border-bottom: 4px solid transparent;
-        padding: 15px 10px;
-    }
-
-    .process-step.active {
-        border-left-color: transparent;
-        border-bottom-color: var(--unac-yellow);
-    }
-
-    .step-number {
-        margin-right: 0;
-        margin-bottom: 8px;
-    }
-
-    .step-info {
-        margin-bottom: 8px;
-    }
-
-    .step-info p {
-        display: none; /* Hide description on mobile to save vertical space */
-    }
-
-    .process-content-area {
-        padding: 30px 20px;
-    }
-}
-
-/* Sidebar Steps */
-.process-sidebar {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    background-color: var(--bg-base);
-    padding: 20px;
-    border-radius: var(--radius-lg);
-    border: 1px solid var(--border-base);
-}
-
-.process-step {
-    display: flex;
-    align-items: center;
-    padding: 20px;
-    border-radius: var(--radius-md);
-    cursor: pointer;
-    transition: all var(--motion-base);
-    border-left: 4px solid transparent;
-    background-color: transparent;
-}
-
-.process-step:hover:not(.active) {
-    background-color: var(--bg-soft);
-}
-
-.process-step.active {
-    background-color: var(--bg-soft);
-    border-left-color: var(--unac-yellow);
-    box-shadow: var(--shadow-sm);
-}
-
-.step-number {
-    font-size: 1.5rem;
-    font-weight: 800;
-    color: var(--unac-blue-light);
-    margin-right: 20px;
-    min-width: 35px;
-}
-
-.process-step.active .step-number {
-    color: var(--unac-yellow);
-}
-
-.step-info {
-    flex-grow: 1;
-}
-
-.step-info h3 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    color: var(--text-base);
-    margin-bottom: 4px;
-}
-
-.step-info p {
-    font-size: 0.85rem;
-    color: var(--text-muted);
-}
-
-.step-icon {
-    font-size: 1.25rem;
-    color: var(--text-muted);
-    opacity: 0.5;
-}
-
-.process-step.active .step-icon {
-    color: var(--text-base);
-    opacity: 1;
-}
-
-/* Content Area */
-.process-content-area {
-    background-color: var(--bg-base);
-    border-radius: var(--radius-lg);
-    padding: 50px;
-    border: 1px solid var(--border-base);
+.step-card-v2 > div {
+    backdrop-filter: blur(8px);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     overflow: hidden;
 }
 
-.process-content {
-    display: none;
-    animation: fadeIn 0.4s var(--motion-ease) forwards;
+.step-card-v2 > div::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(251, 202, 56, 0.08),
+        transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.5s var(--motion-ease);
+    pointer-events: none;
+    z-index: 1;
 }
 
-.process-content.active {
-    display: block;
+.step-card-v2:hover > div::before {
+    opacity: 1;
 }
 
-.step-pill {
-    display: inline-block;
-    background-color: rgba(96, 165, 250, 0.15);
-    color: var(--unac-blue-light);
-    padding: 6px 16px;
-    border-radius: var(--radius-full);
-    font-size: 0.85rem;
-    font-weight: 700;
-    margin-bottom: 20px;
-    border: 1px solid rgba(96, 165, 250, 0.3);
+.step-card-v2:hover > div {
+    background-color: rgba(255, 255, 255, 0.02);
+    border-color: rgba(251, 202, 56, 0.2);
+    transform: translateY(-8px);
+    box-shadow: 0 40px 80px -20px rgba(0, 0, 0, 0.6);
 }
 
-.process-content h2 {
-    font-size: clamp(1.8rem, 4vw, 2.5rem);
-    font-weight: 800;
-    color: var(--text-base);
-    margin-bottom: 20px;
+#scroll-progress-line {
+    box-shadow: 0 0 15px rgba(251, 202, 56, 0.3);
+    background: var(--unac-yellow);
+    transition: height 0.1s linear;
 }
 
-.content-divider {
-    height: 1px;
-    background: linear-gradient(90deg, var(--unac-yellow), transparent);
-    margin-bottom: 30px;
+.step-nav-link.active h4 {
+    color: white;
 }
+
+/* Animations Fallback for Route */
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 1s cubic-bezier(0.23, 1, 0.32, 1), transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.reveal.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 1024px) {
+    .sidebar-sticky-wrapper {
+        display: none;
+    }
+    
+    .step-card-v2 {
+        opacity: 1 !important;
+        filter: none !important;
+        transform: none !important;
+    }
+}
+
+
+/* Tutorial Section Adjustments */
+.browser-mockup {
+    border-color: rgba(255, 255, 255, 0.05);
+}
+
 
 .content-subtitle {
     font-size: 1.25rem;
