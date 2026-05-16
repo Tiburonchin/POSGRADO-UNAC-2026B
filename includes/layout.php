@@ -69,6 +69,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
 
   <?php require __DIR__ . '/page-loader.php'; ?>
   <?php $skip_head = true; require __DIR__ . '/header.php'; ?>
+  <?php require __DIR__ . '/social-sidebar.php'; ?>
 
   <main id="main-content">
     <?php foreach ($contentTemplates as $templatePath): ?>
@@ -106,6 +107,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   
   <!-- Footer & Ambient animations -->
   <script defer src="<?= $baseUrl ?>assets/js/modules/footer-animations.js"></script>
+  <script defer src="<?= $baseUrl ?>assets/js/modules/social-animations.js"></script>
 
 
   <!-- Lenis smooth scroll -->
