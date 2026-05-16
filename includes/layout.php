@@ -47,7 +47,8 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <title><?= htmlspecialchars($pageTitle, ENT_QUOTES, 'UTF-8') ?></title>
   <script>
     (function () {
-      document.documentElement.setAttribute('data-theme', 'dark');
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      document.documentElement.setAttribute('data-theme', savedTheme);
     })();
   </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />

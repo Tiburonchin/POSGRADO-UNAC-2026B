@@ -22,25 +22,41 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     };
 
-    // --- THEME TOGGLE LOGIC (UI ONLY) ---
+    // --- THEME TOGGLE LOGIC ---
     const initThemeToggle = () => {
         const themeBtn = document.getElementById('theme-toggle-sidebar');
         if (!themeBtn) return;
 
-        let isSun = false;
+        const html = document.documentElement;
+        const icon = themeBtn.querySelector('i');
+        
+        // Initial state from localStorage or default to dark
+        const savedTheme = localStorage.getItem('theme') || 'dark';
+        html.setAttribute('data-theme', savedTheme);
+        updateIcon(savedTheme === 'light');
+
         themeBtn.addEventListener('click', () => {
-            const icon = themeBtn.querySelector('i');
-            isSun = !isSun;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
             
+            // Apply theme
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+
+            // Animate Icon change
             gsap.to(icon, {
                 rotateY: 90,
                 duration: 0.2,
                 onComplete: () => {
-                    icon.className = `fa-solid fa-${isSun ? 'sun' : 'moon'} text-xl text-white/70 group-hover:text-bg-base transition-all`;
+                    updateIcon(newTheme === 'light');
                     gsap.to(icon, { rotateY: 0, duration: 0.2 });
                 }
             });
         });
+
+        function updateIcon(isLight) {
+            icon.className = `fa-solid fa-${isLight ? 'sun' : 'moon'} text-xl text-white/70 group-hover:text-bg-base transition-all`;
+        }
     };
 
     // Initialize all modules
