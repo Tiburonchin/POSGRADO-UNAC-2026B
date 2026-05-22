@@ -1,14 +1,39 @@
 (function () {
   'use strict';
 
+  var LOADER_SEEN_KEY = 'page-loader-seen';
   var MIN_VISIBLE_MS = 2200; 
   var FAILSAFE_HIDE_MS = 10000;
   var OVERLAY_EXIT_DURATION_MS = 0.6;
   var SCROLLBAR_COMPENSATION_VAR = '--loader-scrollbar-compensation';
+  var loaderDisabled = document.documentElement.classList.contains('page-loader-disabled');
   
   var loader = document.getElementById('page-loader');
 
   if (!loader) {
+    return;
+  }
+
+  function markLoaderSeen() {
+    try {
+      window.sessionStorage.setItem(LOADER_SEEN_KEY, '1');
+    } catch (e) {
+      // Ignore storage failures and keep the runtime behavior intact.
+    }
+    loaderDisabled = true;
+    document.documentElement.classList.add('page-loader-disabled');
+    loader.classList.add('is-hidden');
+  }
+
+  if (loaderDisabled) {
+    window.PageLoader = {
+      show: function () {},
+      hide: function () {},
+      navigate: function (url) {
+        window.location.href = url;
+      }
+    };
+    markLoaderSeen();
     return;
   }
 
@@ -49,6 +74,7 @@
         window.ScrollTrigger.refresh();
       }, 50);
     }
+    markLoaderSeen();
     window.dispatchEvent(new Event('page-loader:complete'));
   }
 
@@ -197,6 +223,7 @@
       
       var trigger = event.target.closest('a[href], [data-loader-url]');
       if (!trigger) return;
+      if (loaderDisabled) return;
       
       if (trigger.matches('a[href]')) {
         if (isIgnoredLink(trigger)) return;
@@ -221,7 +248,9 @@
     }, true);
 
     window.addEventListener('beforeunload', function () {
-      showLoader();
+      if (!loaderDisabled) {
+        showLoader();
+      }
     });
   }
 
@@ -229,12 +258,16 @@
     show: showLoader,
     hide: hideLoader,
     navigate: function (url) {
+      if (loaderDisabled) {
+        window.location.href = url;
+        return;
+      }
       showLoader();
       window.location.href = url;
     }
   };
 
-  // Initialize: show loader and lock scroll
+  // Initialize on the first entry in this session.
   showLoader();
   bindNavigationInterception();
   window.addEventListener('load', hideLoader, { once: true });

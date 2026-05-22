@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const phrases = [
         "Formación avanzada con excelencia científica e innovación técnica desde el Callao para el mundo.",
         "Nuevo récord de 2079 ingresantes este 2026-A.",
-        "Contamos con 36 Maestrías, 12 Doctorados y 17 Especialidades.",
+        "Contamos con 37 Maestrías, 12 Doctorados y 17 Especialidades.",
         "Lidera el cambio con investigación de alto nivel. Proceso de admisión 2026-B abierto para profesionales comprometidos con el desarrollo tecnológico nacional."
     ];
     let phraseCounter = 0;

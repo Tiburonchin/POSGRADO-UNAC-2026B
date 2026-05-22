@@ -70,66 +70,34 @@ $totalEspecialidades = count(array_filter($allProgramas, fn($p) => ($p['tipo'] ?
 
 // ───── HELPERS ─────
 function getFirstImage($prog) {
-    $candidates = [];
-    if (!empty($prog['imagen_1'])) $candidates[] = $prog['imagen_1'];
-    if (!empty($prog['imagen_2'])) $candidates[] = $prog['imagen_2'];
-    if (!empty($prog['imagen_3'])) $candidates[] = $prog['imagen_3'];
-
-    // Also try conventional filenames based on program id
-    if (!empty($prog['id'])) {
-        $id = $prog['id'];
-        $candidates[] = "img/programas/{$id}.jpg";
-        $candidates[] = "img/programas/{$id}.png";
-        $candidates[] = "img/programas/{$id}.webp";
+    // Keep the same behavior as Home: first image from JSON, then area fallback.
+    if (!empty($prog['imagen_1'])) {
+        return ltrim($prog['imagen_1'], '/');
     }
 
-    // Resolve against filesystem and return the first existing relative path
-    foreach ($candidates as $cand) {
-        if (strpos($cand, 'http') === 0) {
-            return $cand;
-        }
-        $clean = ltrim($cand, '/');
-        $fullPath = __DIR__ . '/../' . $clean;
-        if (file_exists($fullPath)) {
-            return $clean;
-        }
-    }
-
-    // Final fallback to a known placeholder present in the repo
-    $placeholder = 'img/epg-unac-fachada.png';
-    $placeholderFull = __DIR__ . '/../' . $placeholder;
-    if (file_exists($placeholderFull)) return $placeholder;
-
-    // As a last resort, return a remote image based on program type/name
-    return getRemoteFallbackImage($prog);
+    return getAreaFallbackImage($prog['area'] ?? '');
 }
 
 /**
- * Return a remote image URL (Unsplash) based on program type and name.
- * Example: https://source.unsplash.com/featured/?university,masters
+ * Return the same area-based fallback images used by Home.
  */
-function getRemoteFallbackImage($prog) {
-    $tipo = $prog['tipo'] ?? '';
-    $nombre = $prog['nombre'] ?? '';
+function getAreaFallbackImage($area) {
+    $fallbackByArea = [
+        'Ciencias Administrativas' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+        'Ciencias Contables' => 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
+        'Ciencias de la Educación' => 'https://images.unsplash.com/photo-1524178232363-1fb28075b655?auto=format&fit=crop&w=800&q=80',
+        'Ciencias de la Salud' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
+        'Ciencias Económicas' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+        'Ciencias Naturales y Matemáticas' => 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Ambiental y Recursos Naturales' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb7780b9?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Eléctrica y Electrónica' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Industrial y de Sistemas' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Mecánica y Energía' => 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Pesquera y Alimentos' => 'https://images.unsplash.com/photo-1498654200943-1088dd4438ae?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Química' => 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
+    ];
 
-    $keywords = [];
-    if ($tipo) {
-        $keywords[] = $tipo;
-    }
-    if ($nombre) {
-        // Use a few words from the program name to improve relevance
-        $parts = preg_split('/[\s,\-\/]+/', $nombre);
-        $keywords[] = implode(',', array_slice($parts, 0, 2));
-    }
-
-    // Always include general education terms
-    $keywords[] = 'university';
-    $keywords[] = 'education';
-
-    $query = urlencode(implode(',', array_filter($keywords)));
-
-    // Use Unsplash Source to provide a representative image
-    return "https://source.unsplash.com/featured/?{$query}";
+    return $fallbackByArea[$area] ?? 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80';
 }
 
 function getBadgeClass($tipo) {
@@ -259,6 +227,7 @@ function getDuration($prog) {
         <?php else: ?>
             <?php foreach ($allProgramas as $prog): 
                 $img = getFirstImage($prog);
+                $areaFallbackImg = getAreaFallbackImage($prog['area'] ?? '');
                 $badgeClass = getBadgeClass($prog['tipo'] ?? 'maestria');
                 $tipoLabel = getTipoLabel($prog['tipo'] ?? 'maestria');
                 $duration = getDuration($prog);
@@ -270,12 +239,13 @@ function getDuration($prog) {
                     <div class="programa-card__image-wrap">
                         <?php if ($img): 
                             $finalImg = (strpos($img, 'http') === 0) ? $img : $baseUrl . $img;
+                            $finalFallbackImg = (strpos($areaFallbackImg, 'http') === 0) ? $areaFallbackImg : $baseUrl . ltrim($areaFallbackImg, '/');
                         ?>
                             <img src="<?php echo htmlspecialchars($finalImg); ?>" 
                                  alt="<?php echo htmlspecialchars($prog['nombre'] ?? ''); ?>" 
                                  class="programa-card__image"
                                  loading="lazy"
-                                 onerror="this.onerror=null;this.src='<?php echo $baseUrl; ?>img/epg-unac-fachada.png'">
+                                 onerror="this.onerror=null;this.src='<?php echo htmlspecialchars($finalFallbackImg, ENT_QUOTES, 'UTF-8'); ?>'">
                         <?php else: ?>
                             <div class="w-full h-full bg-gradient-to-br from-[#3b82f6]/20 to-[#fbbf24]/20"></div>
                         <?php endif; ?>

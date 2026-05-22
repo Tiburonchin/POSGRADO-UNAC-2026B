@@ -9,6 +9,15 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><?php echo $pageTitle; ?></title>
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('page-loader-seen')) {
+          document.documentElement.classList.add('page-loader-disabled');
+        }
+      } catch (e) {}
+    })();
+  </script>
     <!-- Assets principales -->
     <link rel="stylesheet" href="<?php echo $baseUrl; ?>assets/css/output.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">

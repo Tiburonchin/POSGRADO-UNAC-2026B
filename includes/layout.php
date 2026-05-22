@@ -17,6 +17,9 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
 
   $firstTemplateName = basename($contentTemplates[0]);
   $pageSlug = pathinfo($firstTemplateName, PATHINFO_FILENAME);
+  if (str_ends_with($pageSlug, '-content-only')) {
+    $pageSlug = substr($pageSlug, 0, -13);
+  }
   $isHomePage = false;
 
   foreach ($contentTemplates as $templatePath) {
@@ -51,6 +54,15 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
       document.documentElement.setAttribute('data-theme', savedTheme);
     })();
   </script>
+  <script>
+    (function () {
+      try {
+        if (sessionStorage.getItem('page-loader-seen')) {
+          document.documentElement.classList.add('page-loader-disabled');
+        }
+      } catch (e) {}
+    })();
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link rel="icon" type="image/png" href="<?= $baseUrl ?>img/epg-logo.png" />
@@ -83,6 +95,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   <!-- GSAP Core libs (no defer - must load first) -->
   <script src="<?= $baseUrl ?>assets/vendor/gsap/gsap.min.js"></script>
   <script src="<?= $baseUrl ?>assets/vendor/gsap/ScrollTrigger.min.js"></script>
+  <script src="<?= $baseUrl ?>assets/vendor/gsap/ScrollToPlugin.min.js"></script>
   <script src="<?= $baseUrl ?>assets/vendor/gsap/Flip.min.js"></script>
   
   <!-- Page Loader (no defer - locks scroll immediately) -->
@@ -155,7 +168,6 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
     })();
   </script>
   <?php endif; ?>
-  <script defer src="<?= $baseUrl ?>assets/js/page-loader.js"></script>
 </body>
 </html>
 <?php

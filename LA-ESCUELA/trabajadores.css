@@ -1,44 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400..700;1,400..700&family=Instrument+Serif:ital@0;1&family=Montserrat:wght@400;500;600;700&display=swap");
+
 :root {
-    /* --- BRAND COLORS (Primary: Blue / Accent: Yellow) --- */
-    --unac-blue-light: #60a5fa;
-    --unac-blue: #3b82f6;
-    --unac-blue-dark: #1d4ed8;
-
-    --unac-yellow-light: #fde49b;
-    --unac-yellow: rgba(251, 202, 56, 1);
-    --unac-yellow-dark: #e1a705;
-
-    /* --- UI SURFACES (Single Unified Theme) --- */
+    /* --- HARMONIZED ROOT VARIABLES --- */
     --bg-base: #060a12;
     --bg-surface: #0b1220;
     --bg-soft: #121b2d;
     
-    /* --- TEXT --- */
     --text-base: #eef2ff;
-    --text-muted: rgba(238, 242, 255, 0.65);
+    --text-muted: rgba(226, 232, 240, 0.78);
     
-    /* --- BORDERS & SHADOWS --- */
-    --border-base: rgba(148, 163, 184, 0.15);
-    --border-bright: rgba(148, 163, 184, 0.3);
+    --border-base: rgba(148, 163, 184, 0.22);
+    --border-bright: rgba(148, 163, 184, 0.35);
+    
+    --unac-blue-light: #60a5fa;
+    --unac-blue: #FBCA38; /* Replaced with yellow for harmony */
+    --unac-blue-dark: #e1a705;
+    
+    --unac-yellow-light: #fde49b;
+    --unac-yellow: #FBCA38;
+    --unac-yellow-dark: #e1a705;
+    
+    --accent: #FBCA38;
+    --accent-2: #e1a705;
     
     --shadow-sm: 0 4px 12px rgba(2, 6, 23, 0.2);
     --shadow-md: 0 12px 40px rgba(2, 6, 23, 0.36);
     --shadow-lg: 0 20px 60px rgba(2, 6, 23, 0.55);
     
-    /* --- UI TOKENS --- */
     --radius-sm: 8px;
     --radius-md: 16px;
     --radius-lg: 24px;
     --radius-full: 9999px;
     
-    --motion-base: 0.3s;
-    --motion-ease: cubic-bezier(0.4, 0, 0.2, 1);
+    --motion-base: 0.35s;
+    --motion-ease: ease;
     
-    /* --- COMPONENT TOKENS --- */
-    --header-h: 4.45rem;
-    --header-gap: 18px;
-    --font-base: 'Manrope', system-ui, sans-serif;
-    --font-display: 'Manrope', system-ui, sans-serif;
+    --font-base: "Instrument Sans", sans-serif;
+    --font-display: "Montserrat", sans-serif;
 }
 
 * {
@@ -52,7 +50,7 @@ body {
     background-color: var(--bg-base);
     color: var(--text-base);
     line-height: 1.6;
-    overflow-x: hidden;
+    overflow-x: clip;
 }
 
 /* Header transparency fix for worker pages - Reference from La Escuela */
@@ -120,6 +118,7 @@ body[data-type="administrativos"] .hero::before {
 }
 
 .hero-content h1 {
+    font-family: var(--font-display);
     font-size: clamp(3rem, 8vw, 5rem);
     font-weight: 800;
     text-transform: uppercase;
@@ -152,7 +151,7 @@ body[data-type="administrativos"] .hero::before {
 }
 
 .container {
-    max-width: 1300px;
+    max-width: 1400px;
     margin: 0 auto;
     padding: 80px 24px;
 }
@@ -172,14 +171,22 @@ body[data-type="administrativos"] .hero::before {
     flex-direction: column;
     align-items: center;
     text-align: center;
-    transition: all var(--motion-base) var(--motion-ease);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    transform-style: preserve-3d;
+    will-change: transform;
     position: relative;
     overflow: hidden;
 }
 
+.worker-card > * {
+    position: relative;
+    z-index: 1;
+    transform: translateZ(20px);
+    transition: transform 0.3s ease;
+}
+
 .worker-card:hover {
-    transform: translateY(-10px);
-    border-color: var(--unac-blue);
+    border-color: var(--border-bright);
     box-shadow: var(--shadow-lg);
 }
 
@@ -188,11 +195,14 @@ body[data-type="administrativos"] .hero::before {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 4px;
-    background: linear-gradient(90deg, var(--unac-blue), var(--unac-yellow));
+    right: 0;
+    bottom: 0;
+    border-radius: inherit;
+    background: radial-gradient(circle 800px at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(251, 202, 56, 0.08), transparent 40%);
     opacity: 0;
-    transition: opacity var(--motion-base);
+    transition: opacity 0.5s ease;
+    z-index: 0;
+    pointer-events: none;
 }
 
 .worker-card:hover::before {
@@ -227,6 +237,7 @@ body[data-type="administrativos"] .hero::before {
 }
 
 .worker-info h2 {
+    font-family: var(--font-display);
     font-size: 1.75rem;
     color: var(--text-base);
     margin-bottom: 8px;
@@ -264,12 +275,12 @@ body[data-type="administrativos"] .hero::before {
 
 .tag {
     background: var(--bg-soft);
-    color: var(--unac-blue-light);
+    color: var(--unac-yellow-light);
     padding: 6px 14px;
     border-radius: var(--radius-full);
     font-size: 0.85rem;
     font-weight: 600;
-    border: 1px solid var(--border-base);
+    border: 1px solid rgba(251, 202, 56, 0.18);
 }
 
 .worker-contact {
@@ -290,15 +301,20 @@ body[data-type="administrativos"] .hero::before {
     color: var(--text-muted);
     text-decoration: none;
     font-size: 0.9rem;
-    transition: color var(--motion-base);
+    transition: color var(--motion-base), transform var(--motion-base) ease;
 }
 
 .contact-item:hover {
-    color: var(--unac-blue-light);
+    color: var(--unac-yellow);
 }
 
 .contact-item i {
-    color: var(--unac-blue);
+    color: var(--unac-yellow);
+    transition: transform var(--motion-base) ease;
+}
+
+.contact-item:hover i {
+    transform: scale(1.15);
 }
 
 @keyframes fadeInUp {
@@ -320,17 +336,24 @@ body[data-type="administrativos"] .hero::before {
 .director-featured {
     max-width: 1100px;
     margin: 0 auto;
-    background: rgba(11, 18, 32, 0.8);
+    background: rgba(11, 18, 32, 0.85);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     border-radius: var(--radius-lg);
-    border: 1px solid var(--border-bright);
+    border: 1px solid var(--border-base);
     padding: 60px 48px;
     display: flex;
     gap: 48px;
     align-items: center;
     position: relative;
     box-shadow: var(--shadow-lg);
+    transition: transform var(--motion-base) ease, box-shadow var(--motion-base) ease, border-color var(--motion-base) ease;
+}
+
+.director-featured:hover {
+    transform: translateY(-5px);
+    border-color: rgba(251, 202, 56, 0.35);
+    box-shadow: 0 30px 60px rgba(2, 6, 23, 0.5), 0 0 40px rgba(251, 202, 56, 0.05);
 }
 
 .director-featured .featured-img-container {
@@ -341,6 +364,12 @@ body[data-type="administrativos"] .hero::before {
     padding: 10px;
     background: linear-gradient(135deg, var(--unac-yellow), var(--unac-yellow-dark));
     box-shadow: var(--shadow-md);
+    transition: transform 0.5s ease, box-shadow 0.5s ease;
+}
+
+.director-featured:hover .featured-img-container {
+    transform: scale(1.04) rotate(2deg);
+    box-shadow: 0 15px 35px rgba(251, 202, 56, 0.2);
 }
 
 .director-featured .featured-img-container img {
@@ -349,6 +378,11 @@ body[data-type="administrativos"] .hero::before {
     object-fit: cover;
     border-radius: 50%;
     background: var(--bg-soft);
+    transition: transform 0.5s ease;
+}
+
+.director-featured:hover .featured-img-container img {
+    transform: scale(1.06);
 }
 
 .featured-info {
@@ -356,6 +390,7 @@ body[data-type="administrativos"] .hero::before {
 }
 
 .featured-info h2 {
+    font-family: var(--font-display);
     font-size: 3rem;
     font-weight: 800;
     color: var(--text-base);
@@ -391,8 +426,16 @@ body[data-type="administrativos"] .hero::before {
     border-radius: var(--radius-full);
     font-size: 0.95rem;
     font-weight: 700;
-    border: 1px solid var(--unac-blue);
+    border: 1px solid rgba(251, 202, 56, 0.25);
     box-shadow: var(--shadow-sm);
+    transition: all 0.3s ease;
+}
+
+.degree-tag:hover {
+    background: rgba(251, 202, 56, 0.08);
+    border-color: var(--unac-yellow);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 20px rgba(251, 202, 56, 0.12);
 }
 
 .featured-contact {
@@ -443,6 +486,7 @@ body[data-type="administrativos"] .hero::before {
 }
 
 .section-header h2 {
+    font-family: var(--font-display);
     font-size: 3.5rem;
     font-weight: 800;
     color: var(--text-base);
@@ -498,8 +542,8 @@ body[data-type="administrativos"] .hero::before {
 }
 
 .search-input:focus {
-    border-color: var(--unac-blue);
-    box-shadow: 0 0 0 2px rgba(96, 165, 250, 0.2);
+    border-color: var(--unac-yellow);
+    box-shadow: 0 0 0 2px rgba(251, 202, 56, 0.2);
 }
 
 
@@ -516,16 +560,16 @@ body[data-type="administrativos"] .hero::before {
 }
 
 .filter-btn.active {
-    background: var(--unac-blue);
-    color: #fff;
-    border-color: var(--unac-blue);
-    box-shadow: var(--shadow-sm);
+    background: var(--unac-yellow);
+    color: var(--bg-base);
+    border-color: var(--unac-yellow);
+    box-shadow: 0 4px 14px rgba(251, 202, 56, 0.25);
 }
 
 .filter-btn:hover:not(.active) {
     background: var(--bg-soft);
-    color: var(--unac-blue-light);
-    border-color: var(--unac-blue-light);
+    color: var(--unac-yellow);
+    border-color: rgba(251, 202, 56, 0.4);
 }
 
 .faculty-select {
@@ -547,14 +591,13 @@ body[data-type="administrativos"] .hero::before {
 }
 
 .faculty-select:focus {
-    border-color: var(--unac-blue);
-    box-shadow: 0 0 0 2px rgba(59, 130, 246, 0.2);
+    border-color: var(--unac-yellow);
+    box-shadow: 0 0 0 2px rgba(251, 202, 56, 0.2);
 }
 
 .main-content-section {
     background-color: var(--bg-base);
     padding: 40px 0 80px; /* Reduced top padding */
-    border-top: 1px solid var(--border-base);
 }
 
 .fade-in {

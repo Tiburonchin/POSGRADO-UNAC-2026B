@@ -54,47 +54,31 @@ if (!$programa) {
 
 // Helpers
 function getFirstImage($prog) {
-    // Prefer explicit imagen_* fields from JSON
-    $candidates = [];
-    foreach (['imagen_1', 'imagen_2', 'imagen_3'] as $key) {
-        if (!empty($prog[$key])) {
-            $candidates[] = $prog[$key];
-        }
+    // Keep same priority as Home: imagen_1 first, then same area fallback.
+    if (!empty($prog['imagen_1'])) {
+        return ltrim($prog['imagen_1'], '/');
     }
 
-    // Resolve against filesystem and return the first existing relative path or URL
-    foreach ($candidates as $cand) {
-        if (strpos($cand, 'http') === 0) {
-            return $cand;
-        }
-        $clean = ltrim($cand, '/');
-        $fullPath = __DIR__ . '/../' . $clean;
-        if (file_exists($fullPath)) {
-            return $clean;
-        }
-    }
+    return getAreaFallbackImage($prog['area'] ?? '');
+}
 
-    // Fallback: check for local file in img/programas by id
-    $id = $prog['id'] ?? null;
-    if ($id) {
-        $possible = [
-            __DIR__ . '/../img/programas/' . $id . '.jpg',
-            __DIR__ . '/../img/programas/' . $id . '.png',
-            __DIR__ . '/../img/programas/' . $id . '.webp'
-        ];
-        foreach ($possible as $p) {
-            if (file_exists($p)) {
-                return 'img/programas/' . basename($p);
-            }
-        }
-    }
+function getAreaFallbackImage($area) {
+    $fallbackByArea = [
+        'Ciencias Administrativas' => 'https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=800&q=80',
+        'Ciencias Contables' => 'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=800&q=80',
+        'Ciencias de la Educación' => 'https://images.unsplash.com/photo-1524178232363-1fb28075b655?auto=format&fit=crop&w=800&q=80',
+        'Ciencias de la Salud' => 'https://images.unsplash.com/photo-1576091160550-2173dba999ef?auto=format&fit=crop&w=800&q=80',
+        'Ciencias Económicas' => 'https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80',
+        'Ciencias Naturales y Matemáticas' => 'https://images.unsplash.com/photo-1635070041078-e363dbe005cb?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Ambiental y Recursos Naturales' => 'https://images.unsplash.com/photo-1542601906990-b4d3fb7780b9?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Eléctrica y Electrónica' => 'https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Industrial y de Sistemas' => 'https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Mecánica y Energía' => 'https://images.unsplash.com/photo-1581092335397-9583eb92d232?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Pesquera y Alimentos' => 'https://images.unsplash.com/photo-1498654200943-1088dd4438ae?auto=format&fit=crop&w=800&q=80',
+        'Ingeniería Química' => 'https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?auto=format&fit=crop&w=800&q=80',
+    ];
 
-    // Final fallback: use an existing project image as placeholder
-    if (file_exists(__DIR__ . '/../img/epg-unac-fachada.png')) {
-        return 'img/epg-unac-fachada.png';
-    }
-
-    return '';
+    return $fallbackByArea[$area] ?? 'https://images.unsplash.com/photo-1523050854058-8df90110c9f1?auto=format&fit=crop&w=600&q=80';
 }
 
 function getBadgeClass($tipo) {
@@ -131,6 +115,7 @@ function getDuracion($prog, $fac) {
 }
 
 $img = getFirstImage($programa);
+$areaFallbackImg = getAreaFallbackImage($programa['area'] ?? '');
 $badgeClass = getBadgeClass($programa['tipo'] ?? 'maestria');
 $tipoLabel = getTipoLabel($programa['tipo'] ?? 'maestria');
 $modalidad = getModalidad($facultad);
@@ -157,8 +142,9 @@ for ($i = 1; $i <= 3; $i++) {
 <div class="programa-detail__header">
     <?php if ($img): 
         $finalImg = (strpos($img, 'http') === 0) ? $img : $baseUrl . $img;
+        $finalFallbackImg = (strpos($areaFallbackImg, 'http') === 0) ? $areaFallbackImg : $baseUrl . ltrim($areaFallbackImg, '/');
     ?>
-        <img src="<?php echo htmlspecialchars($finalImg); ?>" alt="" class="programa-detail__header-img">
+        <img src="<?php echo htmlspecialchars($finalImg); ?>" alt="" class="programa-detail__header-img" onerror="this.onerror=null;this.src='<?php echo htmlspecialchars($finalFallbackImg, ENT_QUOTES, 'UTF-8'); ?>'">
     <?php else: ?>
         <div class="w-full h-full bg-gradient-to-br from-[#3b82f6]/30 to-[#fbbf24]/30"></div>
     <?php endif; ?>

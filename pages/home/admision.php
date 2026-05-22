@@ -30,15 +30,15 @@
                     <!-- Data Bar: Structured metrics -->
                     <div class="grid grid-cols-3 gap-1 border-y border-white/10 py-8 mb-12 bg-white/[0.02]">
                         <div class="text-center px-4 border-r border-white/5">
-                            <p class="text-2xl md:text-3xl font-black text-white">10</p>
+                            <p class="text-2xl md:text-3xl font-black text-white">17</p>
                             <p class="text-[9px] uppercase tracking-widest text-unac-muted font-bold mt-1">Especialidades</p>
                         </div>
                         <div class="text-center px-4 border-r border-white/5">
-                            <p class="text-2xl md:text-3xl font-black text-white">20</p>
+                            <p class="text-2xl md:text-3xl font-black text-white">37</p>
                             <p class="text-[9px] uppercase tracking-widest text-unac-muted font-bold mt-1">Maestrías</p>
                         </div>
                         <div class="text-center px-4">
-                            <p class="text-2xl md:text-3xl font-black text-white">30</p>
+                            <p class="text-2xl md:text-3xl font-black text-white">12</p>
                             <p class="text-[9px] uppercase tracking-widest text-unac-muted font-bold mt-1">Doctorados</p>
                         </div>
                     </div>

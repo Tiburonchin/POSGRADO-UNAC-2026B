@@ -100,6 +100,11 @@ function initFooterAnimations() {
         });
     }
 
+    // Force ScrollTrigger to refresh immediately after initializing footer
+    if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+    }
+
     // Magnetic effect for social links (The "Fun Stuff" part)
     const socialLinks = document.querySelectorAll('.footer-social-link');
     socialLinks.forEach(link => {

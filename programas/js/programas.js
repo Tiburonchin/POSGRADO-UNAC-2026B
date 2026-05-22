@@ -3,6 +3,8 @@
  * Glassmorphism design with smooth scroll animations
  */
 
+let isInitialLoad = true;
+
 document.addEventListener('DOMContentLoaded', function() {
     // Register GSAP plugins if available
     if (typeof gsap !== 'undefined') {
@@ -87,18 +89,27 @@ function initGSAPAnimations() {
         });
     });
 
-    // Cards stagger animation
-    gsap.from('.programa-card', {
-        y: 50,
-        opacity: 0,
-        duration: 0.7,
-        stagger: 0.08,
-        ease: 'power3.out',
-        scrollTrigger: {
-            trigger: '.programas-grid',
-            start: 'top 80%',
-            once: true
-        }
+    // Set initial GSAP states for all cards to support ScrollTrigger batch loading
+    gsap.set('.programa-card', { opacity: 0, y: 50 });
+
+    // Progressive card stagger loading via ScrollTrigger.batch
+    ScrollTrigger.batch('.programa-card', {
+        onEnter: batch => gsap.to(batch, {
+            opacity: 1,
+            y: 0,
+            duration: 0.7,
+            stagger: 0.08,
+            ease: 'power3.out',
+            overwrite: 'auto',
+            onComplete: () => {
+                // Remove inline properties once animated so CSS hover transforms work flawlessly
+                gsap.set(batch, { clearProps: 'opacity,transform' });
+                // As the cards have loaded, initial load transitions can be marked completed for these
+                isInitialLoad = false;
+            }
+        }),
+        start: 'top 88%',
+        once: true
     });
 
     // Scroll reveal for other elements
@@ -170,6 +181,9 @@ function initFilters() {
             filterBtns.forEach(b => b.classList.remove('active'));
             this.classList.add('active');
 
+            // Interacted! Disable initial load flag so items show immediately
+            isInitialLoad = false;
+
             // Apply unified filtering
             updateGrid();
         });
@@ -195,6 +209,7 @@ function initSearch() {
         syncSearchControls();
         clearTimeout(debounceTimer);
         debounceTimer = setTimeout(() => {
+            isInitialLoad = false; // Disable initial load flag on search
             updateGrid();
         }, 250);
     });
@@ -203,6 +218,7 @@ function initSearch() {
         searchClear.addEventListener('click', () => {
             searchInput.value = '';
             syncSearchControls();
+            isInitialLoad = false; // Disable initial load flag on clear search
             updateGrid();
             searchInput.focus();
         });
@@ -245,24 +261,45 @@ function updateGrid() {
             card.style.position = 'relative';
             card.style.pointerEvents = 'auto';
             
-            gsap.to(card, {
-                scale: 1,
-                opacity: 1,
-                duration: 0.4,
-                ease: 'power2.out',
-                overwrite: true
-            });
+            if (isInitialLoad) {
+                // During initial load, we DO NOT force opacity: 1 immediately.
+                // We let the ScrollTrigger batch handle the progressive fade-in!
+                gsap.set(card, { scale: 1 });
+            } else {
+                // Interactive state: user has filtered/searched, show immediately
+                gsap.to(card, {
+                    scale: 1,
+                    opacity: 1,
+                    y: 0,
+                    duration: 0.4,
+                    ease: 'power2.out',
+                    overwrite: 'auto',
+                    onComplete: () => {
+                        gsap.set(card, { clearProps: 'opacity,transform' });
+                    }
+                });
+            }
         } else {
-            gsap.to(card, {
-                scale: 0.9,
-                opacity: 0,
-                duration: 0.3,
-                ease: 'power2.in',
-                overwrite: true,
-                onComplete: () => {
-                    card.style.display = 'none';
-                }
-            });
+            if (isInitialLoad) {
+                card.style.display = 'none';
+                gsap.set(card, {
+                    scale: 0.9,
+                    opacity: 0,
+                    y: 50
+                });
+            } else {
+                gsap.to(card, {
+                    scale: 0.9,
+                    opacity: 0,
+                    y: 30,
+                    duration: 0.3,
+                    ease: 'power2.in',
+                    overwrite: 'auto',
+                    onComplete: () => {
+                        card.style.display = 'none';
+                    }
+                });
+            }
         }
     });
 
@@ -330,6 +367,8 @@ function initDetailView() {
 function openDetail(programId) {
     const overlay = document.getElementById('programaDetailOverlay');
     const detail = document.getElementById('programaDetail');
+
+    isInitialLoad = false; // Disable initial load flag on detail view
 
     const ajaxUrl = window.PROGRAMAS_AJAX_URL || 'programa-detalle.php';
     const finalUrl = `${ajaxUrl}${ajaxUrl.includes('?') ? '&' : '?'}id=${programId}`;
@@ -415,6 +454,11 @@ function closeDetail() {
                 // Restore body scroll position
                 document.body.style.overflow = '';
                 
+                // Recalculate ScrollTrigger positions
+                if (typeof ScrollTrigger !== 'undefined') {
+                    ScrollTrigger.refresh();
+                }
+                
                 // Clear injected detail HTML to avoid lingering handlers/content
                 if (detail) detail.innerHTML = '';
             }
@@ -422,6 +466,9 @@ function closeDetail() {
     } else {
         overlay.classList.remove('active');
         document.body.style.overflow = '';
+        if (typeof ScrollTrigger !== 'undefined') {
+            ScrollTrigger.refresh();
+        }
         if (detail) detail.innerHTML = '';
     }
 }
@@ -533,6 +580,7 @@ function handleURLFilters() {
         if (filterBtn) {
             // Wait a bit for animations to be ready
             setTimeout(() => {
+                isInitialLoad = false; // Disable initial load flag on deep linking filters
                 filterBtn.click();
                 
                 // Scroll to grid if on mobile or if type is specified
@@ -548,3 +596,10 @@ function handleURLFilters() {
         }
     }
 }
+
+// Final ScrollTrigger refresh once all assets (images, fonts) have loaded
+window.addEventListener('load', function() {
+    if (typeof ScrollTrigger !== 'undefined') {
+        ScrollTrigger.refresh();
+    }
+});

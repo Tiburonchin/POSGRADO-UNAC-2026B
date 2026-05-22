@@ -244,6 +244,10 @@
     overflow: hidden;
   }
 
+  html.page-loader-disabled .page-loader {
+    display: none !important;
+  }
+
   .page-loader.is-hidden {
     opacity: 0 !important;
     visibility: hidden !important;
@@ -2508,6 +2512,22 @@
     border: 2px solid var(--unac-yellow);
     opacity: 0.3;
     animation: pulse-ring 2s cubic-bezier(0.455, 0.03, 0.515, 0.955) infinite;
+  }
+
+  /* Keep sidebar icons visible in light theme without changing structure/design */
+  [data-theme="light"] .social-sidebar .social-link i,
+  [data-theme="light"] .social-sidebar .theme-toggle-btn i {
+    color: rgba(15, 23, 42, 0.72) !important;
+  }
+
+  [data-theme="light"] .social-sidebar .social-sidebar-inner {
+    background: rgba(15, 23, 42, 0.06);
+    border-color: rgba(15, 23, 42, 0.14);
+  }
+
+  [data-theme="light"] .social-sidebar .theme-toggle-btn {
+    background: rgba(15, 23, 42, 0.08);
+    border-color: rgba(15, 23, 42, 0.18);
   }
 
   @keyframes pulse-ring {

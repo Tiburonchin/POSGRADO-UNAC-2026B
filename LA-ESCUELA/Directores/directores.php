@@ -3,7 +3,10 @@ $baseUrl = '../../';
 $pageTitle = 'Directores | La Escuela';
 $bodyType = 'directores';
 $extraCss = '<link rel="stylesheet" href="' . $baseUrl . 'LA-ESCUELA/trabajadores.css">';
-$extraJs = '<script src="' . $baseUrl . 'LA-ESCUELA/trabajadores.js"></script>';
+$extraJs = '
+<script src="' . $baseUrl . 'LA-ESCUELA/trabajadores.js"></script>
+<script defer src="' . $baseUrl . 'assets/js/modules/social-animations.js"></script>
+';
 
 include_once '../../includes/header.php'; 
 ?>
@@ -45,4 +48,5 @@ include_once '../../includes/header.php';
     </section>
 </main>
 
+<?php include_once '../../includes/social-sidebar.php'; ?>
 <?php include_once '../../includes/footer.php'; ?>

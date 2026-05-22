@@ -229,3 +229,30 @@ if (typeof material !== 'undefined' && material.uniforms) {
   material.uniforms.uColor.value.set(rgbColor.r, rgbColor.g, rgbColor.b);
 }
 
+// Ventajas Card 3D & Light Effect
+const vCards = document.querySelectorAll('.v-card');
+vCards.forEach(card => {
+  card.addEventListener('mousemove', (e) => {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    // Set variables for the background radial gradient light
+    card.style.setProperty('--mouse-x', `${x}px`);
+    card.style.setProperty('--mouse-y', `${y}px`);
+    
+    // Calculate 3D rotation
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    const rotateX = ((y - centerY) / centerY) * -5; // subtle tilt (max -5deg)
+    const rotateY = ((x - centerX) / centerX) * 5;  // subtle tilt (max 5deg)
+    
+    card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+  });
+
+  card.addEventListener('mouseleave', () => {
+    card.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+  });
+});
+
+

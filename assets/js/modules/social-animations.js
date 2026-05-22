@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const links = document.querySelectorAll('.social-link, .theme-toggle-btn');
     const isHomePage = document.body.getAttribute('data-page') === 'home';
 
-    if (!sidebar || !links.length) return;
+    if (!sidebar || !links.length || typeof gsap === 'undefined') return;
 
     // --- VISIBILITY LOGIC ---
     const initVisibility = () => {
@@ -17,8 +17,31 @@ document.addEventListener('DOMContentLoaded', () => {
                 onLeaveBack: () => gsap.to(sidebar, { autoAlpha: 0, x: 20, duration: 0.5, ease: "power3.in" })
             });
         } else {
-            gsap.from(sidebar, { x: 100, autoAlpha: 0, duration: 1, ease: 'power4.out', delay: 1 });
-            gsap.from(links, { x: 20, opacity: 0, stagger: 0.1, duration: 0.8, ease: 'back.out(1.7)', delay: 1.3 });
+            gsap.fromTo(
+                sidebar,
+                { x: 48, autoAlpha: 0 },
+                {
+                    x: 0,
+                    autoAlpha: 1,
+                    duration: 0.75,
+                    ease: 'power3.out',
+                    delay: 0.4,
+                    clearProps: 'transform,opacity,visibility'
+                }
+            );
+            gsap.fromTo(
+                links,
+                { x: 12, opacity: 0 },
+                {
+                    x: 0,
+                    opacity: 1,
+                    stagger: 0.06,
+                    duration: 0.45,
+                    ease: 'power2.out',
+                    delay: 0.55,
+                    clearProps: 'transform,opacity'
+                }
+            );
         }
     };
 

@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "sync:gsap": "node -e \"const fs=require('fs'); const p=require('path'); const src=p.join('node_modules','gsap','dist'); const dst=p.join('assets','vendor','gsap'); fs.mkdirSync(dst,{recursive:true}); ['gsap.min.js','ScrollTrigger.min.js'].forEach(f=>fs.copyFileSync(p.join(src,f),p.join(dst,f))); console.log('GSAP files synced to assets/vendor/gsap');\"",
+    "sync:gsap": "node -e \"const fs=require('fs'); const p=require('path'); const src=p.join('node_modules','gsap','dist'); const dst=p.join('assets','vendor','gsap'); fs.mkdirSync(dst,{recursive:true}); ['gsap.min.js','ScrollTrigger.min.js','ScrollToPlugin.min.js'].forEach(f=>fs.copyFileSync(p.join(src,f),p.join(dst,f))); console.log('GSAP files synced to assets/vendor/gsap');\"",
     "postinstall": "npm run sync:gsap",
     "build:css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --minify",
     "watch:css": "npx tailwindcss -i ./assets/css/input.css -o ./assets/css/output.css --watch",
