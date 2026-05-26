@@ -42,7 +42,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
           <li class="nav-item" data-section="escuela"><button class="mega-trigger nav-link" data-section="escuela" aria-expanded="false">La Escuela</button></li>
           <li class="nav-item" data-section="admision"><button class="mega-trigger nav-link" data-section="admision" aria-expanded="false">Admision</button></li>
           <li class="nav-item" data-section="programas"><button class="mega-trigger nav-link" data-section="programas" aria-expanded="false">Programas</button></li>
-          <li class="nav-item" data-section="conocenos"><button class="mega-trigger nav-link" data-section="conocenos" aria-expanded="false">Conocenos</button></li>
+          <li class="nav-item" data-section="eventos"><button class="mega-trigger nav-link" data-section="eventos" aria-expanded="false">Eventos</button></li>
           <li class="nav-item" data-section="sgi"><button class="mega-trigger nav-link" data-section="sgi" aria-expanded="false">SGI</button></li>
         </ul>
       </nav>
@@ -130,22 +130,20 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
               </div>
             </section>
 
-            <section class="mega-panel-content" data-section="conocenos" aria-hidden="true">
+            <section class="mega-panel-content" data-section="eventos" aria-hidden="true">
               <div class="mega-column">
-                <h4 class="mega-column-title">Transparencia</h4>
-                <a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones" class="mega-link"><strong>Transparencia</strong><span>Informacion institucional de gestion y cumplimiento normativo.</span></a>
-                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="mega-link"><strong>Preguntas Frecuentes</strong><span>Respuestas claras sobre tramites, procesos y servicios.</span></a>
+                <h4 class="mega-column-title">Actividades</h4>
+                <a href="<?= $baseUrl ?>foros.php" class="mega-link"><strong>Foros</strong><span>Espacios de debate y encuentro académico.</span></a>
+                <a href="<?= $baseUrl ?>noticias.php" class="mega-link"><strong>Noticias</strong><span>Últimas novedades y comunicados de la Escuela.</span></a>
               </div>
               <div class="mega-column">
-                <h4 class="mega-column-title">Investigacion</h4>
-                <a href="<?= $baseUrl ?>programas/programas.php?type=doctorado" class="mega-link"><strong>Unidad de Investigacion</strong><span>Lineas, proyectos y produccion de conocimiento aplicado.</span></a>
-                <a href="<?= $baseUrl ?>noticias.php" class="mega-link"><strong>Revista Cientifica</strong><span>Difusion de articulos y resultados de investigacion.</span></a>
-                <a href="<?= $baseUrl ?>index.php#talento-unac" class="mega-link"><strong>Talento EPG</strong><span>Red de egresados y su impacto en instituciones lideres.</span></a>
+                <h4 class="mega-column-title">Programas Especiales</h4>
+                <a href="<?= $baseUrl ?>ciclo-eaip.php" class="mega-link"><strong>Ciclo EAIP</strong><span>Encuentros de Actualización e Innovación de Posgrado.</span></a>
               </div>
               <div class="mega-column mega-highlight">
-                <h4 class="mega-column-title">Comunidad EPG</h4>
-                <p>Conecta con nuestra cultura de investigacion, apertura y calidad academica.</p>
-                <a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="mega-cta-link">Conocer EPG</a>
+                <h4 class="mega-column-title">Agenda EPG</h4>
+                <p>Participa en nuestras actividades y mantente informado de los eventos.</p>
+                <a href="<?= $baseUrl ?>eventos.php" class="mega-cta-link">Ver Todos los Eventos</a>
               </div>
             </section>
 
@@ -221,16 +219,14 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
         </li>
         <li>
           <button class="mobile-section-toggle" aria-expanded="false">
-            <span class="mobile-toggle-main"><span>Conócenos</span></span>
+            <span class="mobile-toggle-main"><span>Eventos</span></span>
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Conocer EPG</a></li>
-            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones">Transparencia</a></li>
-            <li><a href="<?= $baseUrl ?>programas/programas.php?type=doctorado">Unidad de Investigación</a></li>
-            <li><a href="<?= $baseUrl ?>noticias.php">Revista Científica</a></li>
-            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Preguntas Frecuentes</a></li>
-            <li><a href="<?= $baseUrl ?>index.php#talento-unac">Talento EPG</a></li>
+            <li><a href="<?= $baseUrl ?>eventos.php" class="font-bold text-unac-yellow">Ver Todos los Eventos</a></li>
+            <li><a href="<?= $baseUrl ?>foros.php">Foros</a></li>
+            <li><a href="<?= $baseUrl ?>noticias.php">Noticias</a></li>
+            <li><a href="<?= $baseUrl ?>ciclo-eaip.php">Ciclo EAIP</a></li>
           </ul>
         </li>
         <li>
