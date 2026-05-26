@@ -168,6 +168,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
     })();
   </script>
   <?php endif; ?>
+  <?php if (isset($extraJs)) echo $extraJs; ?>
 </body>
 </html>
 <?php

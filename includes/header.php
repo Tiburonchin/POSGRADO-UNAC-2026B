@@ -40,8 +40,9 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
       <nav class="primary-nav hidden flex-1 justify-center lg:block" id="primary-nav" aria-label="Navegacion principal">
         <ul class="flex items-center justify-center gap-1 xl:gap-2">
           <li class="nav-item" data-section="escuela"><button class="mega-trigger nav-link" data-section="escuela" aria-expanded="false">La Escuela</button></li>
-          <li class="nav-item" data-section="admision"><button class="mega-trigger nav-link" data-section="admision" aria-expanded="false">Admision</button></li>
+          <li class="nav-item" data-section="admision"><button class="mega-trigger nav-link" data-section="admision" aria-expanded="false">Admisión</button></li>
           <li class="nav-item" data-section="programas"><button class="mega-trigger nav-link" data-section="programas" aria-expanded="false">Programas</button></li>
+          <li class="nav-item" data-section="investigacion"><button class="mega-trigger nav-link" data-section="investigacion" aria-expanded="false">Investigación</button></li>
           <li class="nav-item" data-section="eventos"><button class="mega-trigger nav-link" data-section="eventos" aria-expanded="false">Eventos</button></li>
           <li class="nav-item" data-section="sgi"><button class="mega-trigger nav-link" data-section="sgi" aria-expanded="false">SGI</button></li>
         </ul>
@@ -73,6 +74,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
       <div class="mega-nav-panel" id="mega-nav-panel">
         <div class="site-container">
           <div class="mega-sections" id="mega-sections">
+            <!-- 1. La Escuela -->
             <section class="mega-panel-content is-active" data-section="escuela" aria-hidden="false">
               <div class="mega-column">
                 <h4 class="mega-column-title">Identidad</h4>
@@ -81,55 +83,75 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
                 <a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones" class="mega-link js-identidad-link"><strong>Certificaciones</strong><span>Calidad internacional avalada por estándares globales.</span></a>
               </div>
               <div class="mega-column">
-                <h4 class="mega-column-title">Nuestro Equipo</h4>
-                <a href="<?= $baseUrl ?>LA-ESCUELA/Administradores/administrativos.php" class="mega-link"><strong>Administrativos</strong><span>Equipo técnico al servicio de la formación académica.</span></a>
-                <a href="<?= $baseUrl ?>LA-ESCUELA/Directores/directores.php" class="mega-link"><strong>Directores</strong><span>Autoridades que lideran nuestros programas y gestión.</span></a>
-                <a href="<?= $baseUrl ?>LA-ESCUELA/Docentes/docentes.php" class="mega-link"><strong>Docentes</strong><span>Cuerpo académico altamente calificado y con experiencia.</span></a>
+                <h4 class="mega-column-title">Gestión Institucional</h4>
+                <a href="<?= $baseUrl ?>transparencia/index.php" class="mega-link"><strong>Transparencia</strong><span>Reportes, presupuestos y resoluciones.</span></a>
               </div>
-              <div class="mega-column mega-highlight">
-                <h4 class="mega-column-title">Propuesta Academica</h4>
-                <p>Conoce nuestra vision, estructura y gestion para potenciar tu carrera profesional.</p>
-                <a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="mega-cta-link">Ver La Escuela</a>
+              <div class="mega-column">
+                <h4 class="mega-column-title">Nuestro Equipo</h4>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/Directores/directores.php" class="mega-link"><strong>Directores</strong><span>Autoridades que lideran nuestros programas.</span></a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/Docentes/docentes.php" class="mega-link"><strong>Docentes</strong><span>Cuerpo académico altamente calificado.</span></a>
+                <a href="<?= $baseUrl ?>LA-ESCUELA/Administradores/administrativos.php" class="mega-link"><strong>Administrativos</strong><span>Equipo técnico al servicio de la formación.</span></a>
               </div>
             </section>
 
+            <!-- 2. Admisión -->
             <section class="mega-panel-content" data-section="admision" aria-hidden="true">
               <div class="mega-column">
                 <h4 class="mega-column-title">Ingreso</h4>
-                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-link"><strong>Proceso de Admision</strong><span>Ruta detallada desde la postulacion hasta la matricula.</span></a>
-                <a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php" class="mega-link"><strong>Cronograma Academico</strong><span>Calendario oficial de evaluaciones, resultados y matriculas.</span></a>
+                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-link"><strong>Proceso de Admisión</strong><span>Ruta detallada desde la postulación hasta la matrícula.</span></a>
+                <a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php" class="mega-link"><strong>Cronograma Académico</strong><span>Calendario oficial de evaluaciones y resultados.</span></a>
               </div>
               <div class="mega-column">
                 <h4 class="mega-column-title">Postulante</h4>
                 <a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="mega-link"><strong>Requisitos y Costos</strong><span>Documentos, pagos y condiciones para cada programa.</span></a>
-                <a href="<?= $baseUrl ?>Admision/formato/formato.php" class="mega-link"><strong>Formatos y Tutoriales</strong><span>Guias practicas para completar el proceso sin errores.</span></a>
+                <a href="<?= $baseUrl ?>Admision/formato/formato.php" class="mega-link"><strong>Formatos y Tutoriales</strong><span>Guías prácticas para completar el proceso.</span></a>
               </div>
               <div class="mega-column mega-highlight">
-                <h4 class="mega-column-title">Atencion Prioritaria</h4>
-                <p>Inicia tu postulacion con soporte institucional y orientacion paso a paso.</p>
-                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-cta-link">Ir a Admision</a>
+                <h4 class="mega-column-title">Atención Prioritaria</h4>
+                <p>Inicia tu postulación con soporte institucional y orientación.</p>
+                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-cta-link">Ir a Admisión</a>
               </div>
             </section>
 
+            <!-- 3. Programas -->
             <section class="mega-panel-content" data-section="programas" aria-hidden="true">
               <div class="mega-column">
-                <h4 class="mega-column-title">Formacion</h4>
-                <a href="<?= $baseUrl ?>programas/programas.php?type=doctorado" class="mega-link"><strong>Doctorados</strong><span>Investigacion avanzada para liderazgo academico y cientifico.</span></a>
-                <a href="<?= $baseUrl ?>programas/programas.php?type=maestria" class="mega-link"><strong>Maestrias</strong><span>Especializacion profesional con enfoque aplicado y estrategico.</span></a>
-                <a href="<?= $baseUrl ?>programas/programas.php?type=especialidad" class="mega-link"><strong>Especialidades</strong><span>Trayectorias de actualizacion para sectores especificos.</span></a>
+                <h4 class="mega-column-title">Formación</h4>
+                <a href="<?= $baseUrl ?>programas/programas.php?type=doctorado" class="mega-link"><strong>Doctorados</strong><span>Investigación avanzada para liderazgo científico.</span></a>
+                <a href="<?= $baseUrl ?>programas/programas.php?type=maestria" class="mega-link"><strong>Maestrías</strong><span>Especialización con enfoque aplicado y estratégico.</span></a>
+                <a href="<?= $baseUrl ?>programas/programas.php?type=especialidad" class="mega-link"><strong>Especialidades</strong><span>Trayectorias de actualización para sectores específicos.</span></a>
               </div>
               <div class="mega-column">
                 <h4 class="mega-column-title">Soporte</h4>
-                <a href="<?= $baseUrl ?>programas/programas.php" class="mega-link"><strong>Malla Curricular</strong><span>Estructura de cursos, creditos y resultados de aprendizaje.</span></a>
-                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="mega-link"><strong>Becas</strong><span>Opciones de apoyo economico y beneficios institucionales.</span></a>
+                <a href="<?= $baseUrl ?>programas/programas.php" class="mega-link"><strong>Malla Curricular</strong><span>Estructura de cursos, créditos y aprendizaje.</span></a>
+                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="mega-link"><strong>Becas</strong><span>Opciones de apoyo económico y beneficios.</span></a>
               </div>
               <div class="mega-column mega-highlight">
-                <h4 class="mega-column-title">Catalogo 2026</h4>
-                <p>Explora programas por modalidad, area y perfil profesional.</p>
+                <h4 class="mega-column-title">Catálogo 2026</h4>
+                <p>Explora programas por modalidad y perfil profesional.</p>
                 <a href="<?= $baseUrl ?>programas/programas.php" class="mega-cta-link">Explorar Programas</a>
               </div>
             </section>
 
+            <!-- 4. Investigación (NUEVA PESTAÑA) -->
+            <section class="mega-panel-content" data-section="investigacion" aria-hidden="true">
+              <div class="mega-column">
+                <h4 class="mega-column-title">Gestión</h4>
+                <a href="<?= $baseUrl ?>investigacion/unidad.php" class="mega-link"><strong>Unidad de Investigación</strong><span>Administración y desarrollo de proyectos científicos.</span></a>
+              </div>
+              <div class="mega-column">
+                <h4 class="mega-column-title">Difusión</h4>
+                <a href="<?= $baseUrl ?>investigacion/revista.php" class="mega-link"><strong>Revista Científica</strong><span>Publicaciones y artículos de alto impacto.</span></a>
+                <a href="<?= $baseUrl ?>investigacion/repositorio.php" class="mega-link"><strong>Repositorio Institucional</strong><span>Archivo digital de tesis y trabajos académicos.</span></a>
+              </div>
+              <div class="mega-column mega-highlight">
+                <h4 class="mega-column-title">Enfoque Científico</h4>
+                <p>Conoce nuestras líneas de investigación y publicaciones.</p>
+                <a href="<?= $baseUrl ?>investigacion/index.php" class="mega-cta-link">Ver Investigación</a>
+              </div>
+            </section>
+
+            <!-- 5. Eventos -->
             <section class="mega-panel-content" data-section="eventos" aria-hidden="true">
               <div class="mega-column">
                 <h4 class="mega-column-title">Actividades</h4>
@@ -147,29 +169,32 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
               </div>
             </section>
 
+            <!-- 6. SGI -->
             <section class="mega-panel-content" data-section="sgi" aria-hidden="true">
               <div class="mega-column">
                 <h4 class="mega-column-title">Sistema</h4>
-                <a href="<?= $baseUrl ?>index.php#inicio" class="mega-link"><strong>Inicio</strong><span>Acceso central a tramites y seguimiento academico.</span></a>
-                <a href="<?= $baseUrl ?>auth/login.php" class="mega-link"><strong>Sistema</strong><span>Plataforma digital para estudiantes y administrativos.</span></a>
+                <a href="https://sgiepgunac.com/" target="_blank" class="mega-link"><strong>Plataforma SGI</strong><span>Acceso directo al sistema para estudiantes y administrativos.</span></a>
               </div>
               <div class="mega-column">
-                <h4 class="mega-column-title">Gestion de Calidad</h4>
-                <a href="<?= $baseUrl ?>Admision/formato/formato.php" class="mega-link"><strong>Documentos del SGI</strong><span>Politicas, manuales y lineamientos institucionales.</span></a>
-                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-link"><strong>Procedimientos</strong><span>Flujos operativos normalizados para cada proceso.</span></a>
-                <a href="<?= $baseUrl ?>index.php#noticias" class="mega-link"><strong>Indicadores</strong><span>Metricas de desempeno y seguimiento de resultados.</span></a>
+                <h4 class="mega-column-title">Documentos Oficiales</h4>
+                <a href="<?= $baseUrl ?>sgi.php#tab-capacitaciones" class="mega-link"><strong>Capacitaciones</strong><span>Recursos y grabaciones de sesiones.</span></a>
+                <a href="<?= $baseUrl ?>sgi.php#tab-manuales" class="mega-link"><strong>Manuales</strong><span>Guías para el uso correcto del SGI.</span></a>
+                <a href="<?= $baseUrl ?>sgi.php#tab-flujogramas" class="mega-link"><strong>Flujogramas</strong><span>Representación de procedimientos.</span></a>
+                <a href="<?= $baseUrl ?>sgi.php#tab-reglamento" class="mega-link"><strong>Reglamento</strong><span>Normativas y directivas institucionales.</span></a>
               </div>
               <div class="mega-column mega-highlight">
-                <h4 class="mega-column-title">Control de Procesos</h4>
-                <p>Fortalece la calidad institucional con gestion integrada y trazable.</p>
-                <a href="<?= $baseUrl ?>auth/login.php" class="mega-cta-link">Ir a SGI</a>
+                <h4 class="mega-column-title">SGI Posgrado</h4>
+                <p>Consulta y gestiona tu investigación de manera rápida y segura.</p>
+                <a href="<?= $baseUrl ?>sgi.php" class="mega-cta-link">Ver SGI</a>
               </div>
             </section>
+
           </div>
         </div>
       </div>
     </div>
 
+    <!-- Mobile Nav -->
     <nav class="mobile-nav hidden lg:hidden" id="mobile-nav" aria-label="Navegación móvil" aria-hidden="true">
       <ul class="mobile-nav-list">
         <li class="mobile-nav-caption" aria-hidden="true">
@@ -181,13 +206,16 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Ver La Escuela</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php" class="font-bold text-unac-yellow">Identidad</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#mision-vision" class="js-identidad-link">Misión y Visión</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#ventajas" class="js-identidad-link">Ventajas</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/index.php#certificaciones" class="js-identidad-link">Certificaciones</a></li>
-            <li><a href="<?= $baseUrl ?>LA-ESCUELA/Administradores/administrativos.php">Administrativos</a></li>
+            <li><a href="<?= $baseUrl ?>transparencia/index.php" class="font-bold text-unac-yellow mt-2 block">Gestión Institucional</a></li>
+            <li><a href="<?= $baseUrl ?>transparencia/index.php">Transparencia</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/Directores/directores.php" class="font-bold text-unac-yellow mt-2 block">Nuestro Equipo</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/Directores/directores.php">Directores</a></li>
             <li><a href="<?= $baseUrl ?>LA-ESCUELA/Docentes/docentes.php">Docentes</a></li>
+            <li><a href="<?= $baseUrl ?>LA-ESCUELA/Administradores/administrativos.php">Administrativos</a></li>
           </ul>
         </li>
         <li>
@@ -196,9 +224,10 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="font-bold text-unac-yellow">Ir a Admisión</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="font-bold text-unac-yellow">Ingreso</a></li>
             <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php">Proceso de Admisión</a></li>
             <li><a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php">Cronograma Académico</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="font-bold text-unac-yellow mt-2 block">Postulante</a></li>
             <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Requisitos y Costos</a></li>
             <li><a href="<?= $baseUrl ?>Admision/formato/formato.php">Formatos y Tutoriales</a></li>
           </ul>
@@ -209,12 +238,26 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>programas/programas.php" class="font-bold text-unac-yellow">Explorar Programas</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php" class="font-bold text-unac-yellow">Formación</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=doctorado">Doctorados</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=maestria">Maestrías</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=especialidad">Especialidades</a></li>
+            <li><a href="<?= $baseUrl ?>programas/programas.php" class="font-bold text-unac-yellow mt-2 block">Soporte</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php">Malla Curricular</a></li>
             <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Becas</a></li>
+          </ul>
+        </li>
+        <li>
+          <button class="mobile-section-toggle" aria-expanded="false">
+            <span class="mobile-toggle-main"><span>Investigación</span></span>
+            <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
+          </button>
+          <ul class="mobile-submenu hidden">
+            <li><a href="<?= $baseUrl ?>investigacion/unidad.php" class="font-bold text-unac-yellow">Gestión</a></li>
+            <li><a href="<?= $baseUrl ?>investigacion/unidad.php">Unidad de Investigación</a></li>
+            <li><a href="<?= $baseUrl ?>investigacion/revista.php" class="font-bold text-unac-yellow mt-2 block">Difusión</a></li>
+            <li><a href="<?= $baseUrl ?>investigacion/revista.php">Revista Científica</a></li>
+            <li><a href="<?= $baseUrl ?>investigacion/repositorio.php">Repositorio Institucional</a></li>
           </ul>
         </li>
         <li>
@@ -223,9 +266,10 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>eventos.php" class="font-bold text-unac-yellow">Ver Todos los Eventos</a></li>
+            <li><a href="<?= $baseUrl ?>eventos.php" class="font-bold text-unac-yellow">Actividades</a></li>
             <li><a href="<?= $baseUrl ?>foros.php">Foros</a></li>
             <li><a href="<?= $baseUrl ?>noticias.php">Noticias</a></li>
+            <li><a href="<?= $baseUrl ?>ciclo-eaip.php" class="font-bold text-unac-yellow mt-2 block">Programas Especiales</a></li>
             <li><a href="<?= $baseUrl ?>ciclo-eaip.php">Ciclo EAIP</a></li>
           </ul>
         </li>
@@ -235,12 +279,13 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>auth/login.php" class="font-bold text-unac-yellow">Ir a SGI</a></li>
-            <li><a href="<?= $baseUrl ?>index.php#inicio">Inicio</a></li>
-            <li><a href="<?= $baseUrl ?>auth/login.php">Sistema</a></li>
-            <li><a href="<?= $baseUrl ?>Admision/formato/formato.php">Documentos del SGI</a></li>
-            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php">Procedimientos</a></li>
-            <li><a href="<?= $baseUrl ?>index.php#noticias">Indicadores</a></li>
+            <li><a href="<?= $baseUrl ?>sgi.php" class="font-bold text-unac-yellow">Portal SGI</a></li>
+            <li><a href="https://sgiepgunac.com/" target="_blank">Plataforma Digital</a></li>
+            <li><a href="<?= $baseUrl ?>sgi.php#tab-capacitaciones" class="font-bold text-unac-yellow mt-2 block">Documentos Oficiales</a></li>
+            <li><a href="<?= $baseUrl ?>sgi.php#tab-capacitaciones">Capacitaciones</a></li>
+            <li><a href="<?= $baseUrl ?>sgi.php#tab-manuales">Manuales</a></li>
+            <li><a href="<?= $baseUrl ?>sgi.php#tab-flujogramas">Flujogramas</a></li>
+            <li><a href="<?= $baseUrl ?>sgi.php#tab-reglamento">Reglamento</a></li>
           </ul>
         </li>
 
