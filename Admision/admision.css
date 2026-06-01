@@ -82,6 +82,7 @@ body[data-type="admision"] .hero::before {
 .hero {
     position: relative;
     height: 100vh;
+    height: 100dvh;
     width: 100%;
     display: flex;
     align-items: center;
@@ -1224,4 +1225,190 @@ body[data-type="admision"] .hero::before {
     color: var(--unac-yellow);
     box-shadow: 0 0 15px rgba(251, 202, 56, 0.2);
 }
+
+/* ==========================================================================
+   EPG SUBPAGES HERO & NAVIGATORS RESPONSIVENESS OVERRIDES
+   ========================================================================== */
+
+/* 1. Tablet and Mobile Hero Layout Adjustments (max-width: 768px) */
+@media (max-width: 768px) {
+    .hero {
+        height: auto !important;
+        min-height: 100vh;
+        min-height: 100dvh;
+        padding-top: 130px;
+        padding-bottom: 110px; /* space for absolute indicators */
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        box-sizing: border-box;
+    }
+
+    .hero-content {
+        max-width: 100%;
+        padding: 0 24px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+}
+
+/* 2. Small Mobile Typography and Layout Adjustments (max-width: 640px) */
+@media (max-width: 640px) {
+    .hero-content h1 {
+        font-size: 1.35rem !important;
+        line-height: 1.3 !important;
+        margin-bottom: 1.25rem !important;
+    }
+    
+    .hero-content h1 .highlight {
+        font-size: clamp(1.8rem, 6vw, 2.5rem) !important;
+        margin-top: 8px !important;
+        line-height: 1.15 !important;
+        letter-spacing: -0.01em !important;
+    }
+
+    .hero-content p {
+        font-size: 0.95rem !important;
+        line-height: 1.5 !important;
+        color: rgba(255, 255, 255, 0.7) !important; /* improved contrast */
+        padding: 0 8px !important;
+        letter-spacing: normal !important;
+        text-transform: none !important; /* normal text flow for readability */
+    }
+
+    /* Actions block: stack buttons vertically for natural touch ergonomics */
+    .hero-actions {
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 320px !important;
+        margin-top: 28px !important;
+        gap: 12px !important;
+    }
+
+    .hero-btn-primary, .hero-btn-secondary {
+        width: 100% !important;
+        padding: 14px 24px !important;
+        font-size: 0.85rem !important;
+        border-radius: 14px !important;
+        text-align: center !important;
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        box-shadow: none !important;
+    }
+
+    .hero-btn-primary {
+        box-shadow: 0 8px 20px rgba(251, 202, 56, 0.15) !important;
+    }
+
+    /* Smaller scroll down indicator */
+    .hero-scroll-indicator {
+        bottom: 24px !important;
+        gap: 4px !important;
+    }
+
+    .hero-scroll-indicator span {
+        font-size: 8px !important;
+        letter-spacing: 0.15em !important;
+    }
+
+    /* 3. Glassmorphic Bento Selector Tabs Responsiveness */
+    .tab-navs {
+        display: flex !important;
+        flex-direction: column !important;
+        width: 100% !important;
+        max-width: 480px !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+        background-color: rgba(11, 18, 32, 0.6) !important;
+        backdrop-filter: blur(16px) !important;
+        border: 1px solid rgba(148, 163, 184, 0.1) !important;
+        border-radius: 20px !important;
+        padding: 8px !important;
+        gap: 8px !important;
+        box-sizing: border-box !important;
+    }
+
+    .tab-navs .tab-btn {
+        width: 100% !important;
+        justify-content: center !important;
+        padding: 12px 20px !important;
+        font-size: 0.85rem !important;
+        border-radius: 14px !important;
+        border-width: 1px !important;
+        box-sizing: border-box !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        gap: 8px !important;
+    }
+
+    .tab-navs .tab-btn.active {
+        background-color: var(--unac-yellow) !important;
+        color: var(--bg-base) !important;
+        border-color: var(--unac-yellow) !important;
+        box-shadow: 0 4px 15px rgba(251, 202, 56, 0.15) !important;
+    }
+}
+
+/* 4. Tablet Specific Selector Tabs Adjustments (641px to 1024px) */
+@media (min-width: 641px) and (max-width: 1024px) {
+    .tab-navs {
+        gap: 10px !important;
+        margin-bottom: 24px !important;
+        padding: 6px !important;
+    }
+    .tab-navs .tab-btn {
+        padding: 10px 18px !important;
+        font-size: 0.8rem !important;
+        border-radius: 12px !important;
+    }
+}
+
+/* 5. Small Mobile File Download Buttons & Cost Cards Stacking (max-width: 480px) */
+@media (max-width: 480px) {
+    /* Download Buttons Sizing */
+    .tab-pane .group\/btn {
+        padding: 10px !important;
+        border-radius: 12px !important;
+    }
+    .tab-pane .group\/btn .w-9 {
+        width: 30px !important;
+        height: 30px !important;
+        font-size: 0.85rem !important;
+    }
+    .tab-pane .group\/btn span.font-bold {
+        font-size: 11px !important;
+    }
+
+    /* Stacking for financial items in costos_adicionales */
+    .adic-card .flex.items-center.justify-between {
+        flex-direction: column !important;
+        align-items: flex-start !important;
+        gap: 12px !important;
+        padding: 16px !important;
+    }
+    .adic-card .flex.items-center.justify-between .shrink-0,
+    .adic-card .flex.items-center.justify-between span.font-black {
+        align-self: flex-end !important;
+        margin-left: 0 !important;
+    }
+}
+
+/* 6. Alert Box and Spacing Overrides on Mobile Viewports */
+@media (max-width: 640px) {
+    .alert-box {
+        padding: 16px !important;
+        margin-bottom: 32px !important;
+    }
+    
+    #requisitos-content, #costos-content {
+        padding-top: 48px !important;
+        padding-bottom: 48px !important;
+    }
+}
+
+
 

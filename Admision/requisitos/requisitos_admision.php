@@ -61,7 +61,7 @@ require_once __DIR__ . '/../../includes/header.php';
                     <i class="fas fa-id-badge"></i> Proceso 2026-B
                 </div>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-text-base mb-4 tracking-tight font-sans">Requisitos <span class="text-unac-yellow">por Tipo de Programa</span></h2>
-                <p class="text-text-muted text-lg max-w-2xl mx-auto">Selecciona tu programa de interés para visualizar sus requisitos de ingreso, documentos de carpeta general y formatos oficiales de descarga en un solo lugar.</p>
+                <p class="text-text-muted text-sm sm:text-base md:text-lg max-w-2xl mx-auto">Selecciona tu programa de interés para visualizar sus requisitos de ingreso, documentos de carpeta general y formatos oficiales de descarga en un solo lugar.</p>
                 <div class="w-24 h-1 bg-gradient-to-r from-unac-yellow to-transparent mx-auto rounded-full mt-6"></div>
             </div>
 

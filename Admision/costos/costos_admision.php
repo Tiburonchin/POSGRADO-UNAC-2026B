@@ -384,9 +384,9 @@ require_once __DIR__ . '/../../includes/header.php';
                         <div class="bg-bg-surface border border-border-bright rounded-2xl overflow-hidden shadow-sm transition-colors transition-shadow duration-300 hover:border-unac-yellow/50 accordion-item faq-card">
                             <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none accordion-header">
                                 <span class="font-bold text-text-base text-sm md:text-base flex items-center gap-3">
-                                    <i class="fas fa-question-circle text-unac-yellow"></i> ¿Cómo realizo los pagos de inscripción y matrícula?
+                                    <i class="fas fa-question-circle text-unac-yellow shrink-0"></i> ¿Cómo realizo los pagos de inscripción y matrícula?
                                 </span>
-                                <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon"></i>
+                                <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon shrink-0"></i>
                             </button>
                             <div class="accordion-content px-6 h-0 overflow-hidden text-text-muted text-sm md:text-base leading-relaxed border-t-0 border-border-bright opacity-0">
                                 <div class="py-4">Todos los pagos se efectúan en ventanilla, agentes o banca por internet de Scotiabank, utilizando el código asignado para posgrado. Posteriormente, debes registrar tu comprobante digital en el portal académico para su validación oficial.</div>
@@ -397,9 +397,9 @@ require_once __DIR__ . '/../../includes/header.php';
                         <div class="bg-bg-surface border border-border-bright rounded-2xl overflow-hidden shadow-sm transition-colors transition-shadow duration-300 hover:border-unac-yellow/50 accordion-item faq-card">
                             <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none accordion-header">
                                 <span class="font-bold text-text-base text-sm md:text-base flex items-center gap-3">
-                                    <i class="fas fa-question-circle text-unac-yellow"></i> ¿Existen becas, descuentos o convenios?
+                                    <i class="fas fa-question-circle text-unac-yellow shrink-0"></i> ¿Existen becas, descuentos o convenios?
                                 </span>
-                                <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon"></i>
+                                <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon shrink-0"></i>
                             </button>
                             <div class="accordion-content px-6 h-0 overflow-hidden text-text-muted text-sm md:text-base leading-relaxed border-t-0 border-border-bright opacity-0">
                                 <div class="py-4">Sí, la Escuela de Posgrado ofrece descuentos parciales en las pensiones de enseñanza para graduados de la UNAC, personal docente y administrativo, así como convenios específicos con diversas instituciones públicas y colegios profesionales del Callao.</div>
@@ -410,9 +410,9 @@ require_once __DIR__ . '/../../includes/header.php';
                         <div class="bg-bg-surface border border-border-bright rounded-2xl overflow-hidden shadow-sm transition-colors transition-shadow duration-300 hover:border-unac-yellow/50 accordion-item faq-card">
                             <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none accordion-header">
                                 <span class="font-bold text-text-base text-sm md:text-base flex items-center gap-3">
-                                    <i class="fas fa-question-circle text-unac-yellow"></i> ¿Se pueden fraccionar los pagos de pensión mensual?
+                                    <i class="fas fa-question-circle text-unac-yellow shrink-0"></i> ¿Se pueden fraccionar los pagos de pensión mensual?
                                 </span>
-                                <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon"></i>
+                                <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon shrink-0"></i>
                             </button>
                             <div class="accordion-content px-6 h-0 overflow-hidden text-text-muted text-sm md:text-base leading-relaxed border-t-0 border-border-bright opacity-0">
                                 <div class="py-4">La pensión semestral está dividida de forma estándar en 4 cuotas mensuales por ciclo para facilitar el financiamiento del estudiante de posgrado. Cualquier solicitud de fraccionamiento extraordinario debe gestionarse ante la Unidad de Posgrado respectiva.</div>

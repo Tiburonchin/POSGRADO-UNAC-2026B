@@ -53,7 +53,7 @@ require_once __DIR__ . '/../../includes/header.php';
             <div class="absolute bottom-[20%] right-[-10%] w-[30%] h-[30%] rounded-full bg-unac-yellow/5 blur-[100px]"></div>
         </div>
 
-        <div class="site-container relative z-10 flex flex-col gap-36 md:gap-48 w-full">
+        <div class="site-container relative z-10 flex flex-col gap-16 md:gap-28 lg:gap-36 w-full">
             
             <!-- 3. REQUISITOS PARA EGRESAR Y NORMAS (Premium Bento Grid Layout) -->
             <div class="req-section w-full" id="requisitos-adicionales">
@@ -67,9 +67,9 @@ require_once __DIR__ . '/../../includes/header.php';
                 </div>
                 
                 <!-- Bento Grid Layout ultra premium -->
-                <div class="grid grid-cols-1 md:grid-cols-6 gap-6 w-full">
-                    <!-- Tarjeta Principal 1 (Proyecto Tesis) - md:col-span-3 -->
-                    <div class="md:col-span-3 bg-gradient-to-br from-unac-blue/20 to-bg-surface border-2 border-unac-blue/20 rounded-3xl p-8 flex flex-col justify-between shadow-lg relative overflow-hidden group hover:border-unac-blue/50 transition-all duration-300">
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-6 gap-6 w-full">
+                    <!-- Tarjeta Principal 1 (Proyecto Tesis) - md:col-span-1 lg:col-span-3 -->
+                    <div class="md:col-span-1 lg:col-span-3 bg-gradient-to-br from-unac-blue/20 to-bg-surface border-2 border-unac-blue/20 rounded-3xl p-8 flex flex-col justify-between shadow-lg relative overflow-hidden group hover:border-unac-blue/50 transition-all duration-300">
                         <div class="absolute -right-16 -top-16 w-36 h-36 bg-unac-blue/5 rounded-full blur-2xl group-hover:bg-unac-blue/15 transition-all"></div>
                         <div>
                             <div class="w-14 h-14 rounded-2xl bg-unac-blue/10 text-unac-blue flex items-center justify-center text-2xl mb-6">
@@ -85,8 +85,8 @@ require_once __DIR__ . '/../../includes/header.php';
                         </a>
                     </div>
 
-                    <!-- Tarjeta 2 (Reglamento de Grados) - md:col-span-3 -->
-                    <a href="https://unac.edu.pe/wp-content/uploads/documentos/transparencia/resoluciones-consejo-universitario/2024/286-24-CU%20MODIFICACION%20DEL%20REGLAMENTO%20DE%20GRADOS%20Y%20TITULOS--.pdf" target="_blank" class="md:col-span-3 bg-bg-surface border border-border-bright hover:border-unac-yellow rounded-3xl p-8 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group inv-card">
+                    <!-- Tarjeta 2 (Reglamento de Grados) - md:col-span-1 lg:col-span-3 -->
+                    <a href="https://unac.edu.pe/wp-content/uploads/documentos/transparencia/resoluciones-consejo-universitario/2024/286-24-CU%20MODIFICACION%20DEL%20REGLAMENTO%20DE%20GRADOS%20Y%20TITULOS--.pdf" target="_blank" class="md:col-span-1 lg:col-span-3 bg-bg-surface border border-border-bright hover:border-unac-yellow rounded-3xl p-8 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group inv-card">
                         <div>
                             <div class="w-14 h-14 rounded-2xl bg-unac-yellow/10 text-unac-yellow flex items-center justify-center text-2xl mb-6 group-hover:scale-105 transition-transform">
                                 <i class="fas fa-file-pdf"></i>
@@ -99,8 +99,8 @@ require_once __DIR__ . '/../../includes/header.php';
                         </div>
                     </a>
 
-                    <!-- Tarjeta 3 (Directiva de Investigación) - md:col-span-2 -->
-                    <a href="https://posgrado.unac.edu.pe/formatos/DIRECTIVA-ELABORACION-PROYECTO-INFORME-004-2022.pdf" target="_blank" class="md:col-span-2 bg-bg-surface border border-border-bright hover:border-unac-yellow rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group inv-card">
+                    <!-- Tarjeta 3 (Directiva de Investigación) - md:col-span-1 lg:col-span-2 -->
+                    <a href="https://posgrado.unac.edu.pe/formatos/DIRECTIVA-ELABORACION-PROYECTO-INFORME-004-2022.pdf" target="_blank" class="md:col-span-1 lg:col-span-2 bg-bg-surface border border-border-bright hover:border-unac-yellow rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group inv-card">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-unac-yellow/10 text-unac-yellow flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
                                 <i class="fas fa-file-signature"></i>
@@ -113,8 +113,8 @@ require_once __DIR__ . '/../../includes/header.php';
                         </div>
                     </a>
 
-                    <!-- Tarjeta 4 (Reglamento de Estudios) - md:col-span-2 -->
-                    <a href="https://unac.edu.pe/wp-content/uploads/documentos/transparencia/resoluciones-consejo-universitario/2024/285-24-CU%20MODIFICACI%C3%93N%20DEL%20REGLAMENTO%20GENERAL%20DE%20ESTUDIOS--.pdf" target="_blank" class="md:col-span-2 bg-bg-surface border border-border-bright hover:border-unac-yellow rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group inv-card">
+                    <!-- Tarjeta 4 (Reglamento de Estudios) - md:col-span-1 lg:col-span-2 -->
+                    <a href="https://unac.edu.pe/wp-content/uploads/documentos/transparencia/resoluciones-consejo-universitario/2024/285-24-CU%20MODIFICACI%C3%93N%20DEL%20REGLAMENTO%20GENERAL%20DE%20ESTUDIOS--.pdf" target="_blank" class="md:col-span-1 lg:col-span-2 bg-bg-surface border border-border-bright hover:border-unac-yellow rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group inv-card">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-unac-yellow/10 text-unac-yellow flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
                                 <i class="fas fa-balance-scale"></i>
@@ -127,8 +127,8 @@ require_once __DIR__ . '/../../includes/header.php';
                         </div>
                     </a>
 
-                    <!-- Tarjeta 5 (Guía del Postulante) - md:col-span-2 -->
-                    <a href="https://posgrado.unac.edu.pe/PDF/UNIVERSIDAD%20NACIONAL%20DEL%20CALLAO_guia%20de%20postulante.pdf" target="_blank" class="md:col-span-2 bg-bg-surface border border-border-bright hover:border-unac-yellow rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group inv-card">
+                    <!-- Tarjeta 5 (Guía del Postulante) - md:col-span-2 lg:col-span-2 -->
+                    <a href="https://posgrado.unac.edu.pe/PDF/UNIVERSIDAD%20NACIONAL%20DEL%20CALLAO_guia%20de%20postulante.pdf" target="_blank" class="md:col-span-2 lg:col-span-2 bg-bg-surface border border-border-bright hover:border-unac-yellow rounded-3xl p-6 shadow-md hover:shadow-xl transition-all duration-300 flex flex-col justify-between group inv-card">
                         <div>
                             <div class="w-12 h-12 rounded-xl bg-unac-yellow/10 text-unac-yellow flex items-center justify-center text-xl mb-4 group-hover:scale-105 transition-transform">
                                 <i class="fas fa-book-open"></i>
@@ -240,12 +240,12 @@ require_once __DIR__ . '/../../includes/header.php';
                     <!-- Item 1 -->
                     <div class="bg-bg-surface border border-border-bright rounded-2xl overflow-hidden shadow-sm transition-colors transition-shadow duration-300 hover:border-unac-yellow/50 accordion-item inv-card">
                         <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none accordion-header">
-                            <span class="font-bold text-text-base text-lg flex items-center gap-3">
-                                <i class="fas fa-question-circle text-unac-yellow"></i> ¿Cuándo se puede iniciar la presentación del proyecto de tesis?
+                            <span class="font-bold text-text-base text-base md:text-lg flex items-center gap-3">
+                                <i class="fas fa-question-circle text-unac-yellow shrink-0"></i> ¿Cuándo se puede iniciar la presentación del proyecto de tesis?
                             </span>
-                            <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon"></i>
+                            <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon shrink-0"></i>
                         </button>
-                        <div class="accordion-content px-6 h-0 overflow-hidden text-text-muted text-lg leading-relaxed border-t-0 border-border-bright opacity-0">
+                        <div class="accordion-content px-6 h-0 overflow-hidden text-text-muted text-sm md:text-base leading-relaxed border-t-0 border-border-bright opacity-0">
                             <div class="py-4">De acuerdo con las directivas vigentes de la Escuela de Posgrado, la formulación y presentación formal del proyecto de tesis puede iniciarse a partir del primer ciclo académico aprobado por el estudiante. Todo trámite debe canalizarse vía el Sistema de Gestión de Investigación (SGI).</div>
                         </div>
                     </div>
@@ -253,12 +253,12 @@ require_once __DIR__ . '/../../includes/header.php';
                     <!-- Item 2 -->
                     <div class="bg-bg-surface border border-border-bright rounded-2xl overflow-hidden shadow-sm transition-colors transition-shadow duration-300 hover:border-unac-yellow/50 accordion-item inv-card">
                         <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none accordion-header">
-                            <span class="font-bold text-text-base text-lg flex items-center gap-3">
-                                <i class="fas fa-question-circle text-unac-yellow"></i> ¿Son obligatorios los registros SUNEDU para posgrados extranjeros?
+                            <span class="font-bold text-text-base text-base md:text-lg flex items-center gap-3">
+                                <i class="fas fa-question-circle text-unac-yellow shrink-0"></i> ¿Son obligatorios los registros SUNEDU para posgrados extranjeros?
                             </span>
-                            <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon"></i>
+                            <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon shrink-0"></i>
                         </button>
-                        <div class="accordion-content px-6 h-0 overflow-hidden text-text-muted text-lg leading-relaxed border-t-0 border-border-bright opacity-0">
+                        <div class="accordion-content px-6 h-0 overflow-hidden text-text-muted text-sm md:text-base leading-relaxed border-t-0 border-border-bright opacity-0">
                             <div class="py-4">Sí. Todo grado o título obtenido en universidades extranjeras debe contar con el registro correspondiente emitido por la SUNEDU (Superintendencia Nacional de Educación Superior Universitaria) para ser validado legalmente en el expediente de admisión.</div>
                         </div>
                     </div>
@@ -266,12 +266,12 @@ require_once __DIR__ . '/../../includes/header.php';
                     <!-- Item 3 -->
                     <div class="bg-bg-surface border border-border-bright rounded-2xl overflow-hidden shadow-sm transition-colors transition-shadow duration-300 hover:border-unac-yellow/50 accordion-item inv-card">
                         <button class="w-full px-6 py-5 text-left flex justify-between items-center focus:outline-none accordion-header">
-                            <span class="font-bold text-text-base text-lg flex items-center gap-3">
-                                <i class="fas fa-question-circle text-unac-yellow"></i> ¿Qué grados académicos previos se necesitan para postular?
+                            <span class="font-bold text-text-base text-base md:text-lg flex items-center gap-3">
+                                <i class="fas fa-question-circle text-unac-yellow shrink-0"></i> ¿Qué grados académicos previos se necesitan para postular?
                             </span>
-                            <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon"></i>
+                            <i class="fas fa-chevron-down text-text-muted transition-transform duration-300 accordion-icon shrink-0"></i>
                         </button>
-                        <div class="accordion-content px-6 h-0 overflow-hidden text-text-muted text-lg leading-relaxed border-t-0 border-border-bright opacity-0">
+                        <div class="accordion-content px-6 h-0 overflow-hidden text-text-muted text-sm md:text-base leading-relaxed border-t-0 border-border-bright opacity-0">
                             <div class="py-4">Para ingresar a una Maestría se requiere contar con el Grado Académico de Bachiller. Para programas de Doctorado, se requiere el Grado de Maestro o, de ser admitido temporalmente, constancia oficial de egresado de maestría. Las Segundas Especialidades exigen contar con el Título Profesional universitario.</div>
                         </div>
                     </div>
