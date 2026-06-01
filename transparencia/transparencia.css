@@ -1,0 +1,110 @@
+/* CSS Complementario - Subpágina de Transparencia Posgrado UNAC */
+
+:root {
+  --unac-yellow: #fcca38;
+  --unac-blue: #0b4ab1;
+  --unac-blue-light: #3b82f6;
+  --bg-dark-base: #060a12;
+  --bg-dark-surface: rgba(255, 255, 255, 0.03);
+  --border-dark-glow: rgba(251, 202, 56, 0.1);
+}
+
+/* Glassmorphism premium panels */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.02);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.4s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.glass-panel:hover {
+  border-color: rgba(251, 202, 56, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+}
+
+/* Hover glowing effects for high-priority documents */
+.glow-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  padding: 1.5px;
+  background: linear-gradient(135deg, transparent 40%, var(--unac-yellow), transparent 60%);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 2;
+}
+
+.glow-card:hover::after {
+  opacity: 0.6;
+}
+
+/* Dashboard dynamic tabs styling */
+.transparency-tab-btn {
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.transparency-tab-btn::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: var(--unac-yellow);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+}
+
+.transparency-tab-btn.active {
+  color: #fff;
+  background: rgba(251, 202, 56, 0.1);
+  border-color: var(--unac-yellow);
+}
+
+.transparency-tab-btn.active::before {
+  width: 60%;
+}
+
+/* Floating blur decorative blobs */
+.blur-blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.07;
+  pointer-events: none;
+  z-index: 0;
+  mix-blend-mode: screen;
+}
+
+/* Table styling fixes */
+.transparency-table tr {
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.transparency-table tr:hover {
+  background-color: rgba(255, 255, 255, 0.02);
+  border-left-color: var(--unac-yellow);
+}
+
+/* Accordion or quick action transitions */
+.accordion-wrapper {
+  transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+}
+
+.accordion-wrapper.open {
+  max-height: 2000px;
+  transition: max-height 0.8s ease-in-out;
+}

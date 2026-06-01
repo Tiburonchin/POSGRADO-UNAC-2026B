@@ -97,19 +97,20 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <!-- 2. Admisión -->
             <section class="mega-panel-content" data-section="admision" aria-hidden="true">
               <div class="mega-column">
-                <h4 class="mega-column-title">Ingreso</h4>
+                <h4 class="mega-column-title">Postulante</h4>
                 <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-link"><strong>Proceso de Admisión</strong><span>Ruta detallada desde la postulación hasta la matrícula.</span></a>
-                <a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php" class="mega-link"><strong>Cronograma Académico</strong><span>Calendario oficial de evaluaciones y resultados.</span></a>
+                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos_admision.php" class="mega-link"><strong>Requisitos de Admisión</strong><span>Documentos y expedientes necesarios para postular.</span></a>
+                <a href="<?= $baseUrl ?>Admision/costos/costos_admision.php" class="mega-link"><strong>Costos de Admisión</strong><span>Derechos de inscripción para el proceso de selección.</span></a>
               </div>
               <div class="mega-column">
-                <h4 class="mega-column-title">Postulante</h4>
-                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="mega-link"><strong>Requisitos y Costos</strong><span>Documentos, pagos y condiciones para cada programa.</span></a>
-                <a href="<?= $baseUrl ?>Admision/formato/formato.php" class="mega-link"><strong>Formatos y Tutoriales</strong><span>Guías prácticas para completar el proceso.</span></a>
+                <h4 class="mega-column-title">Estudiantes</h4>
+                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos_posgrado.php" class="mega-link"><strong>Requisitos Adicionales</strong><span>Reglamentos generales, tesis y obtención de grado.</span></a>
+                <a href="<?= $baseUrl ?>Admision/costos/costos_adicionales.php" class="mega-link"><strong>Costos Adicionales</strong><span>Tasas asociadas a trámites, tesis y asesorías de grado.</span></a>
               </div>
-              <div class="mega-column mega-highlight">
-                <h4 class="mega-column-title">Atención Prioritaria</h4>
-                <p>Inicia tu postulación con soporte institucional y orientación.</p>
-                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="mega-cta-link">Ir a Admisión</a>
+              <div class="mega-column">
+                <h4 class="mega-column-title">Cronograma y Recursos</h4>
+                <a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php" class="mega-link"><strong>Cronograma Académico</strong><span>Calendario oficial de evaluaciones y resultados.</span></a>
+                <a href="<?= $baseUrl ?>Admision/formato/formato.php" class="mega-link"><strong>Formatos y Tutoriales</strong><span>Guías prácticas y plantillas obligatorias para descargar.</span></a>
               </div>
             </section>
 
@@ -124,7 +125,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
               <div class="mega-column">
                 <h4 class="mega-column-title">Soporte</h4>
                 <a href="<?= $baseUrl ?>programas/programas.php" class="mega-link"><strong>Malla Curricular</strong><span>Estructura de cursos, créditos y aprendizaje.</span></a>
-                <a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="mega-link"><strong>Becas</strong><span>Opciones de apoyo económico y beneficios.</span></a>
+                <a href="<?= $baseUrl ?>Admision/costos/costos_admision.php" class="mega-link"><strong>Convenios</strong><span>Opciones de convenios y beneficios.</span></a>
               </div>
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Catálogo 2026</h4>
@@ -137,7 +138,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <section class="mega-panel-content" data-section="investigacion" aria-hidden="true">
               <div class="mega-column">
                 <h4 class="mega-column-title">Gestión</h4>
-                <a href="<?= $baseUrl ?>investigacion/unidad.php" class="mega-link"><strong>Unidad de Investigación</strong><span>Administración y desarrollo de proyectos científicos.</span></a>
+                <a href="<?= $baseUrl ?>unidad-investigacion.php" class="mega-link"><strong>Unidad de Investigación</strong><span>Administración y desarrollo de proyectos científicos.</span></a>
               </div>
               <div class="mega-column">
                 <h4 class="mega-column-title">Difusión</h4>
@@ -224,11 +225,14 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="font-bold text-unac-yellow">Ingreso</a></li>
+            <li><span class="font-bold text-unac-yellow block mt-2">Postulante</span></li>
             <li><a href="<?= $baseUrl ?>Admision/proceso/proceso.php">Proceso de Admisión</a></li>
             <li><a href="<?= $baseUrl ?>Admision/cronograma/cronograma.php">Cronograma Académico</a></li>
-            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php" class="font-bold text-unac-yellow mt-2 block">Postulante</a></li>
-            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Requisitos y Costos</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos_admision.php">Requisitos de Admisión</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/costos/costos_admision.php">Costos de Admisión</a></li>
+            <li><span class="font-bold text-unac-yellow block mt-4">Estudiantes</span></li>
+            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos_posgrado.php">Requisitos Adicionales</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/costos/costos_adicionales.php">Costos Adicionales</a></li>
             <li><a href="<?= $baseUrl ?>Admision/formato/formato.php">Formatos y Tutoriales</a></li>
           </ul>
         </li>
@@ -244,7 +248,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=especialidad">Especialidades</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php" class="font-bold text-unac-yellow mt-2 block">Soporte</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php">Malla Curricular</a></li>
-            <li><a href="<?= $baseUrl ?>Admision/requisitos/requisitos.php">Becas</a></li>
+            <li><a href="<?= $baseUrl ?>Admision/costos/costos_admision.php">Convenios</a></li>
           </ul>
         </li>
         <li>
@@ -253,8 +257,8 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <span class="mobile-toggle-symbol" aria-hidden="true">+</span>
           </button>
           <ul class="mobile-submenu hidden">
-            <li><a href="<?= $baseUrl ?>investigacion/unidad.php" class="font-bold text-unac-yellow">Gestión</a></li>
-            <li><a href="<?= $baseUrl ?>investigacion/unidad.php">Unidad de Investigación</a></li>
+            <li><a href="<?= $baseUrl ?>unidad-investigacion.php" class="font-bold text-unac-yellow">Gestión</a></li>
+            <li><a href="<?= $baseUrl ?>unidad-investigacion.php">Unidad de Investigación</a></li>
             <li><a href="<?= $baseUrl ?>investigacion/revista.php" class="font-bold text-unac-yellow mt-2 block">Difusión</a></li>
             <li><a href="<?= $baseUrl ?>investigacion/revista.php">Revista Científica</a></li>
             <li><a href="<?= $baseUrl ?>investigacion/repositorio.php">Repositorio Institucional</a></li>

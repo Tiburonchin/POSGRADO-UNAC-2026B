@@ -26,11 +26,11 @@
             </p>
             
             <div class="flex flex-col sm:flex-row items-center justify-center gap-6">
-                <a href="programas.php" class="px-8 py-4 rounded-xl bg-unac-yellow text-slate-950 font-bold uppercase tracking-wider text-xs shadow-lg hover:-translate-y-0.5 hover:shadow-unac-yellow/20 transition-all duration-300 flex items-center justify-center gap-2 group w-full sm:w-auto">
+                <a href="<?= $baseUrl ?>programas/programas.php" class="px-8 py-4 rounded-xl bg-unac-yellow text-slate-950 font-bold uppercase tracking-wider text-xs shadow-lg hover:-translate-y-0.5 hover:shadow-unac-yellow/20 transition-all duration-300 flex items-center justify-center gap-2 group w-full sm:w-auto">
                     <i class="ph ph-graduation-cap font-bold text-lg"></i>
                     Ver Programas
                 </a>
-                <a href="admision.php" class="px-8 py-4 rounded-xl bg-transparent border border-border-base text-text-base text-xs font-bold uppercase tracking-wider hover:bg-bg-soft hover:border-border-bright transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto">
+                <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="px-8 py-4 rounded-xl bg-transparent border border-border-base text-text-base text-xs font-bold uppercase tracking-wider hover:bg-bg-soft hover:border-border-bright transition-all duration-300 flex items-center justify-center gap-2 w-full sm:w-auto">
                     <i class="ph ph-file-text font-bold text-lg"></i>
                     Proceso de Admisión
                 </a>

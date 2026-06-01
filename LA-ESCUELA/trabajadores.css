@@ -158,7 +158,7 @@ body[data-type="administrativos"] .hero::before {
 
 .workers-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(min(100%, 330px), 1fr));
     gap: 40px;
 }
 
@@ -607,10 +607,7 @@ body[data-type="administrativos"] .hero::before {
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
-}
-
-
-@media (max-width: 992px) {
+}@media (max-width: 992px) {
     .director-featured {
         flex-direction: column;
         text-align: center;
@@ -628,7 +625,7 @@ body[data-type="administrativos"] .hero::before {
     }
     
     .featured-info h2 {
-        font-size: 2rem;
+        font-size: clamp(1.8rem, 4vw, 2.5rem);
     }
 
     .featured-img-container {
@@ -640,15 +637,62 @@ body[data-type="administrativos"] .hero::before {
 @media (max-width: 768px) {
     .workers-grid {
         grid-template-columns: 1fr;
+        gap: 24px;
     }
     
     .hero-content h1 {
-        font-size: 3.2rem;
+        font-size: clamp(2.2rem, 8vw, 3.8rem);
         line-height: 1.1;
     }
 
     .section-header h2 {
-        font-size: 2.8rem;
+        font-size: clamp(1.8rem, 6vw, 2.8rem);
+    }
+    
+    .filters-container {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 16px;
+        margin-bottom: 32px;
+    }
+    
+    .filter-group {
+        width: 100%;
+    }
+    
+    .faculty-select,
+    .search-input {
+        width: 100%;
+        min-width: unset;
     }
 }
 
+@media (max-width: 480px) {
+    .worker-card {
+        padding: 24px 20px;
+    }
+    .worker-image-container {
+        width: 95px;
+        height: 95px;
+        margin-bottom: 24px;
+    }
+    .worker-info h2 {
+        font-size: 1.5rem;
+    }
+    .featured-degrees {
+        flex-direction: column;
+        align-items: center;
+        gap: 8px;
+    }
+    .degree-tag {
+        width: 100%;
+        text-align: center;
+        padding: 8px 16px;
+        font-size: 0.85rem;
+    }
+    .featured-contact {
+        flex-direction: column;
+        gap: 12px;
+        align-items: center;
+    }
+}

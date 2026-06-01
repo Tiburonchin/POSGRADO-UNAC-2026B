@@ -1,41 +1,52 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Lenis Smooth Scroll
-    const lenis = new Lenis({
-        duration: 1.2,
-        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
-        orientation: 'vertical',
-        smoothWheel: true
-    });
+const initAllAdmision = () => {
+    // Initialize Lenis Smooth Scroll only if defined
+    let lenis = null;
+    if (typeof Lenis !== 'undefined') {
+        lenis = new Lenis({
+            duration: 0.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+            orientation: 'vertical',
+            smoothWheel: true
+        });
 
-    // Sync Lenis with GSAP ScrollTrigger
-    lenis.on('scroll', ScrollTrigger.update);
+        // Sync Lenis with GSAP ScrollTrigger
+        lenis.on('scroll', ScrollTrigger.update);
 
-    gsap.ticker.add((time) => {
-        lenis.raf(time * 1000);
-    });
+        gsap.ticker.add((time) => {
+            lenis.raf(time * 1000);
+        });
 
-    gsap.ticker.lagSmoothing(0);
+        gsap.ticker.lagSmoothing(0);
+    }
 
-    // Parallax hero effect using Lenis
+    // Parallax hero effect using Lenis or native scroll fallback
     const hero = document.querySelector('.hero');
     
-    lenis.on('scroll', ({ scroll }) => {
-        if (!hero) return;
-        const heroHeight = hero.offsetHeight;
-        
-        if (scroll <= heroHeight) {
-            const progress = scroll / heroHeight;
-            const scale = 1 - (progress * 0.2);
-            const blur = progress * 10;
-            const bgOpacity = 1 - (progress * 0.5);
-            const textOpacity = 1 - (progress * 0.9);
+    if (hero) {
+        const updateHeroParallax = (scroll) => {
+            const heroHeight = hero.offsetHeight;
+            if (scroll <= heroHeight) {
+                const progress = scroll / heroHeight;
+                const scale = 1 - (progress * 0.2);
+                const blur = progress * 10;
+                const bgOpacity = 1 - (progress * 0.5);
+                const textOpacity = 1 - (progress * 0.9);
 
-            hero.style.setProperty('--hero-scale', scale);
-            hero.style.setProperty('--hero-blur', `${blur}px`);
-            hero.style.setProperty('--bg-opacity', bgOpacity);
-            hero.style.setProperty('--hero-opacity', textOpacity);
+                hero.style.setProperty('--hero-scale', scale);
+                hero.style.setProperty('--hero-blur', `${blur}px`);
+                hero.style.setProperty('--bg-opacity', bgOpacity);
+                hero.style.setProperty('--hero-opacity', textOpacity);
+            }
+        };
+
+        if (lenis) {
+            lenis.on('scroll', ({ scroll }) => updateHeroParallax(scroll));
+        } else {
+            window.addEventListener('scroll', () => {
+                updateHeroParallax(window.scrollY);
+            }, { passive: true });
         }
-    });
+    }
 
     // Reveal animations
     const revealElements = document.querySelectorAll('.reveal');
@@ -128,11 +139,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (navLinks[index]) {
                     navLinks[index].addEventListener('click', (e) => {
                         e.preventDefault();
-                        lenis.scrollTo(card, {
-                            offset: -120,
-                            duration: 1.5,
-                            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
-                        });
+                        if (lenis) {
+                            lenis.scrollTo(card, {
+                                offset: -120,
+                                duration: 1.5,
+                                easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+                            });
+                        } else {
+                            const yOffset = -120;
+                            const y = card.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                            window.scrollTo({ top: y, behavior: 'smooth' });
+                        }
                     });
                 }
 
@@ -201,4 +218,10 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     });
-});
+};
+
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAllAdmision);
+} else {
+    initAllAdmision();
+}

@@ -112,17 +112,18 @@ h2 {
 }
 
 h1 {
-  font-size: clamp(4rem, 7.5vw, 4rem);
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
 }
 
 h2 {
-  font-size: clamp(2.5rem, 4.5vw, 4rem);
+  font-size: clamp(1.8rem, 4vw, 3.2rem);
 }
 
 p {
   font-family: var(--font-base), "Montserrat", sans-serif;
-  font-size: 2rem;
+  font-size: clamp(1rem, 2vw, 1.15rem);
   font-weight: 400;
+  line-height: 1.6;
 }
 
 .hero {
@@ -166,7 +167,7 @@ p {
 }
 
 .hero-header h1 {
-  font-size: clamp(4rem, 8vw, 6.5rem);
+  font-size: clamp(2.2rem, 8vw, 6.5rem);
   text-shadow: var(--shadow-soft);
 }
 
@@ -175,9 +176,9 @@ p {
 }
 
 .hero-header p {
-  width: 80%;
+  width: 90%;
   max-width: 800px;
-  font-size: clamp(1.2rem, 3vw, 2.2rem);
+  font-size: clamp(1.1rem, 3vw, 2.2rem);
   color: rgba(255, 255, 255, 0.9);
 }
 
@@ -206,13 +207,14 @@ p {
 }
 
 .hero-content h2 {
-  width: 75%;
+  width: min(90%, 900px);
   color: var(--text);
+  font-size: clamp(1.4rem, 3.8vw, 2.8rem);
 }
 
 /* Mision y Vision */
 .mision-vision {
-  padding: 6rem 5% 8rem 5%;
+  padding: clamp(3rem, 6vw, 6rem) 5% clamp(4rem, 8vw, 8rem) 5%;
   background-color: var(--bg);
   display: flex;
   justify-content: center;
@@ -222,8 +224,8 @@ p {
 
 .mv-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-  gap: 4rem;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
+  gap: clamp(1.5rem, 4vw, 4rem);
   width: 100%;
   max-width: 1100px;
 }
@@ -232,7 +234,7 @@ p {
   background: var(--bg-elevated);
   border: 1px solid var(--border);
   border-radius: 24px;
-  padding: 4rem 3rem;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.25rem, 4vw, 3rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -286,7 +288,7 @@ p {
 
 .mv-text h3 {
   font-family: var(--font-display);
-  font-size: 2.2rem;
+  font-size: clamp(1.6rem, 4vw, 2.2rem);
   font-weight: 800;
   color: var(--text);
   margin-bottom: 1.5rem;
@@ -370,7 +372,7 @@ p {
   max-width: 1200px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: clamp(2rem, 5vw, 4rem);
   font-family: var(--font-display);
   margin-top: 1rem;
 }
@@ -386,9 +388,9 @@ p {
   color: var(--text);
   border-left: 6px solid var(--base-200);
   border-radius: 8px;
-  padding: 2.5rem 2rem;
+  padding: clamp(1.5rem, 3vw, 2.5rem) clamp(1.25rem, 3vw, 2rem);
   display: flex;
-  gap: 1.5rem;
+  gap: clamp(1rem, 3vw, 1.5rem);
   transition: transform 0.3s ease;
   box-shadow: var(--shadow-soft);
 }
@@ -440,7 +442,7 @@ p {
 }
 
 .fortalezas-title {
-  font-size: 2.5rem;
+  font-size: clamp(1.8rem, 4vw, 2.5rem);
   font-weight: 800;
   color: var(--text);
   text-align: center;
@@ -471,7 +473,7 @@ p {
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.25rem 2rem;
+  padding: 1.25rem clamp(1rem, 3vw, 2rem);
   cursor: pointer;
   list-style: none;
 }
@@ -522,7 +524,7 @@ p {
 }
 
 .f-content {
-  padding: 0 2rem 1.25rem 4.5rem;
+  padding: 0 clamp(1rem, 3vw, 2rem) 1.25rem clamp(1.5rem, 5vw, 4.5rem);
   font-size: 0.95rem;
   line-height: 1.6;
   color: var(--text-muted);
@@ -583,12 +585,12 @@ p {
 
 .ventajas {
   width: 100%;
-  padding: 6rem 5%;
+  padding: clamp(3rem, 6vw, 6rem) 5%;
   background-color: var(--bg);
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 3rem;
+  gap: clamp(1.5rem, 3vw, 3rem);
 }
 
 .ventajas-header {
@@ -598,7 +600,7 @@ p {
 
 .ventajas-header h2 {
   font-family: var(--font-display);
-  font-size: 2.8rem;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 800;
   color: var(--text);
   margin-bottom: 1rem;
@@ -620,7 +622,7 @@ p {
 .v-card {
   background-color: var(--bg-elevated);
   border-radius: 12px;
-  padding: 3rem 2rem;
+  padding: clamp(2rem, 4vw, 3rem) clamp(1rem, 3vw, 2rem);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -723,7 +725,7 @@ p {
 
 .comp-header h2 {
   font-family: var(--font-display);
-  font-size: 2.8rem;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 800;
   color: var(--text);
   margin-bottom: 1.5rem;
@@ -738,10 +740,10 @@ p {
 .comp-card {
   background-color: var(--bg-elevated);
   border-radius: 24px; 
-  padding: 4rem;
+  padding: clamp(2rem, 5vw, 4rem);
   display: flex;
   align-items: center;
-  gap: 3rem;
+  gap: clamp(1.5rem, 4vw, 3rem);
   width: 100%;
   max-width: 1000px;
   box-shadow: var(--shadow-soft);
@@ -786,7 +788,7 @@ p {
 
 .comp-content h3 {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: clamp(1.3rem, 3.5vw, 1.8rem);
   font-weight: 800;
   color: var(--text);
 }
@@ -801,7 +803,7 @@ p {
 .final-cta {
   position: relative;
   width: 100%;
-  padding: 8rem 0;
+  padding: clamp(4rem, 8vw, 8rem) 1.5rem;
   background-color: var(--bg);
   color: var(--text);
   text-align: center;
@@ -832,7 +834,7 @@ p {
 
 .final-cta h2 {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 5vw, 3.5rem);
+  font-size: clamp(1.8rem, 5vw, 3.5rem);
   font-weight: 800;
   line-height: 1.1;
 }
@@ -853,7 +855,7 @@ p {
   display: flex;
   align-items: center;
   gap: 12px;
-  padding: 1.2rem 2.5rem;
+  padding: 1.2rem clamp(1.5rem, 3vw, 2.5rem);
   border-radius: 50px;
   font-family: var(--font-display);
   font-weight: 700;
@@ -903,16 +905,29 @@ p {
 @media (max-width: 768px) {
   .comp-card {
     flex-direction: column;
-    padding: 3rem 2rem;
+    align-items: center;
+    padding: 3rem 1.5rem;
     text-align: center;
+  }
+  .comp-icon-box {
+    margin: 0 auto;
   }
   .cta-buttons {
     flex-direction: column;
     width: 100%;
+    gap: 1rem;
   }
   .btn {
     width: 100%;
     justify-content: center;
+  }
+  .marquee-content img {
+    max-width: 140px;
+    height: 40px;
+  }
+  .marquee-content {
+    gap: 2.5rem;
+    padding-right: 2.5rem;
   }
 }
 
@@ -924,7 +939,7 @@ p {
 
 .cert-header h2 {
   font-family: var(--font-display);
-  font-size: 2.8rem;
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
   font-weight: 800;
   color: var(--text);
   margin-bottom: 1.5rem;
@@ -938,7 +953,7 @@ p {
 
 .cert-grid {
   display: flex;
-  gap: 12rem;
+  gap: clamp(2rem, 8vw, 12rem);
   perspective: 2000px;
   width: 100%;
   max-width: 1100px;
@@ -946,8 +961,10 @@ p {
 }
 
 .cert-img-wrapper {
-  width: 320px;
-  height: 320px;
+  width: 100%;
+  max-width: 320px;
+  aspect-ratio: 1;
+  height: auto;
   perspective: 1000px;
   cursor: pointer;
   will-change: transform, opacity;
@@ -956,17 +973,17 @@ p {
 
 .click-hint {
   position: absolute;
-  top: -20px;
-  right: -20px;
+  top: -15px;
+  right: -10px;
   background-color: var(--accent);
   color: #000;
-  padding: 8px 15px;
+  padding: 6px 12px;
   border-radius: 30px;
   display: flex;
   align-items: center;
   gap: 8px;
   font-family: var(--font-display);
-  font-size: 0.85rem;
+  font-size: 0.8rem;
   font-weight: 700;
   z-index: 20;
   box-shadow: 0 5px 15px rgba(0,0,0,0.2);
@@ -981,12 +998,12 @@ p {
 
 @keyframes bounceHint {
   0%, 100% { transform: translateY(0) rotate(10deg); }
-  50% { transform: translateY(-10px) rotate(10deg); }
+  50% { transform: translateY(-8px) rotate(10deg); }
 }
 
 .click-hint svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
   fill: currentColor;
 }
 
@@ -1030,21 +1047,21 @@ p {
   background-color: var(--bg-elevated);
   color: var(--text);
   transform: rotateY(180deg);
-  padding: 2rem;
+  padding: 1.5rem;
   border: 1px solid var(--border);
   box-shadow: var(--shadow-soft);
 }
 
 .cert-card-back h3 {
   font-family: var(--font-display);
-  font-size: 1.8rem;
+  font-size: clamp(1.3rem, 3.5vw, 1.8rem);
   font-weight: 800;
   margin-bottom: 1rem;
   color: var(--accent);
 }
 
 .cert-card-back p {
-  font-size: 1rem;
+  font-size: 0.95rem;
   line-height: 1.5;
   color: var(--text-muted);
 }
@@ -1087,10 +1104,6 @@ p {
     flex-direction: column;
     align-items: center;
     gap: 4rem;
-  }
-  .cert-img-wrapper {
-    width: 280px;
-    height: 280px;
   }
   .cert-header h2 {
     font-size: 2.2rem;

@@ -287,11 +287,11 @@ include_once '../includes/header.php';
     <h2>¿Listo para ser parte de la excelencia?</h2>
     <p>Únete a nuestra comunidad académica y transforma tu visión profesional con programas de posgrado de clase mundial.</p>
     <div class="cta-buttons">
-        <a href="#" class="btn btn-primary">
+        <a href="<?= $baseUrl ?>programas/programas.php" class="btn btn-primary">
         <svg viewBox="0 0 24 24" width="20" height="20"><path d="M12 3L1 9l11 6 9-4.91V17h2V9L12 3z"/></svg>
         Ver Programas
         </a>
-        <a href="#" class="btn btn-glass">
+        <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="btn btn-glass">
         <svg viewBox="0 0 24 24" width="20" height="20"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zM13 9V3.5L18.5 9H13z"/></svg>
         Proceso de Admisión
         </a>

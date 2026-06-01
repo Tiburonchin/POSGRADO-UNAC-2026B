@@ -973,3 +973,139 @@ body[data-type="admision"] .hero::before {
         max-width: 100%;
     }
 }
+
+/* ==========================================================================
+   HERO ADMISSION PROCESS REDESIGN (PREMIUM VISUAL EFFECT)
+   ========================================================================== */
+.hero-process-redesign {
+    background-color: var(--bg-base);
+    overflow: hidden;
+    position: relative;
+}
+
+.hero-process-redesign::before {
+    /* Overlay background darker to highlight glowing text and blobs */
+    background-image: linear-gradient(rgba(6, 10, 18, 0.75), rgba(6, 10, 18, 0.95)), url('../LA-ESCUELA/IMG-BG/admi-doc.webp');
+    transition: filter 0.3s ease-out, opacity 0.3s ease-out;
+}
+
+/* Glowing atmosphere blobs */
+.hero-blob {
+    pointer-events: none;
+    will-change: transform, opacity;
+    mix-blend-mode: screen;
+}
+
+/* Glassmorphism badge */
+.hero-badge {
+    backdrop-filter: blur(12px) saturate(180%);
+    background-color: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.4s var(--motion-ease);
+}
+
+.hero-badge:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    border-color: rgba(251, 202, 56, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(251, 202, 56, 0.15);
+}
+
+/* Premium Buttons */
+.hero-btn-primary {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    border: 1px solid rgba(251, 202, 56, 0.2);
+}
+
+.hero-btn-primary:hover {
+    transform: translateY(-3px);
+    border-color: rgba(251, 202, 56, 0.6);
+    background-color: var(--unac-yellow-dark);
+}
+
+.hero-btn-secondary {
+    transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.hero-btn-secondary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.4);
+}
+
+/* Premium metrics cards */
+.hero-stat-card {
+    backdrop-filter: blur(16px) saturate(120%);
+    background-color: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.04);
+    box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.3);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-stat-card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(
+        250px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(251, 202, 56, 0.12),
+        transparent 50%
+    );
+    opacity: 0;
+    transition: opacity 0.5s var(--motion-ease);
+    pointer-events: none;
+    z-index: 1;
+}
+
+.hero-stat-card:hover {
+    transform: translateY(-6px);
+    border-color: rgba(251, 202, 56, 0.25);
+    background-color: rgba(255, 255, 255, 0.04);
+    box-shadow: 0 20px 40px -15px rgba(251, 202, 56, 0.1);
+}
+
+.hero-stat-card:hover::before {
+    opacity: 1;
+}
+
+.hero-stat-card i {
+    transition: transform 0.4s var(--motion-ease);
+}
+
+.hero-stat-card:hover i {
+    transform: scale(1.15) rotate(5deg);
+}
+
+/* Scroll down mouse animation */
+.hero-scroll-indicator {
+    animation: pulseScroll 2s infinite;
+}
+
+@keyframes pulseScroll {
+    0%, 100% {
+        opacity: 0.6;
+        transform: translate(-50%, 0);
+    }
+    50% {
+        opacity: 1;
+        transform: translate(-50%, 8px);
+    }
+}
+
+/* Mobile responsive fixes */
+@media (max-width: 768px) {
+    .hero-process-redesign {
+        height: auto !important;
+        min-height: 100vh;
+        padding-top: 120px;
+        padding-bottom: 60px;
+    }
+    .hero-content-wrapper {
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+    .hero-stats {
+        grid-template-columns: 1fr;
+    }
+}

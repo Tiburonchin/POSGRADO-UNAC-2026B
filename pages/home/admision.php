@@ -70,7 +70,7 @@
 
                     <!-- Action Area -->
                     <div class="mt-16 flex flex-wrap items-center gap-8">
-                        <a href="admision/proceso.php" class="bg-unac-yellow text-bg-base px-10 py-4 font-black uppercase text-xs tracking-[0.2em] hover:bg-white transition-all duration-500 shadow-[0_20px_50px_rgba(251,202,56,0.2)]">
+                        <a href="<?= $baseUrl ?>Admision/proceso/proceso.php" class="bg-unac-yellow text-bg-base px-10 py-4 font-black uppercase text-xs tracking-[0.2em] hover:bg-white transition-all duration-500 shadow-[0_20px_50px_rgba(251,202,56,0.2)]">
                             Iniciar Postulación
                         </a>
                         <button class="flex items-center gap-3 text-white/50 hover:text-white transition-colors text-[11px] font-bold uppercase tracking-widest group">

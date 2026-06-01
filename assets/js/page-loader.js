@@ -211,7 +211,7 @@
     try {
       var url = new URL(anchor.href, window.location.href);
       if (url.origin !== window.location.origin) return true;
-      if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return true;
+      if (url.pathname === window.location.pathname && url.search === window.location.search) return true;
     } catch (e) { return true; }
     return false;
   }
@@ -228,7 +228,7 @@
       if (trigger.matches('a[href]')) {
         if (isIgnoredLink(trigger)) return;
         
-        var href = trigger.getAttribute('href');
+        var href = trigger.href;
         event.preventDefault();
         showLoader();
         

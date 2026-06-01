@@ -13,7 +13,8 @@
                 </div>
             </div>
             <div class="browser-content">
-                <video controls preload="metadata">
+                <video controls preload="metadata" class="w-full h-full object-cover">
+                    <source src="https://posgrado.unac.edu.pe/videos/VIDEO-GUIA-CARPETA-POSTULANTES-EPG-UNAC.mp4" type="video/mp4">
                     <source src="media/Guía_de_Postulación_UNAC.mp4" type="video/mp4">
                     Tu navegador no soporta el formato de video.
                 </video>
