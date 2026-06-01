@@ -13,32 +13,37 @@ document.addEventListener('DOMContentLoaded', () => {
     // 1. Hero Animations
     const heroTl = gsap.timeline();
     
-    heroTl.fromTo('.ui-hero-title',
+    heroTl.fromTo('.hero h1',
       { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.2, ease: "power4.out", delay: 0.3 }
     )
-    .fromTo('.ui-hero-desc',
+    .fromTo('.hero p',
       { y: 30, opacity: 0 },
       { y: 0, opacity: 1, duration: 1.0, ease: "power3.out" },
       "-=0.7"
+    )
+    .fromTo('.hero-scroll-indicator',
+      { opacity: 0 },
+      { opacity: 1, duration: 0.5 },
+      "-=0.4"
     );
 
     // Hero background smooth parallax & fade on scroll
-    if (document.querySelector('.ui-hero-bg')) {
-      gsap.to('.ui-hero-bg', {
+    if (document.querySelector('#hero')) {
+      gsap.to('#hero', {
         scrollTrigger: {
-          trigger: '.ui-hero',
+          trigger: '#hero',
           start: 'top top',
           end: 'bottom top',
           scrub: true
         },
-        yPercent: 15,
+        yPercent: 12,
         ease: 'none'
       });
       
-      gsap.to('.ui-hero-content', {
+      gsap.to('.hero-content', {
         scrollTrigger: {
-          trigger: '.ui-hero',
+          trigger: '#hero',
           start: 'top top',
           end: 'bottom top',
           scrub: true

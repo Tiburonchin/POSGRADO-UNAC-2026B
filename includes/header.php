@@ -125,7 +125,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
               <div class="mega-column">
                 <h4 class="mega-column-title">Soporte</h4>
                 <a href="<?= $baseUrl ?>programas/programas.php" class="mega-link"><strong>Malla Curricular</strong><span>Estructura de cursos, créditos y aprendizaje.</span></a>
-                <a href="<?= $baseUrl ?>Admision/costos/costos_admision.php" class="mega-link"><strong>Convenios</strong><span>Opciones de convenios y beneficios.</span></a>
+                <a href="<?= $baseUrl ?>convenios.php" class="mega-link"><strong>Convenios</strong><span>Opciones de convenios y beneficios.</span></a>
               </div>
               <div class="mega-column mega-highlight">
                 <h4 class="mega-column-title">Catálogo 2026</h4>
@@ -248,7 +248,7 @@ $pageTitle = $pageTitle ?? 'Escuela de Posgrado UNAC';
             <li><a href="<?= $baseUrl ?>programas/programas.php?type=especialidad">Especialidades</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php" class="font-bold text-unac-yellow mt-2 block">Soporte</a></li>
             <li><a href="<?= $baseUrl ?>programas/programas.php">Malla Curricular</a></li>
-            <li><a href="<?= $baseUrl ?>Admision/costos/costos_admision.php">Convenios</a></li>
+            <li><a href="<?= $baseUrl ?>convenios.php">Convenios</a></li>
           </ul>
         </li>
         <li>

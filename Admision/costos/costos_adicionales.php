@@ -47,7 +47,7 @@ require_once __DIR__ . '/../../includes/header.php';
     </section>
 
     <!-- Contenido Principal -->
-    <section class="py-20 px-4 bg-bg-base flex flex-col items-center relative overflow-hidden req-section" id="costos-content">
+    <section class="pt-32 pb-20 px-4 bg-bg-base flex flex-col items-center relative overflow-hidden req-section scroll-mt-32 mt-12 md:mt-16" id="costos-content">
         
         <!-- Decoration Gradients -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -59,9 +59,6 @@ require_once __DIR__ . '/../../includes/header.php';
             
             <!-- Cabecera de la Sección -->
             <div class="mb-2 text-center req-header">
-                <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-unac-yellow/10 border border-unac-yellow/20 text-unac-yellow font-bold text-sm tracking-widest uppercase mb-4">
-                    <i class="fas fa-file-invoice"></i> Tesis y Graduación
-                </div>
                 <h2 class="text-3xl md:text-5xl font-extrabold text-text-base mb-4 tracking-tight">Ruta Financiera <span class="text-unac-yellow">de Grados</span></h2>
                 <p class="text-text-muted text-base md:text-lg max-w-2xl mx-auto">Todas las tasas que necesitarás durante tu investigación, aprobación y sustentación.</p>
                 <div class="w-24 h-1 bg-gradient-to-r from-unac-yellow to-transparent mx-auto rounded-full mt-6"></div>

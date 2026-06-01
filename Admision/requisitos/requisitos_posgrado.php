@@ -45,7 +45,7 @@ require_once __DIR__ . '/../../includes/header.php';
     </section>
 
     <!-- Contenido de Requisitos Rediseñado con Tailwind -->
-    <section class="py-20 px-4 bg-bg-base flex flex-col items-center relative overflow-hidden" id="requisitos-content">
+    <section class="pt-32 pb-20 px-4 bg-bg-base flex flex-col items-center relative overflow-hidden scroll-mt-32 mt-12 md:mt-16" id="requisitos-content">
         
         <!-- Decoration Gradients -->
         <div class="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
@@ -58,9 +58,6 @@ require_once __DIR__ . '/../../includes/header.php';
             <!-- 3. REQUISITOS PARA EGRESAR Y NORMAS (Premium Bento Grid Layout) -->
             <div class="req-section w-full" id="requisitos-adicionales">
                 <div class="mb-12 text-center">
-                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-unac-yellow/10 border border-unac-yellow/20 text-unac-yellow font-bold text-sm tracking-widest uppercase mb-4">
-                        <i class="fas fa-scroll"></i> Finalización de Estudios
-                    </div>
                     <h2 class="text-3xl md:text-5xl font-extrabold text-text-base mb-4 tracking-tight">Requisitos <span class="text-unac-yellow">para Egresar y Normativas</span></h2>
                     <p class="text-text-muted text-lg max-w-2xl mx-auto">Reglamentos, directivas de investigación y guías complementarias de graduación estructuradas de forma limpia.</p>
                     <div class="w-24 h-1 bg-gradient-to-r from-unac-yellow to-transparent mx-auto rounded-full mt-6"></div>

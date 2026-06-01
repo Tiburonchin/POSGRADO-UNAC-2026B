@@ -35,7 +35,7 @@ function renderPage(string $pageTitle, string|array $contentTemplate): void
   $baseUrl = $baseUrl ?? './';
       $enableSmoothScroll = $isHomePage;
   foreach ($contentTemplates as $templatePath) {
-    if (str_contains($templatePath, 'noticia')) {
+    if (str_contains($templatePath, 'noticia') || str_contains($templatePath, 'convenio')) {
       $enableSmoothScroll = true;
       break;
     }

@@ -9,106 +9,39 @@ body[data-page="unidad-investigacion"] .site-header {
     z-index: 100;
 }
 
-/* Estilos exactos del Hero de la página de Requisitos */
-.ui-hero {
-    position: relative;
-    height: 100vh;
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-    overflow: hidden;
+body[data-page="unidad-investigacion"] .hero {
+    margin-top: 0 !important;
 }
 
-.ui-hero::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 150px;
-    background: linear-gradient(to bottom, transparent, var(--bg-base, #060a12));
-    z-index: 2;
-}
-
-.ui-hero-bg {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120%; /* Para el efecto de scroll parallax */
-    background-image: linear-gradient(rgba(6, 10, 18, 0.6), rgba(6, 10, 18, 0.8)), url('<?= $baseUrl ?>LA-ESCUELA/IMG-BG/admi-doc.webp');
-    background-size: cover;
-    background-position: center;
-    background-attachment: fixed;
-    z-index: 0;
-    will-change: transform;
+body[data-page="unidad-investigacion"] .hero::before {
+    background-image: linear-gradient(rgba(6, 10, 18, 0.6), rgba(6, 10, 18, 0.8)), url('<?= $baseUrl ?>LA-ESCUELA/IMG-BG/admi-doc.webp') !important;
 }
 
 @media (max-width: 1024px) {
-  .ui-hero-bg {
-      background-attachment: scroll;
-      height: 100%;
+  body[data-page="unidad-investigacion"] .hero::before {
+      background-attachment: scroll !important;
   }
-}
-
-.ui-hero-content {
-    max-width: 1000px;
-    padding: 0 20px;
-    z-index: 3;
-}
-
-.ui-hero-content h1 {
-    font-size: clamp(1.5rem, 4vw, 2.5rem);
-    font-weight: 600;
-    color: #fff;
-    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.55);
-    margin-bottom: 1.5rem;
-    line-height: 1.2;
-    text-transform: uppercase;
-    letter-spacing: -0.02em;
-}
-
-.ui-hero-content h1 .highlight {
-    font-size: clamp(3rem, 8vw, 5rem);
-    font-weight: 800;
-    display: block;
-    margin-top: 15px;
-    color: #fff;
-}
-
-.ui-hero-content p {
-    font-size: 1.25rem;
-    color: var(--unac-yellow, rgba(251, 202, 56, 1));
-    font-weight: 600;
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
 }
 </style>
 
-<!-- Hero Section (Requirements-style Design) -->
-<section class="ui-hero" id="hero">
-  <!-- Background Image element for perfect parallax -->
-  <div class="ui-hero-bg"></div>
-  
-  <!-- Soft grid line overlay for premium feel -->
-  <div class="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:4rem_4rem] pointer-events-none z-0"></div>
-  
-  <div class="ui-hero-content relative z-10">
-    <!-- Requirements Page style Title Hierarchy -->
-    <h1 class="ui-hero-title select-none">
-      Descubre nuestra
-      <span class="highlight">UNIDAD DE INVESTIGACIÓN</span>
-    </h1>
-    
-    <!-- Requirements Page style Yellow Subtitle -->
-    <p class="ui-hero-desc">
-      Impulsamos la ciencia, tecnología y humanidades en posgrado
-    </p>
-  </div>
-</section>
+<!-- Hero Section -->
+    <section class="hero" id="hero">
+        <div class="hero-content">
+            <h1>
+                Descubre nuestra
+                <span class="highlight">UNIDAD DE INVESTIGACIÓN</span>
+            </h1>
+            <p>Impulsamos la ciencia, tecnología y humanidades en posgrado</p>
+        </div>
+
+        <!-- Scroll Down indicator -->
+        <div class="hero-scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none">
+            <span class="text-[9px] text-white/20 font-bold uppercase tracking-[0.2em]">Desplazar</span>
+            <div class="w-5 h-8 rounded-full border border-white/20 flex justify-center p-1">
+                <div class="w-1 h-1 bg-unac-yellow rounded-full animate-bounce"></div>
+            </div>
+        </div>
+    </section>
 
 <!-- Section 2: Liderazgo y Dirección -->
 <section id="liderazgo" class="pt-56 pb-40 bg-bg-base relative ui-section">
