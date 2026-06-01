@@ -18,6 +18,27 @@ require_once __DIR__ . '/../../includes/header.php';
                 <span class="highlight">CRONOGRAMA ACADÉMICO 2026-B</span>
             </h1>
             <p>Fechas importantes para el proceso de admisión y ciclo académico 2026-B.</p>
+
+            <!-- Dynamic Action Buttons -->
+            <div class="hero-actions flex flex-col sm:flex-row items-center gap-6 w-full justify-center mt-8 relative z-10">
+                <a href="#admission-route" class="hero-btn-primary group relative flex items-center justify-center gap-3 px-8 py-4 bg-unac-yellow text-bg-base font-black rounded-2xl overflow-hidden shadow-[0_20px_40px_rgba(251,202,56,0.2)]">
+                    <span class="relative z-10">VER CALENDARIO</span>
+                    <i class="fas fa-arrow-down relative z-10 group-hover:translate-y-1 transition-transform"></i>
+                    <div class="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity"></div>
+                </a>
+                <a href="../../INSCRIPCION/" class="hero-btn-secondary group relative flex items-center justify-center gap-3 px-8 py-4 bg-white/5 border border-white/10 text-white font-bold rounded-2xl backdrop-blur-md">
+                    <span>INSCRIBIRSE AHORA</span>
+                    <i class="fas fa-chevron-right text-xs group-hover:translate-x-1 transition-transform"></i>
+                </a>
+            </div>
+        </div>
+
+        <!-- Scroll Down indicator -->
+        <div class="hero-scroll-indicator absolute bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-2 pointer-events-none">
+            <span class="text-[9px] text-white/20 font-bold uppercase tracking-[0.2em]">Desplazar</span>
+            <div class="w-5 h-8 rounded-full border border-white/20 flex justify-center p-1">
+                <div class="w-1 h-1 bg-unac-yellow rounded-full animate-bounce"></div>
+            </div>
         </div>
     </section>
     <!-- Contenido del Cronograma -->
@@ -96,8 +117,8 @@ require_once __DIR__ . '/../../includes/header.php';
                                     <!-- Items -->
                                     <div class="group/item relative bg-bg-surface/80 backdrop-blur-md border border-border-bright rounded-2xl p-6 md:pr-12 md:text-right hover:border-unac-yellow hover:bg-bg-surface transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(251,202,56,0.15)]">
                                         <div class="hidden md:flex absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-unac-yellow border-4 border-bg-base shadow-[0_0_15px_rgba(251,202,56,0.8)] group-hover/item:scale-125 transition-transform duration-300 z-10"></div>
-                                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-unac-yellow/10 border border-unac-yellow/30 text-unac-yellow font-extrabold text-xs tracking-wider uppercase mb-3 shadow-[0_0_15px_rgba(251,202,56,0.1)]">
-                                            <i class="far fa-calendar-alt mr-2"></i> Del 01 de junio al 10 de agosto del 2026
+                                        <div class="crono-timeline-badge mb-3">
+                                            <i class="far fa-calendar-alt mr-2"></i> Del 01 de Junio al 10 de Agosto del 2026
                                         </div>
                                         <h3 class="text-xl text-text-base font-bold">Inscripción de postulantes en línea</h3>
                                     </div>
@@ -106,16 +127,16 @@ require_once __DIR__ . '/../../includes/header.php';
                                     <div class="hidden md:block"></div>
                                     <div class="group/item relative bg-bg-surface/80 backdrop-blur-md border border-border-bright rounded-2xl p-6 md:pl-12 hover:border-unac-yellow hover:bg-bg-surface transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(251,202,56,0.15)]">
                                         <div class="hidden md:flex absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-unac-yellow border-4 border-bg-base shadow-[0_0_15px_rgba(251,202,56,0.8)] group-hover/item:scale-125 transition-transform duration-300 z-10"></div>
-                                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-unac-yellow/10 border border-unac-yellow/30 text-unac-yellow font-extrabold text-xs tracking-wider uppercase mb-3 shadow-[0_0_15px_rgba(251,202,56,0.1)]">
-                                            <i class="far fa-calendar-alt mr-2"></i> Del 19 al 20 de agosto del 2026
+                                        <div class="crono-timeline-badge mb-3">
+                                            <i class="far fa-calendar-alt mr-2"></i> Del 19 al 20 de Agosto del 2026
                                         </div>
                                         <h3 class="text-xl text-text-base font-bold">Evaluación de CV y entrevista virtual</h3>
                                     </div>
                                     
                                     <div class="group/item relative bg-bg-surface/80 backdrop-blur-md border border-border-bright rounded-2xl p-6 md:pr-12 md:text-right hover:border-unac-yellow hover:bg-bg-surface transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(251,202,56,0.15)]">
                                         <div class="hidden md:flex absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-unac-yellow border-4 border-bg-base shadow-[0_0_15px_rgba(251,202,56,0.8)] group-hover/item:scale-125 transition-transform duration-300 z-10"></div>
-                                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-unac-yellow/10 border border-unac-yellow/30 text-unac-yellow font-extrabold text-xs tracking-wider uppercase mb-3 shadow-[0_0_15px_rgba(251,202,56,0.1)]">
-                                            <i class="far fa-calendar-alt mr-2"></i> 21 de agosto de 2026
+                                        <div class="crono-timeline-badge mb-3">
+                                            <i class="far fa-calendar-alt mr-2"></i> 21 de Agosto de 2026
                                         </div>
                                         <h3 class="text-xl text-text-base font-bold">Publicación de resultados de admisión</h3>
                                     </div>
@@ -124,8 +145,8 @@ require_once __DIR__ . '/../../includes/header.php';
                                     <div class="hidden md:block"></div>
                                     <div class="group/item relative bg-bg-surface/80 backdrop-blur-md border border-border-bright rounded-2xl p-6 md:pl-12 hover:border-unac-yellow hover:bg-bg-surface transition-all duration-500 hover:-translate-y-2 hover:shadow-[0_15px_30px_-10px_rgba(251,202,56,0.15)]">
                                         <div class="hidden md:flex absolute left-0 top-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 rounded-full bg-unac-yellow border-4 border-bg-base shadow-[0_0_15px_rgba(251,202,56,0.8)] group-hover/item:scale-125 transition-transform duration-300 z-10"></div>
-                                        <div class="inline-flex items-center px-4 py-2 rounded-full bg-unac-yellow/10 border border-unac-yellow/30 text-unac-yellow font-extrabold text-xs tracking-wider uppercase mb-3 shadow-[0_0_15px_rgba(251,202,56,0.1)]">
-                                            <i class="far fa-calendar-alt mr-2"></i> 24 de agosto de 2026
+                                        <div class="crono-timeline-badge mb-3">
+                                            <i class="far fa-calendar-alt mr-2"></i> 24 de Agosto de 2026
                                         </div>
                                         <h3 class="text-xl text-text-base font-bold">Presentación de documentos de admitidos</h3>
                                     </div>
@@ -145,41 +166,39 @@ require_once __DIR__ . '/../../includes/header.php';
                                     <div class="h-1 w-24 bg-gradient-to-r from-unac-blue-light to-transparent rounded-full"></div>
                                 </div>
                                 
-                                <div class="overflow-x-auto bg-bg-surface border border-border-bright rounded-2xl shadow-2xl relative">
-                                    <!-- Highlight gradient -->
-                                    <div class="absolute inset-0 bg-gradient-to-br from-unac-yellow/5 to-transparent pointer-events-none"></div>
+                                <div class="overflow-x-auto bg-transparent border-0 shadow-none relative">
                                     
                                     <table class="w-full text-left border-collapse min-w-[600px]">
                                         <thead>
                                             <tr class="bg-bg-soft/80 backdrop-blur-sm text-text-base">
                                                 <th class="py-5 px-6 font-bold text-lg border-b-2 border-unac-yellow uppercase tracking-wider">Actividad</th>
-                                                <th class="py-5 px-6 font-bold text-lg border-b-2 border-unac-yellow uppercase tracking-wider text-center w-[220px]">Fecha</th>
+                                                <th class="py-5 px-6 font-bold text-lg border-b-2 border-unac-yellow uppercase tracking-wider text-center w-[260px]">Fecha</th>
                                             </tr>
                                         </thead>
                                         <tbody class="divide-y divide-border-base text-text-muted relative z-10 text-sm md:text-base">
                                             <tr class="hover:bg-bg-soft/60 transition-colors duration-300 group/row">
                                                 <td class="py-5 px-6 font-medium text-text-base group-hover/row:text-unac-yellow transition-colors">Solicitudes de reingreso y reserva de matrícula</td>
-                                                <td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center px-4 py-2 bg-bg-base border border-border-bright rounded-full text-xs font-bold text-unac-yellow whitespace-nowrap group-hover/row:border-unac-yellow/50 transition-colors">Del 01 Jul al 14 Ago</span></td>
+                                                <td class="py-5 px-6 text-center"><span class="crono-date-tag crono-date-tag-standard">01 Jul - 14 Ago</span></td>
                                             </tr>
                                             <tr class="hover:bg-bg-soft/60 transition-colors duration-300 group/row">
                                                 <td class="py-5 px-6 font-medium text-text-base group-hover/row:text-unac-yellow transition-colors">Entrega de Programación Horaria 2026-B a URA (registrado en el SGA).</td>
-                                                <td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center px-4 py-2 bg-bg-base border border-border-bright rounded-full text-xs font-bold text-unac-yellow whitespace-nowrap group-hover/row:border-unac-yellow/50 transition-colors">Del 17 al 21 Ago</span></td>
+                                                <td class="py-5 px-6 text-center"><span class="crono-date-tag crono-date-tag-standard">17 Ago - 21 Ago</span></td>
                                             </tr>
                                             <tr class="hover:bg-bg-soft/60 transition-colors duration-300 group/row">
                                                 <td class="py-5 px-6 font-medium text-text-base group-hover/row:text-unac-yellow transition-colors">Matrícula regular (Virtual - SGA)</td>
-                                                <td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center px-4 py-2 bg-bg-base border border-border-bright rounded-full text-xs font-bold text-unac-yellow whitespace-nowrap group-hover/row:border-unac-yellow/50 transition-colors">Del 24 al 26 Ago</span></td>
+                                                <td class="py-5 px-6 text-center"><span class="crono-date-tag crono-date-tag-standard">24 Ago - 26 Ago</span></td>
                                             </tr>
                                             <tr class="hover:bg-bg-soft/60 transition-colors duration-300 group/row">
                                                 <td class="py-5 px-6 font-medium text-text-base group-hover/row:text-unac-yellow transition-colors">Matrícula extemporánea</td>
-                                                <td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center px-4 py-2 bg-bg-base border border-border-bright rounded-full text-xs font-bold text-unac-yellow whitespace-nowrap group-hover/row:border-unac-yellow/50 transition-colors">27 de Agosto</span></td>
+                                                <td class="py-5 px-6 text-center"><span class="crono-date-tag crono-date-tag-standard">27 de Ago.</span></td>
                                             </tr>
                                             <tr class="hover:bg-bg-soft/60 transition-colors duration-300 group/row">
                                                 <td class="py-5 px-6 font-medium text-text-base group-hover/row:text-unac-yellow transition-colors">Matrícula especial (cursos dirigidos)</td>
-                                                <td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center px-4 py-2 bg-bg-base border border-border-bright rounded-full text-xs font-bold text-unac-yellow whitespace-nowrap group-hover/row:border-unac-yellow/50 transition-colors">28 de Agosto</span></td>
+                                                <td class="py-5 px-6 text-center"><span class="crono-date-tag crono-date-tag-standard">28 de Ago.</span></td>
                                             </tr>
                                             <tr class="hover:bg-bg-soft/60 transition-colors duration-300 group/row">
                                                 <td class="py-5 px-6 font-medium text-text-base group-hover/row:text-unac-yellow transition-colors">Rectificación de matrícula</td>
-                                                <td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center px-4 py-2 bg-bg-base border border-border-bright rounded-full text-xs font-bold text-unac-yellow whitespace-nowrap group-hover/row:border-unac-yellow/50 transition-colors">31 de Agosto</span></td>
+                                                <td class="py-5 px-6 text-center"><span class="crono-date-tag crono-date-tag-standard">31 de Ago.</span></td>
                                             </tr>
                                             
                                             <!-- Spacing row before Start Row -->
@@ -193,7 +212,7 @@ require_once __DIR__ . '/../../includes/header.php';
                                                     </span>
                                                     Inicio de clases
                                                 </td>
-                                                <td class="py-8 px-6 text-center"><span class="inline-flex items-center justify-center px-6 py-2.5 bg-unac-blue text-white shadow-[0_0_20px_rgba(59,130,246,0.6)] rounded-full text-sm font-extrabold whitespace-nowrap transform group-hover/row:scale-105 transition-transform duration-300">01 de Setiembre</span></td>
+                                                <td class="py-8 px-6 text-center"><span class="crono-date-tag crono-date-tag-primary">01 de Set.</span></td>
                                             </tr>
                                             
                                             <!-- Spacing row after Start Row -->
@@ -201,15 +220,15 @@ require_once __DIR__ . '/../../includes/header.php';
 
                                             <tr class="hover:bg-bg-soft/60 transition-colors duration-300 group/row">
                                                 <td class="py-5 px-6 font-medium text-text-base group-hover/row:text-unac-yellow transition-colors">Fin de clases</td>
-                                                <td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center px-4 py-2 bg-bg-base border border-border-bright rounded-full text-xs font-bold text-unac-yellow whitespace-nowrap group-hover/row:border-unac-yellow/50 transition-colors">21 de Diciembre</span></td>
+                                                <td class="py-5 px-6 text-center"><span class="crono-date-tag crono-date-tag-standard">21 de Dic.</span></td>
                                             </tr>
                                             <tr class="hover:bg-bg-soft/60 transition-colors duration-300 group/row">
                                                 <td class="py-5 px-6 font-medium text-text-base group-hover/row:text-unac-yellow transition-colors">Ingreso de notas y Actas (SGA)</td>
-                                                <td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center px-4 py-2 bg-bg-base border border-border-bright rounded-full text-xs font-bold text-unac-yellow whitespace-nowrap group-hover/row:border-unac-yellow/50 transition-colors">22 y 23 Dic</span></td>
+                                                <td class="py-5 px-6 text-center"><span class="crono-date-tag crono-date-tag-standard">22 y 23 Dic.</span></td>
                                             </tr>
                                             <tr class="hover:bg-bg-soft/60 transition-colors duration-300 group/row">
                                                 <td class="py-5 px-6 font-medium text-text-base group-hover/row:text-unac-yellow transition-colors">Entrega de actas a la URA (físico y digital)</td>
-                                                <td class="py-5 px-6 text-center"><span class="inline-flex items-center justify-center px-4 py-2 bg-bg-base border border-border-bright rounded-full text-xs font-bold text-unac-yellow whitespace-nowrap group-hover/row:border-unac-yellow/50 transition-colors">24 de Diciembre</span></td>
+                                                <td class="py-5 px-6 text-center"><span class="crono-date-tag crono-date-tag-standard">24 de Dic.</span></td>
                                             </tr>
                                             
                                             <!-- Spacing row before End Row -->
@@ -223,7 +242,7 @@ require_once __DIR__ . '/../../includes/header.php';
                                                     </span>
                                                     Fin del Semestre 2026-B
                                                 </td>
-                                                <td class="py-8 px-6 text-center"><span class="inline-flex items-center justify-center px-6 py-2.5 bg-red-500 text-white shadow-[0_0_20px_rgba(239,68,68,0.6)] rounded-full text-sm font-extrabold whitespace-nowrap transform group-hover/row:scale-105 transition-transform duration-300">24 de Diciembre</span></td>
+                                                <td class="py-8 px-6 text-center"><span class="crono-date-tag crono-date-tag-alert">24 de Dic.</span></td>
                                             </tr>
                                             
                                             <!-- Spacing row after End Row -->
@@ -255,8 +274,8 @@ require_once __DIR__ . '/../../includes/header.php';
                                         </div>
                                         <h3 class="text-lg font-bold text-text-base mb-3 relative z-10 group-hover/card:text-white transition-colors">Inscripción en SGA</h3>
                                         <p class="text-text-muted text-xs mb-6 relative z-10 flex-grow">Inscripción a través del sistema.</p>
-                                        <div class="inline-flex items-center justify-center w-full text-unac-yellow font-bold bg-bg-base border border-border-bright px-3 py-2 rounded-xl text-xs group-hover/card:border-unac-yellow/50 group-hover/card:bg-unac-yellow/10 transition-all duration-300 relative z-10">
-                                            04 al 06 mar 2027
+                                        <div class="crono-card-badge relative z-10">
+                                            04 al 06 Mar 2027
                                         </div>
                                     </div>
                                     <!-- Card 2 -->
@@ -267,8 +286,8 @@ require_once __DIR__ . '/../../includes/header.php';
                                         </div>
                                         <h3 class="text-lg font-bold text-text-base mb-3 relative z-10 group-hover/card:text-white transition-colors">Exámenes y Registro</h3>
                                         <p class="text-text-muted text-xs mb-6 relative z-10 flex-grow">Rendición y registro de notas.</p>
-                                        <div class="inline-flex items-center justify-center w-full text-unac-yellow font-bold bg-bg-base border border-border-bright px-3 py-2 rounded-xl text-xs group-hover/card:border-unac-yellow/50 group-hover/card:bg-unac-yellow/10 transition-all duration-300 relative z-10">
-                                            07 y 08 mar 2027
+                                        <div class="crono-card-badge relative z-10">
+                                            07 y 08 Mar 2027
                                         </div>
                                     </div>
                                     <!-- Card 3 -->
@@ -279,8 +298,8 @@ require_once __DIR__ . '/../../includes/header.php';
                                         </div>
                                         <h3 class="text-lg font-bold text-text-base mb-3 relative z-10 group-hover/card:text-white transition-colors">Entrega de Actas</h3>
                                         <p class="text-text-muted text-xs mb-6 relative z-10 flex-grow">Entrega de actas URA física/digital.</p>
-                                        <div class="inline-flex items-center justify-center w-full text-unac-yellow font-bold bg-bg-base border border-border-bright px-3 py-2 rounded-xl text-xs group-hover/card:border-unac-yellow/50 group-hover/card:bg-unac-yellow/10 transition-all duration-300 relative z-10">
-                                            11 y 13 mar 2027
+                                        <div class="crono-card-badge relative z-10">
+                                            11 y 13 Mar 2027
                                         </div>
                                     </div>
                                 </div>

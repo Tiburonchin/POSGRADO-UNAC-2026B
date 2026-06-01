@@ -1108,4 +1108,120 @@ body[data-type="admision"] .hero::before {
     .hero-stats {
         grid-template-columns: 1fr;
     }
-}
+}
+
+/* ==========================================================================
+   CRONOGRAMA UNIFORM & HARMONIOUS DATE TAGS (PREMIUM MODERN LOOK)
+   ========================================================================== */
+
+/* 1. Base Tag for Schedule Table Dates */
+.crono-date-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 210px;
+    height: 40px;
+    border-radius: var(--radius-full);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    white-space: nowrap;
+    text-align: center;
+    transition: all var(--motion-base) var(--motion-ease);
+    box-sizing: border-box;
+}
+
+/* Standard outlined gold/yellow date badge */
+.crono-date-tag-standard {
+    background-color: rgba(251, 202, 56, 0.03);
+    border: 1px solid var(--border-bright);
+    color: var(--unac-yellow);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+.group\/row:hover .crono-date-tag-standard {
+    border-color: var(--unac-yellow);
+    background-color: rgba(251, 202, 56, 0.1);
+    box-shadow: 0 0 15px rgba(251, 202, 56, 0.2);
+    transform: translateY(-1px) scale(1.02);
+}
+
+/* Primary vibrant blue date badge (e.g., Inicio de clases) */
+.crono-date-tag-primary {
+    background: linear-gradient(135deg, var(--unac-blue) 0%, var(--unac-blue-dark) 100%);
+    color: #ffffff;
+    font-weight: 800;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(59, 130, 246, 0.35);
+}
+
+.group\/row:hover .crono-date-tag-primary {
+    box-shadow: 0 0 25px rgba(59, 130, 246, 0.6);
+    transform: translateY(-1px) scale(1.03);
+}
+
+/* Alert vibrant red date badge (e.g., Fin del semestre) */
+.crono-date-tag-alert {
+    background: linear-gradient(135deg, #ef4444 0%, #b91c1c 100%);
+    color: #ffffff;
+    font-weight: 800;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 4px 15px rgba(239, 68, 68, 0.35);
+}
+
+.group\/row:hover .crono-date-tag-alert {
+    box-shadow: 0 0 25px rgba(239, 68, 68, 0.6);
+    transform: translateY(-1px) scale(1.03);
+}
+
+/* 2. Timeline Card Date Tag (Section 01) */
+.crono-timeline-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 8px 20px;
+    border-radius: var(--radius-full);
+    background-color: rgba(251, 202, 56, 0.06);
+    border: 1px solid rgba(251, 202, 56, 0.2);
+    color: var(--unac-yellow);
+    font-size: 0.75rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    box-shadow: 0 0 15px rgba(251, 202, 56, 0.05);
+    transition: all var(--motion-base) var(--motion-ease);
+}
+
+.group\/item:hover .crono-timeline-badge {
+    border-color: var(--unac-yellow);
+    background-color: rgba(251, 202, 56, 0.12);
+    box-shadow: 0 0 20px rgba(251, 202, 56, 0.2);
+}
+
+/* 3. Grid Card Date Tag (Section 03) */
+.crono-card-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 42px;
+    border-radius: var(--radius-md);
+    font-size: 0.8rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--unac-yellow);
+    background-color: rgba(251, 202, 56, 0.03);
+    border: 1px solid var(--border-bright);
+    transition: all var(--motion-base) var(--motion-ease);
+}
+
+.group\/card:hover .crono-card-badge {
+    border-color: var(--unac-yellow);
+    background-color: rgba(251, 202, 56, 0.1);
+    color: var(--unac-yellow);
+    box-shadow: 0 0 15px rgba(251, 202, 56, 0.2);
+}
+
